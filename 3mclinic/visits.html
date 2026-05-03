@@ -8,64 +8,47 @@
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
-        <!-- Шторка Плана лечения -->
+        <!-- Шторка Плана лечения (Вариант 1: PDF файл) -->
         <div id="plan-sheet" class="bottom-sheet-overlay" onclick="if(event.target === this) closeSheets()">
             <div class="bottom-sheet">
                 <div class="w-12 h-1.5 bg-gray-200 rounded-full mb-6 mx-auto"></div>
                 
                 <div class="flex justify-between items-start mb-6">
                     <div>
-                        <h2 class="text-2xl font-bold text-apple-text mb-1">План лечения</h2>
+                        <h2 class="text-2xl font-bold text-apple-text mb-1">Медицинские документы</h2>
                         <p class="text-[13px] text-apple-grayText font-medium">От 28 Мар 2026 • Магеррамов Б.А.</p>
                     </div>
-                    <button class="w-10 h-10 bg-apple-brandLight rounded-full flex items-center justify-center text-apple-brandDark hover:bg-apple-brand hover:text-white transition-colors">
-                        <i class="ph-fill ph-file-pdf text-xl"></i>
-                    </button>
                 </div>
 
-                <!-- Stages -->
-                <div class="space-y-4 mb-8">
-                    <!-- Stage 1 -->
-                    <div class="relative pl-6 border-l-2 border-apple-brand/30">
-                        <div class="absolute -left-[5px] top-0 w-2 h-2 rounded-full bg-apple-brand"></div>
-                        <h3 class="text-[14px] font-bold text-apple-text mb-1 leading-none">1 этап. Санация</h3>
-                        <div class="bg-gray-50 rounded-xl p-3 mt-2">
-                            <div class="flex justify-between items-center mb-1">
-                                <span class="text-[13px] text-apple-text font-medium">Лечение кариеса (34 зуб)</span>
-                                <span class="text-[13px] font-bold">5 500 ₽</span>
-                            </div>
-                            <div class="flex justify-between items-center">
-                                <span class="text-[13px] text-apple-text font-medium">Профгигиена</span>
-                                <span class="text-[13px] font-bold">4 500 ₽</span>
-                            </div>
+                <!-- Document Card -->
+                <div class="bg-gray-50 border border-gray-100 rounded-2xl p-4 mb-8 flex items-center justify-between">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center text-red-500 shadow-sm border border-gray-100">
+                            <i class="ph-fill ph-file-pdf text-2xl"></i>
                         </div>
-                    </div>
-
-                    <!-- Stage 2 -->
-                    <div class="relative pl-6 border-l-2 border-gray-100">
-                        <div class="absolute -left-[5px] top-0 w-2 h-2 rounded-full bg-gray-300"></div>
-                        <h3 class="text-[14px] font-bold text-apple-text mb-1 leading-none">2 этап. Хирургия</h3>
-                        <div class="bg-gray-50 rounded-xl p-3 mt-2">
-                            <div class="flex justify-between items-center">
-                                <span class="text-[13px] text-apple-text font-medium">Удаление зуба мудрости</span>
-                                <span class="text-[13px] font-bold">6 000 ₽</span>
-                            </div>
+                        <div>
+                            <h3 class="text-[14px] font-bold text-apple-text mb-0.5">План_лечения_Ветютнева.pdf</h3>
+                            <p class="text-[12px] text-apple-grayText">245 КБ • Загружен врачом</p>
                         </div>
-                    </div>
-                    
-                    <!-- Total -->
-                    <div class="mt-4 pt-4 border-t border-gray-100 flex justify-between items-center">
-                        <span class="text-[14px] font-medium text-apple-grayText">Ориентировочная сумма:</span>
-                        <span class="text-xl font-bold text-apple-text">~16 000 ₽</span>
                     </div>
                 </div>
                 
+                <!-- Comment Card -->
+                <div class="mb-8">
+                    <h3 class="text-[13px] font-bold text-apple-grayText uppercase tracking-wider mb-2 ml-1">Комментарий врача</h3>
+                    <div class="bg-apple-brandLight/50 border border-apple-brandLight rounded-2xl p-4">
+                        <p class="text-[14px] text-apple-text leading-relaxed">
+                            Удалили 34-й зуб. Заживление пройдет за 3-5 дней. Подробный расчет стоимости дальнейшей имплантации и терапии прикрепил в файле выше. Следующий осмотр планируем через месяц.
+                        </p>
+                    </div>
+                </div>
+
                 <div class="flex gap-2">
                     <button onclick="closeSheets()" class="flex-[1] bg-gray-100 text-apple-text py-3.5 rounded-2xl font-bold text-[14px] hover:bg-gray-200 transition-colors">
                         Закрыть
                     </button>
-                    <button class="flex-[2] bg-apple-brand text-white py-3.5 rounded-[50px] font-bold text-[14px] hover:bg-apple-brandHover transition-colors shadow-sm">
-                        Записаться на 1 этап
+                    <button class="flex-[2] bg-apple-brand text-white py-3.5 rounded-[50px] font-bold text-[14px] hover:bg-apple-brandHover transition-colors shadow-sm flex justify-center items-center gap-2">
+                        <i class="ph-bold ph-download-simple"></i> Скачать документ
                     </button>
                 </div>
             </div>
@@ -344,64 +327,47 @@
     </div>
 
     
-        <!-- Шторка Плана лечения -->
+        <!-- Шторка Плана лечения (Вариант 1: PDF файл) -->
         <div id="plan-sheet" class="bottom-sheet-overlay" onclick="if(event.target === this) closeSheets()">
             <div class="bottom-sheet">
                 <div class="w-12 h-1.5 bg-gray-200 rounded-full mb-6 mx-auto"></div>
                 
                 <div class="flex justify-between items-start mb-6">
                     <div>
-                        <h2 class="text-2xl font-bold text-apple-text mb-1">План лечения</h2>
+                        <h2 class="text-2xl font-bold text-apple-text mb-1">Медицинские документы</h2>
                         <p class="text-[13px] text-apple-grayText font-medium">От 28 Мар 2026 • Магеррамов Б.А.</p>
                     </div>
-                    <button class="w-10 h-10 bg-apple-brandLight rounded-full flex items-center justify-center text-apple-brandDark hover:bg-apple-brand hover:text-white transition-colors">
-                        <i class="ph-fill ph-file-pdf text-xl"></i>
-                    </button>
                 </div>
 
-                <!-- Stages -->
-                <div class="space-y-4 mb-8">
-                    <!-- Stage 1 -->
-                    <div class="relative pl-6 border-l-2 border-apple-brand/30">
-                        <div class="absolute -left-[5px] top-0 w-2 h-2 rounded-full bg-apple-brand"></div>
-                        <h3 class="text-[14px] font-bold text-apple-text mb-1 leading-none">1 этап. Санация</h3>
-                        <div class="bg-gray-50 rounded-xl p-3 mt-2">
-                            <div class="flex justify-between items-center mb-1">
-                                <span class="text-[13px] text-apple-text font-medium">Лечение кариеса (34 зуб)</span>
-                                <span class="text-[13px] font-bold">5 500 ₽</span>
-                            </div>
-                            <div class="flex justify-between items-center">
-                                <span class="text-[13px] text-apple-text font-medium">Профгигиена</span>
-                                <span class="text-[13px] font-bold">4 500 ₽</span>
-                            </div>
+                <!-- Document Card -->
+                <div class="bg-gray-50 border border-gray-100 rounded-2xl p-4 mb-8 flex items-center justify-between">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center text-red-500 shadow-sm border border-gray-100">
+                            <i class="ph-fill ph-file-pdf text-2xl"></i>
                         </div>
-                    </div>
-
-                    <!-- Stage 2 -->
-                    <div class="relative pl-6 border-l-2 border-gray-100">
-                        <div class="absolute -left-[5px] top-0 w-2 h-2 rounded-full bg-gray-300"></div>
-                        <h3 class="text-[14px] font-bold text-apple-text mb-1 leading-none">2 этап. Хирургия</h3>
-                        <div class="bg-gray-50 rounded-xl p-3 mt-2">
-                            <div class="flex justify-between items-center">
-                                <span class="text-[13px] text-apple-text font-medium">Удаление зуба мудрости</span>
-                                <span class="text-[13px] font-bold">6 000 ₽</span>
-                            </div>
+                        <div>
+                            <h3 class="text-[14px] font-bold text-apple-text mb-0.5">План_лечения_Ветютнева.pdf</h3>
+                            <p class="text-[12px] text-apple-grayText">245 КБ • Загружен врачом</p>
                         </div>
-                    </div>
-                    
-                    <!-- Total -->
-                    <div class="mt-4 pt-4 border-t border-gray-100 flex justify-between items-center">
-                        <span class="text-[14px] font-medium text-apple-grayText">Ориентировочная сумма:</span>
-                        <span class="text-xl font-bold text-apple-text">~16 000 ₽</span>
                     </div>
                 </div>
                 
+                <!-- Comment Card -->
+                <div class="mb-8">
+                    <h3 class="text-[13px] font-bold text-apple-grayText uppercase tracking-wider mb-2 ml-1">Комментарий врача</h3>
+                    <div class="bg-apple-brandLight/50 border border-apple-brandLight rounded-2xl p-4">
+                        <p class="text-[14px] text-apple-text leading-relaxed">
+                            Удалили 34-й зуб. Заживление пройдет за 3-5 дней. Подробный расчет стоимости дальнейшей имплантации и терапии прикрепил в файле выше. Следующий осмотр планируем через месяц.
+                        </p>
+                    </div>
+                </div>
+
                 <div class="flex gap-2">
                     <button onclick="closeSheets()" class="flex-[1] bg-gray-100 text-apple-text py-3.5 rounded-2xl font-bold text-[14px] hover:bg-gray-200 transition-colors">
                         Закрыть
                     </button>
-                    <button class="flex-[2] bg-apple-brand text-white py-3.5 rounded-[50px] font-bold text-[14px] hover:bg-apple-brandHover transition-colors shadow-sm">
-                        Записаться на 1 этап
+                    <button class="flex-[2] bg-apple-brand text-white py-3.5 rounded-[50px] font-bold text-[14px] hover:bg-apple-brandHover transition-colors shadow-sm flex justify-center items-center gap-2">
+                        <i class="ph-bold ph-download-simple"></i> Скачать документ
                     </button>
                 </div>
             </div>
