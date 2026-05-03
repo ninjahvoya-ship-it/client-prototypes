@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>3M Clinic | Prototype</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        apple: {
+                            bg: '#F2F2F7', card: '#FFFFFF', text: '#000000', grayText: '#8A8A8E',
+                            brand: '#7ED6A5', brandDark: '#3B8B60', brandLight: '#E9F2E9'
+                        }
+                    },
+                    borderRadius: { '4xl': '32px' },
+                    boxShadow: { 'ios': '0 2px 10px rgba(0, 0, 0, 0.04)', 'brand': '0 8px 24px rgba(126, 214, 165, 0.3)' }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { -webkit-tap-highlight-color: transparent; }
+        ::-webkit-scrollbar { display: none; }
+        .screen { display: none; animation: slideIn 0.3s ease-out; }
+        .screen.active { display: block; }
+        @keyframes slideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        /* Стили для Bottom Sheet (Шторки) */
+        .bottom-sheet-overlay {
+            display: none; position: absolute; inset: 0; background: rgba(0,0,0,0.4); z-index: 100;
+            animation: fadeIn 0.3s ease-out;
+        }
+        .bottom-sheet {
+            position: absolute; bottom: 0; left: 0; right: 0; background: #F2F2F7;
+            border-radius: 32px 32px 0 0; padding: 24px; z-index: 101;
+            transform: translateY(100%); transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .bottom-sheet-overlay.active { display: block; }
+        .bottom-sheet-overlay.active .bottom-sheet { transform: translateY(0); }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    </style>
+</head>
+<body class="bg-gray-300 text-apple-text overflow-x-hidden flex justify-center">
+
+    <div class="w-full max-w-[400px] bg-apple-bg h-screen relative shadow-2xl border-x border-gray-300 overflow-hidden">
+        
+        <!-- ================= ЭКРАН 1: ГЛАВНАЯ (HOME) ================= -->
+        <div id="screen-home" class="screen active h-full overflow-y-auto pb-24">
+            <header class="px-5 pt-10 pb-4 sticky top-0 bg-apple-bg/80 backdrop-blur-xl z-40 flex justify-between items-center">
+                <div>
+                    <h1 class="text-3xl font-bold tracking-tight mb-1 text-apple-brandDark">3M Clinic</h1>
+                    <p class="text-apple-grayText text-[11px] font-medium">Стоматология • Братиславская 14</p>
+                </div>
+                <div class="w-10 h-10 bg-apple-brandLight rounded-full flex items-center justify-center text-apple-brandDark shadow-sm">
+                    <i class="ph-fill ph-phone text-xl"></i>
+                </div>
+            </header>
+
+            <main class="px-5 mt-4 space-y-6">
+                <!-- Карта лояльности -->
+                <div onclick="openQR()" class="bg-white rounded-[24px] p-4 shadow-ios flex items-center justify-between cursor-pointer hover:bg-gray-50 transition-colors">
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 bg-apple-brandLight rounded-full flex items-center justify-center text-apple-brandDark">
+                            <i class="ph-fill ph-star text-2xl"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs text-apple-grayText font-medium">Ваши баллы</p>
+                            <p class="text-xl font-bold">1 450 <span class="text-sm text-apple-brandDark">⭐️</span></p>
+                        </div>
+                    </div>
+                    <i class="ph-bold ph-qr-code text-2xl text-gray-300"></i>
+                </div>
+
+                <!-- Карточка записи (Hero) -->
+                <div class="bg-gradient-to-br from-apple-brand to-[#56D38E] rounded-[24px] p-5 text-white shadow-brand relative overflow-hidden">
+                    <div class="absolute right-0 top-0 opacity-20"><i class="ph-fill ph-tooth text-9xl"></i></div>
+                    <div class="relative z-10">
+                        <div class="flex items-center gap-2 mb-8">
+                            <div class="w-8 h-8 bg-white/30 backdrop-blur-sm rounded-full flex items-center justify-center"><i class="ph-bold ph-calendar-plus text-white"></i></div>
+                            <span class="text-sm font-semibold text-white/90">Ближайшее окно: Завтра 14:00</span>
+                        </div>
+                        <h2 class="text-2xl font-bold mb-1">Записаться на прием</h2>
+                        <p class="text-xs text-white/90 font-medium mb-6">Консультация, лечение или осмотр</p>
+                        <button onclick="openBookingSheet()" class="bg-white text-apple-brandDark w-full py-3 rounded-full font-bold text-sm shadow-sm hover:opacity-90 transition-opacity">
+                            Выбрать время
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Врачи карусель -->
+                <div>
+                    <h2 class="text-[15px] font-semibold text-apple-grayText uppercase tracking-wide px-1 mb-2">Наши врачи</h2>
+                    <div class="flex gap-4 overflow-x-auto pb-4 -mx-5 px-5 snap-x">
+                        <div class="w-[240px] shrink-0 snap-center relative">
+                            <div class="h-[280px] w-full bg-gray-200 rounded-[20px] overflow-hidden relative shadow-ios">
+                                <img src="https://images.unsplash.com/photo-1594824432258-f94dce309489?q=80&w=400&auto=format&fit=crop" class="w-full h-full object-cover grayscale opacity-90" />
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                                <div class="absolute bottom-0 left-0 p-4 text-white w-full">
+                                    <span class="text-[10px] font-bold uppercase tracking-wider text-apple-brand mb-1 block">Терапевт</span>
+                                    <h3 class="text-lg font-bold mb-3">Магомедова И. М.</h3>
+                                    <button onclick="openBookingSheet()" class="bg-white/20 backdrop-blur-md text-white border border-white/30 w-full py-2.5 rounded-xl font-semibold text-xs">Записаться</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w-[240px] shrink-0 snap-center relative">
+                            <div class="h-[280px] w-full bg-gray-200 rounded-[20px] overflow-hidden relative shadow-ios">
+                                <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?q=80&w=400&auto=format&fit=crop" class="w-full h-full object-cover grayscale opacity-90" />
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                                <div class="absolute bottom-0 left-0 p-4 text-white w-full">
+                                    <span class="text-[10px] font-bold uppercase tracking-wider text-apple-brand mb-1 block">Имплантолог</span>
+                                    <h3 class="text-lg font-bold mb-3">Магеррамов Б. А.</h3>
+                                    <button onclick="openBookingSheet()" class="bg-white/20 backdrop-blur-md text-white border border-white/30 w-full py-2.5 rounded-xl font-semibold text-xs">Записаться</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- ================= ЭКРАН 2: ВИЗИТЫ ================= -->
+        <div id="screen-visits" class="screen h-full overflow-y-auto pb-24">
+            <header class="px-5 pt-10 pb-4 sticky top-0 bg-apple-bg/80 backdrop-blur-xl z-40">
+                <h1 class="text-3xl font-bold tracking-tight text-apple-text">Мои визиты</h1>
+            </header>
+            
+            <main class="px-5 mt-4 space-y-6">
+                <!-- Tabs -->
+                <div class="bg-gray-200/50 p-1 rounded-lg flex">
+                    <button class="flex-1 bg-white shadow-sm py-1.5 rounded-md text-xs font-bold text-apple-text">Предстоящие</button>
+                    <button class="flex-1 py-1.5 rounded-md text-xs font-medium text-apple-grayText">Прошедшие</button>
+                </div>
+
+                <!-- Запись 1 (Семья) -->
+                <div class="bg-white rounded-3xl p-5 shadow-ios">
+                    <div class="flex justify-between items-center mb-4 border-b border-gray-100 pb-3">
+                        <div class="bg-apple-brandLight text-apple-brandDark px-3 py-1 rounded-full text-[10px] font-bold">14 Мая, ЧТ • 14:30</div>
+                        <span class="text-[10px] font-bold text-gray-400 flex items-center gap-1"><i class="ph-fill ph-baby"></i> Сын (Ваня)</span>
+                    </div>
+                    <h3 class="text-lg font-bold mb-1">Детская гигиена</h3>
+                    <p class="text-sm text-apple-grayText mb-6 flex items-center gap-2"><i class="ph-fill ph-user text-gray-300"></i> Магомедова И.М.</p>
+                    
+                    <div class="flex gap-2">
+                        <button class="flex-1 bg-gray-100 text-apple-text py-2.5 rounded-xl text-xs font-bold hover:bg-gray-200">Перенести</button>
+                        <button onclick="alert('Запись отменена через YCLIENTS')" class="flex-1 bg-red-50 text-red-500 py-2.5 rounded-xl text-xs font-bold hover:bg-red-100">Отменить</button>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- ================= ЭКРАН 3: ПРОФИЛЬ ================= -->
+        <div id="screen-profile" class="screen h-full overflow-y-auto pb-24">
+            <header class="px-5 pt-10 pb-4 sticky top-0 bg-apple-bg/80 backdrop-blur-xl z-40">
+                <h1 class="text-3xl font-bold tracking-tight text-apple-text">Профиль</h1>
+            </header>
+
+            <main class="px-5 mt-4 space-y-6">
+                <!-- User Info -->
+                <div class="flex items-center gap-4 bg-white p-5 rounded-3xl shadow-ios">
+                    <div class="w-16 h-16 bg-apple-brandLight rounded-full flex items-center justify-center text-apple-brandDark text-xl font-bold">AN</div>
+                    <div>
+                        <h2 class="text-xl font-bold">Анна Ветютнева</h2>
+                        <p class="text-sm text-apple-grayText">+7 (999) 123-45-67</p>
+                    </div>
+                </div>
+
+                <!-- Family Block -->
+                <div>
+                    <h2 class="text-[13px] font-semibold text-apple-grayText uppercase tracking-wide px-1 mb-2">Семья</h2>
+                    <div class="bg-white rounded-3xl overflow-hidden shadow-ios">
+                        <div class="p-4 flex items-center justify-between border-b border-gray-100">
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 bg-blue-50 text-blue-500 rounded-full flex items-center justify-center"><i class="ph-fill ph-baby text-lg"></i></div>
+                                <span class="font-semibold text-sm">Ваня (Сын)</span>
+                            </div>
+                            <i class="ph-bold ph-pencil-simple text-gray-300"></i>
+                        </div>
+                        <div class="p-4 flex items-center justify-between cursor-pointer hover:bg-gray-50" onclick="alert('Откроется форма добавления в БД')">
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 bg-gray-100 text-gray-500 rounded-full flex items-center justify-center"><i class="ph-bold ph-plus text-lg"></i></div>
+                                <span class="font-semibold text-sm text-apple-blue">Добавить родственника</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Documents -->
+                <div>
+                    <h2 class="text-[13px] font-semibold text-apple-grayText uppercase tracking-wide px-1 mb-2">Документы</h2>
+                    <div class="bg-white rounded-3xl overflow-hidden shadow-ios">
+                        <div class="p-4 flex items-center justify-between border-b border-gray-100">
+                            <div class="flex items-center gap-3">
+                                <i class="ph-fill ph-file-text text-xl text-gray-400"></i>
+                                <span class="font-semibold text-sm">Справка для налоговой</span>
+                            </div>
+                            <i class="ph-bold ph-download-simple text-apple-brandDark"></i>
+                        </div>
+                        <div class="p-4 flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <i class="ph-fill ph-file-text text-xl text-gray-400"></i>
+                                <span class="font-semibold text-sm">Договор на лечение</span>
+                            </div>
+                            <i class="ph-bold ph-download-simple text-apple-brandDark"></i>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- ================= БОТОМ ШИТЫ (МОДАЛКИ) ================= -->
+        
+        <!-- Шторка QR -->
+        <div id="qr-sheet" class="bottom-sheet-overlay">
+            <div class="bottom-sheet flex flex-col items-center text-center">
+                <div class="w-12 h-1 bg-gray-300 rounded-full mb-6 mx-auto"></div>
+                <h2 class="text-xl font-bold mb-2">Ваша карта лояльности</h2>
+                <p class="text-sm text-apple-grayText mb-6">Покажите этот код администратору</p>
+                <div class="bg-white p-6 rounded-3xl shadow-ios mb-6 w-full max-w-[250px] aspect-square flex items-center justify-center border border-gray-100">
+                    <img src="https://cdn-icons-png.flaticon.com/512/714/714407.png" class="w-full opacity-80" />
+                </div>
+                <button onclick="closeSheets()" class="w-full bg-gray-200 text-apple-text py-3.5 rounded-2xl font-bold text-sm">Закрыть</button>
+            </div>
+        </div>
+
+        <!-- Шторка Воронки Записи (Step 1) -->
+        <div id="booking-sheet" class="bottom-sheet-overlay">
+            <div class="bottom-sheet">
+                <div class="w-12 h-1 bg-gray-300 rounded-full mb-6 mx-auto"></div>
+                <h2 class="text-2xl font-bold mb-6 text-center">Как вас записать?</h2>
+                
+                <div class="space-y-3">
+                    <button onclick="alert('Откроет список услуг из YCLIENTS API')" class="w-full bg-white p-5 rounded-3xl shadow-ios border border-gray-100 flex items-center justify-between hover:border-apple-brand transition-colors text-left group">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-apple-brandLight text-apple-brandDark rounded-full flex items-center justify-center"><i class="ph-fill ph-tooth text-xl"></i></div>
+                            <div>
+                                <h3 class="font-bold text-base mb-1">Выбрать услугу</h3>
+                                <p class="text-xs text-apple-grayText">Знаю, что нужно сделать</p>
+                            </div>
+                        </div>
+                        <i class="ph-bold ph-caret-right text-gray-300 group-hover:text-apple-brand"></i>
+                    </button>
+
+                    <button onclick="alert('Откроет список врачей из YCLIENTS API')" class="w-full bg-white p-5 rounded-3xl shadow-ios border border-gray-100 flex items-center justify-between hover:border-apple-brand transition-colors text-left group">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-blue-50 text-apple-blue rounded-full flex items-center justify-center"><i class="ph-fill ph-user-circle text-xl"></i></div>
+                            <div>
+                                <h3 class="font-bold text-base mb-1">Выбрать врача</h3>
+                                <p class="text-xs text-apple-grayText">Иду к своему специалисту</p>
+                            </div>
+                        </div>
+                        <i class="ph-bold ph-caret-right text-gray-300 group-hover:text-apple-blue"></i>
+                    </button>
+                </div>
+                
+                <button onclick="closeSheets()" class="w-full bg-gray-100 text-apple-text py-3.5 rounded-2xl font-bold text-sm mt-6">Отмена</button>
+            </div>
+        </div>
+
+        <!-- ================= BOTTOM TAB BAR ================= -->
+        <nav class="fixed bottom-0 w-full max-w-[400px] bg-[#F8F8F8]/90 backdrop-blur-xl border-t border-[#E5E5EA] px-6 py-2 pb-6 flex justify-between items-center z-50">
+            <button onclick="nav('home')" id="tab-home" class="tab-btn flex flex-col items-center gap-1 text-apple-brandDark">
+                <i class="ph-fill ph-house text-[26px]"></i>
+                <span class="text-[10px] font-medium">Главная</span>
+            </button>
+            <button onclick="nav('visits')" id="tab-visits" class="tab-btn flex flex-col items-center gap-1 text-apple-grayText hover:text-apple-text transition-colors">
+                <i class="ph ph-calendar-blank text-[26px]"></i>
+                <span class="text-[10px] font-medium">Визиты</span>
+            </button>
+            <button onclick="nav('profile')" id="tab-profile" class="tab-btn flex flex-col items-center gap-1 text-apple-grayText hover:text-apple-text transition-colors">
+                <i class="ph ph-user text-[26px]"></i>
+                <span class="text-[10px] font-medium">Профиль</span>
+            </button>
+        </nav>
+
+    </div>
+
+    <!-- JS Logic for Prototype -->
+    <script>
+        function nav(screenId) {
+            // Hide all screens
+            document.querySelectorAll('.screen').forEach(el => el.classList.remove('active'));
+            // Show target
+            document.getElementById('screen-' + screenId).classList.add('active');
+            
+            // Update Tab Bar styling
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('text-apple-brandDark');
+                btn.classList.add('text-apple-grayText');
+                const icon = btn.querySelector('i');
+                icon.className = icon.className.replace('ph-fill', 'ph');
+            });
+            
+            const activeTab = document.getElementById('tab-' + screenId);
+            activeTab.classList.remove('text-apple-grayText');
+            activeTab.classList.add('text-apple-brandDark');
+            const activeIcon = activeTab.querySelector('i');
+            activeIcon.className = activeIcon.className.replace('ph', 'ph-fill');
+        }
+
+        function openQR() {
+            document.getElementById('qr-sheet').classList.add('active');
+        }
+
+        function openBookingSheet() {
+            document.getElementById('booking-sheet').classList.add('active');
+        }
+
+        function closeSheets() {
+            document.querySelectorAll('.bottom-sheet-overlay').forEach(el => el.classList.remove('active'));
+        }
+
+        // Close sheet on clicking overlay background
+        document.querySelectorAll('.bottom-sheet-overlay').forEach(overlay => {
+            overlay.addEventListener('click', (e) => {
+                if(e.target === overlay) closeSheets();
+            });
+        });
+    </script>
+</body>
+</html>
