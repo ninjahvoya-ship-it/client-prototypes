@@ -71,35 +71,35 @@
 
         /* Segmented Control Styles */
         .segmented-control {
-            background: #F2F2F7;
-            border-radius: 8px;
-            padding: 2px;
+            background: #E9F2E9; /* brandLight */
+            border-radius: 10px;
+            padding: 3px;
             display: flex;
             position: relative;
         }
         .segmented-btn {
             flex: 1;
             text-align: center;
-            padding: 6px 0;
+            padding: 7px 0;
             font-size: 13px;
             font-weight: 600;
-            color: #8A8A8E;
+            color: #3B8B60; /* brandDark */
             position: relative;
             z-index: 10;
             cursor: pointer;
             transition: color 0.3s ease;
         }
         .segmented-btn.active {
-            color: #000000;
+            color: #FFFFFF;
         }
         .segmented-indicator {
             position: absolute;
-            top: 2px;
-            bottom: 2px;
-            width: calc(50% - 2px);
-            background: #FFFFFF;
-            border-radius: 6px;
-            box-shadow: 0 3px 8px rgba(0,0,0,0.12), 0 3px 1px rgba(0,0,0,0.04);
+            top: 3px;
+            bottom: 3px;
+            width: calc(50% - 3px);
+            background: #7ED6A5; /* brand */
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(126, 214, 165, 0.4);
             transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
             z-index: 1;
         }
@@ -210,8 +210,8 @@
                     </p>
                     
                     <div class="pt-4 border-t border-gray-100 flex gap-2">
-                        <button class="flex-1 bg-apple-brandLight text-apple-brandDark py-2.5 rounded-xl text-[13px] font-bold hover:bg-apple-brand hover:text-white transition-colors">
-                            Оставить отзыв
+                        <button class="flex-1 bg-apple-brandLight text-apple-brandDark py-2.5 rounded-xl text-[13px] font-bold hover:bg-apple-brand hover:text-white transition-colors flex items-center justify-center gap-1.5">
+                            <i class="ph-bold ph-arrow-counter-clockwise"></i> Повторить запись
                         </button>
                     </div>
                 </div>
