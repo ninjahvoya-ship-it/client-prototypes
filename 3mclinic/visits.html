@@ -71,35 +71,35 @@
 
         /* Segmented Control Styles */
         .segmented-control {
-            background: #E9F2E9; /* brandLight */
+            background: #FFFFFF;
+            border: 1px solid #7ED6A5; /* Brand green border */
             border-radius: 10px;
-            padding: 3px;
+            padding: 2px;
             display: flex;
             position: relative;
         }
         .segmented-btn {
             flex: 1;
             text-align: center;
-            padding: 7px 0;
+            padding: 6px 0;
             font-size: 13px;
             font-weight: 600;
-            color: #3B8B60; /* brandDark */
+            color: #7ED6A5; /* Brand green text for inactive */
             position: relative;
             z-index: 10;
             cursor: pointer;
             transition: color 0.3s ease;
         }
         .segmented-btn.active {
-            color: #FFFFFF;
+            color: #FFFFFF; /* White text for active */
         }
         .segmented-indicator {
             position: absolute;
-            top: 3px;
-            bottom: 3px;
-            width: calc(50% - 3px);
-            background: #7ED6A5; /* brand */
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(126, 214, 165, 0.4);
+            top: 2px;
+            bottom: 2px;
+            width: calc(50% - 2px);
+            background: #7ED6A5; /* Brand green background for active pill */
+            border-radius: 6px;
             transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
             z-index: 1;
         }
