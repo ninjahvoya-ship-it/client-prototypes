@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3M Clinic | Design System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { 
+                        sans: ['Inter', 'sans-serif'],
+                        montserrat: ['Montserrat', 'sans-serif'],
+                        roboto: ['Roboto', 'sans-serif']
+                    },
+                    colors: {
+                        brand: {
+                            primary: '#7ED6A5',
+                            hover: '#56D38E',
+                            dark: '#3B8B60',
+                            light1: '#F3F8F3',
+                            light2: '#E9F2E9'
+                        },
+                        neutral: {
+                            white: '#FFFFFF',
+                            bg1: '#FAFAFA',
+                            bg2: '#F2F2F7',
+                            main: '#1B1B1B',
+                            muted: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    },
+                    boxShadow: {
+                        'light': '0px 8px 20px 0px rgba(0, 0, 0, 0.08)',
+                        'deep': '0px 8px 32px 0px rgba(0, 0, 0, 0.3)'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #FAFAFA; color: #1B1B1B; }
+        .color-swatch { height: 80px; border-radius: 12px; display: flex; align-items: flex-end; padding: 12px; font-size: 12px; font-weight: 600; }
+    </style>
+</head>
+<body class="p-6 md:p-12 font-sans antialiased max-w-5xl mx-auto">
+
+    <header class="mb-16 border-b pb-8">
+        <h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-3">Дизайн-система <span class="text-brand-primary">3M Clinic</span></h1>
+        <p class="text-neutral-muted text-lg">Визуальный язык, компоненты и стили, собранные на основе сайта 3mclinic.ru</p>
+    </header>
+
+    <main class="space-y-20">
+
+        <!-- 1. Colors -->
+        <section>
+            <h2 class="text-2xl font-bold mb-6 flex items-center gap-2"><i class="ph-fill ph-palette text-brand-primary"></i> 1. Цветовая палитра</h2>
+            
+            <h3 class="text-lg font-semibold mb-4 mt-8">🟢 Фирменные цвета (Brand)</h3>
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+                <div>
+                    <div class="color-swatch bg-brand-primary text-white mb-2 shadow-sm">#7ED6A5</div>
+                    <p class="font-semibold text-sm">Primary Mint</p>
+                    <p class="text-xs text-neutral-muted">Главный акцент</p>
+                </div>
+                <div>
+                    <div class="color-swatch bg-brand-hover text-white mb-2 shadow-sm">#56D38E</div>
+                    <p class="font-semibold text-sm">Mint Hover</p>
+                    <p class="text-xs text-neutral-muted">Наведение (кнопки)</p>
+                </div>
+                <div>
+                    <div class="color-swatch bg-brand-dark text-white mb-2 shadow-sm">#3B8B60</div>
+                    <p class="font-semibold text-sm">Mint Dark</p>
+                    <p class="text-xs text-neutral-muted">Контрастный текст</p>
+                </div>
+                <div>
+                    <div class="color-swatch bg-brand-light2 text-brand-dark mb-2 border border-gray-100">#E9F2E9</div>
+                    <p class="font-semibold text-sm">Mint Light 2</p>
+                    <p class="text-xs text-neutral-muted">Подложка 2 уровня</p>
+                </div>
+                <div>
+                    <div class="color-swatch bg-brand-light1 text-brand-dark mb-2 border border-gray-100">#F3F8F3</div>
+                    <p class="font-semibold text-sm">Mint Light 1</p>
+                    <p class="text-xs text-neutral-muted">Подложка 1 уровня</p>
+                </div>
+            </div>
+
+            <h3 class="text-lg font-semibold mb-4 mt-10">⚪️ Базовые цвета (Neutrals)</h3>
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+                <div>
+                    <div class="color-swatch bg-neutral-main text-white mb-2 shadow-sm">#1B1B1B</div>
+                    <p class="font-semibold text-sm">Text Main</p>
+                    <p class="text-xs text-neutral-muted">Основной текст</p>
+                </div>
+                <div>
+                    <div class="color-swatch bg-black/50 text-white mb-2 shadow-sm">rgba(0,0,0,0.5)</div>
+                    <p class="font-semibold text-sm">Text Muted</p>
+                    <p class="text-xs text-neutral-muted">Вторичный текст</p>
+                </div>
+                <div>
+                    <div class="color-swatch bg-neutral-white text-neutral-main mb-2 border border-gray-200">#FFFFFF</div>
+                    <p class="font-semibold text-sm">Background White</p>
+                    <p class="text-xs text-neutral-muted">Фон карточек</p>
+                </div>
+                <div>
+                    <div class="color-swatch bg-neutral-bg1 text-neutral-main mb-2 border border-gray-200">#FAFAFA</div>
+                    <p class="font-semibold text-sm">Light Gray</p>
+                    <p class="text-xs text-neutral-muted">Фон секций</p>
+                </div>
+                <div>
+                    <div class="color-swatch bg-neutral-bg2 text-neutral-main mb-2 border border-gray-200">#F2F2F7</div>
+                    <p class="font-semibold text-sm">Apple Gray</p>
+                    <p class="text-xs text-neutral-muted">Фон приложения (iOS)</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Typography -->
+        <section>
+            <h2 class="text-2xl font-bold mb-6 flex items-center gap-2"><i class="ph-fill ph-text-aa text-brand-primary"></i> 2. Типографика</h2>
+            
+            <div class="bg-white p-8 rounded-[20px] shadow-light border border-gray-100">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <div>
+                        <p class="text-sm text-neutral-muted mb-2 uppercase tracking-wide font-semibold">Заголовки (Inter / Montserrat)</p>
+                        <h1 class="text-4xl font-bold mb-4 font-montserrat">Заголовок H1 (Bold)</h1>
+                        <h2 class="text-2xl font-semibold mb-4">Заголовок H2 (Semi-bold)</h2>
+                        <h3 class="text-xl font-medium mb-4">Заголовок H3 (Medium)</h3>
+                    </div>
+                    <div>
+                        <p class="text-sm text-neutral-muted mb-2 uppercase tracking-wide font-semibold">Основной текст (Inter)</p>
+                        <p class="text-base mb-4 leading-relaxed"><strong>Text Regular (400):</strong> Это пример основного текста. Мы используем Inter как единый системный шрифт для чистоты дизайна, так как он идеально подходит под стилистику современных интерфейсов и нативных приложений (Apple/iOS).</p>
+                        <p class="text-sm text-neutral-muted font-light leading-relaxed"><strong>Text Light (300):</strong> Пример мелкого текста, подписей к фото или вторичной информации. Легко читается благодаря хорошим пропорциям шрифта.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. UI Elements -->
+        <section>
+            <h2 class="text-2xl font-bold mb-6 flex items-center gap-2"><i class="ph-fill ph-bounding-box text-brand-primary"></i> 3. Формы и Тени</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Border Radius -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Скругления (Border Radius)</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-4">
+                            <div class="w-16 h-16 bg-brand-light2 border border-brand-primary/20 flex items-center justify-center text-sm font-semibold rounded-md">6px</div>
+                            <p class="text-sm text-neutral-muted">Малые элементы (теги, мелкие кнопки)</p>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-16 h-16 bg-brand-light2 border border-brand-primary/20 flex items-center justify-center text-sm font-semibold rounded-[12px]">12px</div>
+                            <p class="text-sm text-neutral-muted">Иконки, внутренние плашки</p>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-16 h-16 bg-brand-light2 border border-brand-primary/20 flex items-center justify-center text-sm font-semibold rounded-[20px]">20px</div>
+                            <p class="text-sm text-neutral-muted">Карточки врачей, прайс-лист</p>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-16 h-16 bg-brand-light2 border border-brand-primary/20 flex items-center justify-center text-sm font-semibold rounded-[30px]">30px</div>
+                            <p class="text-sm text-neutral-muted">Крупные секции, модальные окна</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Shadows -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Тени (Box Shadows)</h3>
+                    <div class="space-y-6">
+                        <div class="bg-white p-6 rounded-[20px] shadow-light border border-gray-50 flex items-center justify-center h-24">
+                            <p class="font-medium text-sm">Light Shadow (Карточки)</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-[20px] shadow-deep border border-gray-50 flex items-center justify-center h-24">
+                            <p class="font-medium text-sm">Deep Shadow (Парящие элементы/Шторки)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Buttons & Icons -->
+        <section>
+            <h2 class="text-2xl font-bold mb-6 flex items-center gap-2"><i class="ph-fill ph-hand-pointing text-brand-primary"></i> 4. Кнопки и Иконки</h2>
+            
+            <div class="bg-white p-8 rounded-[20px] shadow-light border border-gray-100">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <!-- Buttons -->
+                    <div>
+                        <h3 class="text-sm text-neutral-muted mb-4 uppercase tracking-wide font-semibold">Состояния кнопок</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-4">
+                                <button class="bg-brand-primary text-white px-8 py-3 rounded-full font-bold hover:bg-brand-hover transition-colors shadow-sm">Primary Button</button>
+                                <span class="text-xs text-neutral-muted">Главное действие</span>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <button class="bg-transparent border border-brand-primary text-brand-primary px-8 py-3 rounded-full font-bold hover:bg-brand-light1 transition-colors">Secondary Button</button>
+                                <span class="text-xs text-neutral-muted">Второстепенное действие</span>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <button class="bg-brand-light2 text-brand-dark px-8 py-3 rounded-full font-bold hover:bg-brand-primary hover:text-white transition-colors">Tinted Button</button>
+                                <span class="text-xs text-neutral-muted">Мягкий акцент</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Icons -->
+                    <div>
+                        <h3 class="text-sm text-neutral-muted mb-4 uppercase tracking-wide font-semibold">Стилистика иконок</h3>
+                        <p class="text-sm mb-6">Используется библиотека Phosphor Icons (залитые для меню, линейные для контента) с фирменными подложками.</p>
+                        
+                        <div class="flex gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-brand-light2 text-brand-dark flex items-center justify-center text-2xl">
+                                <i class="ph-fill ph-tooth"></i>
+                            </div>
+                            <div class="w-12 h-12 rounded-xl bg-brand-light2 text-brand-dark flex items-center justify-center text-2xl">
+                                <i class="ph-fill ph-sparkle"></i>
+                            </div>
+                            <div class="w-12 h-12 rounded-xl bg-brand-light2 text-brand-dark flex items-center justify-center text-2xl">
+                                <i class="ph-fill ph-calendar-plus"></i>
+                            </div>
+                            <div class="w-12 h-12 rounded-xl bg-brand-primary text-white flex items-center justify-center text-2xl shadow-sm">
+                                <i class="ph-fill ph-phone"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="mt-20 pt-8 border-t text-center text-sm text-neutral-muted pb-8">
+        Сгенерировано для презентации 3M Clinic App.
+    </footer>
+
+</body>
+</html>
