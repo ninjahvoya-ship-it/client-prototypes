@@ -3,437 +3,231 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>3M Clinic</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>3M Clinic | Native Apple Style</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    <style>
-        :root {
-            --brand: #7ED6A5;
-            --brand-dark: #3B8B60;
-            --bg-main: #F2F2F7;
-            --bg-card: #FFFFFF;
-            --text-main: #1B1B1B;
-            --text-muted: rgba(27, 27, 27, 0.5);
-            --safe-area-bottom: env(safe-area-inset-bottom, 20px);
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-main);
-            color: var(--text-main);
-            overscroll-behavior-y: none;
-            padding-bottom: calc(80px + var(--safe-area-bottom));
-        }
-
-        /* Header */
-        .header {
-            background: var(--bg-card);
-            padding: 20px;
-            padding-top: max(20px, env(safe-area-inset-top));
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 10;
-        }
-
-        .user-greeting h1 {
-            font-size: 20px;
-            font-weight: 700;
-        }
-
-        .user-greeting p {
-            font-size: 13px;
-            color: var(--brand);
-            font-weight: 500;
-            margin-top: 2px;
-        }
-
-        .avatar {
-            width: 40px;
-            height: 40px;
-            background: #E9F2E9;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--brand-dark);
-            font-weight: 600;
-        }
-
-        /* Cards & Containers */
-        .section {
-            padding: 20px;
-        }
-
-        .section-title {
-            font-size: 17px;
-            font-weight: 600;
-            margin-bottom: 12px;
-        }
-
-        .card {
-            background: var(--bg-card);
-            border-radius: 20px;
-            padding: 16px;
-            box-shadow: 0px 4px 12px rgba(0,0,0,0.03);
-            margin-bottom: 16px;
-        }
-
-        /* Loyalty Card */
-        .loyalty-card {
-            background: linear-gradient(135deg, var(--brand), #56D38E);
-            color: white;
-            border-radius: 20px;
-            padding: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin: 20px;
-            box-shadow: 0px 8px 20px rgba(126, 214, 165, 0.4);
-        }
-
-        .loyalty-info h2 {
-            font-size: 28px;
-            font-weight: 700;
-            margin-bottom: 4px;
-        }
-
-        .loyalty-info p {
-            font-size: 14px;
-            opacity: 0.9;
-        }
-
-        .qr-btn {
-            background: white;
-            color: var(--brand-dark);
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            cursor: pointer;
-            box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
-        }
-
-        /* Appointments */
-        .appointment {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .date-box {
-            background: #F3F8F3;
-            border-radius: 12px;
-            padding: 10px;
-            text-align: center;
-            min-width: 60px;
-            color: var(--brand-dark);
-        }
-
-        .date-box .day {
-            font-size: 20px;
-            font-weight: 700;
-        }
-
-        .date-box .month {
-            font-size: 12px;
-            font-weight: 500;
-            text-transform: uppercase;
-        }
-
-        .apt-details h3 {
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 4px;
-        }
-
-        .apt-details p {
-            font-size: 13px;
-            color: var(--text-muted);
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        .family-tag {
-            display: inline-block;
-            background: #F2F2F7;
-            padding: 4px 8px;
-            border-radius: 6px;
-            font-size: 11px;
-            color: var(--text-main);
-            margin-top: 8px;
-            font-weight: 500;
-        }
-
-        /* Action Grid */
-        .action-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            padding: 0 20px;
-        }
-
-        .action-btn {
-            background: var(--bg-card);
-            border-radius: 16px;
-            padding: 16px;
-            text-align: center;
-            box-shadow: 0px 4px 12px rgba(0,0,0,0.03);
-            text-decoration: none;
-            color: var(--text-main);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-            cursor: pointer;
-        }
-
-        .action-btn i {
-            font-size: 28px;
-            color: var(--brand);
-        }
-
-        .action-btn span {
-            font-size: 13px;
-            font-weight: 500;
-        }
-
-        /* Modal / Bottom Sheet */
-        .overlay {
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0,0,0,0.4);
-            z-index: 100;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-        }
-
-        .bottom-sheet {
-            position: fixed;
-            bottom: -100%;
-            left: 0; right: 0;
-            background: var(--bg-card);
-            border-radius: 30px 30px 0 0;
-            padding: 24px;
-            padding-bottom: calc(24px + var(--safe-area-bottom));
-            z-index: 101;
-            transition: bottom 0.3s cubic-bezier(0.1, 0.8, 0.2, 1);
-        }
-
-        .sheet-active {
-            bottom: 0;
-        }
-
-        .overlay-active {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .drag-handle {
-            width: 40px;
-            height: 4px;
-            background: #E5E5EA;
-            border-radius: 2px;
-            margin: 0 auto 20px;
-        }
-
-        .sheet-title {
-            font-size: 20px;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 24px;
-        }
-
-        .qr-placeholder {
-            width: 200px;
-            height: 200px;
-            background: #F2F2F7;
-            margin: 0 auto 24px;
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 2px dashed #C7C7CC;
-        }
-
-        .primary-btn {
-            background: var(--brand);
-            color: white;
-            border: none;
-            width: 100%;
-            padding: 16px;
-            border-radius: 50px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-        }
-
-        /* Tabbar */
-        .tabbar {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-top: 1px solid rgba(0,0,0,0.05);
-            display: flex;
-            justify-content: space-around;
-            padding: 12px 0 calc(12px + var(--safe-area-bottom));
-            z-index: 50;
-        }
-
-        .tab {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 4px;
-            color: #8E8E93;
-            text-decoration: none;
-            font-size: 10px;
-            font-weight: 500;
-        }
-
-        .tab i {
-            font-size: 24px;
-        }
-
-        .tab.active {
-            color: var(--brand);
-        }
-    </style>
-</head>
-<body>
-
-    <!-- Header -->
-    <header class="header">
-        <div class="user-greeting">
-            <h1>Привет, Анна!</h1>
-            <p>Улыбайтесь чаще ✨</p>
-        </div>
-        <div class="avatar">А</div>
-    </header>
-
-    <!-- Loyalty -->
-    <div class="loyalty-card">
-        <div class="loyalty-info">
-            <h2>1 450</h2>
-            <p>Бонусных рублей</p>
-        </div>
-        <div class="qr-btn" onclick="openSheet()">
-            <i class="ph ph-qr-code"></i>
-        </div>
-    </div>
-
-    <!-- Actions -->
-    <div class="action-grid">
-        <div class="action-btn">
-            <i class="ph-fill ph-calendar-plus"></i>
-            <span>Записаться</span>
-        </div>
-        <div class="action-btn">
-            <i class="ph-fill ph-users"></i>
-            <span>Моя семья</span>
-        </div>
-        <div class="action-btn">
-            <i class="ph-fill ph-stethoscope"></i>
-            <span>Врачи</span>
-        </div>
-        <div class="action-btn">
-            <i class="ph-fill ph-currency-rubel"></i>
-            <span>Прайс-лист</span>
-        </div>
-    </div>
-
-    <!-- Upcoming Appointments -->
-    <section class="section">
-        <h2 class="section-title">Предстоящие визиты</h2>
-        
-        <div class="card appointment">
-            <div class="date-box">
-                <div class="day">15</div>
-                <div class="month">Мая</div>
-            </div>
-            <div class="apt-details">
-                <h3>Профгигиена</h3>
-                <p><i class="ph ph-clock"></i> 14:00 • Доктор Смирнова А.В.</p>
-                <div class="family-tag">Для меня</div>
-            </div>
-        </div>
-
-        <div class="card appointment">
-            <div class="date-box">
-                <div class="day">28</div>
-                <div class="month">Мая</div>
-            </div>
-            <div class="apt-details">
-                <h3>Детский прием</h3>
-                <p><i class="ph ph-clock"></i> 11:30 • Доктор Иванов И.И.</p>
-                <div class="family-tag">Сын: Максим</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- QR Modal -->
-    <div class="overlay" id="overlay" onclick="closeSheet()"></div>
-    <div class="bottom-sheet" id="qrSheet">
-        <div class="drag-handle"></div>
-        <h3 class="sheet-title">Ваша карта</h3>
-        <div class="qr-placeholder">
-            <i class="ph ph-qr-code" style="font-size: 80px; color: var(--brand);"></i>
-        </div>
-        <p style="text-align: center; color: var(--text-muted); margin-bottom: 24px; font-size: 14px;">
-            Покажите этот код администратору<br>для начисления или списания баллов
-        </p>
-        <button class="primary-btn" onclick="closeSheet()">Закрыть</button>
-    </div>
-
-    <!-- Tabbar -->
-    <nav class="tabbar">
-        <a href="#" class="tab active">
-            <i class="ph-fill ph-house"></i>
-            <span>Главная</span>
-        </a>
-        <a href="#" class="tab">
-            <i class="ph ph-calendar-blank"></i>
-            <span>Записи</span>
-        </a>
-        <a href="#" class="tab">
-            <i class="ph ph-chat-circle"></i>
-            <span>Чат</span>
-        </a>
-        <a href="#" class="tab">
-            <i class="ph ph-user"></i>
-            <span>Профиль</span>
-        </a>
-    </nav>
-
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script>
-        function openSheet() {
-            document.getElementById('overlay').classList.add('overlay-active');
-            document.getElementById('qrSheet').classList.add('sheet-active');
-        }
-
-        function closeSheet() {
-            document.getElementById('overlay').classList.remove('overlay-active');
-            document.getElementById('qrSheet').classList.remove('sheet-active');
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        apple: {
+                            bg: '#F2F2F7',       // iOS Background
+                            card: '#FFFFFF',
+                            text: '#000000',
+                            grayText: '#8A8A8E',
+                            brand: '#7ED6A5',     // Фирменный мятный 3M Clinic
+                            brandHover: '#56D38E',
+                            brandLight: '#E9F2E9', // Фоновый мятный
+                            brandDark: '#3B8B60',  // Для текста на светлом фоне
+                        }
+                    },
+                    borderRadius: { '4xl': '32px' },
+                    boxShadow: { 
+                        'ios': '0 2px 10px rgba(0, 0, 0, 0.04)',
+                        'brand': '0 8px 24px rgba(126, 214, 165, 0.3)'
+                    }
+                }
+            }
         }
     </script>
+    <style>body { -webkit-tap-highlight-color: transparent; } ::-webkit-scrollbar { display: none; }</style>
+</head>
+<body class="bg-gray-300 text-apple-text overflow-x-hidden flex justify-center">
+
+    <div class="w-full max-w-[400px] bg-apple-bg min-h-screen relative shadow-2xl border-x border-gray-300 pb-24">
+        
+        <!-- Header -->
+        <header class="px-5 pt-10 pb-4 sticky top-0 bg-apple-bg/80 backdrop-blur-xl z-50 flex justify-between items-center border-b border-black/5">
+            <div>
+                <h1 class="text-3xl font-bold tracking-tight mb-1 text-apple-brandDark">3M Clinic</h1>
+                <p class="text-apple-grayText text-[11px] font-medium">Стоматология • Братиславская 14</p>
+            </div>
+            <button class="w-10 h-10 bg-apple-brandLight rounded-full flex items-center justify-center text-apple-brandDark">
+                <i class="ph-fill ph-phone text-xl"></i>
+            </button>
+        </header>
+
+        <main class="px-5 mt-4 space-y-6">
+ 
+ <!-- Карта лояльности (Wallet Style Widget) -->
+ <div class="bg-white rounded-[24px] p-4 shadow-ios flex items-center justify-between cursor-pointer hover:bg-gray-50 transition-colors border border-gray-50">
+ <div class="flex items-center gap-4">
+ <div class="w-12 h-12 bg-apple-brandLight rounded-full flex items-center justify-center text-apple-brandDark shadow-sm">
+ <i class="ph-fill ph-star text-2xl"></i>
+ </div>
+ <div>
+ <p class="text-xs text-apple-grayText font-medium mb-0.5">Ваши баллы</p>
+ <p class="text-xl font-bold text-apple-text">1 450 <span class="text-sm text-apple-brandDark ml-0.5">⭐️</span></p>
+ </div>
+ </div>
+ <button class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-apple-text">
+ <i class="ph-bold ph-qr-code text-xl"></i>
+ </button>
+ </div>
+
+            <!-- Запись (iOS Wallet Style Card с фирменным градиентом) -->
+            <div class="bg-gradient-to-br from-apple-brand to-[#56D38E] rounded-[24px] p-5 text-white shadow-brand relative overflow-hidden">
+                <div class="absolute right-0 top-0 opacity-20"><i class="ph-fill ph-tooth text-9xl"></i></div>
+                <div class="relative z-10">
+                    <div class="flex items-center gap-2 mb-8">
+                        <div class="w-8 h-8 bg-white/30 backdrop-blur-sm rounded-full flex items-center justify-center">
+                            <i class="ph-bold ph-calendar-plus text-white"></i>
+                        </div>
+                        <span class="text-sm font-semibold text-white/90">Новая запись</span>
+                    </div>
+                    <h2 class="text-2xl font-bold mb-1">Консультация врача</h2>
+                    <p class="text-xs text-white/90 font-medium mb-6">Осмотр, снимок и план лечения</p>
+                    <button class="bg-white text-apple-brandDark w-full py-3 rounded-full font-bold text-sm shadow-sm hover:opacity-90 transition-opacity">
+                        Выбрать время
+                    </button>
+                </div>
+            </div>
+
+            <!-- iOS Style List Group (Прайс-лист) -->
+            <div>
+                <div class="flex justify-between items-center mb-2 px-1">
+                    <h2 class="text-[15px] font-semibold text-apple-grayText uppercase tracking-wide">Популярные услуги</h2>
+                    <a href="#" class="text-sm font-medium text-apple-brandDark">Все</a>
+                </div>
+                
+                <div class="bg-white rounded-[20px] overflow-hidden shadow-ios">
+                    <!-- Услуга 1 (Brand Color) -->
+                    <div class="p-3.5 flex items-center justify-between border-b border-gray-100">
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-lg bg-apple-brandLight text-apple-brandDark flex items-center justify-center">
+                                <i class="ph-fill ph-sparkle text-lg"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-[15px] leading-tight">Гигиена Air Flow</h3>
+                                <p class="text-[11px] text-apple-grayText mt-0.5">УЗ, чистка, полировка</p>
+                            </div>
+                        </div>
+                        <span class="font-medium text-sm text-apple-text">4 500 ₽</span>
+                    </div>
+                    
+                    <!-- Услуга 2 -->
+                    <div class="p-3.5 flex items-center justify-between border-b border-gray-100">
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-lg bg-apple-brandLight text-apple-brandDark flex items-center justify-center">
+                                <i class="ph-fill ph-bandaids text-lg"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-[15px] leading-tight">Лечение кариеса</h3>
+                                <p class="text-[11px] text-apple-grayText mt-0.5">С постановкой пломбы</p>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-[10px] text-apple-grayText mb-0.5">от</p>
+                            <span class="font-medium text-sm">5 500 ₽</span>
+                        </div>
+                    </div>
+
+                    <!-- Услуга 3 -->
+                    <div class="p-3.5 flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-lg bg-apple-brandLight text-apple-brandDark flex items-center justify-center">
+                                <i class="ph-fill ph-tooth text-lg"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-[15px] leading-tight">Удаление зуба</h3>
+                                <p class="text-[11px] text-apple-grayText mt-0.5">Простое / сложное</p>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-[10px] text-apple-grayText mb-0.5">от</p>
+                            <span class="font-medium text-sm">4 000 ₽</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Акции и Страховки (2 колонки - iOS Style) -->
+            <div class="grid grid-cols-2 gap-3">
+                <div class="bg-white rounded-[20px] p-4 shadow-ios relative overflow-hidden flex flex-col justify-between min-h-[100px]">
+                    <h3 class="font-semibold text-[15px] mb-1 text-apple-brandDark">ОМС и ДМС</h3>
+                    <p class="text-[11px] text-apple-grayText relative z-10">Лечение по полисам</p>
+                    <i class="ph-duotone ph-shield-check text-5xl text-apple-brand opacity-20 absolute bottom-[-5px] right-[-5px]"></i>
+                </div>
+                <div class="bg-white rounded-[20px] p-4 shadow-ios relative overflow-hidden flex flex-col justify-between min-h-[100px]">
+                    <div class="absolute top-0 right-0 bg-red-500 text-white text-[9px] font-bold px-2 py-0.5 rounded-bl-lg">HOT</div>
+                    <h3 class="font-semibold text-[15px] mb-1 text-apple-brandDark">Отбеливание</h3>
+                    <p class="text-[11px] text-apple-grayText relative z-10">ZOOM4 за 15 000 ₽</p>
+                    <i class="ph-duotone ph-star-four text-5xl text-apple-brand opacity-20 absolute bottom-[-5px] right-[-5px]"></i>
+                </div>
+            </div>
+
+            <!-- Врачи (iOS App Store Style) -->
+            <div>
+                <div class="flex justify-between items-center mb-2 px-1">
+                    <h2 class="text-[15px] font-semibold text-apple-grayText uppercase tracking-wide">Наша команда</h2>
+                    <div class="flex gap-1">
+                        <button class="w-6 h-6 rounded-full bg-gray-200/60 flex items-center justify-center text-apple-grayText"><i class="ph-bold ph-caret-left text-xs"></i></button>
+                        <button class="w-6 h-6 rounded-full bg-gray-200/60 flex items-center justify-center text-apple-grayText"><i class="ph-bold ph-caret-right text-xs"></i></button>
+                    </div>
+                </div>
+                
+                <div class="flex gap-4 overflow-x-auto pb-4 -mx-5 px-5 snap-x">
+                    <!-- Доктор 1 -->
+                    <div class="w-[280px] shrink-0 snap-center relative">
+                        <div class="h-[320px] w-full bg-gray-200 rounded-[20px] overflow-hidden relative shadow-ios group cursor-pointer">
+                            <img src="https://images.unsplash.com/photo-1594824432258-f94dce309489?q=80&w=400&auto=format&fit=crop" class="w-full h-full object-cover grayscale opacity-90 transition-transform duration-700 group-hover:scale-105" />
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                            
+                            <div class="absolute bottom-0 left-0 p-5 text-white w-full">
+                                <span class="text-[10px] font-bold uppercase tracking-wider text-apple-brand mb-1 block">Терапевт</span>
+                                <h3 class="text-xl font-bold mb-2">Магомедова И. М.</h3>
+                                <p class="text-xs text-white/80 line-clamp-2 mb-4">Профессиональная гигиена, отбеливание и эстетическая профилактика.</p>
+                                <button class="bg-white/20 backdrop-blur-md text-white border border-white/30 w-full py-2.5 rounded-xl font-semibold text-sm hover:bg-white/30 transition-colors">
+                                    Записаться
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Доктор 2 -->
+                    <div class="w-[280px] shrink-0 snap-center relative">
+                        <div class="h-[320px] w-full bg-gray-200 rounded-[20px] overflow-hidden relative shadow-ios group cursor-pointer">
+                            <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?q=80&w=400&auto=format&fit=crop" class="w-full h-full object-cover grayscale opacity-90 transition-transform duration-700 group-hover:scale-105" />
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                            
+                            <div class="absolute bottom-0 left-0 p-5 text-white w-full">
+                                <span class="text-[10px] font-bold uppercase tracking-wider text-apple-brand mb-1 block">Имплантолог</span>
+                                <h3 class="text-xl font-bold mb-2">Магеррамов Б. А.</h3>
+                                <p class="text-xs text-white/80 line-clamp-2 mb-4">Челюстно-лицевая хирургия, имплантация, создание долговечных решений.</p>
+                                <button class="bg-white/20 backdrop-blur-md text-white border border-white/30 w-full py-2.5 rounded-xl font-semibold text-sm hover:bg-white/30 transition-colors">
+                                    Записаться
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+        <!-- iOS Bottom Tab Bar (System Style) -->
+        <nav class="fixed bottom-0 w-full max-w-[400px] bg-[#F8F8F8]/90 backdrop-blur-xl border-t border-[#E5E5EA] px-6 py-2 pb-6 flex justify-between items-center z-50">
+            <button class="flex flex-col items-center gap-1 text-apple-brandDark">
+                <i class="ph-fill ph-house text-[26px]"></i>
+                <span class="text-[10px] font-medium">Главная</span>
+            </button>
+            <button class="flex flex-col items-center gap-1 text-apple-grayText hover:text-apple-text">
+                <i class="ph ph-receipt text-[26px]"></i>
+                <span class="text-[10px] font-medium">Прайс</span>
+            </button>
+            <button class="flex flex-col items-center gap-1 text-apple-grayText hover:text-apple-text">
+                <i class="ph ph-calendar-blank text-[26px]"></i>
+                <span class="text-[10px] font-medium">Визиты</span>
+            </button>
+            <button class="flex flex-col items-center gap-1 text-apple-grayText hover:text-apple-text">
+                <i class="ph ph-user text-[26px]"></i>
+                <span class="text-[10px] font-medium">Профиль</span>
+            </button>
+        </nav>
+
+    </div>
 </body>
 </html>
