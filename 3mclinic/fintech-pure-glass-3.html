@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>3M Clinic | Pure Glass Fintech 3</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        pageBg: '#E4EBF0', /* True bright icy blue */
+                        textMain: '#262A33',
+                        textMuted: '#6F7E8C',
+                        /* The signature purple gradient colors */
+                        purpleTop: '#9B8CF8',
+                        purpleMid: '#6D5AF2',
+                        purpleBot: '#4B35E6',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { margin: 0; background-color: #CDD7DE; font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; display: flex; justify-content: center; min-height: 100vh; }
+        .app-container { width: 100%; max-width: 414px; background-color: #E4EBF0; min-height: 100vh; position: relative; padding-bottom: 120px; overflow: hidden; box-shadow: 0 0 40px rgba(0,0,0,0.1); }
+        
+        @media (min-width: 600px) {
+            .app-container {
+                min-height: 896px; max-height: 896px; height: 90vh;
+                margin-top: 5vh; border-radius: 44px;
+                border: 8px solid #FFFFFF; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+            }
+        }
+
+        /* --- BACKGROUND ORBS --- */
+        .orb-1 { position: absolute; top: -5%; left: -20%; width: 350px; height: 350px; background: #7ED6A5; border-radius: 50%; filter: blur(80px); opacity: 0.5; z-index: 0; }
+        .orb-2 { position: absolute; top: 25%; right: -20%; width: 400px; height: 400px; background: #6488DB; border-radius: 50%; filter: blur(90px); opacity: 0.25; z-index: 0; }
+        .orb-3 { position: absolute; bottom: 5%; left: -10%; width: 450px; height: 450px; background: #1B8C4A; border-radius: 50%; filter: blur(120px); opacity: 0.15; z-index: 0; }
+
+        /* --- GLASSMORPHISM CLASSES (NO BORDERS, PLUMP RADIUS) --- */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.55);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-radius: 36px;
+            box-shadow: 0 16px 32px rgba(0,0,0,0.03);
+        }
+
+        .loyalty-glass {
+            background: linear-gradient(135deg, rgba(32, 36, 82, 0.85) 0%, rgba(53, 44, 110, 0.9) 100%);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-radius: 36px;
+            box-shadow: 0 20px 40px rgba(32, 36, 82, 0.2);
+        }
+
+        .circle-btn {
+            background: rgba(255, 255, 255, 0.55);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.03);
+            border-radius: 50%;
+        }
+
+        .tabbar-pill {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.08);
+            border-radius: 48px;
+        }
+
+        /* The Purple Gradient Button */
+        .btn-purple {
+            background: linear-gradient(180deg, #9B8CF8 0%, #6D5AF2 50%, #4B35E6 100%);
+            border-radius: 50%;
+            color: white;
+            box-shadow: 0 16px 30px rgba(75, 53, 230, 0.35);
+        }
+
+        /* Inner soft glass for avatars */
+        .avatar-ring {
+            background: rgba(255,255,255,0.6);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            padding: 4px;
+            border-radius: 24px;
+            transition: transform 0.2s;
+        }
+        .avatar-ring.active {
+            box-shadow: 0 8px 24px rgba(109, 90, 242, 0.25);
+            background: rgba(255,255,255,0.8);
+        }
+
+        /* Z-index management */
+        .content-layer { position: relative; z-index: 10; }
+        ::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+
+        <!-- Background Ambient Orbs -->
+        <div class="orb-1"></div>
+        <div class="orb-2"></div>
+        <div class="orb-3"></div>
+
+        <div class="content-layer">
+            
+            <!-- 1. Header -->
+            <header class="px-6 pt-12 pb-2 flex justify-between items-start">
+                <div>
+                    <p class="text-[14px] font-medium text-textMuted mb-0.5">Доброе утро,</p>
+                    <h1 class="text-[28px] font-black text-textMain leading-none tracking-tight">Анна!</h1>
+                </div>
+                <button class="w-12 h-12 circle-btn flex items-center justify-center text-textMain hover:scale-105 transition-transform">
+                    <i class="ph-fill ph-gear text-[24px]"></i>
+                </button>
+            </header>
+
+            <main class="px-5 mt-6 space-y-7">
+
+                <!-- 2. Моя семья (Glass Style) -->
+                <div>
+                    <h2 class="text-[17px] font-bold text-textMain px-1 mb-4">Моя семья</h2>
+                    <div class="flex gap-4 overflow-x-auto pb-2 px-1">
+                        
+                        <!-- Анна (Я) -->
+                        <div class="glass-card p-4 min-w-[95px] flex flex-col items-center gap-3 cursor-pointer hover:bg-white/80 transition-colors">
+                            <div class="avatar-ring active w-[64px] h-[64px]">
+                                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=150&auto=format&fit=crop" class="w-full h-full rounded-[20px] object-cover">
+                            </div>
+                            <div class="text-center">
+                                <p class="text-[14px] font-bold text-textMain">Анна</p>
+                                <p class="text-[12px] font-medium text-textMuted">Я</p>
+                            </div>
+                        </div>
+
+                        <!-- Дмитрий (Муж) -->
+                        <div class="glass-card p-4 min-w-[95px] flex flex-col items-center gap-3 cursor-pointer opacity-90 hover:opacity-100 hover:bg-white/80 transition-all">
+                            <div class="avatar-ring w-[64px] h-[64px]">
+                                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=150&auto=format&fit=crop" class="w-full h-full rounded-[20px] object-cover grayscale opacity-80">
+                            </div>
+                            <div class="text-center">
+                                <p class="text-[14px] font-bold text-textMain">Дмитрий</p>
+                                <p class="text-[12px] font-medium text-textMuted">Муж</p>
+                            </div>
+                        </div>
+
+                        <!-- Артём (Сын) -->
+                        <div class="glass-card p-4 min-w-[95px] flex flex-col items-center gap-3 cursor-pointer opacity-90 hover:opacity-100 hover:bg-white/80 transition-all">
+                            <div class="avatar-ring w-[64px] h-[64px]">
+                                <img src="https://images.unsplash.com/photo-1519238263530-99abad111f4b?q=80&w=150&auto=format&fit=crop" class="w-full h-full rounded-[20px] object-cover">
+                            </div>
+                            <div class="text-center">
+                                <p class="text-[14px] font-bold text-textMain">Артём</p>
+                                <p class="text-[12px] font-medium text-textMuted">Сын</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- 3. Ваш баланс (Dark Blue-Purple Glass) -->
+                <div class="loyalty-glass p-7 text-white relative overflow-hidden">
+                    <div class="absolute -left-10 -bottom-10 w-48 h-48 rounded-full border border-white/5 bg-white/5 blur-md"></div>
+                    <div class="absolute right-0 top-0 w-32 h-32 rounded-full border border-white/5 bg-[#6D5AF2]/20 blur-xl"></div>
+                    
+                    <div class="relative z-10 flex justify-between items-start mb-10">
+                        <div>
+                            <p class="text-[14px] font-medium text-white/70 mb-1">Ваш баланс</p>
+                            <div class="flex items-baseline gap-1.5">
+                                <h3 class="text-[46px] font-black tracking-tight leading-none drop-shadow-sm">2 500</h3>
+                                <span class="text-[24px] font-bold text-[#41B3E7]">₽</span>
+                            </div>
+                        </div>
+                        <span class="bg-[#FFB020] text-black px-3.5 py-2 rounded-[14px] text-[12px] font-bold shadow-sm">Золотая карта</span>
+                    </div>
+
+                    <div class="relative z-10">
+                        <p class="text-[13px] font-medium text-white/50 mb-0.5">Кешбэк на все услуги</p>
+                        <p class="text-[22px] font-bold text-white">7%</p>
+                    </div>
+                </div>
+
+                <!-- 4. 2x2 Grid (Plump Glass squares) -->
+                <div class="grid grid-cols-2 gap-5">
+                    
+                    <!-- Запись на приём -->
+                    <div class="glass-card p-6 flex flex-col justify-between h-[150px] cursor-pointer hover:bg-white/70 transition-colors relative overflow-hidden">
+                        <div class="absolute top-4 right-4 w-12 h-12 bg-[#41B3E7]/20 rounded-full blur-xl"></div>
+                        <div class="w-12 h-12 circle-btn flex items-center justify-center text-[#41B3E7] mb-3 relative z-10">
+                            <i class="ph-bold ph-plus text-[22px]"></i>
+                        </div>
+                        <h4 class="text-[16px] font-bold text-textMain leading-tight relative z-10">Запись<br>на приём</h4>
+                    </div>
+
+                    <!-- Мои приёмы -->
+                    <div class="glass-card p-6 flex flex-col justify-between h-[150px] cursor-pointer hover:bg-white/70 transition-colors relative overflow-hidden">
+                        <div class="absolute top-4 right-4 w-12 h-12 bg-[#34C759]/20 rounded-full blur-xl"></div>
+                        <div class="absolute top-5 right-5 w-6 h-6 bg-[#FF3B30] text-white rounded-full flex items-center justify-center text-[12px] font-bold shadow-md z-20">6</div>
+                        <div class="w-12 h-12 circle-btn flex items-center justify-center text-[#34C759] mb-3 relative z-10">
+                            <i class="ph-bold ph-calendar-blank text-[22px]"></i>
+                        </div>
+                        <h4 class="text-[16px] font-bold text-textMain leading-tight relative z-10">Мои<br>приёмы</h4>
+                    </div>
+
+                    <!-- Мои врачи -->
+                    <div class="glass-card p-6 flex flex-col justify-between h-[150px] cursor-pointer hover:bg-white/70 transition-colors relative overflow-hidden">
+                        <div class="absolute top-4 right-4 w-12 h-12 bg-[#FFB020]/20 rounded-full blur-xl"></div>
+                        <div class="w-12 h-12 circle-btn flex items-center justify-center text-[#FFB020] mb-3 relative z-10">
+                            <i class="ph-fill ph-user text-[22px]"></i>
+                        </div>
+                        <h4 class="text-[16px] font-bold text-textMain leading-tight relative z-10">Мои<br>врачи</h4>
+                    </div>
+
+                    <!-- План лечения -->
+                    <div class="glass-card p-6 flex flex-col justify-between h-[150px] cursor-pointer hover:bg-white/70 transition-colors relative overflow-hidden">
+                        <div class="absolute top-4 right-4 w-12 h-12 bg-[#FF3B7C]/20 rounded-full blur-xl"></div>
+                        <div class="absolute top-6 right-6 w-3 h-3 bg-[#4B35E6] rounded-full shadow-[0_0_10px_#4B35E6] z-20"></div>
+                        <div class="w-12 h-12 circle-btn flex items-center justify-center text-[#FF3B7C] mb-3 relative z-10">
+                            <i class="ph-fill ph-first-aid text-[22px]"></i>
+                        </div>
+                        <h4 class="text-[16px] font-bold text-textMain leading-tight relative z-10">План<br>лечения</h4>
+                    </div>
+
+                </div>
+
+            </main>
+
+            <!-- Floating Bottom Tab Bar (Plump Pill style) -->
+            <div style="position: fixed; bottom: 32px; left: 0; right: 0; display: flex; justify-content: center; z-index: 9999;">
+                <div style="width: 100%; max-width: 400px; padding: 0 20px;">
+                    <div class="tabbar-pill flex justify-between items-center px-6 py-4">
+                        
+                        <a href="#" style="display: flex; flex-direction: column; align-items: center; gap: 4px; color: #4B35E6; text-decoration: none;">
+                            <i class="ph-fill ph-house text-[26px]"></i>
+                        </a>
+                        
+                        <a href="#" style="display: flex; flex-direction: column; align-items: center; gap: 4px; color: #6B7A84; text-decoration: none; margin-right: 20px;">
+                            <i class="ph ph-clock-counter-clockwise text-[26px]"></i>
+                        </a>
+                        
+                        <!-- Center Main Action (Plump Purple Gradient) -->
+                        <div style="margin-top: -50px; position: absolute; left: 50%; transform: translateX(-50%);">
+                            <button class="btn-purple w-[72px] h-[72px] flex items-center justify-center text-white hover:scale-105 transition-transform">
+                                <i class="ph-bold ph-plus text-[32px]"></i>
+                            </button>
+                        </div>
+
+                        <a href="#" style="display: flex; flex-direction: column; align-items: center; gap: 4px; color: #6B7A84; text-decoration: none; margin-left: 20px;">
+                            <i class="ph ph-first-aid text-[26px]"></i>
+                        </a>
+                        
+                        <a href="#" style="display: flex; flex-direction: column; align-items: center; gap: 4px; color: #6B7A84; text-decoration: none;">
+                            <i class="ph ph-chat-circle text-[26px]"></i>
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+
+        </div> <!-- /content-layer -->
+    </div>
+
+</body>
+</html>
