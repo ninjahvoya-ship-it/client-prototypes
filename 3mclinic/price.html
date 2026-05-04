@@ -359,6 +359,59 @@
         function closeSheets() {
             document.getElementById('service-sheet').classList.remove('active');
         }
-    </script>
+    
+        // Swipe to close bottom sheets logic
+        let startY = 0;
+        let currentY = 0;
+        let isDragging = false;
+        let activeSheet = null;
+
+        document.addEventListener('touchstart', (e) => {
+            const sheet = e.target.closest('.bottom-sheet');
+            if (sheet) {
+                // Check if we are scrolling inside a scrollable element within the sheet
+                const scrollable = e.target.closest('.overflow-y-auto, .overflow-x-auto');
+                if (scrollable && scrollable.scrollTop > 0) return; // Don't drag if scrolling down inside
+                
+                activeSheet = sheet;
+                startY = e.touches[0].clientY;
+                isDragging = true;
+                sheet.style.transition = 'none'; // remove transition for instant follow
+            }
+        }, { passive: true });
+
+        document.addEventListener('touchmove', (e) => {
+            if (!isDragging || !activeSheet) return;
+            
+            currentY = e.touches[0].clientY;
+            const diffY = currentY - startY;
+            
+            // Only allow dragging downwards
+            if (diffY > 0) {
+                activeSheet.style.transform = `translate(-50%, ${diffY}px)`;
+            }
+        }, { passive: true });
+
+        document.addEventListener('touchend', (e) => {
+            if (!isDragging || !activeSheet) return;
+            
+            const diffY = currentY - startY;
+            isDragging = false;
+            activeSheet.style.transition = 'transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)';
+            
+            // If swiped down more than 100px, close the sheet
+            if (diffY > 100) {
+                closeSheets();
+                setTimeout(() => {
+                    activeSheet.style.transform = ''; // reset after animation
+                    activeSheet = null;
+                }, 300);
+            } else {
+                // Snap back to top
+                activeSheet.style.transform = 'translate(-50%, 0)';
+                activeSheet = null;
+            }
+        });
+</script>
 </body>
 </html>
