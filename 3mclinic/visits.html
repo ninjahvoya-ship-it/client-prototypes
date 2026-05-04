@@ -332,5 +332,37 @@
         </div>
     </div>
 </div>
+
+    <script>
+        function openPlan() {
+            document.getElementById('plan-sheet').classList.add('active');
+        }
+        function closeSheets() {
+            document.querySelectorAll('.bottom-sheet-overlay').forEach(el => el.classList.remove('active'));
+        }
+        
+        function switchTab(index) {
+            const indicator = document.querySelector('.segmented-indicator');
+            const btns = document.querySelectorAll('.segmented-btn');
+            
+            // Move indicator
+            indicator.style.transform = `translateX(${index * 100}%)`;
+            
+            // Update button styles
+            btns.forEach((btn, i) => {
+                if(i === index) btn.classList.add('active');
+                else btn.classList.remove('active');
+            });
+
+            // Show/Hide content
+            if (index === 0) {
+                document.getElementById('tab-upcoming').style.display = 'block';
+                document.getElementById('tab-past').style.display = 'none';
+            } else {
+                document.getElementById('tab-upcoming').style.display = 'none';
+                document.getElementById('tab-past').style.display = 'block';
+            }
+        }
+    </script>
 </body>
 </html>
