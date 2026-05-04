@@ -217,8 +217,8 @@
                         <span class="text-[11px] font-bold uppercase mb-1">Ср</span>
                         <span class="text-xl font-bold">13</span>
                     </div>
-                    <div class="date-chip selected bg-apple-brandDark border border-apple-brandDark rounded-2xl w-[60px] h-[75px] flex flex-col items-center justify-center shrink-0 cursor-pointer shadow-sm transition-colors" onclick="selectDate(this)">
-                        <span class="text-[11px] font-bold text-white/80 uppercase mb-1">Чт</span>
+                    <div class="date-chip selected bg-apple-brand border border-apple-brand rounded-2xl w-[60px] h-[75px] flex flex-col items-center justify-center shrink-0 cursor-pointer shadow-sm transition-colors" onclick="selectDate(this)">
+                        <span class="text-[11px] font-bold text-white uppercase mb-1">Чт</span>
                         <span class="text-xl font-bold text-white">14</span>
                     </div>
                     <div class="date-chip bg-white border border-gray-200 rounded-2xl w-[60px] h-[75px] flex flex-col items-center justify-center shrink-0 cursor-pointer shadow-sm transition-colors" onclick="selectDate(this)">
@@ -334,7 +334,7 @@
             if(selectedData.service) {
                 btnNext.disabled = false;
                 btnNext.innerText = "Далее";
-                btnNext.className = "bg-apple-text text-white w-full py-3.5 rounded-[50px] font-bold text-[16px] shadow-ios hover:opacity-90 transition-all duration-300";
+                btnNext.className = "bg-apple-brandLight text-apple-brandDark w-full py-3.5 rounded-[50px] font-bold text-[16px] shadow-sm hover:bg-gray-100 transition-all duration-300";
             } else {
                 btnNext.disabled = true;
                 btnNext.innerText = "Выберите услугу";
@@ -346,7 +346,7 @@
             if(selectedData.doctor) {
                 btnNext.disabled = false;
                 btnNext.innerText = "Далее";
-                btnNext.className = "bg-apple-text text-white w-full py-3.5 rounded-[50px] font-bold text-[16px] shadow-ios hover:opacity-90 transition-all duration-300";
+                btnNext.className = "bg-apple-brandLight text-apple-brandDark w-full py-3.5 rounded-[50px] font-bold text-[16px] shadow-sm hover:bg-gray-100 transition-all duration-300";
             } else {
                 btnNext.disabled = true;
                 btnNext.innerText = "Выберите врача";
@@ -370,15 +370,15 @@
 
         function selectDate(el) {
             document.querySelectorAll('.date-chip').forEach(item => {
-                item.classList.remove('selected', 'bg-apple-brandDark', 'border-apple-brandDark');
+                item.classList.remove('selected', 'bg-apple-brand', 'border-apple-brand');
                 item.classList.add('bg-white', 'border-gray-200');
                 item.querySelector('span:nth-child(2)').classList.remove('text-white');
-                item.querySelector('span:nth-child(1)').classList.remove('text-white/80');
+                item.querySelector('span:nth-child(1)').classList.remove('text-white');
             });
             el.classList.remove('bg-white', 'border-gray-200');
-            el.classList.add('selected', 'bg-apple-brandDark', 'border-apple-brandDark');
+            el.classList.add('selected', 'bg-apple-brand', 'border-apple-brand');
             el.querySelector('span:nth-child(2)').classList.add('text-white');
-            el.querySelector('span:nth-child(1)').classList.add('text-white/80');
+            el.querySelector('span:nth-child(1)').classList.add('text-white');
         }
 
         function selectTime(el) {
