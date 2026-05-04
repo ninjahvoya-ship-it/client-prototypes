@@ -3,333 +3,191 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>3M Clinic | Home Screen</title>
+    <title>3M Clinic</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: { sans: ['Inter', 'sans-serif'] },
-                    colors: {
-                        apple: {
-                            bg: '#F2F2F7',
-                            card: '#FFFFFF',
-                            text: '#000000',
-                            grayText: '#8A8A8E',
-                            brand: '#1B8C4A',
-                            brandHover: '#16884a',
-                            brandLight: '#E5F4EC',
-                            brandDark: '#0f8048',
-                            cyan: '#00D0E0',
-                            cyanLight: '#E5FAFC',
-                        }
-                    },
-                    borderRadius: { '4xl': '32px' },
-                    boxShadow: {
-                        'ios': '0 4px 24px rgba(0, 0, 0, 0.06)',
-                        'brand': '0 8px 24px rgba(126, 214, 165, 0.3)'
-                    }
-                }
-            }
-        }
-    </script>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
-            margin: 0;
-            overflow-x: hidden;
-            background-color: #F8F9FA;
-            font-family: 'Inter', sans-serif;
+            font-family: 'DM Sans', sans-serif;
+            background-color: #E8E4DF;
             -webkit-tap-highlight-color: transparent;
-            margin: 0;
-            padding: 0;
         }
-        .app-container {
-            width: 100%;
-            max-width: 400px;
-            margin: 0 auto;
-            background-color: #F8F9FA;
+        .app {
+            width: 100%; max-width: 400px; margin: 0 auto;
             min-height: 100vh;
+            background-color: #6B9B7D;
             position: relative;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-            overflow-x: hidden;
-            padding-bottom: 90px; /* Space for tab bar */
+            overflow: hidden;
         }
         ::-webkit-scrollbar { display: none; }
-        
-        .header-glass {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(0,0,0,0.05);
+
+        /* Salmon card */
+        .salmon-card {
+            background: linear-gradient(135deg, #E8A896 0%, #D4917E 100%);
+            border-radius: 24px;
         }
 
-        .tabbar-glass {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-top: 1px solid rgba(0,0,0,0.05);
+        /* Bar chart bars */
+        .bar { width: 3px; background: rgba(255,255,255,0.35); border-radius: 2px; position: relative; }
+        .bar-fill { position: absolute; bottom: 0; width: 100%; background: #fff; border-radius: 2px; }
+
+        /* Bottom sheet */
+        .bottom-panel {
+            background: #F5F2EE;
+            border-radius: 32px 32px 0 0;
+            min-height: 340px;
         }
+
+        /* Segment */
+        .seg { color: rgba(107,155,125,0.5); font-weight: 600; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; padding: 8px 0; cursor: pointer; transition: color 0.2s; }
+        .seg.active { color: #6B9B7D; }
+
+        /* List item */
+        .list-item { display: flex; justify-content: space-between; align-items: center; padding: 18px 0; border-bottom: 1px solid rgba(107,155,125,0.08); }
+        .list-item:last-child { border-bottom: none; }
+
+        /* FAB */
+        .fab {
+            width: 56px; height: 56px; border-radius: 50%;
+            background: linear-gradient(135deg, #E8A896, #D4917E);
+            display: flex; align-items: center; justify-content: center;
+            color: #fff; font-size: 28px;
+            box-shadow: 0 8px 24px rgba(212,145,126,0.4);
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .fab:hover { transform: scale(1.1); }
     </style>
 </head>
 <body>
 
-    <div class="app-container">
+    <div class="app">
 
-        <!-- 1. Header -->
-        <header class="px-5 pt-10 pb-4 sticky top-0 header-glass z-50 flex justify-between items-center border-b border-black/5">
-            <div class="flex items-center">
-                <img src="assets/logo-cropped.jpg" alt="3M Clinic Logo" class="h-11 object-contain mix-blend-multiply">
-            </div>
-            <button class="w-10 h-10 bg-apple-brandLight rounded-full flex items-center justify-center text-apple-brandDark hover:bg-apple-brand hover:text-white transition-colors">
-                <i class="ph ph-phone text-xl"></i>
-            </button>
-        </header>
+        <!-- Top Section (Green Background) -->
+        <div class="px-6 pt-14 pb-6">
 
-        <main class="px-5 mt-4 space-y-6 pb-10">
-
-            <!-- 1. Hero Booking Card (Cyan) -->
-            <div onclick="openBooking()" class="bg-apple-cyan rounded-[32px] p-6 text-white relative overflow-hidden shadow-[0_16px_32px_rgba(0,208,224,0.25)] cursor-pointer hover:scale-[1.02] transition-transform">
-                <div class="relative z-10 w-3/4">
-                    <span class="bg-white text-apple-cyan text-[10px] font-black uppercase px-3 py-1.5 rounded-full tracking-wider mb-3 inline-block shadow-sm">Запись онлайн</span>
-                    <h2 class="text-[26px] font-black leading-tight mb-2">Начать<br>лечение</h2>
-                    <p class="text-white/90 text-sm font-medium">Консультация, осмотр или план лечения</p>
+            <!-- Header -->
+            <div class="flex justify-between items-center mb-8">
+                <div>
+                    <h1 class="text-white text-[22px] font-bold leading-tight">Анна Ветютнева</h1>
+                    <p class="text-white/60 text-[13px] font-medium mt-0.5">Premium · 1 450 баллов</p>
                 </div>
-                <div class="absolute -right-6 -bottom-6 w-32 h-32 bg-white/20 rounded-full blur-2xl"></div>
-                <i class="ph-fill ph-tooth absolute -right-2 bottom-2 text-[100px] text-white opacity-30 transform rotate-12 drop-shadow-lg"></i>
+                <div class="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center text-white text-lg font-bold overflow-hidden">
+                    АВ
+                </div>
             </div>
 
-            <!-- 2. Loyalty (Green) -->
-            <div onclick="openQR()" class="bg-apple-brand rounded-[32px] p-6 text-white relative overflow-hidden shadow-[0_16px_32px_rgba(27,140,74,0.25)] cursor-pointer hover:scale-[1.02] transition-transform">
-                <div class="absolute -right-6 -top-6 w-32 h-32 bg-white/10 rounded-full blur-xl"></div>
-                <div class="relative z-10 flex justify-between items-start mb-6">
+            <!-- Salmon Stats Card -->
+            <div class="salmon-card p-6 relative">
+                <div class="flex justify-between items-start mb-6">
                     <div>
-                        <p class="text-[11px] text-white/70 font-bold uppercase tracking-wider mb-0.5">Баланс баллов</p>
-                        <h3 class="text-3xl font-black text-white">1 450 <span class="text-xl text-white/70">₽</span></h3>
+                        <p class="text-white/60 text-[11px] font-semibold uppercase tracking-wider">Ближайший визит</p>
+                        <h2 class="text-white text-[28px] font-bold mt-1">15 мая</h2>
                     </div>
-                    <div class="w-12 h-12 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center">
-                        <i class="ph-bold ph-qr-code text-2xl text-white"></i>
+                    <div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
+                        <i class="ph-bold ph-calendar-check text-white text-xl"></i>
                     </div>
                 </div>
-                <div class="relative z-10 flex items-center gap-2">
-                    <span class="bg-white/20 text-white text-[10px] font-bold uppercase px-2 py-1 rounded-md backdrop-blur-sm">Premium</span>
-                    <p class="text-xs text-white/80 font-medium">Покажите QR на кассе</p>
-                </div>
-                <i class="ph-fill ph-star absolute -right-8 -bottom-8 text-[120px] text-white opacity-10 transform -rotate-12"></i>
-            </div>
 
-            <!-- 3. Быстрые действия (Squares Grid) -->
-            <div>
-                <div class="flex justify-between items-center mb-4 px-1">
-                    <h2 class="text-lg font-bold text-gray-900 tracking-tight">Категории</h2>
-                </div>
-                <div class="grid grid-cols-2 gap-4">
-                    
-                    <a href="booking-quick.html?service=Острая боль" class="bg-[#FFF0F5] rounded-[28px] p-5 shadow-[0_8px_24px_rgba(0,0,0,0.03)] cursor-pointer hover:scale-105 transition-transform border border-white relative overflow-hidden group">
-                        <div class="absolute -right-4 -top-4 w-16 h-16 bg-white rounded-full opacity-50"></div>
-                        <div class="w-12 h-12 bg-[#FF3B7C] text-white rounded-[16px] flex items-center justify-center text-2xl mb-4 shadow-sm group-hover:rotate-12 transition-transform">
-                            <i class="ph-fill ph-warning-circle"></i>
-                        </div>
-                        <h3 class="font-bold text-[15px] text-gray-900 leading-tight">Острая<br>боль</h3>
-                    </a>
-
-                    <a href="booking-quick.html?service=Детская стоматология" class="bg-[#F0FAFF] rounded-[28px] p-5 shadow-[0_8px_24px_rgba(0,0,0,0.03)] cursor-pointer hover:scale-105 transition-transform border border-white relative overflow-hidden group">
-                        <div class="absolute -right-4 -top-4 w-16 h-16 bg-white rounded-full opacity-50"></div>
-                        <div class="w-12 h-12 bg-apple-cyan text-white rounded-[16px] flex items-center justify-center text-2xl mb-4 shadow-sm group-hover:rotate-12 transition-transform">
-                            <i class="ph-fill ph-baby"></i>
-                        </div>
-                        <h3 class="font-bold text-[15px] text-gray-900 leading-tight">Детский<br>прием</h3>
-                    </a>
-
-                    <a href="booking-quick.html?service=Отбеливание" class="bg-[#E5F4EC] rounded-[28px] p-5 shadow-[0_8px_24px_rgba(0,0,0,0.03)] cursor-pointer hover:scale-105 transition-transform border border-white relative overflow-hidden group">
-                        <div class="absolute -right-4 -top-4 w-16 h-16 bg-white rounded-full opacity-50"></div>
-                        <div class="w-12 h-12 bg-apple-brand text-white rounded-[16px] flex items-center justify-center text-2xl mb-4 shadow-sm group-hover:rotate-12 transition-transform">
-                            <i class="ph-fill ph-sparkle"></i>
-                        </div>
-                        <h3 class="font-bold text-[15px] text-gray-900 leading-tight">Отбели-<br>вание</h3>
-                    </a>
-
-                    <a href="booking-quick.html?service=Брекеты" class="bg-[#FFFBE5] rounded-[28px] p-5 shadow-[0_8px_24px_rgba(0,0,0,0.03)] cursor-pointer hover:scale-105 transition-transform border border-white relative overflow-hidden group">
-                        <div class="absolute -right-4 -top-4 w-16 h-16 bg-white rounded-full opacity-50"></div>
-                        <div class="w-12 h-12 bg-[#FFC500] text-white rounded-[16px] flex items-center justify-center text-2xl mb-4 shadow-sm group-hover:rotate-12 transition-transform">
-                            <i class="ph-fill ph-smiley"></i>
-                        </div>
-                        <h3 class="font-bold text-[15px] text-gray-900 leading-tight">Брекеты &<br>Элайнеры</h3>
-                    </a>
-
+                <!-- Mini Bar Chart (Visit History) -->
+                <div class="flex items-end justify-between gap-3 h-[60px] mt-2 px-2">
+                    <div class="flex flex-col items-center gap-1 flex-1">
+                        <div class="bar h-[50px] w-full"><div class="bar-fill" style="height: 60%"></div></div>
+                        <span class="text-[9px] text-white/50 font-medium">Янв</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-1 flex-1">
+                        <div class="bar h-[50px] w-full"><div class="bar-fill" style="height: 40%"></div></div>
+                        <span class="text-[9px] text-white/50 font-medium">Фев</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-1 flex-1">
+                        <div class="bar h-[50px] w-full"><div class="bar-fill" style="height: 80%"></div></div>
+                        <span class="text-[9px] text-white/50 font-medium">Мар</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-1 flex-1">
+                        <div class="bar h-[50px] w-full"><div class="bar-fill" style="height: 30%"></div></div>
+                        <span class="text-[9px] text-white/50 font-medium">Апр</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-1 flex-1">
+                        <div class="bar h-[50px] w-full"><div class="bar-fill" style="height: 100%"></div></div>
+                        <span class="text-[9px] text-white/70 font-bold">Май</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-1 flex-1">
+                        <div class="bar h-[50px] w-full"><div class="bar-fill" style="height: 0%"></div></div>
+                        <span class="text-[9px] text-white/50 font-medium">Июн</span>
+                    </div>
                 </div>
             </div>
 
-            <!-- 4. Наши врачи (Horizontal Cards like the reference) -->
-            <div class="pt-2">
-                <div class="flex justify-between items-center mb-4 px-1">
-                    <h2 class="text-lg font-bold text-gray-900 tracking-tight">Рекомендуем</h2>
-                    <a href="booking-doctors-first.html" class="text-[13px] font-bold text-apple-cyan hover:opacity-80">Все врачи</a>
-                </div>
-
-                <div class="bg-white rounded-[32px] p-5 shadow-[0_12px_32px_rgba(0,0,0,0.04)] border border-gray-50">
-                    
-                    <div class="flex items-center justify-between mb-5">
-                        <div class="flex items-center gap-3">
-                            <div class="w-12 h-12 rounded-full overflow-hidden bg-gray-100">
-                                <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=100&auto=format&fit=crop" class="w-full h-full object-cover">
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-[15px] text-gray-900">Магомедова И. М.</h3>
-                                <p class="text-[12px] font-medium text-apple-brand">Терапевт</p>
-                            </div>
-                        </div>
-                        <a href="booking-doctor.html?doctor=Магомедова И.М." class="bg-apple-cyanLight text-apple-cyan px-4 py-2 rounded-full text-xs font-bold hover:bg-apple-cyan hover:text-white transition-colors">Запись</a>
-                    </div>
-
-                    <div class="w-full h-[1px] bg-gray-100 my-4"></div>
-
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-center gap-3">
-                            <div class="w-12 h-12 rounded-full overflow-hidden bg-gray-100">
-                                <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?q=80&w=100&auto=format&fit=crop" class="w-full h-full object-cover">
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-[15px] text-gray-900">Магеррамов Б. А.</h3>
-                                <p class="text-[12px] font-medium text-apple-cyan">Хирург</p>
-                            </div>
-                        </div>
-                        <a href="booking-doctor.html?doctor=Магеррамов Б.А." class="bg-apple-cyanLight text-apple-cyan px-4 py-2 rounded-full text-xs font-bold hover:bg-apple-cyan hover:text-white transition-colors">Запись</a>
-                    </div>
-
-                </div>
-            </div>
-
-        </main>
-
-        
-        
-
-
-        <!-- БОТОМ ШИТЫ (МОДАЛКИ) -->
-        <style>
-            .bottom-sheet-overlay {
-                display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 10000;
-                animation: fadeIn 0.3s ease-out;
-            }
-            .bottom-sheet {
-                position: absolute; bottom: 0; left: 50%; width: 100%; max-width: 400px; background: #FFFFFF;
-                border-radius: 32px 32px 0 0; padding: 24px; z-index: 10001;
-                transform: translate(-50%, 100%); transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-                padding-bottom: max(24px, env(safe-area-inset-bottom));
-            }
-            .bottom-sheet-overlay.active { display: block; }
-            .bottom-sheet-overlay.active .bottom-sheet { transform: translate(-50%, 0); }
-            @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        </style>
-
-        <!-- Шторка QR -->
-        <div id="qr-sheet" class="bottom-sheet-overlay" onclick="if(event.target === this) closeSheets()">
-            <div class="bottom-sheet">
-                <div class="w-12 h-1.5 bg-gray-200 rounded-full mb-6 mx-auto"></div>
-                <div class="text-center mb-6">
-                    <h2 class="text-2xl font-bold mb-2">Карта лояльности</h2>
-                    <p class="text-[13px] text-apple-grayText">Покажите этот код администратору</p>
-                </div>
-                
-                <div class="bg-white p-6 rounded-[32px] shadow-ios border border-gray-100 mb-8 mx-auto w-[240px] h-[240px] flex items-center justify-center relative overflow-hidden">
-                    <!-- QR Code Mockup -->
-                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=3MCLINIC-USER-12345&color=3B8B60" alt="QR Code" class="w-full h-full object-contain">
-                    <div class="absolute inset-0 border-4 border-apple-brand rounded-[32px] pointer-events-none opacity-20"></div>
-                </div>
-                
-                <div class="bg-apple-brandLight rounded-2xl p-4 flex justify-between items-center mb-6">
-                    <div>
-                        <p class="text-[11px] font-bold text-apple-brandDark uppercase">Ваш баланс</p>
-                        <p class="text-xl font-bold text-apple-brandDark">1 450 ₽</p>
-                    </div>
-                    <i class="ph-fill ph-star text-3xl text-apple-brandDark opacity-50"></i>
-                </div>
-
-                <button onclick="closeSheets()" class="w-full bg-gray-100 text-apple-text py-3.5 rounded-full font-bold text-[15px] hover:bg-gray-200 transition-colors">
-                    Закрыть
-                </button>
-            </div>
         </div>
 
-        <!-- Шторка Воронки Записи (Step 1) -->
-        <div id="booking-sheet" class="bottom-sheet-overlay" onclick="if(event.target === this) closeSheets()">
-            <div class="bottom-sheet">
-                <div class="w-12 h-1.5 bg-gray-200 rounded-full mb-6 mx-auto"></div>
-                <h2 class="text-2xl font-bold mb-6 text-center">Как вас записать?</h2>
-                
-                <div class="space-y-3 mb-6">
-                    <!-- Option 1: By Service -->
-                    <a href="booking.html" class="w-full block bg-white p-5 rounded-[24px] shadow-ios border border-gray-100 flex items-center justify-between hover:border-apple-brand transition-colors text-left group">
-                        <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 bg-apple-brandLight text-apple-brandDark rounded-full flex items-center justify-center">
-                                <i class="ph-fill ph-tooth text-xl"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-[16px] mb-0.5 text-apple-text">Выбрать услугу</h3>
-                                <p class="text-[12px] text-apple-grayText">Знаю, что нужно сделать</p>
-                            </div>
-                        </div>
-                        <i class="ph-bold ph-caret-right text-gray-300 group-hover:text-apple-brand"></i>
-                    </a>
+        <!-- Bottom Panel (Light) -->
+        <div class="bottom-panel px-6 pt-6 pb-32">
 
-                    <!-- Option 2: By Doctor -->
-                    <a href="booking-doctors-first.html" class="w-full block bg-white p-5 rounded-[24px] shadow-ios border border-gray-100 flex items-center justify-between hover:border-blue-400 transition-colors text-left group">
-                        <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 bg-blue-50 text-blue-500 rounded-full flex items-center justify-center">
-                                <i class="ph-fill ph-user-circle text-xl"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-[16px] mb-0.5 text-apple-text">Выбрать врача</h3>
-                                <p class="text-[12px] text-apple-grayText">Иду к своему специалисту</p>
-                            </div>
-                        </div>
-                        <i class="ph-bold ph-caret-right text-gray-300 group-hover:text-blue-500"></i>
-                    </a>
-                </div>
-                
-                <button onclick="closeSheets()" class="w-full bg-gray-100 text-apple-text py-3.5 rounded-full font-bold text-[15px] hover:bg-gray-200 transition-colors">
-                    Отмена
-                </button>
+            <!-- Segment Control -->
+            <div class="flex gap-6 mb-6 border-b border-[#6B9B7D]/10 pb-3">
+                <span class="seg active" onclick="switchTab(this)">Услуги</span>
+                <span class="seg" onclick="switchTab(this)">Визиты</span>
+                <span class="seg" onclick="switchTab(this)">Врачи</span>
             </div>
+
+            <!-- Service List -->
+            <div class="list-item">
+                <div>
+                    <p class="text-[15px] font-bold text-[#2C3A32]">Профгигиена</p>
+                    <p class="text-[12px] text-[#6B9B7D]/60 font-medium">AirFlow + фторирование</p>
+                </div>
+                <span class="text-[15px] font-bold text-[#E8A896]">5 000 ₽</span>
+            </div>
+
+            <div class="list-item">
+                <div>
+                    <p class="text-[15px] font-bold text-[#2C3A32]">Отбеливание ZOOM4</p>
+                    <p class="text-[12px] text-[#6B9B7D]/60 font-medium">Голливудская улыбка</p>
+                </div>
+                <span class="text-[15px] font-bold text-[#E8A896]">15 000 ₽</span>
+            </div>
+
+            <div class="list-item">
+                <div>
+                    <p class="text-[15px] font-bold text-[#2C3A32]">Лечение кариеса</p>
+                    <p class="text-[12px] text-[#6B9B7D]/60 font-medium">Пломба + восстановление</p>
+                </div>
+                <span class="text-[15px] font-bold text-[#E8A896]">3 500 ₽</span>
+            </div>
+
+            <div class="list-item">
+                <div>
+                    <p class="text-[15px] font-bold text-[#2C3A32]">Удаление зуба</p>
+                    <p class="text-[12px] text-[#6B9B7D]/60 font-medium">Любая сложность</p>
+                </div>
+                <span class="text-[15px] font-bold text-[#E8A896]">4 000 ₽</span>
+            </div>
+
+            <div class="list-item">
+                <div>
+                    <p class="text-[15px] font-bold text-[#2C3A32]">Консультация</p>
+                    <p class="text-[12px] text-[#6B9B7D]/60 font-medium">Осмотр + план лечения</p>
+                </div>
+                <span class="text-[15px] font-bold text-[#E8A896]">Бесплатно</span>
+            </div>
+
         </div>
 
-        <script>
-            function openQR() {
-                document.getElementById('qr-sheet').classList.add('active');
-            }
-            function openBooking() {
-                document.getElementById('booking-sheet').classList.add('active');
-            }
-            function closeSheets() {
-                document.querySelectorAll('.bottom-sheet-overlay').forEach(el => el.classList.remove('active'));
-            }
-        </script>
-<!-- Floating Bottom Tab Bar -->
-<div style="position: fixed; bottom: 20px; left: 0; right: 0; display: flex; justify-content: center; pointer-events: none; z-index: 9999;">
-    <div style="width: 100%; max-width: 400px; padding: 0 20px; pointer-events: auto;">
-        <div style="background-color: #f3f4f6; border-radius: 40px; box-shadow: 0 10px 40px rgba(0,0,0,0.15); border: 1px solid #e5e7eb; display: flex; justify-content: space-between; align-items: center; padding: 8px 16px;">
-
-            <a href="index.html" style="display: flex; align-items: center; gap: 6px; background-color: #7ED6A5; color: white; padding: 10px 20px; border-radius: 30px; text-decoration: none; font-weight: bold; font-size: 13px; box-shadow: 0 2px 10px rgba(126, 214, 165, 0.4);">
-                <i class="ph-fill ph-house" style="font-size: 20px;"></i>
-                <span>Главная</span>
-            </a>
-
-            <a href="price.html" style="display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; color: #4b5563; text-decoration: none; border-radius: 50%;">
-                <i class="ph ph-receipt" style="font-size: 24px;"></i>
-            </a>
-
-            <a href="visits.html" style="display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; color: #4b5563; text-decoration: none; border-radius: 50%;">
-                <i class="ph ph-calendar-blank" style="font-size: 24px;"></i>
-            </a>
-
-            <a href="profile.html" style="display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; color: #4b5563; text-decoration: none; border-radius: 50%;">
-                <i class="ph ph-user" style="font-size: 24px;"></i>
-            </a>
-
+        <!-- FAB -->
+        <div class="fab" style="position: fixed; bottom: 32px; right: calc(50% - 170px); z-index: 100;" onclick="alert('Записаться на прием')">
+            <i class="ph-bold ph-plus"></i>
         </div>
+
     </div>
-</div>
+
+    <script>
+        function switchTab(el) {
+            document.querySelectorAll('.seg').forEach(s => s.classList.remove('active'));
+            el.classList.add('active');
+        }
+    </script>
+
 </body>
 </html>
