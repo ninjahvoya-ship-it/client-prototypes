@@ -130,36 +130,36 @@
                 <h2 class="text-[15px] font-semibold text-apple-grayText uppercase tracking-wide px-1 mb-3">Быстрая запись</h2>
                 <div class="grid grid-cols-4 gap-3">
                     <!-- Острая боль -->
-                    <div class="flex flex-col items-center gap-1 cursor-pointer group">
+                    <a href="booking-quick.html?service=Острая боль" class="flex flex-col items-center gap-1 cursor-pointer group">
                         <div class="w-[68px] h-[68px] rounded-2xl bg-red-50 text-red-400 flex items-center justify-center text-[28px] group-hover:scale-105 transition-transform shadow-sm">
                             <i class="ph-fill ph-warning-circle"></i>
                         </div>
                         <span class="text-[11px] font-medium text-center text-apple-text mt-1">Острая<br>боль</span>
-                    </div>
+                    </a>
                     
                     <!-- Для ребенка -->
-                    <div class="flex flex-col items-center gap-1 cursor-pointer group">
+                    <a href="booking-quick.html?service=Детская стоматология" class="flex flex-col items-center gap-1 cursor-pointer group">
                         <div class="w-[68px] h-[68px] rounded-2xl bg-apple-brandLight text-apple-brandDark flex items-center justify-center text-[28px] group-hover:scale-105 transition-transform shadow-sm">
                             <i class="ph-fill ph-baby"></i>
                         </div>
                         <span class="text-[11px] font-medium text-center text-apple-text mt-1">Для<br>ребенка</span>
-                    </div>
+                    </a>
 
                     <!-- Отбеливание -->
-                    <div class="flex flex-col items-center gap-1 cursor-pointer group">
+                    <a href="booking-quick.html?service=Отбеливание ZOOM4" class="flex flex-col items-center gap-1 cursor-pointer group">
                         <div class="w-[68px] h-[68px] rounded-2xl bg-apple-brandLight text-apple-brandDark flex items-center justify-center text-[28px] group-hover:scale-105 transition-transform shadow-sm">
                             <i class="ph-fill ph-sparkle"></i>
                         </div>
                         <span class="text-[11px] font-medium text-center text-apple-text mt-1">Отбели-<br>вание</span>
-                    </div>
+                    </a>
 
                     <!-- Консультация -->
-                    <div class="flex flex-col items-center gap-1 cursor-pointer group">
+                    <a href="booking-quick.html?service=Консультация врача" class="flex flex-col items-center gap-1 cursor-pointer group">
                         <div class="w-[68px] h-[68px] rounded-2xl bg-apple-brandLight text-apple-brandDark flex items-center justify-center text-[28px] group-hover:scale-105 transition-transform shadow-sm">
                             <i class="ph-fill ph-stethoscope"></i>
                         </div>
                         <span class="text-[11px] font-medium text-center text-apple-text mt-1">Консуль-<br>тация</span>
-                    </div>
+                    </a>
                 </div>
             </div>
 
@@ -189,12 +189,12 @@
                 <div class="flex justify-between items-center mb-3 px-1">
                     <h2 class="text-[15px] font-semibold text-apple-grayText uppercase tracking-wide">Наши врачи</h2>
                     <div class="flex gap-2">
-                        <button class="w-7 h-7 rounded-full bg-transparent border border-apple-brand flex items-center justify-center text-apple-brand hover:bg-apple-brandLight transition-colors"><i class="ph-bold ph-caret-left text-sm"></i></button>
-                        <button class="w-7 h-7 rounded-full bg-transparent border border-apple-brand flex items-center justify-center text-apple-brand hover:bg-apple-brandLight transition-colors"><i class="ph-bold ph-caret-right text-sm"></i></button>
+                        <button onclick="document.getElementById('doctors-scroll').scrollBy({left: -296, behavior: 'smooth'})" class="w-7 h-7 rounded-full bg-transparent border border-apple-brand flex items-center justify-center text-apple-brand hover:bg-apple-brandLight transition-colors"><i class="ph-bold ph-caret-left text-sm"></i></button>
+                        <button onclick="document.getElementById('doctors-scroll').scrollBy({left: 296, behavior: 'smooth'})" class="w-7 h-7 rounded-full bg-transparent border border-apple-brand flex items-center justify-center text-apple-brand hover:bg-apple-brandLight transition-colors"><i class="ph-bold ph-caret-right text-sm"></i></button>
                     </div>
                 </div>
 
-                <div class="flex gap-4 overflow-x-auto pb-4 -mx-5 px-5 snap-x">
+                <div id="doctors-scroll" class="flex gap-4 overflow-x-auto pb-4 -mx-5 px-5 snap-x">
                     <!-- Доктор 1 -->
                     <div class="w-[280px] shrink-0 snap-center">
                         <div class="w-full bg-white rounded-[24px] overflow-hidden shadow-ios group cursor-pointer border border-gray-100 flex flex-col">
@@ -212,9 +212,9 @@
                                 </div>
                                 
                                 <!-- Secondary Button по дизайн-системе (Прозрачный фон, мятная обводка, мятный текст) -->
-                                <button class="bg-transparent border border-apple-brand text-apple-brand w-full py-2.5 rounded-[50px] font-bold text-[14px] hover:bg-apple-brandLight transition-colors">
+                                <a href="booking-doctor.html?doctor=Магомедова И.М." class="block text-center bg-transparent border border-apple-brand text-apple-brand w-full py-2.5 rounded-[50px] font-bold text-[14px] hover:bg-apple-brandLight transition-colors">
                                     Записаться
-                                </button>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -236,9 +236,32 @@
                                 </div>
                                 
                                 <!-- Secondary Button по дизайн-системе (Прозрачный фон, мятная обводка, мятный текст) -->
-                                <button class="bg-transparent border border-apple-brand text-apple-brand w-full py-2.5 rounded-[50px] font-bold text-[14px] hover:bg-apple-brandLight transition-colors">
+                                <a href="booking-doctor.html?doctor=Магеррамов Б.А." class="block text-center bg-transparent border border-apple-brand text-apple-brand w-full py-2.5 rounded-[50px] font-bold text-[14px] hover:bg-apple-brandLight transition-colors">
                                     Записаться
-                                </button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Доктор 3 -->
+                    <div class="w-[280px] shrink-0 snap-center">
+                        <div class="w-full bg-white rounded-[24px] overflow-hidden shadow-ios group cursor-pointer border border-gray-100 flex flex-col">
+                            <div class="h-[180px] relative overflow-hidden bg-gray-200">
+                                <img src="https://images.unsplash.com/photo-1651008376811-b90baee60c1f?q=80&w=400&auto=format&fit=crop" class="w-full h-full object-cover grayscale opacity-90 transition-transform duration-700 group-hover:scale-105" />
+                                <div class="absolute top-3 right-3 bg-white/90 backdrop-blur-md px-2.5 py-1 rounded-full flex items-center gap-1 text-apple-text text-[11px] font-bold shadow-sm">
+                                    <i class="ph-fill ph-star text-yellow-400"></i> 4.8
+                                </div>
+                            </div>
+                            <div class="p-5 flex flex-col flex-1 justify-between bg-white">
+                                <div class="mb-5">
+                                    <span class="text-[10px] font-bold uppercase tracking-wider text-apple-brand mb-1 block">ОРТОДОНТ</span>
+                                    <h3 class="text-xl font-bold mb-2 text-apple-text">Иванова Е.С.</h3>
+                                    <p class="text-[13px] text-apple-grayText line-clamp-2 font-medium">Исправление прикуса, установка брекетов и элайнеров.</p>
+                                </div>
+                                
+                                <a href="booking-doctor.html?doctor=Иванова Е.С." class="block text-center bg-transparent border border-apple-brand text-apple-brand w-full py-2.5 rounded-[50px] font-bold text-[14px] hover:bg-apple-brandLight transition-colors">
+                                    Записаться
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -250,7 +273,7 @@
             <div>
                 <div class="flex justify-between items-center mb-3 px-1">
                     <h2 class="text-[15px] font-semibold text-apple-grayText uppercase tracking-wide">Популярные услуги</h2>
-                    <a href="#" class="text-[13px] font-bold text-apple-brandDark hover:text-apple-brand transition-colors">Все</a>
+                    <a href="price.html" class="text-[13px] font-bold text-apple-brandDark hover:text-apple-brand transition-colors">Все</a>
                 </div>
 
                 <div class="bg-white rounded-[24px] overflow-hidden shadow-ios border border-gray-100 shadow-ios">
