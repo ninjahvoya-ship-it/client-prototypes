@@ -264,6 +264,23 @@
                     </div>
                 </div>
 
+                
+                <!-- Patient Selector (Семейный аккаунт) -->
+                <div class="px-4 mt-6">
+                    <h2 class="text-sm font-bold text-apple-text mb-3">Кого записываем?</h2>
+                    <div class="flex gap-3 overflow-x-auto scrollbar-hide pb-2">
+                        <div class="patient-chip selected bg-apple-brandLight border-2 border-apple-brand text-apple-brandDark px-4 py-2.5 rounded-[16px] font-bold text-[13px] shrink-0 cursor-pointer shadow-sm transition-colors flex items-center gap-2" onclick="selectPatient(this, 'Себя')">
+                            <i class="ph-fill ph-user text-lg"></i> Себя
+                        </div>
+                        <div class="patient-chip bg-white border-2 border-gray-100 text-apple-text px-4 py-2.5 rounded-[16px] font-medium text-[13px] shrink-0 cursor-pointer shadow-ios hover:bg-gray-50 transition-colors flex items-center gap-2" onclick="selectPatient(this, 'Ваня (сын)')">
+                            <i class="ph-fill ph-baby text-lg text-blue-500"></i> Ваня (сын)
+                        </div>
+                        <div class="patient-chip bg-white border-2 border-gray-100 text-apple-text px-4 py-2.5 rounded-[16px] font-medium text-[13px] shrink-0 cursor-pointer shadow-ios hover:bg-gray-50 transition-colors flex items-center justify-center gap-1" onclick="alert('Откроет форму добавления родственника')">
+                            <i class="ph-bold ph-plus text-lg text-gray-400"></i>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Final Info Box -->
                 <div class="px-4 mt-8">
                     <div class="bg-apple-brandLight rounded-2xl p-4 border border-apple-brandLight flex justify-between items-center">
@@ -301,7 +318,7 @@
 
     <script>
         let currentStep = 1;
-        let selectedData = { service: null, doctor: null, time: '14:00' }; // pre-selected time for demo
+        let selectedData = { service: null, doctor: null, time: '14:00', patient: 'Себя' }; // pre-selected time for demo
         
         const btnNext = document.getElementById('btn-next');
         const progressBar = document.getElementById('progress-bar');
@@ -384,6 +401,17 @@
                 item.classList.remove('selected');
             });
             el.classList.add('selected');
+        }
+
+        
+        function selectPatient(el, name) {
+            document.querySelectorAll('.patient-chip').forEach(item => {
+                item.classList.remove('selected', 'bg-apple-brandLight', 'border-apple-brand', 'text-apple-brandDark', 'font-bold');
+                item.classList.add('bg-white', 'border-gray-100', 'text-apple-text', 'font-medium', 'shadow-ios');
+            });
+            el.classList.remove('bg-white', 'border-gray-100', 'text-apple-text', 'font-medium', 'shadow-ios');
+            el.classList.add('selected', 'bg-apple-brandLight', 'border-apple-brand', 'text-apple-brandDark', 'font-bold');
+            selectedData.patient = name;
         }
 
         function selectTime(el) {
