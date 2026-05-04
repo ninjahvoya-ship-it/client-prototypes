@@ -250,10 +250,6 @@
 
         </main>
 
-        
-        
-
-
         <!-- Шторка: Редактирование профиля -->
         <div id="sheet-edit-profile" class="bottom-sheet-overlay" onclick="if(event.target === this) closeSheets()">
             <div class="bottom-sheet">
@@ -400,7 +396,6 @@
             </div>
         </div>
 
-    
         <!-- Floating Bottom Tab Bar -->
         <div style="position: fixed; bottom: 20px; left: 0; right: 0; display: flex; justify-content: center; pointer-events: none; z-index: 9999;">
             <div style="width: 100%; max-width: 400px; padding: 0 20px; pointer-events: auto;">
@@ -421,8 +416,59 @@
                 </div>
             </div>
         </div>
-    
+
+    </div>
+
     <script>
+        // Swipe to close bottom sheets logic
+        let startY = 0;
+        let currentY = 0;
+        let isDragging = false;
+        let activeSheet = null;
+
+        document.addEventListener('touchstart', (e) => {
+            const sheet = e.target.closest('.bottom-sheet');
+            if (sheet) {
+                const scrollable = e.target.closest('.overflow-y-auto, .overflow-x-auto');
+                if (scrollable && scrollable.scrollTop > 0) return; 
+                
+                activeSheet = sheet;
+                startY = e.touches[0].clientY;
+                isDragging = true;
+                sheet.style.transition = 'none'; 
+            }
+        }, { passive: true });
+
+        document.addEventListener('touchmove', (e) => {
+            if (!isDragging || !activeSheet) return;
+            
+            currentY = e.touches[0].clientY;
+            const diffY = currentY - startY;
+            
+            if (diffY > 0) {
+                activeSheet.style.transform = `translate(-50%, ${diffY}px)`;
+            }
+        }, { passive: true });
+
+        document.addEventListener('touchend', (e) => {
+            if (!isDragging || !activeSheet) return;
+            
+            const diffY = currentY - startY;
+            isDragging = false;
+            activeSheet.style.transition = 'transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)';
+            
+            if (diffY > 100) {
+                closeSheets();
+                setTimeout(() => {
+                    activeSheet.style.transform = ''; 
+                    activeSheet = null;
+                }, 300);
+            } else {
+                activeSheet.style.transform = 'translate(-50%, 0)';
+                activeSheet = null;
+            }
+        });
+
         function openEditProfile() {
             document.getElementById('sheet-edit-profile').classList.add('active');
         }
