@@ -223,6 +223,16 @@
                 </div>
             </div>
 
+            
+            <!-- 5.5 Рассрочка, ДМС и ОМС -->
+            <div class="bg-[#2C2C2E] rounded-[24px] p-5 shadow-ios relative overflow-hidden flex flex-col justify-center min-h-[100px] border border-[#3A3A3C] cursor-pointer mt-2">
+                <div class="relative z-10">
+                    <h3 class="font-bold text-[15px] mb-1 text-apple-brand leading-tight">Рассрочка, ДМС и ОМС — доступно в клинике</h3>
+                    <p class="text-[11px] text-white/70 leading-relaxed pr-4">Мы предоставляем гибкие варианты оплаты: оформление рассрочки, лечение по полисам ДМС и ОМС.</p>
+                </div>
+                <i class="ph-duotone ph-shield-check text-[70px] text-apple-brand opacity-10 absolute -bottom-2 -right-2"></i>
+            </div>
+
             <!-- Disclaimer -->
             <div class="py-4 flex justify-center items-center">
                 <p class="text-[11px] font-medium text-apple-grayText text-center max-w-[250px] leading-relaxed">
@@ -232,25 +242,24 @@
 
         </main>
 
-        <!-- iOS Bottom Tab Bar -->
-        <nav class="fixed bottom-0 w-full max-w-[400px] tabbar-glass px-6 py-2 pb-6 flex justify-between items-center z-50">
-            <button class="flex flex-col items-center gap-1 text-apple-grayText hover:text-apple-text transition-colors">
-                <i class="ph ph-house text-[26px]"></i>
-                <span class="text-[10px] font-semibold">Главная</span>
-            </button>
-            <button class="flex flex-col items-center gap-1 text-apple-brandDark">
-                <i class="ph-fill ph-receipt text-[26px]"></i>
-                <span class="text-[10px] font-medium">Услуги</span>
-            </button>
-            <button class="flex flex-col items-center gap-1 text-apple-grayText hover:text-apple-text transition-colors">
-                <i class="ph ph-calendar-blank text-[26px]"></i>
-                <span class="text-[10px] font-medium">Визиты</span>
-            </button>
-            <button class="flex flex-col items-center gap-1 text-apple-grayText hover:text-apple-text transition-colors">
-                <i class="ph ph-user text-[26px]"></i>
-                <span class="text-[10px] font-medium">Профиль</span>
-            </button>
-        </nav>
+        <!-- Floating Bottom Tab Bar -->
+        <div class="fixed bottom-6 w-full max-w-[400px] px-4 z-50">
+            <nav class="bg-white/90 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.1)] rounded-[32px] p-2 flex justify-between items-center border border-gray-100">
+                <a href="index.html" class="text-apple-grayText hover:text-apple-brandDark p-2.5 rounded-full transition-all duration-300 flex items-center justify-center">
+                    <i class="ph-house text-xl"></i>
+                </a>
+                <a href="price.html" class="bg-apple-brand text-white flex items-center gap-1.5 px-4 py-2.5 rounded-full transition-all duration-300 shadow-sm">
+                    <i class="ph-fill ph-receipt text-xl"></i>
+                    <span class="text-[12px] font-bold">Услуги</span>
+                </a>
+                <a href="visits.html" class="text-apple-grayText hover:text-apple-brandDark p-2.5 rounded-full transition-all duration-300 flex items-center justify-center">
+                    <i class="ph-calendar-blank text-xl"></i>
+                </a>
+                <a href="profile.html" class="text-apple-grayText hover:text-apple-brandDark p-2.5 rounded-full transition-all duration-300 flex items-center justify-center">
+                    <i class="ph-user text-xl"></i>
+                </a>
+            </nav>
+        </div>
 
     </div>
 </body>
