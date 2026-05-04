@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>3M Clinic | Pure Glass Fintech</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        brandGreen: '#1B8C4A', /* Kept logo only */
+                        pageBg: '#D5DFDF', /* That specific minty icy blue/gray background */
+                        textMain: '#2A2E35',
+                        textMuted: '#6B7A84',
+                        /* The signature purple gradient colors */
+                        purpleTop: '#9B8CF8',
+                        purpleMid: '#6D5AF2',
+                        purpleBot: '#4B35E6',
+                    },
+                    boxShadow: {
+                        'glass': '0 8px 32px rgba(0,0,0,0.04)',
+                        'float': '0 12px 40px rgba(0,0,0,0.06)'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { margin: 0; background-color: #D5DFDF; font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
+        .app-container { width: 100%; max-width: 480px; margin: 0 auto; background-color: #D5DFDF; min-height: 100vh; position: relative; padding-bottom: 120px; overflow: hidden; }
+        ::-webkit-scrollbar { display: none; }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            border-radius: 30px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.03);
+        }
+
+        .btn-glass {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            border-radius: 28px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.02);
+            color: #2A2E35;
+        }
+
+        .btn-purple {
+            background: linear-gradient(180deg, #9B8CF8 0%, #6D5AF2 50%, #4B35E6 100%);
+            border-radius: 28px;
+            color: white;
+            box-shadow: 0 8px 24px rgba(75, 53, 230, 0.25);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .tabbar-pill {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 16px 40px rgba(0,0,0,0.08);
+            border-radius: 40px;
+        }
+
+        .circle-btn {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+
+        <!-- Header -->
+        <header class="px-5 pt-12 pb-2 flex justify-between items-center">
+            <div class="w-12 h-12 circle-btn flex items-center justify-center font-bold text-[14px] text-textMain overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=150&auto=format&fit=crop" class="w-full h-full object-cover">
+            </div>
+            
+            <!-- Logo in green to keep brand identity -->
+            <h1 class="text-[22px] font-bold text-textMain tracking-tight">Доброе утро</h1>
+            
+            <button class="w-12 h-12 circle-btn flex items-center justify-center text-textMain">
+                <i class="ph ph-bell text-[22px]"></i>
+            </button>
+        </header>
+
+        <main class="px-5 mt-6 space-y-3">
+
+            <!-- Balance Section (Centered like reference) -->
+            <div class="text-center pt-4 pb-6">
+                <p class="text-[14px] font-medium text-textMuted mb-1">Баланс баллов</p>
+                <div class="flex items-baseline justify-center gap-1.5">
+                    <span class="text-[28px] font-medium text-textMain">₽</span>
+                    <h2 class="text-[52px] font-semibold text-textMain tracking-tight leading-none">1.450</h2>
+                </div>
+            </div>
+
+            <!-- Two Main Actions -->
+            <div class="grid grid-cols-2 gap-3 mb-2">
+                <button class="btn-glass h-[90px] flex items-center justify-center text-[18px] font-medium hover:bg-white/50 transition-colors">
+                    Депозит
+                </button>
+                <button class="btn-purple h-[90px] flex items-center justify-center text-[18px] font-medium hover:opacity-95 transition-opacity">
+                    Запись
+                </button>
+            </div>
+
+            <!-- Card 1: Family (Like 'Send again') -->
+            <div class="glass-card p-5">
+                <h3 class="text-[17px] font-medium text-textMain mb-4">Моя семья</h3>
+                <div class="flex gap-4 overflow-x-auto pb-1">
+                    
+                    <!-- Add Button -->
+                    <div class="flex flex-col items-center gap-2 shrink-0 cursor-pointer hover:opacity-80">
+                        <div class="w-[56px] h-[56px] circle-btn flex items-center justify-center text-textMain">
+                            <i class="ph ph-plus text-xl"></i>
+                        </div>
+                        <span class="text-[13px] font-medium text-textMuted">Добавить</span>
+                    </div>
+
+                    <!-- Family Member 1 -->
+                    <div class="flex flex-col items-center gap-2 shrink-0 cursor-pointer hover:opacity-80">
+                        <div class="w-[56px] h-[56px] rounded-full overflow-hidden border border-white shadow-sm">
+                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=150&auto=format&fit=crop" class="w-full h-full object-cover">
+                        </div>
+                        <span class="text-[13px] font-medium text-textMain">Дима</span>
+                    </div>
+
+                    <!-- Family Member 2 -->
+                    <div class="flex flex-col items-center gap-2 shrink-0 cursor-pointer hover:opacity-80">
+                        <div class="w-[56px] h-[56px] rounded-full overflow-hidden border border-white shadow-sm">
+                            <img src="https://images.unsplash.com/photo-1519238263530-99abad111f4b?q=80&w=150&auto=format&fit=crop" class="w-full h-full object-cover">
+                        </div>
+                        <span class="text-[13px] font-medium text-textMain">Артём</span>
+                    </div>
+
+                    <!-- Family Member 3 -->
+                    <div class="flex flex-col items-center gap-2 shrink-0 cursor-pointer hover:opacity-80">
+                        <div class="w-[56px] h-[56px] rounded-full overflow-hidden border border-white shadow-sm">
+                            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=150&auto=format&fit=crop" class="w-full h-full object-cover">
+                        </div>
+                        <span class="text-[13px] font-medium text-textMain">Галина</span>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Card 2: Upcoming Appointment (Like 'Upcoming') -->
+            <div class="glass-card p-5 cursor-pointer hover:bg-white/50 transition-colors">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-[17px] font-medium text-textMain">Ближайший визит</h3>
+                    <i class="ph ph-caret-right text-textMuted"></i>
+                </div>
+                
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-textMain shadow-sm border border-gray-100">
+                            <i class="ph-fill ph-tooth text-xl"></i>
+                        </div>
+                        <div>
+                            <p class="text-[16px] font-medium text-textMain leading-tight">Чистка зубов</p>
+                            <p class="text-[13px] font-medium text-textMuted mt-0.5">Сегодня 14:00</p>
+                        </div>
+                    </div>
+                    <button class="bg-gradient-to-b from-[#9B8CF8] to-[#4B35E6] text-white px-4 py-2 rounded-full text-[13px] font-medium shadow-sm">
+                        Детали
+                    </button>
+                </div>
+            </div>
+
+            <!-- Card 3: Transactions / History -->
+            <div class="glass-card p-5 cursor-pointer hover:bg-white/50 transition-colors">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-[17px] font-medium text-textMain">История</h3>
+                    <i class="ph ph-caret-right text-textMuted"></i>
+                </div>
+
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-brandGreen shadow-sm border border-gray-100">
+                            <i class="ph-bold ph-plus text-xl"></i>
+                        </div>
+                        <div>
+                            <p class="text-[16px] font-medium text-textMain leading-tight">Кешбэк 3M Clinic</p>
+                            <p class="text-[13px] font-medium text-textMuted mt-0.5">28 Марта 2026</p>
+                        </div>
+                    </div>
+                    <span class="text-[16px] font-medium text-[#1B8C4A]">+₽400</span>
+                </div>
+            </div>
+
+        </main>
+
+        <!-- Floating Bottom Tab Bar (Pill style) -->
+        <div style="position: fixed; bottom: 30px; left: 0; right: 0; display: flex; justify-content: center; z-index: 9999;">
+            <div style="width: 100%; max-width: 440px; padding: 0 20px;">
+                <div class="tabbar-pill flex justify-between items-center px-4 py-3">
+                    
+                    <!-- Active Tab (Purple Circle) -->
+                    <a href="#" class="w-12 h-12 rounded-full bg-gradient-to-b from-[#9B8CF8] to-[#4B35E6] flex items-center justify-center text-white shadow-md">
+                        <i class="ph-fill ph-house text-[24px]"></i>
+                    </a>
+                    
+                    <a href="#" class="w-12 h-12 flex items-center justify-center text-textMain hover:opacity-70 transition-opacity">
+                        <i class="ph ph-arrows-left-right text-[26px]"></i>
+                    </a>
+
+                    <a href="#" class="w-12 h-12 flex items-center justify-center text-textMain hover:opacity-70 transition-opacity">
+                        <i class="ph ph-qr-code text-[26px]"></i>
+                    </a>
+                    
+                    <a href="#" class="w-12 h-12 flex items-center justify-center text-textMain hover:opacity-70 transition-opacity">
+                        <i class="ph ph-receipt text-[26px]"></i>
+                    </a>
+                    
+                    <a href="#" class="w-12 h-12 flex items-center justify-center text-textMain hover:opacity-70 transition-opacity">
+                        <i class="ph ph-user text-[26px]"></i>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
