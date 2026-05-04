@@ -51,8 +51,7 @@
             min-height: 100vh;
             position: relative;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-            overflow-x: hidden;
-            padding-bottom: 90px;
+            padding-bottom: 120px;
         }
         ::-webkit-scrollbar { display: none; }
         
@@ -266,8 +265,12 @@
                         <input type="text" value="Ветютнева" class="w-full bg-gray-50 border border-gray-100 rounded-[16px] px-4 py-3.5 text-[15px] font-medium outline-none focus:border-apple-brand focus:bg-white transition-colors">
                     </div>
                     <div>
+                        <label class="text-[12px] font-bold text-apple-grayText ml-1 mb-1.5 block uppercase tracking-wider">Отчество</label>
+                        <input type="text" placeholder="Ваше отчество" class="w-full bg-gray-50 border border-gray-100 rounded-[16px] px-4 py-3.5 text-[15px] font-medium outline-none focus:border-apple-brand focus:bg-white transition-colors">
+                    </div>
+                    <div>
                         <label class="text-[12px] font-bold text-apple-grayText ml-1 mb-1.5 block uppercase tracking-wider">Дата рождения</label>
-                        <input type="date" value="1995-03-08" class="w-full bg-gray-50 border border-gray-100 rounded-[16px] px-4 py-3.5 text-[15px] font-medium outline-none focus:border-apple-brand focus:bg-white transition-colors text-apple-text">
+                        <input type="date" value="1995-03-08" class="w-full bg-gray-50 border border-gray-100 rounded-[16px] px-4 py-3.5 text-[15px] font-medium outline-none focus:border-apple-brand focus:bg-white transition-colors text-apple-text" style="min-height: 48px; -webkit-appearance: none;">
                     </div>
                     <div>
                         <label class="text-[12px] font-bold text-apple-grayText ml-1 mb-1.5 block uppercase tracking-wider">Email</label>
@@ -321,6 +324,9 @@
                             <div class="role-chip bg-gray-50 border-2 border-gray-100 text-apple-text px-4 py-2 rounded-[16px] font-medium text-[13px] shrink-0 cursor-pointer transition-colors flex items-center gap-1.5 hover:bg-gray-100" onclick="selectRole(this)">
                                 Супруг(а)
                             </div>
+                            <div class="role-chip bg-gray-50 border-2 border-gray-100 text-apple-text px-4 py-2 rounded-[16px] font-medium text-[13px] shrink-0 cursor-pointer transition-colors flex items-center gap-1.5 hover:bg-gray-100" onclick="selectRole(this)">
+                                <i class="ph-fill ph-dots-three text-gray-500 text-lg"></i> Другое
+                            </div>
                         </div>
                     </div>
 
@@ -333,8 +339,12 @@
                         <input type="text" placeholder="Иванов" class="w-full bg-gray-50 border border-gray-100 rounded-[16px] px-4 py-3.5 text-[15px] font-medium outline-none focus:border-apple-brand focus:bg-white transition-colors">
                     </div>
                     <div>
+                        <label class="text-[12px] font-bold text-apple-grayText ml-1 mb-1.5 block uppercase tracking-wider">Отчество</label>
+                        <input type="text" placeholder="Иванович" class="w-full bg-gray-50 border border-gray-100 rounded-[16px] px-4 py-3.5 text-[15px] font-medium outline-none focus:border-apple-brand focus:bg-white transition-colors">
+                    </div>
+                    <div>
                         <label class="text-[12px] font-bold text-apple-grayText ml-1 mb-1.5 block uppercase tracking-wider">Дата рождения</label>
-                        <input type="date" class="w-full bg-gray-50 border border-gray-100 rounded-[16px] px-4 py-3.5 text-[15px] font-medium outline-none focus:border-apple-brand focus:bg-white transition-colors text-apple-text">
+                        <input type="date" class="w-full bg-gray-50 border border-gray-100 rounded-[16px] px-4 py-3.5 text-[15px] font-medium outline-none focus:border-apple-brand focus:bg-white transition-colors text-apple-text" style="min-height: 48px; -webkit-appearance: none;">
                     </div>
                 </div>
                 
@@ -380,8 +390,12 @@
                         <input type="text" value="Ваня" class="w-full bg-gray-50 border border-gray-100 rounded-[16px] px-4 py-3.5 text-[15px] font-medium outline-none focus:border-apple-brand focus:bg-white transition-colors">
                     </div>
                     <div>
+                        <label class="text-[12px] font-bold text-apple-grayText ml-1 mb-1.5 block uppercase tracking-wider">Отчество</label>
+                        <input type="text" placeholder="Отчество" class="w-full bg-gray-50 border border-gray-100 rounded-[16px] px-4 py-3.5 text-[15px] font-medium outline-none focus:border-apple-brand focus:bg-white transition-colors">
+                    </div>
+                    <div>
                         <label class="text-[12px] font-bold text-apple-grayText ml-1 mb-1.5 block uppercase tracking-wider">Дата рождения</label>
-                        <input type="date" value="2018-05-12" class="w-full bg-gray-50 border border-gray-100 rounded-[16px] px-4 py-3.5 text-[15px] font-medium outline-none focus:border-apple-brand focus:bg-white transition-colors text-apple-text">
+                        <input type="date" value="2018-05-12" class="w-full bg-gray-50 border border-gray-100 rounded-[16px] px-4 py-3.5 text-[15px] font-medium outline-none focus:border-apple-brand focus:bg-white transition-colors text-apple-text" style="min-height: 48px; -webkit-appearance: none;">
                     </div>
                 </div>
                 
