@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>3M Clinic</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #E2E8F0; /* Soft outer bg */
+            -webkit-tap-highlight-color: transparent;
+        }
+        .app {
+            width: 100%; max-width: 400px; margin: 0 auto;
+            min-height: 100vh;
+            background-color: #FFFFFF;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            padding-bottom: 90px;
+        }
+        ::-webkit-scrollbar { display: none; }
+
+        .search-bar {
+            background-color: #F6F6F6;
+        }
+        
+        /* The blue card from the reference */
+        .blue-card {
+            background-color: #1B8C4A; /* Replaced the blue with our brand green */
+        }
+
+        /* Pastel squares */
+        .pastel-1 { background-color: #B8C2F2; } /* Purple */
+        .pastel-2 { background-color: #F4B5D0; } /* Pink */
+        .pastel-3 { background-color: #F6E07D; } /* Yellow */
+        .pastel-4 { background-color: #A7E0CD; } /* Mint */
+        
+        .pastel-1-text { color: #5F6BA6; }
+        .pastel-2-text { color: #A65F80; }
+        .pastel-3-text { color: #A69240; }
+        .pastel-4-text { color: #4A8C74; }
+
+    </style>
+</head>
+<body>
+
+    <div class="app">
+
+        <!-- 1. Header & Greeting -->
+        <div class="px-5 pt-12">
+            <div class="flex items-center justify-between">
+                <div class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-apple-brandDark font-bold overflow-hidden border border-gray-200">
+                    АВ
+                </div>
+                <div class="text-gray-400">
+                    <i class="ph-bold ph-bell text-xl"></i>
+                </div>
+            </div>
+            
+            <h1 class="text-[28px] font-bold text-gray-900 mt-4 leading-tight">Привет, Анна</h1>
+        </div>
+
+        <!-- 2. Search -->
+        <div class="px-5 mt-5">
+            <div class="search-bar h-11 rounded-full flex items-center px-4">
+                <i class="ph-bold ph-magnifying-glass text-gray-400 text-lg mr-2"></i>
+                <input type="text" placeholder="Поиск услуг или врачей..." class="bg-transparent border-none outline-none w-full text-[14px] text-gray-700 font-medium placeholder-gray-400">
+            </div>
+        </div>
+
+        <!-- 3. Collection (Pastel Squares) -->
+        <div class="px-5 mt-8">
+            <h2 class="text-[17px] font-bold text-gray-900 mb-4">Категории</h2>
+            
+            <div class="flex gap-4 overflow-x-auto pb-2 -mx-5 px-5">
+                
+                <a href="booking-quick.html?service=Острая боль" class="flex flex-col items-center shrink-0 w-[72px]">
+                    <div class="w-[72px] h-[72px] rounded-[22px] pastel-2 flex items-center justify-center mb-2 overflow-hidden relative group">
+                        <i class="ph-fill ph-warning-circle text-[32px] text-white opacity-90 group-hover:scale-110 transition-transform"></i>
+                    </div>
+                    <p class="text-[13px] font-medium text-gray-700">Острая боль</p>
+                </a>
+
+                <a href="booking-quick.html?service=Отбеливание" class="flex flex-col items-center shrink-0 w-[72px]">
+                    <div class="w-[72px] h-[72px] rounded-[22px] pastel-1 flex items-center justify-center mb-2 overflow-hidden relative group">
+                        <i class="ph-fill ph-sparkle text-[32px] text-white opacity-90 group-hover:scale-110 transition-transform"></i>
+                    </div>
+                    <p class="text-[13px] font-medium text-gray-700">Отбеливание</p>
+                </a>
+
+                <a href="booking-quick.html?service=Брекеты" class="flex flex-col items-center shrink-0 w-[72px]">
+                    <div class="w-[72px] h-[72px] rounded-[22px] pastel-3 flex items-center justify-center mb-2 overflow-hidden relative group">
+                        <i class="ph-fill ph-smiley text-[32px] text-white opacity-90 group-hover:scale-110 transition-transform"></i>
+                    </div>
+                    <p class="text-[13px] font-medium text-gray-700">Брекеты</p>
+                </a>
+
+                <a href="booking-quick.html?service=Детям" class="flex flex-col items-center shrink-0 w-[72px]">
+                    <div class="w-[72px] h-[72px] rounded-[22px] pastel-4 flex items-center justify-center mb-2 overflow-hidden relative group">
+                        <i class="ph-fill ph-baby text-[32px] text-white opacity-90 group-hover:scale-110 transition-transform"></i>
+                    </div>
+                    <p class="text-[13px] font-medium text-gray-700">Детям</p>
+                </a>
+
+            </div>
+        </div>
+
+        <!-- 4. Stats Strip (Brand Green instead of Blue) -->
+        <div class="px-5 mt-8">
+            <div class="blue-card rounded-t-[28px] rounded-b-[20px] p-5 pb-10 flex justify-between items-center text-white relative overflow-hidden cursor-pointer" onclick="openQR()">
+                <div class="absolute -right-4 -bottom-4 opacity-10">
+                    <i class="ph-fill ph-star text-[120px]"></i>
+                </div>
+                
+                <div class="flex-1 flex flex-col items-center relative z-10">
+                    <div class="flex items-center gap-1.5 mb-1 opacity-80">
+                        <i class="ph-fill ph-star text-sm"></i>
+                        <span class="text-[11px] font-medium uppercase tracking-wider">Баллы</span>
+                    </div>
+                    <p class="text-[20px] font-bold">1 450</p>
+                </div>
+                
+                <div class="w-[1px] h-10 bg-white/20 mx-2"></div>
+                
+                <div class="flex-1 flex flex-col items-center relative z-10">
+                    <div class="flex items-center gap-1.5 mb-1 opacity-80">
+                        <i class="ph-fill ph-calendar-check text-sm"></i>
+                        <span class="text-[11px] font-medium uppercase tracking-wider">Визиты</span>
+                    </div>
+                    <p class="text-[20px] font-bold">2</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. Overlapping Recommend Card -->
+        <div class="px-5 -mt-6 relative z-10">
+            <div class="bg-white rounded-[24px] p-5 shadow-[0_10px_30px_rgba(0,0,0,0.08)]">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-[17px] font-bold text-gray-900">Ближайший визит</h3>
+                </div>
+
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-full overflow-hidden bg-gray-100">
+                            <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=100&auto=format&fit=crop" class="w-full h-full object-cover grayscale opacity-80">
+                        </div>
+                        <div>
+                            <p class="font-bold text-[14px] text-gray-900">Терапия</p>
+                            <p class="text-[11px] text-gray-500 mt-0.5">Магомедова И.М. • 15 мая</p>
+                        </div>
+                    </div>
+                    <button class="bg-[#F0FAFF] text-[#00AAB8] px-4 py-1.5 rounded-full text-[12px] font-bold">
+                        Детали
+                    </button>
+                </div>
+                
+                <!-- Bottom indicator line from reference -->
+                <div class="w-8 h-1 bg-gray-200 rounded-full mx-auto mt-6"></div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
