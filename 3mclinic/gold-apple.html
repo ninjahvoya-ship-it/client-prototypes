@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>3M Clinic | Gold Apple Style</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Montserrat', 'sans-serif'] },
+                    colors: {
+                        bg: '#FFFFFF',
+                        text: '#000000',
+                        muted: '#999999',
+                        brandGreen: '#1B8C4A', /* Keeping logo 3M */
+                        appleGreen: '#B4D43D', /* ZY Lime Green */
+                        appleYellow: '#E4F419',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { margin: 0; background-color: #FFFFFF; font-family: 'Montserrat', sans-serif; -webkit-tap-highlight-color: transparent; }
+        .app-container { width: 100%; max-width: 400px; margin: 0 auto; background-color: #FFFFFF; min-height: 100vh; position: relative; padding-bottom: 120px; overflow: hidden; }
+        ::-webkit-scrollbar { display: none; }
+        
+        /* ZY UI Elements */
+        .zy-card { background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 16px; }
+        .zy-badge { background: #000000; color: #FFFFFF; font-weight: 700; text-transform: uppercase; font-size: 10px; padding: 4px 8px; border-radius: 4px; letter-spacing: 0.5px; }
+        .zy-pill { border: 1px solid #E5E5E5; border-radius: 20px; font-weight: 600; font-size: 13px; color: #000; padding: 8px 16px; }
+        .zy-pill.active { background: #000000; color: #FFFFFF; border-color: #000000; }
+        
+        /* The signature neon lime gradient */
+        .zy-lime { background: linear-gradient(135deg, #B4D43D 0%, #E4F419 100%); }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+
+        <!-- Header -->
+        <header class="px-5 pt-12 pb-4 flex justify-between items-center sticky top-0 bg-white z-50 border-b border-gray-100">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-black text-white rounded-full flex items-center justify-center font-bold text-[14px]">
+                    АВ
+                </div>
+                <div>
+                    <h1 class="text-[18px] font-extrabold text-black leading-tight uppercase tracking-tight">3M Clinic</h1>
+                </div>
+            </div>
+            <button class="w-10 h-10 flex items-center justify-center text-black">
+                <i class="ph-bold ph-list text-[24px]"></i>
+            </button>
+        </header>
+
+        <main class="mt-0">
+
+            <!-- ZY Style Banner (Neon Lime) -->
+            <div class="w-full zy-lime p-6 pb-8 relative cursor-pointer group overflow-hidden">
+                <div class="absolute -right-4 -top-4 w-40 h-40 bg-white/20 rounded-full blur-2xl z-0"></div>
+                <div class="relative z-10">
+                    <span class="zy-badge mb-3 inline-block bg-white text-black">Premium клиент</span>
+                    <p class="text-[12px] font-bold text-black uppercase tracking-wider mb-1">Ваш баланс</p>
+                    <div class="flex items-baseline gap-1">
+                        <h2 class="text-[48px] font-extrabold text-black leading-none tracking-tighter">1 450</h2>
+                        <span class="text-[20px] font-bold text-black">₽</span>
+                    </div>
+                </div>
+                <div class="absolute right-6 bottom-6 w-12 h-12 bg-black rounded-full flex items-center justify-center group-hover:scale-105 transition-transform">
+                    <i class="ph-bold ph-qr-code text-white text-xl"></i>
+                </div>
+            </div>
+
+            <!-- Categories Horizontal Scroll (Pills) -->
+            <div class="px-5 mt-6">
+                <div class="flex gap-2 overflow-x-auto pb-2 -mx-5 px-5">
+                    <div class="zy-pill active shrink-0 cursor-pointer">Лечение</div>
+                    <div class="zy-pill shrink-0 cursor-pointer hover:bg-gray-50 transition-colors">Отбеливание</div>
+                    <div class="zy-pill shrink-0 cursor-pointer hover:bg-gray-50 transition-colors">Брекеты</div>
+                    <div class="zy-pill shrink-0 cursor-pointer hover:bg-gray-50 transition-colors">Детям</div>
+                </div>
+            </div>
+
+            <!-- Services Grid (Minimal Outline Cards) -->
+            <div class="px-5 mt-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-[18px] font-bold text-black uppercase tracking-tight">Популярное</h3>
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    
+                    <div class="zy-card p-4 flex flex-col justify-between h-[140px] cursor-pointer hover:border-black transition-colors relative">
+                        <span class="absolute top-3 left-3 bg-black text-white text-[9px] font-bold uppercase px-2 py-1 rounded-sm">Хит</span>
+                        <div class="w-full flex justify-end">
+                            <i class="ph-light ph-sparkle text-[32px] text-black"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-[14px] font-bold text-black uppercase leading-tight mb-1">Отбеливание<br>ZOOM4</h4>
+                            <p class="text-[12px] font-semibold text-muted">15 000 ₽</p>
+                        </div>
+                    </div>
+
+                    <div class="zy-card p-4 flex flex-col justify-between h-[140px] cursor-pointer hover:border-black transition-colors">
+                        <div class="w-full flex justify-end">
+                            <i class="ph-light ph-tooth text-[32px] text-black"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-[14px] font-bold text-black uppercase leading-tight mb-1">Лечение<br>кариеса</h4>
+                            <p class="text-[12px] font-semibold text-muted">от 3 500 ₽</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- ZY Style Banner Text (Black) -->
+            <div class="px-5 mt-8">
+                <div class="bg-black text-white p-6 rounded-2xl relative overflow-hidden cursor-pointer hover:bg-gray-900 transition-colors">
+                    <span class="zy-badge bg-white text-black mb-3 inline-block">Акция</span>
+                    <h3 class="text-[22px] font-extrabold uppercase leading-tight tracking-tight mb-2">Профосмотр<br>-15%</h3>
+                    <p class="text-[13px] text-gray-300 font-medium max-w-[80%] mb-4">Запишитесь на комплексную чистку и осмотр до конца месяца.</p>
+                    <button class="w-full bg-white text-black font-bold uppercase text-[12px] py-3 rounded-lg hover:bg-gray-100 transition-colors">
+                        Записаться
+                    </button>
+                    <i class="ph-duotone ph-tooth absolute -right-6 -bottom-6 text-[100px] text-white/10 transform rotate-12"></i>
+                </div>
+            </div>
+
+        </main>
+
+        <!-- ZY Bottom Tab Bar (Very minimal, transparent) -->
+        <div style="position: fixed; bottom: 0; left: 0; right: 0; display: flex; justify-content: center; z-index: 9999; background: white; border-top: 1px solid #E5E5E5; padding-bottom: env(safe-area-inset-bottom);">
+            <div style="width: 100%; max-width: 400px; display: flex; justify-content: space-between; align-items: center; padding: 12px 24px;">
+                
+                <a href="#" style="display: flex; flex-direction: column; align-items: center; gap: 4px; color: #000000; text-decoration: none;">
+                    <i class="ph-fill ph-house text-[24px]"></i>
+                    <span class="text-[9px] font-bold uppercase">Главная</span>
+                </a>
+                
+                <a href="#" style="display: flex; flex-direction: column; align-items: center; gap: 4px; color: #999999; text-decoration: none;">
+                    <i class="ph ph-magnifying-glass text-[24px]"></i>
+                    <span class="text-[9px] font-bold uppercase">Поиск</span>
+                </a>
+                
+                <a href="#" style="display: flex; flex-direction: column; align-items: center; gap: 4px; color: #999999; text-decoration: none;">
+                    <i class="ph ph-calendar-blank text-[24px]"></i>
+                    <span class="text-[9px] font-bold uppercase">Визиты</span>
+                </a>
+                
+                <a href="#" style="display: flex; flex-direction: column; align-items: center; gap: 4px; color: #999999; text-decoration: none;">
+                    <i class="ph ph-user text-[24px]"></i>
+                    <span class="text-[9px] font-bold uppercase">Профиль</span>
+                </a>
+
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
