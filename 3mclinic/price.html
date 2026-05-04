@@ -68,6 +68,21 @@
             -webkit-backdrop-filter: blur(12px);
             border-top: 1px solid rgba(0,0,0,0.05);
         }
+    
+        /* Bottom Sheet Styles */
+        .bottom-sheet-overlay {
+            display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 10000;
+            animation: fadeIn 0.3s ease-out;
+        }
+        .bottom-sheet {
+            position: absolute; bottom: 0; left: 50%; width: 100%; max-width: 400px; background: #FFFFFF;
+            border-radius: 32px 32px 0 0; padding: 24px; z-index: 10001;
+            transform: translate(-50%, 100%); transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            padding-bottom: max(24px, env(safe-area-inset-bottom));
+        }
+        .bottom-sheet-overlay.active { display: block; }
+        .bottom-sheet-overlay.active .bottom-sheet { transform: translate(-50%, 0); }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
 <body>
@@ -92,19 +107,19 @@
 
             <!-- Category Chips -->
             <div class="flex gap-2 overflow-x-auto pb-2 -mx-5 px-5 scrollbar-hide">
-                <button class="bg-apple-brand text-white px-5 py-2 rounded-full text-[13px] font-medium whitespace-nowrap shadow-sm">Все</button>
-                <button class="bg-white border border-gray-200 text-apple-text px-5 py-2 rounded-full text-[13px] font-medium whitespace-nowrap hover:bg-gray-50 transition-colors shadow-sm">Терапия</button>
-                <button class="bg-white border border-gray-200 text-apple-text px-5 py-2 rounded-full text-[13px] font-medium whitespace-nowrap hover:bg-gray-50 transition-colors shadow-sm">Хирургия</button>
-                <button class="bg-white border border-gray-200 text-apple-text px-5 py-2 rounded-full text-[13px] font-medium whitespace-nowrap hover:bg-gray-50 transition-colors shadow-sm">Ортодонтия</button>
-                <button class="bg-white border border-gray-200 text-apple-text px-5 py-2 rounded-full text-[13px] font-medium whitespace-nowrap hover:bg-gray-50 transition-colors shadow-sm">Детям</button>
+                <button onclick="filterCategory(this, 'all')" class="cat-btn bg-apple-brand border border-apple-brand text-white px-5 py-2 rounded-full text-[13px] font-medium whitespace-nowrap shadow-sm">Все</button>
+                <button onclick="filterCategory(this, 'therapy')" class="cat-btn bg-white border border-gray-200 text-apple-text px-5 py-2 rounded-full text-[13px] font-medium whitespace-nowrap hover:bg-gray-50 transition-colors shadow-sm">Терапия</button>
+                <button onclick="filterCategory(this, 'surgery')" class="cat-btn bg-white border border-gray-200 text-apple-text px-5 py-2 rounded-full text-[13px] font-medium whitespace-nowrap hover:bg-gray-50 transition-colors shadow-sm">Хирургия</button>
+                <button onclick="filterCategory(this, 'ortho')" class="cat-btn bg-white border border-gray-200 text-apple-text px-5 py-2 rounded-full text-[13px] font-medium whitespace-nowrap hover:bg-gray-50 transition-colors shadow-sm">Ортодонтия</button>
+                <button onclick="filterCategory(this, 'kids')" class="cat-btn bg-white border border-gray-200 text-apple-text px-5 py-2 rounded-full text-[13px] font-medium whitespace-nowrap hover:bg-gray-50 transition-colors shadow-sm">Детям</button>
             </div>
 
             <!-- List: Терапия -->
-            <div class="mt-2">
+            <div id="cat-therapy" class="mt-2 cat-section">
                 <h3 class="text-[12px] font-bold text-apple-grayText uppercase tracking-wider mb-2 ml-1">Терапия (Лечение зубов)</h3>
                 <div class="bg-white border border-gray-100 shadow-ios rounded-[24px] overflow-hidden">
                     
-                    <div class="p-4 border-b border-gray-50 hover:bg-gray-50 cursor-pointer transition-colors flex justify-between items-center group">
+                    <div class="p-4 border-b border-gray-50 hover:bg-gray-50 cursor-pointer transition-colors flex justify-between items-center group" onclick="openServiceSheet(this)">
                         <div class="flex-1 pr-4">
                             <h4 class="font-bold text-[15px] text-apple-text leading-tight mb-1">Лечение кариеса</h4>
                             <p class="text-[12px] text-apple-grayText font-medium flex items-center gap-1">
@@ -122,7 +137,7 @@
                         </div>
                     </div>
 
-                    <div class="p-4 border-b border-gray-50 hover:bg-gray-50 cursor-pointer transition-colors flex justify-between items-center group">
+                    <div class="p-4 border-b border-gray-50 hover:bg-gray-50 cursor-pointer transition-colors flex justify-between items-center group" onclick="openServiceSheet(this)">
                         <div class="flex-1 pr-4">
                             <h4 class="font-bold text-[15px] text-apple-text leading-tight mb-1">Лечение пульпита</h4>
                             <p class="text-[12px] text-apple-grayText font-medium flex items-center gap-1">
@@ -140,7 +155,7 @@
                         </div>
                     </div>
 
-                    <div class="p-4 hover:bg-gray-50 cursor-pointer transition-colors flex justify-between items-center group">
+                    <div class="p-4 hover:bg-gray-50 cursor-pointer transition-colors flex justify-between items-center group" onclick="openServiceSheet(this)">
                         <div class="flex-1 pr-4">
                             <h4 class="font-bold text-[15px] text-apple-text leading-tight mb-1">Эстетическая реставрация</h4>
                             <p class="text-[12px] text-apple-grayText font-medium flex items-center gap-1">
@@ -162,11 +177,11 @@
             </div>
 
             <!-- List: Хирургия -->
-            <div class="mt-4">
+            <div id="cat-surgery" class="mt-4 cat-section">
                 <h3 class="text-[12px] font-bold text-apple-grayText uppercase tracking-wider mb-2 ml-1">Хирургия</h3>
                 <div class="bg-white border border-gray-100 shadow-ios rounded-[24px] overflow-hidden">
                     
-                    <div class="p-4 border-b border-gray-50 hover:bg-gray-50 cursor-pointer transition-colors flex justify-between items-center group">
+                    <div class="p-4 border-b border-gray-50 hover:bg-gray-50 cursor-pointer transition-colors flex justify-between items-center group" onclick="openServiceSheet(this)">
                         <div class="flex-1 pr-4">
                             <h4 class="font-bold text-[15px] text-apple-text leading-tight mb-1">Удаление зуба (простое)</h4>
                             <p class="text-[12px] text-apple-grayText font-medium flex items-center gap-1">
@@ -184,7 +199,7 @@
                         </div>
                     </div>
 
-                    <div class="p-4 border-b border-gray-50 hover:bg-gray-50 cursor-pointer transition-colors flex justify-between items-center group">
+                    <div class="p-4 border-b border-gray-50 hover:bg-gray-50 cursor-pointer transition-colors flex justify-between items-center group" onclick="openServiceSheet(this)">
                         <div class="flex-1 pr-4">
                             <h4 class="font-bold text-[15px] text-apple-text leading-tight mb-1">Удаление зуба мудрости</h4>
                             <p class="text-[12px] text-apple-grayText font-medium flex items-center gap-1">
@@ -202,7 +217,7 @@
                         </div>
                     </div>
 
-                    <div class="p-4 hover:bg-gray-50 cursor-pointer transition-colors flex justify-between items-center group">
+                    <div class="p-4 hover:bg-gray-50 cursor-pointer transition-colors flex justify-between items-center group" onclick="openServiceSheet(this)">
                         <div class="flex-1 pr-4">
                             <h4 class="font-bold text-[15px] text-apple-text leading-tight mb-1">Имплантат Osstem (Юж. Корея)</h4>
                             <p class="text-[12px] text-apple-grayText font-medium flex items-center gap-1">
@@ -245,6 +260,50 @@
         
         
 
+
+        <!-- Шторка Записи на услугу -->
+        <div id="service-sheet" class="bottom-sheet-overlay" onclick="if(event.target === this) closeSheets()">
+            <div class="bottom-sheet">
+                <div class="w-12 h-1.5 bg-gray-200 rounded-full mb-6 mx-auto"></div>
+                <h2 class="text-[22px] font-bold mb-1 text-center text-apple-text" id="sheet-service-name">Название услуги</h2>
+                <p class="text-[13px] text-apple-grayText text-center mb-6">Как вас записать?</p>
+                
+                <div class="space-y-3 mb-6">
+                    <!-- Option 1: Quick -->
+                    <a id="link-quick" href="booking-quick.html" class="w-full block bg-apple-brandLight text-apple-brandDark p-4 rounded-[24px] shadow-sm border border-apple-brandLight flex items-center justify-between hover:opacity-90 transition-opacity">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-apple-brandDark shadow-sm">
+                                <i class="ph-bold ph-clock text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-[16px] mb-0.5">Ближайшее время</h3>
+                                <p class="text-[12px] opacity-80 font-medium">К любому свободному врачу</p>
+                            </div>
+                        </div>
+                        <i class="ph-bold ph-caret-right opacity-50"></i>
+                    </a>
+
+                    <!-- Option 2: Choose Doctor -->
+                    <a id="link-doctor" href="booking.html" class="w-full block bg-white p-4 rounded-[24px] shadow-sm border border-gray-100 flex items-center justify-between hover:border-apple-brand transition-colors">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center text-apple-text">
+                                <i class="ph-fill ph-user-circle text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-[16px] mb-0.5 text-apple-text">Выбрать врача</h3>
+                                <p class="text-[12px] text-apple-grayText font-medium">Посмотреть расписание специалистов</p>
+                            </div>
+                        </div>
+                        <i class="ph-bold ph-caret-right text-gray-300"></i>
+                    </a>
+                </div>
+                
+                <button onclick="closeSheets()" class="w-full bg-gray-100 text-apple-text py-3.5 rounded-full font-bold text-[15px] hover:bg-gray-200 transition-colors">
+                    Отмена
+                </button>
+            </div>
+        </div>
+
 <!-- Floating Bottom Tab Bar -->
 <div style="position: fixed; bottom: 20px; left: 0; right: 0; display: flex; justify-content: center; pointer-events: none; z-index: 9999;">
     <div style="width: 100%; max-width: 400px; padding: 0 20px; pointer-events: auto;">
@@ -270,5 +329,36 @@
         </div>
     </div>
 </div>
+
+    <script>
+        function filterCategory(btn, cat) {
+            // Update buttons
+            document.querySelectorAll('.cat-btn').forEach(b => {
+                b.className = 'cat-btn bg-white border border-gray-200 text-apple-text px-5 py-2 rounded-full text-[13px] font-medium whitespace-nowrap hover:bg-gray-50 transition-colors shadow-sm';
+            });
+            btn.className = 'cat-btn bg-apple-brand border border-apple-brand text-white px-5 py-2 rounded-full text-[13px] font-medium whitespace-nowrap shadow-sm';
+
+            // Show/hide sections
+            document.querySelectorAll('.cat-section').forEach(s => {
+                if(cat === 'all' || s.id === 'cat-' + cat) {
+                    s.style.display = 'block';
+                } else {
+                    s.style.display = 'none';
+                }
+            });
+        }
+
+        function openServiceSheet(el) {
+            let serviceName = el.querySelector('h4').innerText;
+            document.getElementById('sheet-service-name').innerText = serviceName;
+            document.getElementById('link-quick').href = 'booking-quick.html?service=' + encodeURIComponent(serviceName);
+            // We can also pass the service to the standard booking.html via URL param if needed, but linking to booking.html is fine for prototype
+            document.getElementById('service-sheet').classList.add('active');
+        }
+
+        function closeSheets() {
+            document.getElementById('service-sheet').classList.remove('active');
+        }
+    </script>
 </body>
 </html>
