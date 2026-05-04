@@ -14,7 +14,7 @@
                     fontFamily: { sans: ['Inter', 'sans-serif'] },
                     colors: {
                         apple: {
-                            bg: '#FFFFFF',
+                            bg: '#F2F2F7',
                             card: '#FFFFFF',
                             text: '#000000',
                             grayText: '#8A8A8E',
@@ -23,7 +23,7 @@
                         
                         /* Client Palette (Vivid Berry & Lime) */
                         vividBerry: '#EC1864',
-                        vividLime: '#AEE229',
+                        vividLime: '#CFD72A',
                         softBlue: '#6077D4',
                         lightBlue: '#DAF5F9',
                         softPink: '#FFD1E4',
@@ -37,8 +37,8 @@
         }
     </script>
     <style>
-        body { margin: 0; background-color: #FFFFFF; font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
-        .app-container { width: 100%; max-width: 400px; margin: 0 auto; background-color: #FFFFFF; min-height: 100vh; position: relative; padding-bottom: 120px; overflow: hidden; }
+        body { margin: 0; background-color: #F2F2F7; font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
+        .app-container { width: 100%; max-width: 400px; margin: 0 auto; background-color: #F2F2F7; min-height: 100vh; position: relative; padding-bottom: 120px; overflow: hidden; }
         ::-webkit-scrollbar { display: none; }
         
         .header-glass {
@@ -78,22 +78,14 @@
     <div class="app-container">
 
         <!-- Header -->
-        <!-- Header (Reference Shape) -->
-        <div class="bg-softPink rounded-b-[36px] pt-12 pb-6 px-5 shadow-sm relative z-20">
-            <div class="flex items-center justify-between mb-5">
+        <header class="px-5 pt-12 pb-3 flex items-center justify-between sticky top-0 z-50 header-glass">
+            <div>
                 <h1 class="text-[26px] font-bold text-apple-text leading-tight tracking-tight">Прейскурант</h1>
-                <button class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-apple-text shadow-sm border border-gray-100">
-                    <i class="ph-bold ph-magnifying-glass text-[20px]"></i>
-                </button>
             </div>
-            
-            <!-- Segmented control like in the reference -->
-            <div class="bg-white/40 p-1 rounded-full flex gap-1 border border-white">
-                <div class="flex-1 bg-white text-apple-text text-center py-2 rounded-full text-[13px] font-bold shadow-sm cursor-pointer">Услуги</div>
-                <div class="flex-1 text-vividBerry/80 text-center py-2 rounded-full text-[13px] font-medium cursor-pointer hover:text-apple-text">Анализы</div>
-                <div class="flex-1 text-vividBerry/80 text-center py-2 rounded-full text-[13px] font-medium cursor-pointer hover:text-apple-text">Справки</div>
-            </div>
-        </div>
+            <button class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-apple-text shadow-sm border border-gray-100">
+                <i class="ph-bold ph-magnifying-glass text-[20px]"></i>
+            </button>
+        </header>
 
         <main class="px-5 mt-4 space-y-4">
 
@@ -118,7 +110,7 @@
                         
                         <div class="flex justify-between items-center py-3 border-t border-gray-100">
                             <p class="text-[14px] font-medium text-apple-text">Первичный осмотр</p>
-                            <span class="text-[14px] font-bold text-vividLime bg-vividBerry px-2 py-0.5 rounded-md uppercase text-[10px] tracking-wider">Бесплатно</span>
+                            <span class="text-[14px] font-bold text-vividLime bg-black px-2 py-0.5 rounded-md uppercase text-[10px] tracking-wider">Бесплатно</span>
                         </div>
                         
                         <div class="flex justify-between items-center py-3 border-t border-gray-100">
@@ -144,7 +136,7 @@
             <div class="bg-white rounded-[24px] shadow-ios border border-black/5 overflow-hidden">
                 <div class="p-5 flex items-center justify-between cursor-pointer" onclick="toggleAccordion(this)">
                     <div class="flex items-center gap-4">
-                        <div class="w-10 h-10 bg-vividLime/20 rounded-xl flex items-center justify-center text-[#7A9E1C] shrink-0">
+                        <div class="w-10 h-10 bg-vividLime/20 rounded-xl flex items-center justify-center text-[#9ca31c] shrink-0">
                             <i class="ph-fill ph-tooth text-xl"></i>
                         </div>
                         <h3 class="text-[16px] font-bold text-apple-text tracking-tight">Удаление зуба</h3>
@@ -188,7 +180,7 @@
             <div class="bg-white rounded-[24px] shadow-ios border border-black/5 overflow-hidden">
                 <div class="p-5 flex items-center justify-between cursor-pointer" onclick="toggleAccordion(this)">
                     <div class="flex items-center gap-4">
-                        <div class="w-10 h-10 bg-vividLime/20 rounded-xl flex items-center justify-center text-[#7A9E1C] shrink-0">
+                        <div class="w-10 h-10 bg-vividLime/20 rounded-xl flex items-center justify-center text-[#9ca31c] shrink-0">
                             <i class="ph-fill ph-bandaids text-xl"></i>
                         </div>
                         <h3 class="text-[16px] font-bold text-apple-text tracking-tight">Имплантация</h3>
