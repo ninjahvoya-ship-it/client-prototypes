@@ -189,9 +189,6 @@
                         </div>
                         <i class="ph-bold ph-pencil-simple text-gray-400"></i>
                     </div>
-                        </div>
-                        <i class="ph-bold ph-pencil-simple text-gray-400"></i>
-                    </div>
                     <div onclick="openAddRelative()" class="p-4 flex items-center gap-3 cursor-pointer hover:bg-gray-50 transition-colors group">
                         <div class="w-10 h-10 rounded-full bg-apple-brandLight text-apple-brandDark flex items-center justify-center text-xl group-hover:bg-apple-brand group-hover:text-white transition-colors">
                             <i class="ph-bold ph-plus"></i>
@@ -403,6 +400,28 @@
             </div>
         </div>
 
+    
+        <!-- Floating Bottom Tab Bar -->
+        <div style="position: fixed; bottom: 20px; left: 0; right: 0; display: flex; justify-content: center; pointer-events: none; z-index: 9999;">
+            <div style="width: 100%; max-width: 400px; padding: 0 20px; pointer-events: auto;">
+                <div style="background-color: #f3f4f6; border-radius: 40px; box-shadow: 0 10px 40px rgba(0,0,0,0.15); border: 1px solid #e5e7eb; display: flex; justify-content: space-between; align-items: center; padding: 8px 16px;">
+                    <a href="index.html" style="display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; color: #4b5563; text-decoration: none; border-radius: 50%;">
+                        <i class="ph ph-house" style="font-size: 24px;"></i>
+                    </a>
+                    <a href="price.html" style="display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; color: #4b5563; text-decoration: none; border-radius: 50%;">
+                        <i class="ph ph-receipt" style="font-size: 24px;"></i>
+                    </a>
+                    <a href="visits.html" style="display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; color: #4b5563; text-decoration: none; border-radius: 50%;">
+                        <i class="ph ph-calendar-blank" style="font-size: 24px;"></i>
+                    </a>
+                    <a href="profile.html" style="display: flex; align-items: center; gap: 6px; background-color: #7ED6A5; color: white; padding: 10px 20px; border-radius: 30px; text-decoration: none; font-weight: bold; font-size: 13px; box-shadow: 0 2px 10px rgba(126, 214, 165, 0.4);">
+                        <i class="ph-fill ph-user" style="font-size: 20px;"></i>
+                        <span>Профиль</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    
     <script>
         function openEditProfile() {
             document.getElementById('sheet-edit-profile').classList.add('active');
