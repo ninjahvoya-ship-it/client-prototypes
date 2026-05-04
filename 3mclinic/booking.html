@@ -69,32 +69,33 @@
         }
 
         /* Custom Radio/Select states */
-        .select-item { transition: all 0.2s ease; border: 2px solid transparent !important; }
+        /* Custom Radio/Select states (Only outline, no fill) */
+        .select-item { transition: all 0.2s ease; box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06); }
         .select-item.selected {
-            border-color: #7ED6A5 !important;
-            background-color: #E9F2E9 !important;
+            box-shadow: inset 0 0 0 2px #7ED6A5, 0 4px 24px rgba(0, 0, 0, 0.06) !important;
+            background-color: #FFFFFF !important;
         }
         .select-item .check-icon { display: none; }
         .select-item.selected .check-icon { display: block; }
         .select-item.selected .empty-circle { display: none; }
 
         /* Time slot states */
-        .time-slot { transition: all 0.2s ease; border: 2px solid transparent !important; background-color: #FFFFFF; }
+        .time-slot { transition: all 0.2s ease; box-shadow: inset 0 0 0 1px #E5E7EB; background-color: #FFFFFF; }
         .time-slot.selected {
-            background-color: #E9F2E9 !important;
-            color: #3B8B60 !important;
-            border-color: #7ED6A5 !important;
+            background-color: #FFFFFF !important;
+            color: #1B1B1B !important;
+            box-shadow: inset 0 0 0 2px #7ED6A5 !important;
         }
         
         /* Date chip states */
-        .date-chip { transition: all 0.2s ease; border: 2px solid transparent !important; background-color: #FFFFFF; }
+        .date-chip { transition: all 0.2s ease; box-shadow: inset 0 0 0 1px #E5E7EB; background-color: #FFFFFF; }
         .date-chip.selected {
-            background-color: #E9F2E9 !important;
-            color: #3B8B60 !important;
-            border-color: #7ED6A5 !important;
+            background-color: #FFFFFF !important;
+            color: #1B1B1B !important;
+            box-shadow: inset 0 0 0 2px #7ED6A5 !important;
         }
         .date-chip.selected span {
-            color: #3B8B60 !important;
+            color: #1B1B1B !important;
         }
     </style>
 </head>
@@ -132,7 +133,7 @@
                             <p class="text-[13px] text-apple-grayText">от 4 500 ₽ • ~40 мин</p>
                         </div>
                         <div>
-                            <div class="empty-circle w-6 h-6 rounded-full border-2 border-gray-200"></div>
+                            <div class="empty-circle w-6 h-6 rounded-full "></div>
                             <i class="check-icon ph-fill ph-check-circle text-2xl text-apple-brand"></i>
                         </div>
                     </div>
@@ -143,7 +144,7 @@
                             <p class="text-[13px] text-apple-grayText">5 500 ₽ • ~60 мин</p>
                         </div>
                         <div>
-                            <div class="empty-circle w-6 h-6 rounded-full border-2 border-gray-200"></div>
+                            <div class="empty-circle w-6 h-6 rounded-full "></div>
                             <i class="check-icon ph-fill ph-check-circle text-2xl text-apple-brand"></i>
                         </div>
                     </div>
@@ -157,7 +158,7 @@
                             <p class="text-[13px] text-apple-grayText">от 3 000 ₽ • ~30 мин</p>
                         </div>
                         <div>
-                            <div class="empty-circle w-6 h-6 rounded-full border-2 border-gray-200"></div>
+                            <div class="empty-circle w-6 h-6 rounded-full "></div>
                             <i class="check-icon ph-fill ph-check-circle text-2xl text-apple-brand"></i>
                         </div>
                     </div>
@@ -187,7 +188,7 @@
                             </div>
                         </div>
                         <div>
-                            <div class="empty-circle w-6 h-6 rounded-full border-2 border-gray-200"></div>
+                            <div class="empty-circle w-6 h-6 rounded-full "></div>
                             <i class="check-icon ph-fill ph-check-circle text-2xl text-apple-brand"></i>
                         </div>
                     </div>
@@ -204,7 +205,7 @@
                             </div>
                         </div>
                         <div>
-                            <div class="empty-circle w-6 h-6 rounded-full border-2 border-gray-200"></div>
+                            <div class="empty-circle w-6 h-6 rounded-full "></div>
                             <i class="check-icon ph-fill ph-check-circle text-2xl text-apple-brand"></i>
                         </div>
                     </div>
@@ -247,7 +248,7 @@
                     <div class="grid grid-cols-4 gap-2 mb-6">
                         <div class="time-slot text-apple-text text-center py-2.5 rounded-xl font-bold text-[14px] cursor-pointer shadow-sm transition-colors" onclick="selectTime(this)">10:00</div>
                         <div class="time-slot text-apple-text text-center py-2.5 rounded-xl font-bold text-[14px] cursor-pointer shadow-sm transition-colors" onclick="selectTime(this)">10:30</div>
-                        <div class="bg-gray-100 border-2 border-transparent text-gray-400 text-center py-2.5 rounded-xl font-bold text-[14px] opacity-50 cursor-not-allowed line-through">11:00</div>
+                        <div class="bg-gray-100  text-gray-400 text-center py-2.5 rounded-xl font-bold text-[14px] opacity-50 cursor-not-allowed line-through">11:00</div>
                         <div class="time-slot text-apple-text text-center py-2.5 rounded-xl font-bold text-[14px] cursor-pointer shadow-sm transition-colors" onclick="selectTime(this)">11:30</div>
                     </div>
 
