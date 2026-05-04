@@ -90,7 +90,7 @@
         <main class="px-5 mt-4 space-y-6">
 
             <!-- 2. Карта лояльности (Wallet Style Widget) -->
-            <div class="bg-white rounded-[24px] p-4 shadow-ios flex items-center justify-between cursor-pointer hover:bg-gray-50 transition-colors border border-gray-100 shadow-ios">
+            <div onclick="openQR()" class="bg-white rounded-[24px] p-4 shadow-ios flex items-center justify-between cursor-pointer hover:bg-gray-50 transition-colors border border-gray-100 shadow-ios">
                 <div class="flex items-center gap-4">
                     <div class="w-12 h-12 bg-apple-brandLight rounded-full flex items-center justify-center text-apple-brandDark shadow-sm">
                         <i class="ph-fill ph-star text-2xl"></i>
@@ -119,7 +119,7 @@
                     </div>
                     <h2 class="text-2xl font-bold mb-1">Записаться на прием</h2>
                     <p class="text-xs text-white/90 font-medium mb-6">Консультация, осмотр или лечение</p>
-                    <button class="bg-white text-apple-brandDark w-full py-3.5 rounded-[50px] font-bold text-[15px] shadow-sm flex justify-center items-center gap-2 hover:opacity-90 transition-opacity">
+                    <button onclick="openBooking()" class="bg-white text-apple-brandDark w-full py-3.5 rounded-[50px] font-bold text-[15px] shadow-sm flex justify-center items-center gap-2 hover:opacity-90 transition-opacity">
                         Выбрать время <i class="ph-bold ph-arrow-right"></i>
                     </button>
                 </div>
@@ -309,6 +309,106 @@
         
         
 
+
+        <!-- БОТОМ ШИТЫ (МОДАЛКИ) -->
+        <style>
+            .bottom-sheet-overlay {
+                display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 10000;
+                animation: fadeIn 0.3s ease-out;
+            }
+            .bottom-sheet {
+                position: absolute; bottom: 0; left: 50%; width: 100%; max-width: 400px; background: #FFFFFF;
+                border-radius: 32px 32px 0 0; padding: 24px; z-index: 10001;
+                transform: translate(-50%, 100%); transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+                padding-bottom: max(24px, env(safe-area-inset-bottom));
+            }
+            .bottom-sheet-overlay.active { display: block; }
+            .bottom-sheet-overlay.active .bottom-sheet { transform: translate(-50%, 0); }
+            @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        </style>
+
+        <!-- Шторка QR -->
+        <div id="qr-sheet" class="bottom-sheet-overlay" onclick="if(event.target === this) closeSheets()">
+            <div class="bottom-sheet">
+                <div class="w-12 h-1.5 bg-gray-200 rounded-full mb-6 mx-auto"></div>
+                <div class="text-center mb-6">
+                    <h2 class="text-2xl font-bold mb-2">Карта лояльности</h2>
+                    <p class="text-[13px] text-apple-grayText">Покажите этот код администратору</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-[32px] shadow-ios border border-gray-100 mb-8 mx-auto w-[240px] h-[240px] flex items-center justify-center relative overflow-hidden">
+                    <!-- QR Code Mockup -->
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=3MCLINIC-USER-12345&color=3B8B60" alt="QR Code" class="w-full h-full object-contain">
+                    <div class="absolute inset-0 border-4 border-apple-brand rounded-[32px] pointer-events-none opacity-20"></div>
+                </div>
+                
+                <div class="bg-apple-brandLight rounded-2xl p-4 flex justify-between items-center mb-6">
+                    <div>
+                        <p class="text-[11px] font-bold text-apple-brandDark uppercase">Ваш баланс</p>
+                        <p class="text-xl font-bold text-apple-brandDark">1 450 ₽</p>
+                    </div>
+                    <i class="ph-fill ph-star text-3xl text-apple-brandDark opacity-50"></i>
+                </div>
+
+                <button onclick="closeSheets()" class="w-full bg-gray-100 text-apple-text py-3.5 rounded-full font-bold text-[15px] hover:bg-gray-200 transition-colors">
+                    Закрыть
+                </button>
+            </div>
+        </div>
+
+        <!-- Шторка Воронки Записи (Step 1) -->
+        <div id="booking-sheet" class="bottom-sheet-overlay" onclick="if(event.target === this) closeSheets()">
+            <div class="bottom-sheet">
+                <div class="w-12 h-1.5 bg-gray-200 rounded-full mb-6 mx-auto"></div>
+                <h2 class="text-2xl font-bold mb-6 text-center">Как вас записать?</h2>
+                
+                <div class="space-y-3 mb-6">
+                    <!-- Option 1: By Service -->
+                    <a href="price.html" class="w-full block bg-white p-5 rounded-[24px] shadow-ios border border-gray-100 flex items-center justify-between hover:border-apple-brand transition-colors text-left group">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-apple-brandLight text-apple-brandDark rounded-full flex items-center justify-center">
+                                <i class="ph-fill ph-tooth text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-[16px] mb-0.5 text-apple-text">Выбрать услугу</h3>
+                                <p class="text-[12px] text-apple-grayText">Знаю, что нужно сделать</p>
+                            </div>
+                        </div>
+                        <i class="ph-bold ph-caret-right text-gray-300 group-hover:text-apple-brand"></i>
+                    </a>
+
+                    <!-- Option 2: By Doctor -->
+                    <button onclick="alert('Откроет список врачей (Шаг 2)')" class="w-full block bg-white p-5 rounded-[24px] shadow-ios border border-gray-100 flex items-center justify-between hover:border-blue-400 transition-colors text-left group">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-blue-50 text-blue-500 rounded-full flex items-center justify-center">
+                                <i class="ph-fill ph-user-circle text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-[16px] mb-0.5 text-apple-text">Выбрать врача</h3>
+                                <p class="text-[12px] text-apple-grayText">Иду к своему специалисту</p>
+                            </div>
+                        </div>
+                        <i class="ph-bold ph-caret-right text-gray-300 group-hover:text-blue-500"></i>
+                    </button>
+                </div>
+                
+                <button onclick="closeSheets()" class="w-full bg-gray-100 text-apple-text py-3.5 rounded-full font-bold text-[15px] hover:bg-gray-200 transition-colors">
+                    Отмена
+                </button>
+            </div>
+        </div>
+
+        <script>
+            function openQR() {
+                document.getElementById('qr-sheet').classList.add('active');
+            }
+            function openBooking() {
+                document.getElementById('booking-sheet').classList.add('active');
+            }
+            function closeSheets() {
+                document.querySelectorAll('.bottom-sheet-overlay').forEach(el => el.classList.remove('active'));
+            }
+        </script>
 <!-- Floating Bottom Tab Bar -->
 <div style="position: fixed; bottom: 20px; left: 0; right: 0; display: flex; justify-content: center; pointer-events: none; z-index: 9999;">
     <div style="width: 100%; max-width: 400px; padding: 0 20px; pointer-events: auto;">
