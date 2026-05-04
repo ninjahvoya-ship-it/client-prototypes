@@ -304,105 +304,27 @@
 
         </main>
 
+        
         <!-- Floating Bottom Tab Bar -->
         <div class="fixed bottom-6 left-0 right-0 w-full flex justify-center pointer-events-none z-50">
-            <div class="w-full max-w-[400px] px-4 pointer-events-auto">
-                <nav class="bg-gray-100 shadow-2xl rounded-[32px] p-2 flex justify-between items-center border border-gray-200">
-                <a href="index.html" class="text-gray-800 hover:text-apple-brand p-2.5 rounded-full transition-all duration-300 flex items-center justify-center">
-                    <i class="ph-house text-xl"></i>
-                </a>
-                <a href="price.html" class="text-gray-800 hover:text-apple-brand p-2.5 rounded-full transition-all duration-300 flex items-center justify-center">
-                    <i class="ph-receipt text-xl"></i>
-                </a>
-                <a href="visits.html" class="bg-apple-brand text-white flex items-center gap-1.5 px-4 py-2.5 rounded-full transition-all duration-300 shadow-sm">
-                    <i class="ph-fill ph-calendar-blank text-xl"></i>
-                    <span class="text-[12px] font-bold">Визиты</span>
-                </a>
-                <a href="profile.html" class="text-gray-800 hover:text-apple-brand p-2.5 rounded-full transition-all duration-300 flex items-center justify-center">
-                    <i class="ph-user text-xl"></i>
-                </a>
-            </nav>
+            <div class="w-full max-w-[400px] px-6 pointer-events-auto">
+                <nav class="bg-gray-100 shadow-2xl rounded-[32px] p-2 flex justify-between items-center border border-gray-200 w-full">
+                    <a href="index.html" class="text-gray-800 hover:text-apple-brand w-10 h-10 rounded-full transition-all duration-300 flex items-center justify-center shrink-0">
+                        <i class="ph-house text-[22px]"></i>
+                    </a>
+                    <a href="price.html" class="text-gray-800 hover:text-apple-brand w-10 h-10 rounded-full transition-all duration-300 flex items-center justify-center shrink-0">
+                        <i class="ph-receipt text-[22px]"></i>
+                    </a>
+                    <a href="visits.html" class="bg-apple-brand text-white flex items-center justify-center gap-1.5 px-5 py-2.5 rounded-full transition-all duration-300 shadow-sm shrink-0">
+                        <i class="ph-fill ph-calendar-blank text-xl"></i>
+                        <span class="text-[13px] font-bold">Визиты</span>
+                    </a>
+                    <a href="profile.html" class="text-gray-800 hover:text-apple-brand w-10 h-10 rounded-full transition-all duration-300 flex items-center justify-center shrink-0">
+                        <i class="ph-user text-[22px]"></i>
+                    </a>
+                </nav>
             </div>
         </div>
-
     
-        <!-- Шторка Плана лечения (Вариант 1: PDF файл) -->
-        <div id="plan-sheet" class="bottom-sheet-overlay" onclick="if(event.target === this) closeSheets()">
-            <div class="bottom-sheet">
-                <div class="w-12 h-1.5 bg-gray-200 rounded-full mb-6 mx-auto"></div>
-                
-                <div class="flex justify-between items-start mb-6">
-                    <div>
-                        <h2 class="text-2xl font-bold text-apple-text mb-1">Медицинские документы</h2>
-                        <p class="text-[13px] text-apple-grayText font-medium">От 28 Мар 2026 • Магеррамов Б.А.</p>
-                    </div>
-                </div>
-
-                <!-- Document Card -->
-                <div class="bg-gray-50 border border-gray-100 rounded-2xl p-4 mb-8 flex items-center justify-between">
-                    <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center text-red-500 shadow-sm border border-gray-100">
-                            <i class="ph-fill ph-file-pdf text-2xl"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-[14px] font-bold text-apple-text mb-0.5">План_лечения_Ветютнева.pdf</h3>
-                            <p class="text-[12px] text-apple-grayText">245 КБ • Загружен врачом</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Comment Card -->
-                <div class="mb-8">
-                    <h3 class="text-[13px] font-bold text-apple-grayText uppercase tracking-wider mb-2 ml-1">Комментарий врача</h3>
-                    <div class="bg-apple-brandLight/50 border border-apple-brandLight rounded-2xl p-4">
-                        <p class="text-[14px] text-apple-text leading-relaxed">
-                            Удалили 34-й зуб. Заживление пройдет за 3-5 дней. Подробный расчет стоимости дальнейшей имплантации и терапии прикрепил в файле выше. Следующий осмотр планируем через месяц.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="flex gap-2">
-                    <button onclick="closeSheets()" class="flex-[1] bg-gray-100 text-apple-text py-3.5 rounded-2xl font-bold text-[14px] hover:bg-gray-200 transition-colors">
-                        Закрыть
-                    </button>
-                    <button class="flex-[2] bg-apple-brand text-white py-3.5 rounded-[50px] font-bold text-[14px] hover:bg-apple-brandHover transition-colors shadow-sm flex justify-center items-center gap-2">
-                        <i class="ph-bold ph-download-simple"></i> Скачать документ
-                    </button>
-                </div>
-            </div>
-        </div>
-
-    <script>
-        
-        function openPlan() {
-            document.getElementById('plan-sheet').classList.add('active');
-        }
-        function closeSheets() {
-            document.querySelectorAll('.bottom-sheet-overlay').forEach(el => el.classList.remove('active'));
-        }
-        
-        function switchTab(index) {
-            const indicator = document.querySelector('.segmented-indicator');
-            const btns = document.querySelectorAll('.segmented-btn');
-            
-            // Move indicator
-            indicator.style.transform = `translateX(${index * 100}%)`;
-            
-            // Update button styles
-            btns.forEach((btn, i) => {
-                if(i === index) btn.classList.add('active');
-                else btn.classList.remove('active');
-            });
-
-            // Show/Hide content
-            if (index === 0) {
-                document.getElementById('tab-upcoming').style.display = 'block';
-                document.getElementById('tab-past').style.display = 'none';
-            } else {
-                document.getElementById('tab-upcoming').style.display = 'none';
-                document.getElementById('tab-past').style.display = 'block';
-            }
-        }
-    </script>
 </body>
 </html>
