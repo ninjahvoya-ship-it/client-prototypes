@@ -69,26 +69,32 @@
         }
 
         /* Custom Radio/Select states */
-        .select-item { transition: all 0.2s ease; }
+        .select-item { transition: all 0.2s ease; border: 2px solid transparent !important; }
         .select-item.selected {
-            border-color: #7ED6A5;
-            background-color: #E9F2E9;
+            border-color: #7ED6A5 !important;
+            background-color: #E9F2E9 !important;
         }
         .select-item .check-icon { display: none; }
         .select-item.selected .check-icon { display: block; }
         .select-item.selected .empty-circle { display: none; }
 
         /* Time slot states */
+        .time-slot { transition: all 0.2s ease; border: 2px solid transparent !important; background-color: #FFFFFF; }
         .time-slot.selected {
-            background-color: #7ED6A5;
-            color: #FFFFFF;
-            border-color: #7ED6A5;
+            background-color: #E9F2E9 !important;
+            color: #3B8B60 !important;
+            border-color: #7ED6A5 !important;
         }
         
         /* Date chip states */
+        .date-chip { transition: all 0.2s ease; border: 2px solid transparent !important; background-color: #FFFFFF; }
         .date-chip.selected {
-            background-color: #3B8B60;
-            color: #FFFFFF;
+            background-color: #E9F2E9 !important;
+            color: #3B8B60 !important;
+            border-color: #7ED6A5 !important;
+        }
+        .date-chip.selected span {
+            color: #3B8B60 !important;
         }
     </style>
 </head>
