@@ -127,7 +127,7 @@
                     <div class="relative z-10">
                         <div class="flex justify-between items-center mb-4">
                             <span class="text-[11px] font-bold uppercase tracking-wider bg-white/20 px-2 py-0.5 rounded-md backdrop-blur-md">Серебряный статус</span>
-                            <i class="ph-bold ph-qr-code text-xl cursor-pointer hover:opacity-80"></i>
+                            <i class="ph-bold ph-qr-code text-xl cursor-pointer hover:opacity-80" onclick="openQR()"></i>
                         </div>
                         <p class="text-[13px] font-medium text-white/90 mb-0.5">Ваш баланс</p>
                         <h3 class="text-3xl font-extrabold leading-none mb-4">1 450 <span class="text-lg opacity-80">₽</span></h3>
@@ -142,7 +142,10 @@
                 
                 <!-- История начислений -->
                 <div class="p-4">
-                    <h4 class="text-[12px] font-bold text-apple-grayText uppercase tracking-wider mb-3">История начислений</h4>
+                    <div class="flex justify-between items-center mb-3">
+                        <h4 class="text-[12px] font-bold text-apple-grayText uppercase tracking-wider">История начислений</h4>
+                        <button class="text-[13px] font-bold text-apple-brandHover bg-apple-brandLight px-3 py-1 rounded-full hover:bg-apple-brand hover:text-white transition-colors">Ещё</button>
+                    </div>
                     <div class="space-y-3">
                         <div class="flex justify-between items-center">
                             <div class="flex items-center gap-3">
@@ -248,6 +251,35 @@
             </button>
 
         </main>
+
+        
+        <!-- Шторка QR -->
+        <div id="qr-sheet" class="bottom-sheet-overlay" onclick="if(event.target === this) closeSheets()">
+            <div class="bottom-sheet">
+                <div class="w-12 h-1.5 bg-gray-200 rounded-full mb-6 mx-auto"></div>
+                <div class="text-center mb-6">
+                    <h2 class="text-2xl font-bold mb-2">Карта лояльности</h2>
+                    <p class="text-[13px] text-apple-grayText">Покажите этот код администратору</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-[32px] shadow-ios border border-gray-100 mb-8 mx-auto w-[240px] h-[240px] flex items-center justify-center relative overflow-hidden">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=3MCLINIC-USER-12345&color=3B8B60" alt="QR Code" class="w-full h-full object-contain">
+                    <div class="absolute inset-0 border-4 border-apple-brand rounded-[32px] pointer-events-none opacity-20"></div>
+                </div>
+                
+                <div class="bg-apple-brandLight rounded-2xl p-4 flex justify-between items-center mb-6">
+                    <div>
+                        <p class="text-[11px] font-bold text-apple-brandDark uppercase">Ваш баланс</p>
+                        <p class="text-xl font-bold text-apple-brandDark">1 450 ₽</p>
+                    </div>
+                    <i class="ph-fill ph-star text-3xl text-apple-brandDark opacity-50"></i>
+                </div>
+
+                <button onclick="closeSheets()" class="w-full bg-gray-100 text-apple-text py-3.5 rounded-full font-bold text-[15px] hover:bg-gray-200 transition-colors">
+                    Закрыть
+                </button>
+            </div>
+        </div>
 
         <!-- Шторка: Редактирование профиля -->
         <div id="sheet-edit-profile" class="bottom-sheet-overlay" onclick="if(event.target === this) closeSheets()">
@@ -483,6 +515,9 @@
             }
         });
 
+        function openQR() {
+            document.getElementById('qr-sheet').classList.add('active');
+        }
         function openEditProfile() {
             document.getElementById('sheet-edit-profile').classList.add('active');
         }
