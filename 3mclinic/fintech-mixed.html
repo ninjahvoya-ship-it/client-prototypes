@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>3M Clinic | Minimal Wallet Style</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        brand: {
+                            bg: '#EAF0EE', /* Soft mint-gray background from Image 3 */
+                            purple: '#7B81ED', /* The purple accent */
+                            text: '#1C1C1E',
+                            muted: '#929292',
+                        }
+                    },
+                    boxShadow: {
+                        'card': '0 12px 32px rgba(0, 0, 0, 0.04)',
+                        'float': '0 16px 40px rgba(123, 129, 237, 0.2)'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            margin: 0;
+            background-color: #EAF0EE;
+            font-family: 'Inter', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .app-container {
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #EAF0EE;
+            min-height: 100vh;
+            position: relative;
+            padding-bottom: 120px;
+        }
+        ::-webkit-scrollbar { display: none; }
+        
+        .avatar-ring {
+            padding: 3px;
+            border: 1px solid #E5E5E5;
+            border-radius: 50%;
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+
+        <!-- 1. Header -->
+        <header class="px-6 pt-12 pb-2 flex justify-between items-start">
+            <div>
+                <p class="text-[15px] font-medium text-brand-muted mb-0.5">Доброе утро,</p>
+                <h1 class="text-[26px] font-extrabold text-brand-text leading-none">Анна!</h1>
+            </div>
+            <button class="w-11 h-11 bg-white rounded-full flex items-center justify-center text-brand-text shadow-sm hover:scale-105 transition-transform">
+                <i class="ph-fill ph-gear text-xl text-gray-400"></i>
+            </button>
+        </header>
+
+        <main class="mt-4 space-y-7">
+
+            <!-- 2. Моя семья -->
+            <div>
+                <h2 class="text-[16px] font-semibold text-brand-text px-6 mb-4">Моя семья</h2>
+                <div class="flex gap-4 overflow-x-auto pb-2 -mx-6 px-6">
+                    
+                    <!-- Анна (Я) -->
+                    <div class="flex flex-col items-center gap-2 cursor-pointer">
+                        <div class="avatar-ring w-16 h-16 shadow-sm">
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=150&auto=format&fit=crop" class="w-full h-full rounded-full object-cover">
+                        </div>
+                        <div class="text-center">
+                            <p class="text-[13px] font-semibold text-brand-text">Анна</p>
+                            <p class="text-[11px] font-medium text-brand-muted">Я</p>
+                        </div>
+                    </div>
+
+                    <!-- Дмитрий (Муж) -->
+                    <div class="flex flex-col items-center gap-2 cursor-pointer">
+                        <div class="avatar-ring w-16 h-16 shadow-sm">
+                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=150&auto=format&fit=crop" class="w-full h-full rounded-full object-cover">
+                        </div>
+                        <div class="text-center">
+                            <p class="text-[13px] font-semibold text-brand-text">Дмитрий</p>
+                            <p class="text-[11px] font-medium text-brand-muted">Муж</p>
+                        </div>
+                    </div>
+
+                    <!-- Артём (Сын) -->
+                    <div class="flex flex-col items-center gap-2 cursor-pointer">
+                        <div class="avatar-ring w-16 h-16 shadow-sm">
+                            <img src="https://images.unsplash.com/photo-1519238263530-99abad111f4b?q=80&w=150&auto=format&fit=crop" class="w-full h-full rounded-full object-cover">
+                        </div>
+                        <div class="text-center">
+                            <p class="text-[13px] font-semibold text-brand-text">Артём</p>
+                            <p class="text-[11px] font-medium text-brand-muted">Сын</p>
+                        </div>
+                    </div>
+
+                    <!-- Галина (Мать) -->
+                    <div class="flex flex-col items-center gap-2 cursor-pointer">
+                        <div class="avatar-ring w-16 h-16 shadow-sm">
+                            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=150&auto=format&fit=crop" class="w-full h-full rounded-full object-cover">
+                        </div>
+                        <div class="text-center">
+                            <p class="text-[13px] font-semibold text-brand-text">Галина</p>
+                            <p class="text-[11px] font-medium text-brand-muted">Мать</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- 3. Ваш баланс (White Soft Card instead of dark) -->
+            <div class="px-6">
+                <div class="bg-white rounded-[32px] p-6 shadow-card relative overflow-hidden">
+                    <div class="flex justify-between items-center mb-2">
+                        <p class="text-[14px] font-medium text-brand-muted">Ваш баланс</p>
+                        <span class="bg-[#FFF4E0] text-[#D49B00] px-3 py-1.5 rounded-full text-[11px] font-bold tracking-wide">Золотая карта</span>
+                    </div>
+                    
+                    <div class="flex items-baseline gap-1.5 mb-6">
+                        <h3 class="text-[40px] font-extrabold text-brand-text tracking-tight">2 500</h3>
+                        <span class="text-[20px] font-bold text-brand-text">₽</span>
+                    </div>
+
+                    <div class="bg-brand-bg/60 rounded-[20px] p-4 flex items-center justify-between">
+                        <p class="text-[13px] font-medium text-brand-muted">Кешбэк на все услуги</p>
+                        <span class="text-[16px] font-bold text-brand-text">7%</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. 2x2 Grid (Быстрые действия) -->
+            <div class="px-6">
+                <div class="grid grid-cols-2 gap-4">
+                    
+                    <!-- Запись на приём -->
+                    <div class="bg-white rounded-[28px] p-5 shadow-card flex flex-col justify-between h-[130px] cursor-pointer hover:scale-105 transition-transform">
+                        <div class="w-10 h-10 rounded-full bg-[#E5F6F4] text-[#29A89A] flex items-center justify-center text-xl">
+                            <i class="ph-bold ph-plus"></i>
+                        </div>
+                        <h4 class="text-[15px] font-bold text-brand-text leading-snug">Запись<br>на приём</h4>
+                    </div>
+
+                    <!-- Мои приёмы -->
+                    <div class="bg-white rounded-[28px] p-5 shadow-card flex flex-col justify-between h-[130px] relative cursor-pointer hover:scale-105 transition-transform">
+                        <div class="absolute top-4 right-4 w-6 h-6 bg-[#FF5C5C] text-white rounded-full flex items-center justify-center text-[11px] font-bold shadow-sm">6</div>
+                        <div class="w-10 h-10 rounded-full bg-[#E8F8EE] text-[#34C759] flex items-center justify-center text-xl">
+                            <i class="ph-bold ph-calendar-blank"></i>
+                        </div>
+                        <h4 class="text-[15px] font-bold text-brand-text leading-snug">Мои<br>приёмы</h4>
+                    </div>
+
+                    <!-- Мои врачи -->
+                    <div class="bg-white rounded-[28px] p-5 shadow-card flex flex-col justify-between h-[130px] cursor-pointer hover:scale-105 transition-transform">
+                        <div class="w-10 h-10 rounded-full bg-[#FFF5E5] text-[#FFB020] flex items-center justify-center text-xl">
+                            <i class="ph-fill ph-user"></i>
+                        </div>
+                        <h4 class="text-[15px] font-bold text-brand-text leading-snug">Мои<br>врачи</h4>
+                    </div>
+
+                    <!-- План лечения -->
+                    <div class="bg-white rounded-[28px] p-5 shadow-card flex flex-col justify-between h-[130px] relative cursor-pointer hover:scale-105 transition-transform">
+                        <div class="absolute top-5 right-5 w-2 h-2 bg-[#4285F4] rounded-full"></div>
+                        <div class="w-10 h-10 rounded-full bg-[#FFE5ED] text-[#FF4081] flex items-center justify-center text-xl">
+                            <i class="ph-fill ph-first-aid"></i>
+                        </div>
+                        <h4 class="text-[15px] font-bold text-brand-text leading-snug">План<br>лечения</h4>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- 5. Актуальное -->
+            <div class="px-6 pb-4">
+                <h2 class="text-[16px] font-semibold text-brand-text mb-4">Актуальное</h2>
+                
+                <div class="bg-brand-purple rounded-[32px] p-6 text-white shadow-float relative overflow-hidden cursor-pointer hover:opacity-95 transition-opacity">
+                    <!-- Deco circle -->
+                    <div class="absolute -right-8 -top-8 w-32 h-32 bg-white/10 rounded-full blur-xl"></div>
+                    <div class="absolute -left-10 -bottom-10 w-40 h-40 bg-[#656BE2] rounded-full blur-2xl z-0"></div>
+                    
+                    <div class="relative z-10">
+                        <h3 class="text-[20px] font-bold mb-2 leading-tight">Профосмотр</h3>
+                        <p class="text-[13px] text-white/90 mb-6 leading-relaxed max-w-[85%] font-medium">Запишитесь на чистку со скидкой 15% до конца месяца</p>
+                        <button class="bg-white text-brand-purple px-6 py-3 rounded-full text-[14px] font-bold shadow-sm hover:scale-105 transition-transform">
+                            Записаться
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+        <!-- Floating Bottom Tab Bar (Dribbble Wallet Style) -->
+        <div style="position: fixed; bottom: 24px; left: 0; right: 0; display: flex; justify-content: center; z-index: 9999;">
+            <div style="width: 100%; max-width: 360px; padding: 0 20px;">
+                <div class="bg-white" style="border-radius: 36px; display: flex; justify-content: space-between; align-items: center; padding: 12px 24px; box-shadow: 0 10px 40px rgba(0,0,0,0.06);">
+                    
+                    <!-- Главная (Active) -->
+                    <a href="#" style="display: flex; flex-direction: column; align-items: center; gap: 4px; color: #7B81ED; text-decoration: none;">
+                        <i class="ph-fill ph-house text-[24px]"></i>
+                        <span class="text-[9px] font-bold">Главная</span>
+                    </a>
+                    
+                    <!-- История -->
+                    <a href="#" style="display: flex; flex-direction: column; align-items: center; gap: 4px; color: #929292; text-decoration: none;">
+                        <i class="ph ph-clock-counter-clockwise text-[24px]"></i>
+                        <span class="text-[9px] font-medium">История</span>
+                    </a>
+                    
+                    <!-- Center FAB Action -->
+                    <div style="margin-top: -40px;">
+                        <button class="w-[60px] h-[60px] rounded-full flex items-center justify-center text-white bg-brand-purple shadow-float hover:scale-105 transition-transform border-[6px] border-[#EAF0EE]">
+                            <i class="ph-bold ph-plus text-[24px]"></i>
+                        </button>
+                        <p class="text-center text-[9px] font-medium text-brand-muted mt-1">Запись</p>
+                    </div>
+
+                    <!-- Клиника -->
+                    <a href="#" style="display: flex; flex-direction: column; align-items: center; gap: 4px; color: #929292; text-decoration: none;">
+                        <i class="ph ph-first-aid text-[24px]"></i>
+                        <span class="text-[9px] font-medium">Клиника</span>
+                    </a>
+                    
+                    <!-- Сообщения -->
+                    <a href="#" style="display: flex; flex-direction: column; align-items: center; gap: 4px; color: #929292; text-decoration: none;">
+                        <i class="ph ph-chat-circle text-[24px]"></i>
+                        <span class="text-[9px] font-medium">Сообщения</span>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
