@@ -3,24 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Анна Ветютнева | Cinematic UI/UX Portfolio</title>
+    <title>Анна Ветютнева | Editorial Bento Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Cormorant for Editorial Serif, Manrope for clean UI Sans -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: { 
-                        sans: ['Manrope', 'sans-serif']
+                        sans: ['Manrope', 'sans-serif'],
+                        serif: ['Cormorant Garamond', 'serif']
                     },
                     colors: {
-                        bg: '#0F0F0F', /* Deep Netflix/Apple TV Dark */
-                        card: '#181818',
-                        surface: '#232323',
-                        text: '#FFFFFF',
-                        muted: '#A3A3A3',
-                        lemon: '#E4FF00' /* Premium neon lemon accent */
+                        bg: '#F4F4F0', /* Editorial off-white paper */
+                        text: '#111111',
+                        muted: '#737373',
+                        lemon: '#FFE600' /* True Lemon */
                     }
                 }
             }
@@ -28,235 +28,210 @@
     </script>
     <style>
         body { 
-            background-color: #0F0F0F; 
-            color: #FFFFFF; 
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
+            background-color: #F4F4F0; 
+            color: #111111; 
+            -webkit-font-smoothing: antialiased; 
         }
 
-        /* Cinematic fade overlays */
-        .fade-bottom {
-            background: linear-gradient(to top, #0F0F0F 0%, rgba(15,15,15,0.8) 20%, transparent 100%);
-        }
-        
-        /* Glassmorphism cards */
-        .glass-card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 24px;
+        /* Editorial Bento Cards */
+        .bento-card {
+            background-color: #FFFFFF;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 0, 0, 0.06);
             overflow: hidden;
-            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.5s;
+            position: relative;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        
-        .glass-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
-            border-color: rgba(228, 255, 0, 0.2); /* Lemon glow on border */
-        }
-
-        .img-zoom {
-            transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .glass-card:hover .img-zoom {
-            transform: scale(1.04);
+        .bento-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
         }
 
-        .lemon-glow {
-            text-shadow: 0 0 20px rgba(228, 255, 0, 0.4);
+        .img-reveal {
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .bento-card:hover .img-reveal {
+            transform: scale(1.02) translateY(-4px);
         }
 
-        /* Netflix-style tag */
-        .badge {
-            background: rgba(255, 255, 255, 0.1);
-            color: #FFF;
-            padding: 4px 12px;
-            border-radius: 4px;
-            font-size: 12px;
-            font-weight: 600;
-            letter-spacing: 0.5px;
+        /* Small refined tags */
+        .ed-tag {
+            font-family: 'Manrope', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
             text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 6px 12px;
+            border-radius: 100px;
+            border: 1px solid rgba(0,0,0,0.1);
+            background: #FFFFFF;
         }
         
-        .badge.match {
-            color: #E4FF00;
-            background: rgba(228, 255, 0, 0.1);
+        .ed-tag.lemon-tag {
+            background-color: #FFE600;
+            border-color: #FFE600;
+            color: #000;
+        }
+
+        /* Custom selection */
+        ::selection {
+            background: #FFE600;
+            color: #000;
         }
     </style>
 </head>
-<body class="selection:bg-lemon selection:text-bg">
+<body class="font-sans">
 
-    <!-- Top Navigation (Netflix style transparent to solid) -->
-    <nav class="fixed w-full z-50 top-0 bg-gradient-to-b from-black/80 to-transparent px-6 md:px-12 py-6 flex justify-between items-center backdrop-blur-sm">
-        <div class="font-bold text-2xl tracking-tighter">ANNA.V</div>
-        <a href="https://t.me/annavetyutneva" target="_blank" class="bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 text-white px-6 py-2.5 rounded-md text-sm font-semibold transition-all">
-            Связаться
-        </a>
+    <!-- Header / Nav -->
+    <nav class="max-w-7xl mx-auto px-6 md:px-12 py-8 flex justify-between items-center">
+        <div class="font-serif italic text-2xl font-semibold">Anna V.</div>
+        <a href="https://t.me/annavetyutneva" target="_blank" class="font-sans text-sm font-bold border-b border-black pb-0.5 hover:text-muted transition-colors">Telegram</a>
     </nav>
 
-    <!-- Hero Section (Cinematic Billboard) -->
-    <header class="relative h-[90vh] flex items-center justify-center px-6 md:px-12 overflow-hidden">
-        <!-- Ambient background glow -->
-        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-lemon/10 rounded-full blur-[120px] mix-blend-screen pointer-events-none"></div>
-        <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-[120px] mix-blend-screen pointer-events-none"></div>
-        
-        <div class="relative z-10 text-center max-w-4xl mt-16">
-            <h2 class="text-lemon font-bold tracking-widest uppercase text-sm mb-6 flex items-center justify-center gap-3">
-                <span class="w-8 h-[1px] bg-lemon"></span>
-                UI/UX Designer & Product Manager
-                <span class="w-8 h-[1px] bg-lemon"></span>
-            </h2>
-            <h1 class="text-6xl md:text-8xl lg:text-[100px] font-extrabold tracking-tight leading-[1.1] mb-8">
-                Проектирую <br>цифровой <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-muted">опыт</span>.
-            </h1>
-            <p class="text-xl md:text-2xl text-muted font-light max-w-2xl mx-auto leading-relaxed">
-                От сложной логики B2B-платформ до премиальных интерфейсов. Превращаю хаос в чистый, интуитивный дизайн.
+    <!-- Hero Editorial -->
+    <header class="max-w-7xl mx-auto px-6 md:px-12 py-20 md:py-32">
+        <p class="font-sans text-xs uppercase tracking-[0.2em] text-muted mb-8">Selected Works / 2026</p>
+        <h1 class="font-serif text-6xl md:text-8xl lg:text-[110px] leading-[0.9] tracking-tight mb-12">
+            Проектирую <span class="italic bg-lemon px-2">эстетику</span> <br>и бизнес-логику.
+        </h1>
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+            <p class="md:col-span-6 font-sans text-xl md:text-2xl text-muted font-light leading-relaxed">
+                От сложных B2B дашбордов до лаконичных мобильных приложений. Я превращаю хаос требований в элегантный и понятный интерфейс.
             </p>
-            <div class="mt-12">
-                <a href="#portfolio" class="bg-lemon text-bg px-8 py-4 rounded-md font-bold text-lg hover:bg-white transition-colors flex items-center gap-2 mx-auto w-max shadow-[0_0_30px_rgba(228,255,0,0.2)]">
-                    <i class="ph-fill ph-play text-xl"></i> Смотреть шоурил
+            <div class="md:col-span-6 flex md:justify-end">
+                <a href="https://t.me/annavetyutneva" class="bg-black text-white font-sans font-bold px-8 py-4 rounded-full text-sm uppercase tracking-wide hover:bg-lemon hover:text-black transition-all duration-300">
+                    Обсудить проект
                 </a>
             </div>
         </div>
-        
-        <!-- Bottom fade for smooth transition -->
-        <div class="absolute bottom-0 left-0 w-full h-32 fade-bottom z-0"></div>
     </header>
 
-    <main id="portfolio" class="max-w-[1400px] mx-auto px-6 md:px-12 py-12 space-y-40">
+    <main class="max-w-7xl mx-auto px-6 md:px-12 py-12 space-y-40">
         
-        <!-- PROJECT 1: Prostoseller (Streaming Row Style) -->
+        <!-- PROJECT 1: Prostoseller -->
         <section>
-            <!-- Title block like a movie description -->
-            <div class="max-w-3xl mb-12">
-                <div class="flex items-center gap-3 mb-4">
-                    <span class="badge match">98% Match</span>
-                    <span class="badge">SaaS</span>
-                    <span class="badge">Redesign</span>
-                    <span class="text-muted text-sm">2026</span>
+            <div class="flex flex-col lg:flex-row justify-between lg:items-end mb-10 gap-6">
+                <div>
+                    <h2 class="font-serif text-5xl md:text-6xl mb-4">Prostoseller</h2>
+                    <p class="font-sans text-muted text-lg max-w-xl">Редизайн SaaS-платформы для селлеров. Полная адаптация сложных таблиц и данных под десктоп, планшет и смартфон.</p>
                 </div>
-                <h2 class="text-5xl md:text-6xl font-bold mb-6">Prostoseller</h2>
-                <p class="text-lg text-muted leading-relaxed mb-6">
-                    Масштабный редизайн B2B-платформы для селлеров маркетплейсов. Сложные таблицы данных, дашборды аналитики и реферальная система, упакованные в премиальный и легкий адаптивный интерфейс.
-                </p>
+                <div class="flex gap-2 flex-wrap">
+                    <span class="ed-tag lemon-tag">Redesign</span>
+                    <span class="ed-tag">SaaS</span>
+                </div>
             </div>
 
-            <!-- Cinematic Grid -->
+            <!-- Bento Grid 1 -->
             <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
-                <!-- Main Desktop Hero -->
-                <div class="md:col-span-12 glass-card h-[500px] md:h-[700px] relative group">
-                    <div class="absolute inset-0 p-8 md:p-16 flex items-center justify-center">
-                        <img src="https://ninjahvoya-ship-it.github.io/client-prototypes/portfolio/assets/prosto-desk-main.png" alt="Prostoseller Main" class="w-full h-full object-cover object-top rounded-lg shadow-2xl img-zoom">
-                    </div>
-                    <div class="absolute bottom-6 left-8">
-                        <h3 class="text-2xl font-bold">Web Dashboard</h3>
-                    </div>
+                <!-- Large Desktop -->
+                <div class="md:col-span-8 bento-card bg-[#F9F9F9] h-[500px] md:h-[650px] p-8 pb-0 flex items-end justify-center group">
+                    <img src="https://ninjahvoya-ship-it.github.io/client-prototypes/portfolio/assets/prosto-desk-main.png" alt="Prostoseller Main" class="w-full h-[95%] object-cover object-top rounded-t-xl shadow-2xl img-reveal">
+                    <div class="absolute top-6 left-6"><span class="ed-tag">Desktop</span></div>
                 </div>
-
-                <!-- Adaptive row -->
-                <div class="md:col-span-4 glass-card h-[400px] relative">
-                    <div class="absolute inset-0 p-8 flex items-center justify-center">
-                        <img src="https://ninjahvoya-ship-it.github.io/client-prototypes/portfolio/assets/prosto-tab-products.png" alt="Tablet" class="w-full h-full object-cover object-left rounded-lg img-zoom">
-                    </div>
-                    <div class="absolute bottom-6 left-6"><h3 class="font-bold text-lg">Tablet UI</h3></div>
-                </div>
-                <div class="md:col-span-4 glass-card h-[400px] relative flex items-center justify-center p-8 overflow-hidden">
-                    <div class="flex gap-4 w-full h-full justify-center img-zoom">
-                        <img src="https://ninjahvoya-ship-it.github.io/client-prototypes/portfolio/assets/prosto-mob-home.png" alt="Mob 1" class="h-full w-auto object-contain drop-shadow-2xl">
-                        <img src="https://ninjahvoya-ship-it.github.io/client-prototypes/portfolio/assets/prosto-mob-stores.png" alt="Mob 2" class="h-full w-auto object-contain drop-shadow-2xl">
-                    </div>
-                    <div class="absolute bottom-6 left-6 z-10"><h3 class="font-bold text-lg">Mobile App</h3></div>
-                </div>
-                <div class="md:col-span-4 glass-card h-[400px] relative">
-                    <div class="absolute inset-0 p-8 flex items-center justify-center">
-                        <img src="https://ninjahvoya-ship-it.github.io/client-prototypes/portfolio/assets/prosto-desk-invite.png" alt="Invite" class="w-full h-full object-cover object-top rounded-lg img-zoom">
-                    </div>
-                    <div class="absolute bottom-6 left-6"><h3 class="font-bold text-lg">Referral Flow</h3></div>
-                </div>
-            </div>
-        </section>
-
-
-        <!-- PROJECT 2: Otiwa -->
-        <section>
-            <div class="max-w-3xl mb-12">
-                <div class="flex items-center gap-3 mb-4">
-                    <span class="badge match">Top 10</span>
-                    <span class="badge">Marketplace</span>
-                    <span class="badge">Management</span>
-                </div>
-                <h2 class="text-5xl md:text-6xl font-bold mb-6">Otiwa Marketplace</h2>
-                <p class="text-lg text-muted leading-relaxed mb-6">
-                    Управление разработкой двустороннего маркетплейса услуг. Написание технического задания, руководство командой IT, контроль качества и архитектура сложного биллингового модуля.
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="glass-card h-[500px] relative">
-                    <div class="absolute inset-0 p-8 flex items-center justify-center">
-                        <img src="https://ninjahvoya-ship-it.github.io/client-prototypes/portfolio/assets/otiwa-main.png" alt="Otiwa Main" class="w-full h-full object-cover object-top rounded-lg img-zoom">
-                    </div>
-                    <div class="absolute bottom-6 left-6"><h3 class="font-bold text-xl">B2C Feed</h3></div>
-                </div>
-                <div class="glass-card h-[500px] relative">
-                    <div class="absolute inset-0 p-8 flex items-center justify-center">
-                        <img src="https://ninjahvoya-ship-it.github.io/client-prototypes/portfolio/assets/otiwa-finance.png" alt="Otiwa Finance" class="w-full h-full object-cover object-top rounded-lg img-zoom">
-                    </div>
-                    <div class="absolute bottom-6 left-6"><h3 class="font-bold text-xl">Finance & Billing</h3></div>
-                </div>
-            </div>
-        </section>
-
-
-        <!-- PROJECT 3: Blyaner -->
-        <section>
-            <div class="max-w-3xl mb-12">
-                <div class="flex items-center gap-3 mb-4">
-                    <span class="badge match">Trending</span>
-                    <span class="badge">Web App</span>
-                    <span class="badge">Product Design</span>
-                </div>
-                <h2 class="text-5xl md:text-6xl font-bold mb-6">Блянер</h2>
-                <p class="text-lg text-muted leading-relaxed mb-6">
-                    Таск-трекер с атомарным интерфейсом для людей с СДВГ. Удержание фокуса за счет контрастной лавандово-лаймовой палитры. Разработана вся логика, архитектура компонентов и Frontend.
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
-                <!-- Hero Desktop -->
-                <div class="md:col-span-8 glass-card h-[600px] relative">
-                    <div class="absolute inset-0 bg-[#9A90DA]/10"></div>
-                    <div class="absolute inset-0 p-12 pb-0 flex items-end justify-center">
-                        <img src="https://ninjahvoya-ship-it.github.io/client-prototypes/portfolio/assets/desktop-day.png" alt="Blyaner Desktop" class="w-full object-cover object-top rounded-t-xl shadow-2xl img-zoom">
-                    </div>
-                    <div class="absolute top-6 left-6"><h3 class="font-bold text-xl">Focus Mode Dashboard</h3></div>
-                </div>
-                <!-- Auth & Mobile Stack -->
+                
                 <div class="md:col-span-4 flex flex-col gap-6">
-                    <div class="glass-card h-[288px] relative overflow-hidden">
-                        <img src="https://ninjahvoya-ship-it.github.io/client-prototypes/portfolio/assets/auth.png" alt="Auth" class="w-full h-full object-cover img-zoom">
-                        <div class="absolute inset-0 bg-black/20"></div>
-                        <div class="absolute bottom-6 left-6"><h3 class="font-bold text-lg text-white">Auth Flow</h3></div>
+                    <!-- Mobile -->
+                    <div class="bento-card bg-white h-[313px] p-6 flex flex-col justify-between group">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="font-serif text-2xl italic">Mobile</h3>
+                        </div>
+                        <div class="flex gap-4 h-full justify-center img-reveal">
+                            <img src="https://ninjahvoya-ship-it.github.io/client-prototypes/portfolio/assets/prosto-mob-home.png" alt="Mob 1" class="h-full object-contain">
+                            <img src="https://ninjahvoya-ship-it.github.io/client-prototypes/portfolio/assets/prosto-mob-stores.png" alt="Mob 2" class="h-full object-contain">
+                        </div>
                     </div>
-                    <div class="glass-card h-[288px] relative bg-[#111] flex items-center justify-center p-8">
-                        <img src="https://ninjahvoya-ship-it.github.io/client-prototypes/portfolio/assets/mobile-day.png" alt="Mobile" class="h-full object-contain img-zoom">
-                        <div class="absolute bottom-6 left-6"><h3 class="font-bold text-lg text-white">Mobile View</h3></div>
+                    <!-- Tablet -->
+                    <div class="bento-card bg-white h-[313px] p-6 overflow-hidden group">
+                        <h3 class="font-serif text-2xl italic mb-4">Tablet</h3>
+                        <div class="h-full w-full flex justify-center img-reveal">
+                            <img src="https://ninjahvoya-ship-it.github.io/client-prototypes/portfolio/assets/prosto-tab-products.png" alt="Tablet" class="w-[120%] max-w-none object-cover object-top rounded-t-lg shadow-lg">
+                        </div>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROJECT 2: Blyaner -->
+        <section>
+            <div class="flex flex-col lg:flex-row justify-between lg:items-end mb-10 gap-6">
+                <div>
+                    <h2 class="font-serif text-5xl md:text-6xl mb-4">Блянер</h2>
+                    <p class="font-sans text-muted text-lg max-w-xl">Атомарный таск-трекер для хаоса. Продукт, объединяющий трекинг сна и Канбан в одном фокус-режиме.</p>
+                </div>
+                <div class="flex gap-2 flex-wrap">
+                    <span class="ed-tag lemon-tag">Web App</span>
+                    <span class="ed-tag">UI/UX</span>
+                </div>
+            </div>
+
+            <!-- Bento Grid 2 -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+                <!-- Mobile + Details (Left side) -->
+                <div class="md:col-span-5 flex flex-col gap-6">
+                    <div class="bento-card bg-[#222222] h-[400px] flex items-center justify-center p-8 group">
+                        <img src="https://ninjahvoya-ship-it.github.io/client-prototypes/portfolio/assets/mobile-day.png" alt="Mobile Day" class="h-full object-contain img-reveal">
+                        <div class="absolute top-6 left-6"><span class="ed-tag bg-white/10 text-white border-white/20">Mobile App</span></div>
+                    </div>
+                    <div class="bento-card bg-white p-8 flex flex-col justify-center min-h-[226px]">
+                        <h3 class="font-serif text-3xl mb-4 italic">Моя роль</h3>
+                        <ul class="font-sans font-light space-y-2 text-muted">
+                            <li>— UI/UX Архитектура</li>
+                            <li>— Разработка дизайн-системы</li>
+                            <li>— Frontend (Next.js + Tailwind)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Desktop Hero (Right side) -->
+                <div class="md:col-span-7 bento-card bg-[#9A90DA] h-[650px] p-8 pb-0 flex items-end justify-center group relative overflow-hidden">
+                    <img src="https://ninjahvoya-ship-it.github.io/client-prototypes/portfolio/assets/desktop-day.png" alt="Blyaner Desktop" class="w-[110%] max-w-none h-auto object-cover object-top rounded-t-xl shadow-2xl img-reveal transform translate-y-4">
+                    <div class="absolute top-6 left-6"><span class="ed-tag bg-white/40 border-white/50 backdrop-blur-md">Focus Mode</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROJECT 3: Otiwa -->
+        <section>
+            <div class="flex flex-col lg:flex-row justify-between lg:items-end mb-10 gap-6">
+                <div>
+                    <h2 class="font-serif text-5xl md:text-6xl mb-4">Otiwa Marketplace</h2>
+                    <p class="font-sans text-muted text-lg max-w-xl">Сопровождение разработки маркетплейса услуг. Управление ИТ-командой, составление ТЗ и проектирование финансового модуля.</p>
+                </div>
+                <div class="flex gap-2 flex-wrap">
+                    <span class="ed-tag lemon-tag">Product Mgmt</span>
+                    <span class="ed-tag">Marketplace</span>
+                </div>
+            </div>
+
+            <!-- Bento Grid 3 -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Card 1 -->
+                <div class="md:col-span-2 bento-card bg-[#EAF5D9] h-[500px] p-8 pb-0 flex items-end justify-center group">
+                    <img src="https://ninjahvoya-ship-it.github.io/client-prototypes/portfolio/assets/otiwa-main.png" alt="Otiwa Main" class="w-full h-[90%] object-cover object-top rounded-t-xl shadow-xl img-reveal">
+                    <div class="absolute top-6 left-6"><span class="ed-tag bg-white/50 border-white/50 backdrop-blur-md">B2C Feed</span></div>
+                </div>
+                <!-- Card 2 -->
+                <div class="bento-card bg-white h-[500px] p-8 group flex flex-col items-center">
+                    <div class="w-full h-[85%] rounded-lg overflow-hidden border border-black/5 shadow-md img-reveal">
+                        <img src="https://ninjahvoya-ship-it.github.io/client-prototypes/portfolio/assets/otiwa-b2b.png" alt="Otiwa B2B" class="w-full h-full object-cover object-top">
+                    </div>
+                    <h3 class="font-serif text-2xl italic mt-auto">B2B Landing</h3>
+                </div>
+                <!-- Card 3 -->
+                <div class="md:col-span-3 bento-card bg-[#DFF1FA] h-[400px] p-8 pb-0 flex items-end justify-center group">
+                    <img src="https://ninjahvoya-ship-it.github.io/client-prototypes/portfolio/assets/otiwa-finance.png" alt="Otiwa Finance" class="w-3/4 object-cover object-top rounded-t-xl shadow-xl img-reveal">
+                    <div class="absolute top-6 left-6"><span class="ed-tag bg-white/50 border-white/50 backdrop-blur-md">Finance Module</span></div>
                 </div>
             </div>
         </section>
 
     </main>
 
-    <!-- Footer CTA (Like a Next Episode prompt) -->
-    <footer class="mt-32 relative border-t border-white/10 overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-lemon/5 pointer-events-none"></div>
-        <div class="max-w-4xl mx-auto px-6 py-32 text-center relative z-10">
-            <h2 class="text-4xl md:text-6xl font-bold mb-8">Давайте создавать <br>лучшие продукты вместе.</h2>
-            <p class="text-xl text-muted mb-12">Готова обсудить ваш проект и предложить решения.</p>
-            <a href="https://t.me/annavetyutneva" class="bg-white text-bg px-10 py-4 rounded-md font-bold text-lg hover:bg-lemon transition-colors inline-flex items-center gap-2">
-                <i class="ph-fill ph-telegram-logo text-2xl"></i> Написать в Telegram
+    <footer class="bg-white border-t border-black/10 py-24 text-center mt-20">
+        <div class="max-w-2xl mx-auto px-6">
+            <h2 class="font-serif text-5xl md:text-6xl mb-8 italic">Let's create something beautiful.</h2>
+            <a href="https://t.me/annavetyutneva" class="inline-block bg-lemon text-black px-10 py-4 rounded-full font-sans font-bold uppercase tracking-wider text-sm hover:scale-105 transition-transform duration-300">
+                Связаться в Telegram
             </a>
         </div>
     </footer>
