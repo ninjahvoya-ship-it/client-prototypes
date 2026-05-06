@@ -13,30 +13,31 @@
                 extend: {
                     fontFamily: { sans: ['Manrope', 'sans-serif'] },
                     colors: {
-                        bg: '#FFFFFF',
-                        card: '#F9FAFB',
-                        text: '#111827',
-                        muted: '#6B7280',
-                        accent: '#FF4500', /* Bright Orange-Red Accent */
-                        border: '#E5E7EB'
+                        bg: '#F5F5F7', /* Apple light gray */
+                        card: '#FFFFFF',
+                        text: '#1D1D1F',
+                        muted: '#86868B',
+                        accent: '#0066CC', /* Classic Apple Blue link */
+                        border: 'transparent'
                     }
                 }
             }
         }
     </script>
     <style>
-        body { background-color: #FFFFFF; color: #111827; font-family: 'Manrope', sans-serif; -webkit-font-smoothing: antialiased; }
+        body { background-color: #F5F5F7; color: #1D1D1F; font-family: 'Manrope', sans-serif; -webkit-font-smoothing: antialiased; }
+        
         .bento-card {
-            background-color: #F9FAFB;
-            border-radius: 24px;
+            background-color: #FFFFFF;
+            border-radius: 30px;
             overflow: hidden;
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            border: 1px solid #E5E7EB;
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+            border: none;
         }
         .bento-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 24px 48px -12px rgba(0,0,0,0.08);
-            border-color: #D1D5DB;
+            transform: scale(1.01);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
         }
         
         .mockup-img {
@@ -44,38 +45,35 @@
             height: 100%;
             object-fit: cover;
             object-position: top;
-            transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .bento-card:hover .mockup-img {
-            transform: scale(1.02) translateY(-4px);
+            transform: scale(1.03);
         }
 
         .tag {
-            background: #F3F4F6;
-            border: 1px solid #E5E7EB;
-            padding: 4px 12px;
+            background: #F5F5F7;
+            padding: 6px 14px;
             border-radius: 100px;
-            font-size: 12px;
-            font-weight: 600;
-            color: #4B5563;
-        }
-        
-        .tag-accent {
-            color: #FF4500;
-            background: rgba(255,69,0,0.05);
-            border-color: rgba(255,69,0,0.1);
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #86868B;
         }
 
         /* Float badge for screenshots */
         .ss-badge {
-            background: #FFFFFF;
-            color: #111827;
-            padding: 6px 16px;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            color: #1D1D1F;
+            padding: 8px 16px;
             border-radius: 100px;
-            font-size: 12px;
-            font-weight: 700;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            border: 1px solid #E5E7EB;
+            font-size: 13px;
+            font-weight: 600;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+            border: 1px solid rgba(0,0,0,0.02);
         }
     </style>
 </head>
@@ -124,7 +122,7 @@
                 <!-- Main Desktop Feature -->
                 <div class="bento-card md:col-span-2 md:row-span-2 relative group h-[400px] md:h-[600px] bg-card">
                     <div class="absolute inset-0 p-8 md:p-12 pb-0 flex items-end justify-center overflow-hidden">
-                        <img src="assets/desktop-day.png" alt="Desktop Dashboard" class="mockup-img rounded-t-xl shadow-2xl object-contain object-bottom translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                        <img src="https://ninjahvoya-ship-it.github.io/client-prototypes/portfolio/assets/desktop-day.png" alt="Desktop Dashboard" class="mockup-img rounded-t-xl shadow-2xl object-contain object-bottom translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                     </div>
                     <div class="absolute top-6 left-6 flex gap-2">
                         <span class="bg-black/40 backdrop-blur-md text-text px-4 py-2 rounded-full text-xs font-bold shadow-lg border border-border">Desktop Dashboard</span>
@@ -134,7 +132,7 @@
                 <!-- Mobile View -->
                 <div class="bento-card relative group h-[400px] md:h-[600px] bg-card">
                     <div class="absolute inset-0 p-8 flex items-center justify-center">
-                        <img src="assets/mobile-day.png" alt="Mobile View" class="mockup-img object-contain scale-95 group-hover:scale-100 transition-transform duration-500">
+                        <img src="https://ninjahvoya-ship-it.github.io/client-prototypes/portfolio/assets/mobile-day.png" alt="Mobile View" class="mockup-img object-contain scale-95 group-hover:scale-100 transition-transform duration-500">
                     </div>
                     <div class="absolute top-6 left-6">
                         <span class="bg-black/40 backdrop-blur-md text-text px-4 py-2 rounded-full text-xs font-bold shadow-lg border border-border">Mobile Adaptive</span>
@@ -144,7 +142,7 @@
                 <!-- Weekly View -->
                 <div class="bento-card md:col-span-2 relative h-[300px] md:h-[400px] bg-card">
                     <div class="absolute inset-0 p-8 md:p-12 pb-0 flex items-end justify-center overflow-hidden">
-                        <img src="assets/desktop-week.png" alt="Weekly Kanban" class="mockup-img rounded-t-xl shadow-2xl object-cover object-top translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                        <img src="https://ninjahvoya-ship-it.github.io/client-prototypes/portfolio/assets/desktop-week.png" alt="Weekly Kanban" class="mockup-img rounded-t-xl shadow-2xl object-cover object-top translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                     </div>
                     <div class="absolute top-6 left-6">
                         <span class="bg-black/40 backdrop-blur-md text-text px-4 py-2 rounded-full text-xs font-bold shadow-lg border border-border">Weekly Kanban</span>
@@ -154,7 +152,7 @@
                 <!-- Auth / Login -->
                 <div class="bento-card relative h-[300px] md:h-[400px] bg-card">
                     <div class="absolute inset-0 flex items-center justify-center p-8">
-                        <img src="assets/auth.png" alt="Auth Screen" class="mockup-img rounded-xl shadow-2xl object-cover">
+                        <img src="https://ninjahvoya-ship-it.github.io/client-prototypes/portfolio/assets/auth.png" alt="Auth Screen" class="mockup-img rounded-xl shadow-2xl object-cover">
                     </div>
                     <div class="absolute top-6 left-6">
                         <span class="bg-black/40 backdrop-blur-md text-text px-4 py-2 rounded-full text-xs font-bold shadow-lg border border-border">Auth Flow</span>
@@ -210,7 +208,7 @@
                 <!-- Main Desktop Feature -->
                 <div class="bento-card md:col-span-2 md:row-span-2 relative group h-[400px] md:h-[600px] bg-card">
                     <div class="absolute inset-0 p-8 md:p-12 pb-0 flex items-start justify-center overflow-hidden">
-                        <img src="assets/otiwa-main.png" alt="Otiwa Main" class="mockup-img rounded-t-xl shadow-2xl object-cover object-top translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                        <img src="https://ninjahvoya-ship-it.github.io/client-prototypes/portfolio/assets/otiwa-main.png" alt="Otiwa Main" class="mockup-img rounded-t-xl shadow-2xl object-cover object-top translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                     </div>
                     <div class="absolute top-6 left-6 flex gap-2">
                         <span class="bg-black/40 backdrop-blur-md text-text px-4 py-2 rounded-full text-xs font-bold shadow-lg border border-border">Main Feed</span>
@@ -220,7 +218,7 @@
                 <!-- B2B View -->
                 <div class="bento-card relative group h-[400px] md:h-[600px] bg-white">
                     <div class="absolute inset-0 p-8 flex items-center justify-center">
-                        <img src="assets/otiwa-b2b.png" alt="Otiwa B2B" class="mockup-img shadow-2xl object-cover object-top scale-95 group-hover:scale-100 transition-transform duration-500 border border-gray-200 rounded-lg">
+                        <img src="https://ninjahvoya-ship-it.github.io/client-prototypes/portfolio/assets/otiwa-b2b.png" alt="Otiwa B2B" class="mockup-img shadow-2xl object-cover object-top scale-95 group-hover:scale-100 transition-transform duration-500 border border-gray-200 rounded-lg">
                     </div>
                     <div class="absolute top-6 left-6">
                         <span class="bg-black/40 backdrop-blur-md text-text px-4 py-2 rounded-full text-xs font-bold shadow-lg border border-border">Otiwa Business</span>
@@ -230,7 +228,7 @@
                 <!-- Finance View -->
                 <div class="bento-card md:col-span-2 relative h-[300px] md:h-[400px] bg-card">
                     <div class="absolute inset-0 p-8 md:p-12 pb-0 flex items-start justify-center overflow-hidden">
-                        <img src="assets/otiwa-finance.png" alt="Otiwa Finance" class="mockup-img rounded-t-xl shadow-2xl object-cover object-top translate-y-4 group-hover:translate-y-0 transition-transform duration-500 border border-gray-200">
+                        <img src="https://ninjahvoya-ship-it.github.io/client-prototypes/portfolio/assets/otiwa-finance.png" alt="Otiwa Finance" class="mockup-img rounded-t-xl shadow-2xl object-cover object-top translate-y-4 group-hover:translate-y-0 transition-transform duration-500 border border-gray-200">
                     </div>
                     <div class="absolute top-6 left-6">
                         <span class="bg-black/40 backdrop-blur-md text-text px-4 py-2 rounded-full text-xs font-bold shadow-lg border border-border">Finance & Billing</span>
