@@ -155,7 +155,12 @@
         <section>
             <div class="flex flex-col lg:flex-row justify-between lg:items-end mb-10 gap-6">
                 <div>
-                    <h2 class="font-serif text-5xl md:text-6xl mb-4">Блянер</h2>
+                    <div class="flex items-center gap-4 mb-4">
+                        <h2 class="font-serif text-5xl md:text-6xl">Блянер</h2>
+                        <a href="https://blyaner.vercel.app" target="_blank" class="font-sans text-sm font-bold flex items-center gap-1 hover:opacity-70 transition-opacity border-b border-black pb-0.5">
+                            Смотреть лайв <i class="ph-bold ph-arrow-up-right"></i>
+                        </a>
+                    </div>
                     <p class="font-sans text-muted text-lg max-w-xl">Атомарный таск-трекер для хаоса. Продукт, объединяющий трекинг сна и Канбан в одном фокус-режиме.</p>
                 </div>
                 <div class="flex gap-2 flex-wrap">
@@ -174,10 +179,10 @@
                     </div>
                     <div class="bento-card bg-white p-8 flex flex-col justify-center min-h-[226px]">
                         <h3 class="font-serif text-3xl mb-4 italic">Моя роль</h3>
-                        <ul class="font-sans font-light space-y-2 text-muted">
-                            <li>— UI/UX Архитектура</li>
-                            <li>— Разработка дизайн-системы</li>
-                            <li>— Frontend (Next.js + Tailwind)</li>
+                        <ul class="font-sans font-medium space-y-3 text-muted">
+                            <li class="flex items-center gap-2"><i class="ph-fill ph-check-circle text-lemon text-xl"></i> UI/UX Архитектура</li>
+                            <li class="flex items-center gap-2"><i class="ph-fill ph-check-circle text-lemon text-xl"></i> Дизайн-система</li>
+                            <li class="flex items-center gap-2"><i class="ph-fill ph-check-circle text-lemon text-xl"></i> Frontend (Next.js)</li>
                         </ul>
                     </div>
                 </div>
@@ -190,38 +195,55 @@
             </div>
         </section>
 
-        <!-- PROJECT 3: Otiwa -->
-        <section>
-            <div class="flex flex-col lg:flex-row justify-between lg:items-end mb-10 gap-6">
-                <div>
-                    <h2 class="font-serif text-5xl md:text-6xl mb-4">Otiwa Marketplace</h2>
-                    <p class="font-sans text-muted text-lg max-w-xl">Сопровождение разработки маркетплейса услуг. Управление ИТ-командой, составление ТЗ и проектирование финансового модуля.</p>
-                </div>
-                <div class="flex gap-2 flex-wrap">
-                    <span class="ed-tag lemon-tag">Product Mgmt</span>
-                    <span class="ed-tag">Marketplace</span>
-                </div>
-            </div>
-
-            <!-- Bento Grid 3 -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Card 1 -->
-                <div class="md:col-span-2 bento-card bg-[#EAF5D9] h-[500px] p-8 pb-0 flex items-end justify-center group">
-                    <img src="https://ninjahvoya-ship-it.github.io/client-prototypes/portfolio/assets/otiwa-main.png" alt="Otiwa Main" class="w-full h-[90%] object-cover object-top rounded-t-xl shadow-xl img-reveal">
-                    <div class="absolute top-6 left-6"><span class="ed-tag bg-white/50 border-white/50 backdrop-blur-md">B2C Feed</span></div>
-                </div>
-                <!-- Card 2 -->
-                <div class="bento-card bg-white h-[500px] p-8 group flex flex-col items-center">
-                    <div class="w-full h-[85%] rounded-lg overflow-hidden border border-black/5 shadow-md img-reveal">
-                        <img src="https://ninjahvoya-ship-it.github.io/client-prototypes/portfolio/assets/otiwa-b2b.png" alt="Otiwa B2B" class="w-full h-full object-cover object-top">
+        <!-- PROJECT 3: Otiwa (Sticky Scroll with Bento Cards) -->
+        <section class="mt-32">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 relative">
+                
+                <!-- Left Sidebar: Sticky Context -->
+                <div class="lg:col-span-4 relative">
+                    <div class="sticky top-32">
+                        <div class="flex gap-2 flex-wrap mb-6">
+                            <span class="ed-tag lemon-tag">Product Mgmt</span>
+                            <span class="ed-tag">Marketplace</span>
+                        </div>
+                        <h2 class="font-serif text-5xl md:text-6xl mb-6">Otiwa <br>Marketplace</h2>
+                        <p class="font-sans font-light text-lg mb-8 leading-relaxed text-muted">
+                            Управление разработкой двустороннего маркетплейса услуг. Полный цикл продакт-менеджмента от формирования ТЗ до финансового модуля и релиза.
+                        </p>
+                        
+                        <div class="bento-card bg-white p-6">
+                            <h3 class="font-serif text-2xl mb-4 italic">Ответственность</h3>
+                            <ul class="font-sans font-medium space-y-3 text-muted">
+                                <li class="flex items-center gap-2"><i class="ph-fill ph-check-circle text-lemon text-xl"></i> Написание ТЗ</li>
+                                <li class="flex items-center gap-2"><i class="ph-fill ph-check-circle text-lemon text-xl"></i> Руководство IT</li>
+                                <li class="flex items-center gap-2"><i class="ph-fill ph-check-circle text-lemon text-xl"></i> Контроль сроков</li>
+                                <li class="flex items-center gap-2"><i class="ph-fill ph-check-circle text-lemon text-xl"></i> Коммуникация</li>
+                            </ul>
+                        </div>
                     </div>
-                    <h3 class="font-serif text-2xl italic mt-auto">B2B Landing</h3>
                 </div>
-                <!-- Card 3 -->
-                <div class="md:col-span-3 bento-card bg-[#DFF1FA] h-[400px] p-8 pb-0 flex items-end justify-center group">
-                    <img src="https://ninjahvoya-ship-it.github.io/client-prototypes/portfolio/assets/otiwa-finance.png" alt="Otiwa Finance" class="w-3/4 object-cover object-top rounded-t-xl shadow-xl img-reveal">
-                    <div class="absolute top-6 left-6"><span class="ed-tag bg-white/50 border-white/50 backdrop-blur-md">Finance Module</span></div>
+
+                <!-- Right Column: Scrolling Bento Cards -->
+                <div class="lg:col-span-8 space-y-8">
+                    <!-- Image 1 -->
+                    <div class="bento-card bg-[#EAF5D9] p-8 md:p-16 h-[500px] flex items-center justify-center group">
+                        <img src="https://ninjahvoya-ship-it.github.io/client-prototypes/portfolio/assets/otiwa-main.png" alt="Otiwa Main" class="w-full shadow-2xl rounded-xl img-reveal object-cover object-top h-full">
+                        <div class="absolute top-6 left-6"><span class="ed-tag bg-white/50 border-white/50 backdrop-blur-md">Главная лента</span></div>
+                    </div>
+                    
+                    <!-- Image 2 -->
+                    <div class="bento-card bg-white p-8 md:p-16 h-[500px] flex items-center justify-center group">
+                        <img src="https://ninjahvoya-ship-it.github.io/client-prototypes/portfolio/assets/otiwa-b2b.png" alt="Otiwa B2B" class="w-full shadow-2xl rounded-xl border border-black/5 img-reveal object-cover object-top h-full">
+                        <div class="absolute top-6 left-6"><span class="ed-tag bg-white/50 border-white/50 backdrop-blur-md">Лендинг (B2B)</span></div>
+                    </div>
+
+                    <!-- Image 3 -->
+                    <div class="bento-card bg-[#DFF1FA] p-8 md:p-16 h-[500px] flex items-center justify-center group">
+                        <img src="https://ninjahvoya-ship-it.github.io/client-prototypes/portfolio/assets/otiwa-finance.png" alt="Otiwa Finance" class="w-full shadow-2xl rounded-xl img-reveal object-cover object-top h-full">
+                        <div class="absolute top-6 left-6"><span class="ed-tag bg-white/50 border-white/50 backdrop-blur-md">Финансовый дашборд</span></div>
+                    </div>
                 </div>
+
             </div>
         </section>
 
