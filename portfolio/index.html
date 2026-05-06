@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Анна Ветютнева | Портфолио UI/UX</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Manrope', 'sans-serif'] },
+                    colors: {
+                        bg: '#121212',
+                        card: '#1C1C1E',
+                        text: '#FFFFFF',
+                        muted: '#8A8A8E',
+                        accent: '#C4D600', /* Lime from planner */
+                        purple: '#8C94ED' /* Purple from planner */
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #121212; color: #FFFFFF; font-family: 'Manrope', sans-serif; }
+        .bento-card {
+            background-color: #1C1C1E;
+            border-radius: 32px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .bento-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            border-color: rgba(255,255,255,0.1);
+        }
+        
+        .mockup-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top;
+            transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .bento-card:hover .mockup-img {
+            transform: scale(1.03);
+        }
+
+        .tag {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #FFF;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-accent selection:text-black">
+
+    <div class="max-w-6xl mx-auto px-6 py-20">
+        
+        <!-- Header -->
+        <header class="mb-20">
+            <h1 class="text-[56px] md:text-[80px] font-extrabold leading-tight tracking-tighter mb-6">
+                Привет, я Анна. <br>
+                <span class="text-muted">Проектирую <span class="text-white">UI/UX</span><br>и создаю продукты.</span>
+            </h1>
+            <p class="text-xl text-muted max-w-2xl font-medium leading-relaxed mb-10">
+                Linguist turned Project Manager & UI/UX Designer. Я не просто рисую красивые картинки — я выстраиваю логику, собираю архитектуру и продумываю пользовательский путь от первого клика до финального результата.
+            </p>
+            <div class="flex gap-4">
+                <a href="#projects" class="bg-white text-black px-8 py-4 rounded-full font-bold text-[15px] hover:bg-gray-200 transition-colors">Мои работы</a>
+                <a href="https://t.me/annavetyutneva" target="_blank" class="bg-card border border-white/10 px-8 py-4 rounded-full font-bold text-[15px] hover:bg-white/5 transition-colors flex items-center gap-2">
+                    <i class="ph-fill ph-telegram-logo text-xl"></i> Связаться
+                </a>
+            </div>
+        </header>
+
+        <!-- Project: Блянер -->
+        <div id="projects" class="mb-32">
+            
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 gap-4">
+                <div>
+                    <div class="flex gap-2 mb-4">
+                        <span class="tag">Web App</span>
+                        <span class="tag">Mobile UI</span>
+                        <span class="tag">SaaS</span>
+                    </div>
+                    <h2 class="text-4xl font-bold mb-2 tracking-tight">Блянер (Blyaner)</h2>
+                    <p class="text-muted text-lg max-w-xl">Ультимативный таск-трекер для хаоса. Продукт, который объединяет трекинг сна, тайм-менеджмент и Канбан в одном "атомарном" интерфейсе.</p>
+                </div>
+                <a href="https://blyaner.vercel.app" target="_blank" class="text-accent font-bold flex items-center gap-1 hover:opacity-80 transition-opacity">
+                    Смотреть лайв <i class="ph-bold ph-arrow-up-right"></i>
+                </a>
+            </div>
+
+            <!-- Bento Grid for Project -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <!-- Main Desktop Feature -->
+                <div class="bento-card md:col-span-2 md:row-span-2 relative group h-[400px] md:h-[600px] bg-[#9A90DA]">
+                    <div class="absolute inset-0 p-8 md:p-12 pb-0 flex items-end justify-center overflow-hidden">
+                        <img src="assets/desktop-day.png" alt="Desktop Dashboard" class="mockup-img rounded-t-xl shadow-2xl object-contain object-bottom translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                    </div>
+                    <div class="absolute top-6 left-6 flex gap-2">
+                        <span class="bg-black/40 backdrop-blur-md text-white px-4 py-2 rounded-full text-xs font-bold shadow-lg border border-white/10">Desktop Dashboard</span>
+                    </div>
+                </div>
+
+                <!-- Mobile View -->
+                <div class="bento-card relative group h-[400px] md:h-[600px] bg-[#222]">
+                    <div class="absolute inset-0 p-8 flex items-center justify-center">
+                        <img src="assets/mobile-day.png" alt="Mobile View" class="mockup-img object-contain scale-95 group-hover:scale-100 transition-transform duration-500">
+                    </div>
+                    <div class="absolute top-6 left-6">
+                        <span class="bg-black/40 backdrop-blur-md text-white px-4 py-2 rounded-full text-xs font-bold shadow-lg border border-white/10">Mobile Adaptive</span>
+                    </div>
+                </div>
+
+                <!-- Weekly View -->
+                <div class="bento-card md:col-span-2 relative h-[300px] md:h-[400px] bg-[#9A90DA]">
+                    <div class="absolute inset-0 p-8 md:p-12 pb-0 flex items-end justify-center overflow-hidden">
+                        <img src="assets/desktop-week.png" alt="Weekly Kanban" class="mockup-img rounded-t-xl shadow-2xl object-cover object-top translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                    </div>
+                    <div class="absolute top-6 left-6">
+                        <span class="bg-black/40 backdrop-blur-md text-white px-4 py-2 rounded-full text-xs font-bold shadow-lg border border-white/10">Weekly Kanban</span>
+                    </div>
+                </div>
+
+                <!-- Auth / Login -->
+                <div class="bento-card relative h-[300px] md:h-[400px] bg-[#9A90DA]">
+                    <div class="absolute inset-0 flex items-center justify-center p-8">
+                        <img src="assets/auth.png" alt="Auth Screen" class="mockup-img rounded-xl shadow-2xl object-cover">
+                    </div>
+                    <div class="absolute top-6 left-6">
+                        <span class="bg-black/40 backdrop-blur-md text-white px-4 py-2 rounded-full text-xs font-bold shadow-lg border border-white/10">Auth Flow</span>
+                    </div>
+                </div>
+
+            </div>
+            
+            <!-- Description & Tech Details -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12 pt-12 border-t border-white/10">
+                <div class="md:col-span-2">
+                    <h3 class="text-xl font-bold mb-4">О проекте</h3>
+                    <p class="text-muted leading-relaxed mb-4">
+                        Блянер (Planner) был задуман как инструмент для людей с СДВГ и тех, кому сложно удерживать фокус в стандартных таск-трекерах. Главная задача состояла в том, чтобы убрать когнитивную перегрузку и объединить задачи с трекингом физического состояния (сон).
+                    </p>
+                    <p class="text-muted leading-relaxed">
+                        Я разработала концепцию атомарного UI, где левый сайдбар работает как постоянный дашборд (показывая сон, прогресс и навигацию), а центральная область переключается между фокус-режимом одного дня и канбан-доской на неделю. Интерфейс построен на контрасте мягкого лавандового фона (#9A90DA) и кислотно-лаймовых акцентов для удержания внимания.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Моя роль</h3>
+                    <ul class="space-y-3 text-muted">
+                        <li class="flex items-center gap-2"><i class="ph-fill ph-check-circle text-accent"></i> UI/UX Архитектура</li>
+                        <li class="flex items-center gap-2"><i class="ph-fill ph-check-circle text-accent"></i> Дизайн-система (Atomic)</li>
+                        <li class="flex items-center gap-2"><i class="ph-fill ph-check-circle text-accent"></i> Мобильная адаптация</li>
+                        <li class="flex items-center gap-2"><i class="ph-fill ph-check-circle text-accent"></i> Frontend (Next.js + Tailwind)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
