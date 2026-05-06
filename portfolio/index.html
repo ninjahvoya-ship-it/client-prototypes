@@ -18,9 +18,10 @@
                     colors: {
                         bg: '#FFFFFF',
                         surface: '#F8F9FA',
-                        text: '#111827',
-                        muted: '#6B7280',
-                        accent: '#E4FF00', /* Premium Lemon */
+                        text: '#374151',      /* Graphite instead of Black */
+                        heading: '#1F2937',   /* Darker graphite for headings */
+                        muted: '#9CA3AF',
+                        accent: '#E4FF00',    /* Premium Lemon */
                         border: '#E5E7EB'
                     }
                 }
@@ -30,14 +31,14 @@
     <style>
         body { 
             background-color: #FFFFFF; 
-            color: #111827; 
+            color: #374151; 
             -webkit-font-smoothing: antialiased; 
         }
+        h1, h2, h3, h4, h5 { color: #1F2937; }
 
-        /* Tech Editorial layout components */
         .case-section {
             border-top: 1px solid #E5E7EB;
-            padding: 120px 0;
+            padding: 100px 0;
         }
 
         .grid-frame {
@@ -57,9 +58,10 @@
             left: 16px;
             font-family: 'JetBrains Mono', monospace;
             font-size: 11px;
-            color: #6B7280;
+            color: #9CA3AF;
             text-transform: uppercase;
             letter-spacing: 0.05em;
+            z-index: 10;
         }
 
         .frame-placeholder {
@@ -79,20 +81,20 @@
             border-radius: 6px;
             font-size: 12px;
             font-weight: 600;
-            color: #374151;
+            color: #4B5563;
             font-family: 'JetBrains Mono', monospace;
         }
         .chip.accent {
             background: #E4FF00;
             border-color: #D4ED00;
-            color: #000000;
+            color: #1F2937;
         }
         
         .role-list li {
             position: relative;
             padding-left: 20px;
             margin-bottom: 8px;
-            color: #374151;
+            color: #4B5563;
         }
         .role-list li::before {
             content: '';
@@ -106,6 +108,31 @@
         }
         
         ::selection { background: #E4FF00; color: #000; }
+        
+        /* Sidebar styling */
+        .project-nav-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #4B5563;
+            transition: all 0.2s ease;
+        }
+        .project-nav-item:hover {
+            background-color: #FFFFFF;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            color: #1F2937;
+        }
+        .project-nav-item i {
+            color: #D1D5DB;
+            transition: color 0.2s ease;
+        }
+        .project-nav-item:hover i {
+            color: #1F2937;
+        }
     </style>
 </head>
 <body class="font-sans">
@@ -113,188 +140,284 @@
     <!-- Meta Nav -->
     <nav class="border-b border-border bg-white sticky top-0 z-50">
         <div class="max-w-[1400px] mx-auto px-6 md:px-12 py-4 flex justify-between items-center text-xs font-mono text-muted uppercase tracking-widest">
-            <div class="font-bold text-text">Anna Vetyutneva</div>
+            <div class="font-bold text-heading">Anna Vetyutneva</div>
             <div class="hidden md:block">Product Design · Management</div>
-            <a href="https://t.me/annavetyutneva" target="_blank" class="hover:text-text transition-colors">Contact →</a>
+            <a href="https://t.me/annavetyutneva" target="_blank" class="hover:text-heading transition-colors">Contact →</a>
         </div>
     </nav>
 
-    <!-- Hero Tech Editorial -->
-    <header class="max-w-[1400px] mx-auto px-6 md:px-12 py-32 md:py-48">
-        <h1 class="text-5xl md:text-7xl lg:text-[90px] font-bold tracking-tight leading-[1.05] mb-12 max-w-5xl">
-            Системный подход <br>к <span class="bg-accent px-2">продуктовому дизайну</span>.
-        </h1>
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-start">
-            <p class="md:col-span-6 text-xl md:text-2xl text-muted font-light leading-relaxed">
-                Разрабатываю UX-архитектуру, собираю дизайн-системы и руковожу ИТ-командой от формирования ТЗ до релиза. Фокус на B2B-интерфейсах, SaaS и сложной логике.
-            </p>
+    <!-- Compact Hero with Sidebar -->
+    <header class="max-w-[1400px] mx-auto px-6 md:px-12 py-20 lg:py-24">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            <!-- Left: Hero Text -->
+            <div class="lg:col-span-8">
+                <h1 class="text-4xl md:text-6xl lg:text-[72px] font-bold tracking-tight leading-[1.1] mb-8">
+                    Системный подход <br>к <span class="bg-accent px-2">продуктовому дизайну</span>.
+                </h1>
+                <p class="text-lg md:text-xl text-muted font-light leading-relaxed max-w-2xl">
+                    Разрабатываю UX-архитектуру, собираю дизайн-системы и руковожу ИТ-командой от формирования ТЗ до релиза. Фокус на B2B-интерфейсах, SaaS и сложной логике.
+                </p>
+            </div>
+
+            <!-- Right: Project Index (Sidebar) -->
+            <div class="lg:col-span-4 flex lg:justify-end">
+                <div class="w-full max-w-sm bg-surface border border-border p-3 rounded-xl">
+                    <div class="text-[10px] font-mono text-muted uppercase tracking-widest px-4 pt-2 pb-3">Index / Projects</div>
+                    <div class="flex flex-col gap-1">
+                        <a href="#blyaner" class="project-nav-item">
+                            <span>01. Блянер</span> <i class="ph-bold ph-arrow-right"></i>
+                        </a>
+                        <a href="#otiwa" class="project-nav-item">
+                            <span>02. Otiwa Marketplace</span> <i class="ph-bold ph-arrow-right"></i>
+                        </a>
+                        <a href="#prostoseller" class="project-nav-item">
+                            <span>03. Prostoseller</span> <i class="ph-bold ph-arrow-right"></i>
+                        </a>
+                        <a href="#3mclinic" class="project-nav-item">
+                            <span>04. 3M Clinic App</span> <i class="ph-bold ph-arrow-right"></i>
+                        </a>
+                        <a href="#booktracker" class="project-nav-item">
+                            <span>05. Book Tracker</span> <i class="ph-bold ph-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </header>
 
     <main class="max-w-[1400px] mx-auto px-6 md:px-12">
 
-        <!-- CASE 1: Otiwa Marketplace (B2B/Complex Logic) -->
-        <section class="case-section">
-            <!-- Header Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-12 gap-12 mb-16 items-end">
+        <!-- CASE 1: Blyaner -->
+        <section id="blyaner" class="case-section border-t-0 pt-0">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12 mb-12 items-end">
+                <div class="md:col-span-8">
+                    <div class="flex gap-2 flex-wrap mb-6">
+                        <span class="chip accent">Web App</span>
+                        <span class="chip">SaaS</span>
+                        <span class="chip">UI/UX</span>
+                    </div>
+                    <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-4">Блянер (Blyaner)</h2>
+                    <p class="text-xl text-muted font-light">Атомарный таск-трекер, объединяющий Канбан-доску и трекинг сна. Разработан специально для удержания фокуса и снижения когнитивной нагрузки.</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+                <!-- Text block -->
+                <div class="md:col-span-5 flex flex-col gap-6">
+                    <div class="grid-frame p-8 items-start justify-start flex-col h-[300px]">
+                        <h3 class="font-bold text-lg mb-4">Моя роль</h3>
+                        <ul class="role-list text-sm">
+                            <li>Аналитика аудитории и формирование MVP</li>
+                            <li>Проектирование UX (Атомарный интерфейс)</li>
+                            <li>Создание UI-кита и Дизайн-системы</li>
+                            <li>Frontend-разработка (Next.js + Tailwind)</li>
+                        </ul>
+                    </div>
+                    <div class="grid-frame p-8 items-start justify-start flex-col h-[300px]">
+                        <h3 class="font-bold text-lg mb-2">Проблема & Решение</h3>
+                        <p class="text-sm text-muted leading-relaxed">
+                            <b>Проблема:</b> Классические трекеры создают когнитивный перегруз. Огромные бэклоги демотивируют пользователей с СДВГ.<br><br>
+                            <b>Решение:</b> Строгое разделение: станичный сайдбар с биометрией (сон) и два режима работы — «Фокус одного дня» (ничего лишнего) и «Канбан на неделю». Контрастная палитра (лаванда + лайм) удерживает внимание.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Hero Mockups -->
+                <div class="md:col-span-7 grid-frame h-[624px] flex-col gap-4">
+                    <span class="frame-label">frame: blyaner-desktop-hero (4:3)</span>
+                    <div class="frame-placeholder">
+                        <b>Главный Дашборд (Desktop)</b><br>
+                        Десктопная версия Блянера на светлом фоне.<br>
+                        (Тот самый макет с лавандовым цветом)
+                    </div>
+                </div>
+
+                <!-- Secondary -->
+                <div class="md:col-span-6 grid-frame h-[450px]">
+                    <span class="frame-label">frame: blyaner-week-view (16:9)</span>
+                    <div class="frame-placeholder">
+                        <b>Режим Недели (Канбан)</b><br>
+                        Демонстрация работы с большим объемом данных.
+                    </div>
+                </div>
+                <div class="md:col-span-6 grid-frame h-[450px]">
+                    <span class="frame-label">frame: blyaner-mobile (mixed)</span>
+                    <div class="frame-placeholder">
+                        <b>Мобильная версия</b><br>
+                        Адаптив атомарного UI под экраны смартфонов.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- CASE 2: Otiwa Marketplace -->
+        <section id="otiwa" class="case-section">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12 mb-12 items-end">
                 <div class="md:col-span-8">
                     <div class="flex gap-2 flex-wrap mb-6">
                         <span class="chip accent">Marketplace</span>
                         <span class="chip">Product Mgmt</span>
                         <span class="chip">B2B / B2C</span>
                     </div>
-                    <h2 class="text-5xl md:text-6xl font-bold tracking-tight mb-4">Otiwa</h2>
+                    <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-4">Otiwa</h2>
                     <p class="text-xl text-muted font-light">Управление разработкой двустороннего маркетплейса услуг и биллинговой системы.</p>
                 </div>
             </div>
 
             <!-- Content Grid -->
             <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
-                <!-- Data: Role & Problem -->
+                <!-- Hero Mockup -->
+                <div class="md:col-span-8 grid-frame h-[624px]">
+                    <span class="frame-label">frame: otiwa-main (16:9)</span>
+                    <div class="frame-placeholder"><b>Главный Дашборд или Лента Otiwa</b><br>Самый красивый десктопный экран платформы.</div>
+                </div>
+
                 <div class="md:col-span-4 flex flex-col gap-6">
                     <div class="grid-frame p-8 items-start justify-start flex-col h-[300px]">
                         <h3 class="font-bold text-lg mb-4">Моя ответственность</h3>
                         <ul class="role-list text-sm">
                             <li>Аналитика и проектирование базы данных</li>
-                            <li>Написание исчерпывающих технических заданий</li>
+                            <li>Написание исчерпывающих ТЗ</li>
                             <li>Руководство командой ИТ-разработки</li>
-                            <li>Контроль сроков и качества (QA)</li>
+                            <li>Контроль сроков и качества</li>
                         </ul>
                     </div>
                     <div class="grid-frame p-8 items-start justify-start flex-col h-[300px]">
                         <h3 class="font-bold text-lg mb-2">Задача бизнеса</h3>
-                        <p class="text-sm text-muted leading-relaxed">Создать масштабируемую платформу, соединяющую заказчиков и исполнителей. Спроектировать сложный финансовый модуль для расчета стоимости откликов в зависимости от категории услуги.</p>
+                        <p class="text-sm text-muted leading-relaxed">Создать масштабируемую B2B/B2C платформу. Спроектировать сложный финансовый модуль для расчета стоимости откликов.</p>
                     </div>
                 </div>
 
-                <!-- Hero Mockup -->
-                <div class="md:col-span-8 grid-frame h-[624px]">
-                    <span class="frame-label">frame: hero-dashboard (16:9)</span>
-                    <div class="frame-placeholder">
-                        <b>Главный Дашборд или Лента Otiwa</b><br>
-                        Самый сложный/красивый десктопный экран платформы.<br>
-                        (Формат: 16:9, высокое разрешение)
-                    </div>
+                <!-- Secondary -->
+                <div class="md:col-span-6 grid-frame h-[450px]">
+                    <span class="frame-label">frame: otiwa-finance (16:9)</span>
+                    <div class="frame-placeholder"><b>Финансовый модуль</b><br>Дашборд баланса и транзакций.</div>
                 </div>
-
-                <!-- Logic / Workflow block -->
-                <div class="md:col-span-12 grid-frame h-[400px]">
-                    <span class="frame-label">frame: logic-flow (wide)</span>
-                    <div class="frame-placeholder">
-                        <b>Схема логики или Архитектура базы данных</b><br>
-                        Здесь покажем твою экспертизу PM.<br>
-                        User Journey Map, схема БД финансового модуля или диаграмма связей.<br>
-                        (Формат: широкая схема, на прозрачном или светлом фоне)
-                    </div>
-                </div>
-
-                <!-- Scenario Flow (3 screens row) -->
-                <div class="md:col-span-4 grid-frame h-[500px]">
-                    <span class="frame-label">frame: scenario-step-1 (mobile/tablet)</span>
-                    <div class="frame-placeholder"><b>Шаг 1.</b> Экран сценария<br>(Например: Выбор категории)</div>
-                </div>
-                <div class="md:col-span-4 grid-frame h-[500px]">
-                    <span class="frame-label">frame: scenario-step-2 (mobile/tablet)</span>
-                    <div class="frame-placeholder"><b>Шаг 2.</b> Экран сценария<br>(Например: Детали заказа)</div>
-                </div>
-                <div class="md:col-span-4 grid-frame h-[500px]">
-                    <span class="frame-label">frame: scenario-step-3 (mobile/tablet)</span>
-                    <div class="frame-placeholder"><b>Шаг 3.</b> Экран сценария<br>(Например: Оплата/Биллинг)</div>
+                <div class="md:col-span-6 grid-frame h-[450px]">
+                    <span class="frame-label">frame: otiwa-b2b (16:9)</span>
+                    <div class="frame-placeholder"><b>Otiwa Бизнес</b><br>Интерфейс для исполнителей.</div>
                 </div>
             </div>
         </section>
 
-        <!-- CASE 2: Book Tracker (PWA / Mobile UX) -->
-        <section class="case-section">
-            <div class="grid grid-cols-1 md:grid-cols-12 gap-12 mb-16 items-end">
-                <div class="md:col-span-8">
-                    <div class="flex gap-2 flex-wrap mb-6">
-                        <span class="chip accent">Mobile PWA</span>
-                        <span class="chip">UI/UX</span>
-                    </div>
-                    <h2 class="text-5xl md:text-6xl font-bold tracking-tight mb-4">Book Tracker</h2>
-                    <p class="text-xl text-muted font-light">Светлое минималистичное приложение для чтения. Интеграция с API, дедупликация изданий и трекинг прогресса.</p>
-                </div>
-            </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
-                <!-- Hero Mockup (Mobile) -->
-                <div class="md:col-span-5 grid-frame h-[600px]">
-                    <span class="frame-label">frame: hero-mobile (portrait)</span>
-                    <div class="frame-placeholder">
-                        <b>Ключевой экран (Карточка книги)</b><br>
-                        Большой красивый мобильный мокап.<br>
-                        Тот самый экран со светлым фоном и лавандой.
-                    </div>
-                </div>
-
-                <!-- Text & Secondary Screens -->
-                <div class="md:col-span-7 flex flex-col gap-6">
-                    <div class="grid-frame p-8 items-start justify-start flex-col h-[288px]">
-                        <h3 class="font-bold text-lg mb-4">Решение</h3>
-                        <p class="text-sm text-muted leading-relaxed mb-4">Отказ от визуального шума в пользу чистого кремового фона и изящной шрифтовой пары (Cormorant + DM Sans). Фокус на удобном сканере обложек и понятной статистике профиля.</p>
-                        <ul class="role-list text-sm">
-                            <li>Проектирование пользовательского пути</li>
-                            <li>Дизайн-система и UI</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="grid grid-cols-2 gap-6 h-[288px]">
-                        <div class="grid-frame">
-                            <span class="frame-label">frame: secondary-mob-1</span>
-                            <div class="frame-placeholder text-sm">Мобильный экран<br>(Сканер/Поиск)</div>
-                        </div>
-                        <div class="grid-frame">
-                            <span class="frame-label">frame: secondary-mob-2</span>
-                            <div class="frame-placeholder text-sm">Мобильный экран<br>(Профиль/Полки)</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- CASE 3: Prostoseller (Complex Adaptive / SaaS) -->
-        <section class="case-section">
-            <div class="grid grid-cols-1 md:grid-cols-12 gap-12 mb-16 items-end">
+        <!-- CASE 3: Prostoseller -->
+        <section id="prostoseller" class="case-section">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12 mb-12 items-end">
                 <div class="md:col-span-8">
                     <div class="flex gap-2 flex-wrap mb-6">
                         <span class="chip accent">SaaS Redesign</span>
                         <span class="chip">Adaptive UX</span>
                     </div>
-                    <h2 class="text-5xl md:text-6xl font-bold tracking-tight mb-4">Prostoseller</h2>
+                    <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-4">Prostoseller</h2>
                     <p class="text-xl text-muted font-light">Адаптация сложной архитектуры данных (таблицы, аналитика) под мобильные устройства и планшеты.</p>
                 </div>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
-                <!-- Top Data block -->
+                <!-- Text Blocks -->
                 <div class="md:col-span-12 grid-frame p-8 items-start justify-start flex-col md:flex-row gap-8 min-h-[160px]">
                     <div class="flex-1">
                         <h3 class="font-bold text-lg mb-2">Проблема</h3>
-                        <p class="text-sm text-muted">B2B-платформы часто игнорируют мобильный UX из-за обилия данных. Селлерам приходилось открывать огромные таблицы с телефона, что ломало конверсию и усложняло работу.</p>
+                        <p class="text-sm text-muted">B2B-платформы часто игнорируют мобильный UX. Селлерам приходилось открывать огромные таблицы с телефона, что ломало работу.</p>
                     </div>
                     <div class="flex-1">
                         <h3 class="font-bold text-lg mb-2">Решение</h3>
-                        <p class="text-sm text-muted">Полный редизайн с mobile-first подходом. Таблицы превращены в удобные информационные карточки на смартфонах, а на планшетах реализована система умных скроллов.</p>
+                        <p class="text-sm text-muted">Mobile-first подход. Таблицы превращены в информационные карточки на смартфонах, а на планшетах реализована система умных скроллов.</p>
                     </div>
                 </div>
 
-                <!-- Desktop / Tablet mix -->
+                <!-- Frames -->
                 <div class="md:col-span-8 grid-frame h-[500px]">
-                    <span class="frame-label">frame: desktop-adaptive (16:9)</span>
-                    <div class="frame-placeholder">
-                        <b>Основной интерфейс платформы</b><br>
-                        Сложная таблица или дашборд на десктопе.<br>
-                        (Формат: горизонтальный)
-                    </div>
+                    <span class="frame-label">frame: prosto-desktop (16:9)</span>
+                    <div class="frame-placeholder"><b>Основной интерфейс платформы</b><br>Десктоп (Сложная таблица).</div>
                 </div>
                 
                 <div class="md:col-span-4 grid-frame h-[500px]">
-                    <span class="frame-label">frame: mobile-adaptive (portrait)</span>
-                    <div class="frame-placeholder">
-                        <b>Мобильная версия</b><br>
-                        Как эта же таблица выглядит на смартфоне (карточки).
+                    <span class="frame-label">frame: prosto-mobile (mixed)</span>
+                    <div class="frame-placeholder"><b>Мобильная версия</b><br>Как эта таблица свернулась в карточки.</div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- CASE 4: 3M Clinic -->
+        <section id="3mclinic" class="case-section">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12 mb-12 items-end">
+                <div class="md:col-span-8">
+                    <div class="flex gap-2 flex-wrap mb-6">
+                        <span class="chip accent">HealthTech</span>
+                        <span class="chip">App UI/UX</span>
                     </div>
+                    <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-4">3M Clinic</h2>
+                    <p class="text-xl text-muted font-light">Пациентское приложение для стоматологической клиники. Интеграция с YCLIENTS, семейный аккаунт и «чистый» fintech-дизайн (Pure Glass).</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+                <!-- Text -->
+                <div class="md:col-span-4 flex flex-col gap-6">
+                    <div class="grid-frame p-8 items-start justify-start flex-col h-[300px]">
+                        <h3 class="font-bold text-lg mb-2">Архитектура UX</h3>
+                        <p class="text-sm text-muted leading-relaxed">
+                            Отказ от классического медицинского стиля ("стерильные белые интерфейсы") в пользу премиального лайфстайл-приложения. Линейная воронка записи вместо сложной корзины, чтобы избежать конфликтов расписания в YCLIENTS.
+                        </p>
+                    </div>
+                    <div class="grid-frame h-[300px]">
+                        <span class="frame-label">frame: 3m-logic (square)</span>
+                        <div class="frame-placeholder text-sm"><b>Схема (User Flow)</b><br>Карта экранов воронки записи.</div>
+                    </div>
+                </div>
+
+                <!-- Frames -->
+                <div class="md:col-span-4 grid-frame h-[624px]">
+                    <span class="frame-label">frame: 3m-home (portrait)</span>
+                    <div class="frame-placeholder"><b>Главный экран</b><br>С семейными профилями и балансом.</div>
+                </div>
+
+                <div class="md:col-span-4 grid-frame h-[624px]">
+                    <span class="frame-label">frame: 3m-booking (portrait)</span>
+                    <div class="frame-placeholder"><b>Экран записи</b><br>Выбор времени / Шторки.</div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- CASE 5: Book Tracker -->
+        <section id="booktracker" class="case-section">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12 mb-12 items-end">
+                <div class="md:col-span-8">
+                    <div class="flex gap-2 flex-wrap mb-6">
+                        <span class="chip accent">Mobile PWA</span>
+                        <span class="chip">UI/UX</span>
+                    </div>
+                    <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-4">Book Tracker</h2>
+                    <p class="text-xl text-muted font-light">Светлое минималистичное приложение для чтения. Интеграция с FantLab API, дедупликация изданий и сканер обложек.</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+                <div class="md:col-span-12 grid-frame p-8 flex-col md:flex-row gap-8 min-h-[160px]">
+                    <div class="flex-1">
+                        <h3 class="font-bold text-lg mb-2">Эстетика & Типографика</h3>
+                        <p class="text-sm text-muted">Отказ от визуального шума в пользу чистого кремового фона и изящной шрифтовой пары (Cormorant + DM Sans). Интерфейс не отвлекает от главного контента — самих обложек книг.</p>
+                    </div>
+                </div>
+
+                <div class="md:col-span-4 grid-frame h-[600px]">
+                    <span class="frame-label">frame: book-detail (portrait)</span>
+                    <div class="frame-placeholder"><b>Карточка книги</b><br>(Самый сочный экран)</div>
+                </div>
+                <div class="md:col-span-4 grid-frame h-[600px]">
+                    <span class="frame-label">frame: book-scanner (portrait)</span>
+                    <div class="frame-placeholder"><b>Сканер / Добавление</b><br>Флоу сканирования.</div>
+                </div>
+                <div class="md:col-span-4 grid-frame h-[600px]">
+                    <span class="frame-label">frame: book-profile (portrait)</span>
+                    <div class="frame-placeholder"><b>Профиль</b><br>Полки и статистика.</div>
                 </div>
             </div>
         </section>
@@ -302,8 +425,8 @@
     </main>
 
     <footer class="border-t border-border bg-surface py-32 px-6 md:px-12 text-center">
-        <h2 class="text-4xl md:text-5xl font-bold mb-10">Готовы обсудить проект?</h2>
-        <a href="https://t.me/annavetyutneva" class="inline-block bg-text text-bg hover:bg-accent hover:text-text px-10 py-5 rounded-lg font-bold text-sm uppercase tracking-widest transition-colors">
+        <h2 class="text-4xl md:text-5xl font-heading font-bold mb-10">Готовы обсудить проект?</h2>
+        <a href="https://t.me/annavetyutneva" class="inline-block bg-heading text-bg hover:bg-accent hover:text-heading px-10 py-5 rounded-lg font-bold text-sm uppercase tracking-widest transition-colors">
             Связаться в Telegram
         </a>
     </footer>
