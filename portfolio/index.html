@@ -13,30 +13,30 @@
                 extend: {
                     fontFamily: { sans: ['Manrope', 'sans-serif'] },
                     colors: {
-                        bg: '#121212',
-                        card: '#1C1C1E',
-                        text: '#FFFFFF',
-                        muted: '#8A8A8E',
-                        accent: '#C4D600', /* Lime from planner */
-                        purple: '#8C94ED' /* Purple from planner */
+                        bg: '#FFFFFF',
+                        card: '#F9FAFB',
+                        text: '#111827',
+                        muted: '#6B7280',
+                        accent: '#FF4500', /* Bright Orange-Red Accent */
+                        border: '#E5E7EB'
                     }
                 }
             }
         }
     </script>
     <style>
-        body { background-color: #121212; color: #FFFFFF; font-family: 'Manrope', sans-serif; }
+        body { background-color: #FFFFFF; color: #111827; font-family: 'Manrope', sans-serif; -webkit-font-smoothing: antialiased; }
         .bento-card {
-            background-color: #1C1C1E;
-            border-radius: 32px;
+            background-color: #F9FAFB;
+            border-radius: 24px;
             overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid rgba(255,255,255,0.05);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 1px solid #E5E7EB;
         }
         .bento-card:hover {
             transform: translateY(-4px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-            border-color: rgba(255,255,255,0.1);
+            box-shadow: 0 24px 48px -12px rgba(0,0,0,0.08);
+            border-color: #D1D5DB;
         }
         
         .mockup-img {
@@ -47,17 +47,35 @@
             transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .bento-card:hover .mockup-img {
-            transform: scale(1.03);
+            transform: scale(1.02) translateY(-4px);
         }
 
         .tag {
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
-            padding: 6px 12px;
-            border-radius: 20px;
+            background: #F3F4F6;
+            border: 1px solid #E5E7EB;
+            padding: 4px 12px;
+            border-radius: 100px;
             font-size: 12px;
             font-weight: 600;
-            color: #FFF;
+            color: #4B5563;
+        }
+        
+        .tag-accent {
+            color: #FF4500;
+            background: rgba(255,69,0,0.05);
+            border-color: rgba(255,69,0,0.1);
+        }
+
+        /* Float badge for screenshots */
+        .ss-badge {
+            background: #FFFFFF;
+            color: #111827;
+            padding: 6px 16px;
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 700;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            border: 1px solid #E5E7EB;
         }
     </style>
 </head>
@@ -69,14 +87,14 @@
         <header class="mb-20">
             <h1 class="text-[56px] md:text-[80px] font-extrabold leading-tight tracking-tighter mb-6">
                 Привет, я Анна. <br>
-                <span class="text-muted">Проектирую <span class="text-white">UI/UX</span><br>и создаю продукты.</span>
+                <span class="text-muted">Проектирую <span class="text-text">UI/UX</span><br>и создаю продукты.</span>
             </h1>
             <p class="text-xl text-muted max-w-2xl font-medium leading-relaxed mb-10">
                 Linguist turned Project Manager & UI/UX Designer. Я не просто рисую красивые картинки — я выстраиваю логику, собираю архитектуру и продумываю пользовательский путь от первого клика до финального результата.
             </p>
             <div class="flex gap-4">
-                <a href="#projects" class="bg-white text-black px-8 py-4 rounded-full font-bold text-[15px] hover:bg-gray-200 transition-colors">Мои работы</a>
-                <a href="https://t.me/annavetyutneva" target="_blank" class="bg-card border border-white/10 px-8 py-4 rounded-full font-bold text-[15px] hover:bg-white/5 transition-colors flex items-center gap-2">
+                <a href="#projects" class="bg-accent text-text px-8 py-4 rounded-full font-bold text-[15px] hover:bg-gray-200 transition-colors">Мои работы</a>
+                <a href="https://t.me/annavetyutneva" target="_blank" class="bg-white border border-border text-text px-8 py-4 rounded-full font-bold text-[15px] hover:bg-gray-50 transition-colors flex items-center gap-2">
                     <i class="ph-fill ph-telegram-logo text-xl"></i> Связаться
                 </a>
             </div>
@@ -104,49 +122,49 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 
                 <!-- Main Desktop Feature -->
-                <div class="bento-card md:col-span-2 md:row-span-2 relative group h-[400px] md:h-[600px] bg-[#9A90DA]">
+                <div class="bento-card md:col-span-2 md:row-span-2 relative group h-[400px] md:h-[600px] bg-card">
                     <div class="absolute inset-0 p-8 md:p-12 pb-0 flex items-end justify-center overflow-hidden">
                         <img src="assets/desktop-day.png" alt="Desktop Dashboard" class="mockup-img rounded-t-xl shadow-2xl object-contain object-bottom translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                     </div>
                     <div class="absolute top-6 left-6 flex gap-2">
-                        <span class="bg-black/40 backdrop-blur-md text-white px-4 py-2 rounded-full text-xs font-bold shadow-lg border border-white/10">Desktop Dashboard</span>
+                        <span class="bg-black/40 backdrop-blur-md text-text px-4 py-2 rounded-full text-xs font-bold shadow-lg border border-border">Desktop Dashboard</span>
                     </div>
                 </div>
 
                 <!-- Mobile View -->
-                <div class="bento-card relative group h-[400px] md:h-[600px] bg-[#222]">
+                <div class="bento-card relative group h-[400px] md:h-[600px] bg-card">
                     <div class="absolute inset-0 p-8 flex items-center justify-center">
                         <img src="assets/mobile-day.png" alt="Mobile View" class="mockup-img object-contain scale-95 group-hover:scale-100 transition-transform duration-500">
                     </div>
                     <div class="absolute top-6 left-6">
-                        <span class="bg-black/40 backdrop-blur-md text-white px-4 py-2 rounded-full text-xs font-bold shadow-lg border border-white/10">Mobile Adaptive</span>
+                        <span class="bg-black/40 backdrop-blur-md text-text px-4 py-2 rounded-full text-xs font-bold shadow-lg border border-border">Mobile Adaptive</span>
                     </div>
                 </div>
 
                 <!-- Weekly View -->
-                <div class="bento-card md:col-span-2 relative h-[300px] md:h-[400px] bg-[#9A90DA]">
+                <div class="bento-card md:col-span-2 relative h-[300px] md:h-[400px] bg-card">
                     <div class="absolute inset-0 p-8 md:p-12 pb-0 flex items-end justify-center overflow-hidden">
                         <img src="assets/desktop-week.png" alt="Weekly Kanban" class="mockup-img rounded-t-xl shadow-2xl object-cover object-top translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                     </div>
                     <div class="absolute top-6 left-6">
-                        <span class="bg-black/40 backdrop-blur-md text-white px-4 py-2 rounded-full text-xs font-bold shadow-lg border border-white/10">Weekly Kanban</span>
+                        <span class="bg-black/40 backdrop-blur-md text-text px-4 py-2 rounded-full text-xs font-bold shadow-lg border border-border">Weekly Kanban</span>
                     </div>
                 </div>
 
                 <!-- Auth / Login -->
-                <div class="bento-card relative h-[300px] md:h-[400px] bg-[#9A90DA]">
+                <div class="bento-card relative h-[300px] md:h-[400px] bg-card">
                     <div class="absolute inset-0 flex items-center justify-center p-8">
                         <img src="assets/auth.png" alt="Auth Screen" class="mockup-img rounded-xl shadow-2xl object-cover">
                     </div>
                     <div class="absolute top-6 left-6">
-                        <span class="bg-black/40 backdrop-blur-md text-white px-4 py-2 rounded-full text-xs font-bold shadow-lg border border-white/10">Auth Flow</span>
+                        <span class="bg-black/40 backdrop-blur-md text-text px-4 py-2 rounded-full text-xs font-bold shadow-lg border border-border">Auth Flow</span>
                     </div>
                 </div>
 
             </div>
             
             <!-- Description & Tech Details -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12 pt-12 border-t border-white/10">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12 pt-12 border-t border-border">
                 <div class="md:col-span-2">
                     <h3 class="text-xl font-bold mb-4">О проекте</h3>
                     <p class="text-muted leading-relaxed mb-4">
@@ -181,7 +199,7 @@
                     <h2 class="text-4xl font-bold mb-2 tracking-tight">Маркетплейс «Отива» (Otiwa)</h2>
                     <p class="text-muted text-lg max-w-xl">Управление разработкой крупного сервиса заказа товаров и услуг. Полный цикл продакт-менеджмента от ТЗ до релиза.</p>
                 </div>
-                <a href="#" class="text-[#8DC63F] font-bold flex items-center gap-1 hover:opacity-80 transition-opacity">
+                <a href="#" class="text-accent font-bold flex items-center gap-1 hover:opacity-80 transition-opacity">
                     Смотреть проект <i class="ph-bold ph-arrow-up-right"></i>
                 </a>
             </div>
@@ -190,12 +208,12 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 
                 <!-- Main Desktop Feature -->
-                <div class="bento-card md:col-span-2 md:row-span-2 relative group h-[400px] md:h-[600px] bg-[#EAF5D9]">
+                <div class="bento-card md:col-span-2 md:row-span-2 relative group h-[400px] md:h-[600px] bg-card">
                     <div class="absolute inset-0 p-8 md:p-12 pb-0 flex items-start justify-center overflow-hidden">
                         <img src="assets/otiwa-main.png" alt="Otiwa Main" class="mockup-img rounded-t-xl shadow-2xl object-cover object-top translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                     </div>
                     <div class="absolute top-6 left-6 flex gap-2">
-                        <span class="bg-black/40 backdrop-blur-md text-white px-4 py-2 rounded-full text-xs font-bold shadow-lg border border-white/10">Main Feed</span>
+                        <span class="bg-black/40 backdrop-blur-md text-text px-4 py-2 rounded-full text-xs font-bold shadow-lg border border-border">Main Feed</span>
                     </div>
                 </div>
 
@@ -205,24 +223,24 @@
                         <img src="assets/otiwa-b2b.png" alt="Otiwa B2B" class="mockup-img shadow-2xl object-cover object-top scale-95 group-hover:scale-100 transition-transform duration-500 border border-gray-200 rounded-lg">
                     </div>
                     <div class="absolute top-6 left-6">
-                        <span class="bg-black/40 backdrop-blur-md text-white px-4 py-2 rounded-full text-xs font-bold shadow-lg border border-white/10">Otiwa Business</span>
+                        <span class="bg-black/40 backdrop-blur-md text-text px-4 py-2 rounded-full text-xs font-bold shadow-lg border border-border">Otiwa Business</span>
                     </div>
                 </div>
 
                 <!-- Finance View -->
-                <div class="bento-card md:col-span-2 relative h-[300px] md:h-[400px] bg-[#DFF1FA]">
+                <div class="bento-card md:col-span-2 relative h-[300px] md:h-[400px] bg-card">
                     <div class="absolute inset-0 p-8 md:p-12 pb-0 flex items-start justify-center overflow-hidden">
                         <img src="assets/otiwa-finance.png" alt="Otiwa Finance" class="mockup-img rounded-t-xl shadow-2xl object-cover object-top translate-y-4 group-hover:translate-y-0 transition-transform duration-500 border border-gray-200">
                     </div>
                     <div class="absolute top-6 left-6">
-                        <span class="bg-black/40 backdrop-blur-md text-white px-4 py-2 rounded-full text-xs font-bold shadow-lg border border-white/10">Finance & Billing</span>
+                        <span class="bg-black/40 backdrop-blur-md text-text px-4 py-2 rounded-full text-xs font-bold shadow-lg border border-border">Finance & Billing</span>
                     </div>
                 </div>
 
             </div>
             
             <!-- Description & Tech Details -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12 pt-12 border-t border-white/10">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12 pt-12 border-t border-border">
                 <div class="md:col-span-2">
                     <h3 class="text-xl font-bold mb-4">О проекте</h3>
                     <p class="text-muted leading-relaxed mb-4">
@@ -235,10 +253,10 @@
                 <div>
                     <h3 class="text-xl font-bold mb-4">Моя роль (Management)</h3>
                     <ul class="space-y-3 text-muted">
-                        <li class="flex items-center gap-2"><i class="ph-fill ph-check-circle text-[#8DC63F]"></i> Разработка ТЗ</li>
-                        <li class="flex items-center gap-2"><i class="ph-fill ph-check-circle text-[#8DC63F]"></i> Управление командой IT</li>
-                        <li class="flex items-center gap-2"><i class="ph-fill ph-check-circle text-[#8DC63F]"></i> Контроль сроков и качества</li>
-                        <li class="flex items-center gap-2"><i class="ph-fill ph-check-circle text-[#8DC63F]"></i> Коммуникация с заказчиком</li>
+                        <li class="flex items-center gap-2"><i class="ph-fill ph-check-circle text-accent"></i> Разработка ТЗ</li>
+                        <li class="flex items-center gap-2"><i class="ph-fill ph-check-circle text-accent"></i> Управление командой IT</li>
+                        <li class="flex items-center gap-2"><i class="ph-fill ph-check-circle text-accent"></i> Контроль сроков и качества</li>
+                        <li class="flex items-center gap-2"><i class="ph-fill ph-check-circle text-accent"></i> Коммуникация с заказчиком</li>
                     </ul>
                 </div>
             </div>
