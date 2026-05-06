@@ -46,7 +46,7 @@
         }
     </style>
 </head>
-<body class="font-sans selection:bg-[#1A1A1A] selection:text-[#F4F4F0]">
+<body class="font-sans selection:bg-[#C4D600] selection:text-[#1A1A1A]">
 
     <!-- Hero Section -->
     <header class="min-h-[70vh] flex flex-col justify-center px-6 md:px-12 lg:px-24">
@@ -57,10 +57,10 @@
         </h1>
         <div class="max-w-2xl">
             <p class="text-xl md:text-2xl font-light leading-relaxed">
-                Я проектирую UI/UX и управляю продуктами. От сложной системной логики до чистой визуальной эстетики.
+                Я проектирую <span class="bg-[#C4D600] px-2">UI/UX</span> и управляю продуктами. От сложной системной логики до чистой визуальной эстетики.
             </p>
             <div class="mt-10">
-                <a href="https://t.me/annavetyutneva" target="_blank" class="inline-flex items-center gap-2 border-b border-black pb-1 text-lg hover:text-muted hover:border-muted transition-colors">
+                <a href="https://t.me/annavetyutneva" target="_blank" class="inline-flex items-center gap-2 border-b-2 border-[#C4D600] pb-1 text-lg hover:text-muted hover:border-[#A6B500] transition-colors">
                     Связаться в Telegram <i class="ph ph-arrow-right"></i>
                 </a>
             </div>
@@ -129,7 +129,7 @@
                             </p>
                             
                             <h3 class="font-serif text-2xl mb-4 italic">Моя ответственность</h3>
-                            <ul class="font-light space-y-3 pb-8 border-b border-black/10">
+                            <ul class="font-light space-y-3 pb-8 border-b-2 border-[#C4D600]/10">
                                 <li>— Написание технических заданий</li>
                                 <li>— Руководство командой IT</li>
                                 <li>— Коммуникация с заказчиком</li>
@@ -163,11 +163,64 @@
             </div>
         </section>
 
+
+        <!-- PROJECT 3: Multi-device Grid Layout -->
+        <section class="border-t border-black/10 bg-[#F4F4F0]">
+            <div class="px-6 md:px-12 lg:px-24 py-20">
+                <div class="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
+                    <div>
+                        <span class="text-sm font-bold uppercase tracking-widest text-muted block mb-4">SaaS • Redesign • UI/UX</span>
+                        <h2 class="font-serif text-5xl md:text-7xl">Prostoseller</h2>
+                    </div>
+                    <p class="max-w-md text-lg font-light">Комплексный редизайн B2B-платформы для селлеров на маркетплейсах. Полная адаптация: Desktop, Tablet, Mobile.</p>
+                </div>
+                
+                <!-- B2B Dashboard Desktop full width -->
+                <div class="w-full bg-[#E5E5EA] p-8 md:p-16 rounded-2xl mb-8 img-reveal shadow-sm">
+                    <img src="https://ninjahvoya-ship-it.github.io/client-prototypes/portfolio/assets/prosto-desk-main.png" alt="Prostoseller Desktop" class="w-full shadow-2xl rounded-xl">
+                </div>
+
+                <!-- Three column grid for Adaptive -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Tablet -->
+                    <div class="bg-white p-8 rounded-2xl border border-black/5 img-reveal flex flex-col justify-between">
+                        <div class="mb-8">
+                            <h4 class="font-serif text-2xl italic mb-2">Планшет</h4>
+                            <p class="text-sm text-muted">Адаптация сложных таблиц</p>
+                        </div>
+                        <img src="https://ninjahvoya-ship-it.github.io/client-prototypes/portfolio/assets/prosto-tab-products.png" alt="Tablet View" class="w-full shadow-lg rounded-lg">
+                    </div>
+                    
+                    <!-- Mobile -->
+                    <div class="bg-white p-8 rounded-2xl border border-black/5 img-reveal flex flex-col justify-between">
+                        <div class="mb-8">
+                            <h4 class="font-serif text-2xl italic mb-2">Мобилка</h4>
+                            <p class="text-sm text-muted">Удобное меню и карточки вместо таблиц</p>
+                        </div>
+                        <div class="flex gap-4 justify-center">
+                            <img src="https://ninjahvoya-ship-it.github.io/client-prototypes/portfolio/assets/prosto-mob-home.png" alt="Mobile Home" class="w-1/2 shadow-lg rounded-lg object-contain">
+                            <img src="https://ninjahvoya-ship-it.github.io/client-prototypes/portfolio/assets/prosto-mob-stores.png" alt="Mobile Stores" class="w-1/2 shadow-lg rounded-lg object-contain">
+                        </div>
+                    </div>
+
+                    <!-- Details / Data -->
+                    <div class="bg-white p-8 rounded-2xl border border-black/5 img-reveal flex flex-col justify-between">
+                        <div class="mb-8">
+                            <h4 class="font-serif text-2xl italic mb-2">Интерфейс</h4>
+                            <p class="text-sm text-muted">Проектирование разделов и рефералки</p>
+                        </div>
+                        <img src="https://ninjahvoya-ship-it.github.io/client-prototypes/portfolio/assets/prosto-desk-invite.png" alt="Invite Friends" class="w-full shadow-lg rounded-lg object-cover object-top h-64">
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
     </main>
 
     <footer class="bg-[#1A1A1A] text-[#F4F4F0] py-16 px-6 md:px-12 lg:px-24 text-center">
         <h2 class="font-serif text-4xl italic mb-6">Готовы обсудить проект?</h2>
-        <a href="https://t.me/annavetyutneva" class="inline-block bg-[#F4F4F0] text-[#1A1A1A] px-8 py-4 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-white transition-colors">
+        <a href="https://t.me/annavetyutneva" class="inline-block bg-[#C4D600] text-[#1A1A1A] hover:bg-[#A6B500] px-8 py-4 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-white transition-colors">
             Написать в Telegram
         </a>
     </footer>
