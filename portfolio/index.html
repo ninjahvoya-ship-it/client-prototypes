@@ -1,266 +1,176 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Анна Ветютнева | Портфолио UI/UX</title>
+    <title>Анна Ветютнева | Editorial Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: { sans: ['Manrope', 'sans-serif'] },
+                    fontFamily: { 
+                        sans: ['Manrope', 'sans-serif'],
+                        serif: ['Cormorant Garamond', 'serif']
+                    },
                     colors: {
-                        bg: '#F5F5F7', /* Apple light gray */
-                        card: '#FFFFFF',
-                        text: '#1D1D1F',
-                        muted: '#86868B',
-                        accent: '#0066CC', /* Classic Apple Blue link */
-                        border: 'transparent'
+                        bg: '#F4F4F0',
+                        text: '#1A1A1A',
+                        muted: '#666666'
                     }
                 }
             }
         }
     </script>
     <style>
-        body { background-color: #F5F5F7; color: #1D1D1F; font-family: 'Manrope', sans-serif; -webkit-font-smoothing: antialiased; }
+        body { background-color: #F4F4F0; color: #1A1A1A; -webkit-font-smoothing: antialiased; }
         
-        .bento-card {
-            background-color: #FFFFFF;
-            border-radius: 30px;
+        /* Custom image hover reveals */
+        .img-reveal {
             overflow: hidden;
-            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
-            border: none;
         }
-        .bento-card:hover {
-            transform: scale(1.01);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
-        }
-        
-        .mockup-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: top;
+        .img-reveal img {
             transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .bento-card:hover .mockup-img {
+        .img-reveal:hover img {
             transform: scale(1.03);
         }
 
-        .tag {
-            background: #F5F5F7;
-            padding: 6px 14px;
-            border-radius: 100px;
-            font-size: 11px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            color: #86868B;
-        }
-
-        /* Float badge for screenshots */
-        .ss-badge {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            color: #1D1D1F;
-            padding: 8px 16px;
-            border-radius: 100px;
-            font-size: 13px;
-            font-weight: 600;
-            box-shadow: 0 4px 24px rgba(0,0,0,0.06);
-            border: 1px solid rgba(0,0,0,0.02);
+        .line-clamp {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;  
+            overflow: hidden;
         }
     </style>
 </head>
-<body class="antialiased selection:bg-accent selection:text-black">
+<body class="font-sans selection:bg-[#1A1A1A] selection:text-[#F4F4F0]">
 
-    <div class="max-w-6xl mx-auto px-6 py-20">
-        
-        <!-- Header -->
-        <header class="mb-20">
-            <h1 class="text-[56px] md:text-[80px] font-extrabold leading-tight tracking-tighter mb-6">
-                Привет, я Анна. <br>
-                <span class="text-muted">Проектирую <span class="text-text">UI/UX</span><br>и создаю продукты.</span>
-            </h1>
-            <p class="text-xl text-muted max-w-2xl font-medium leading-relaxed mb-10">
-                Linguist turned Project Manager & UI/UX Designer. Я не просто рисую красивые картинки — я выстраиваю логику, собираю архитектуру и продумываю пользовательский путь от первого клика до финального результата.
+    <!-- Hero Section -->
+    <header class="min-h-[70vh] flex flex-col justify-center px-6 md:px-12 lg:px-24">
+        <p class="uppercase tracking-widest text-sm font-semibold mb-6">Portfolio 2026</p>
+        <h1 class="font-serif text-6xl md:text-8xl lg:text-[110px] leading-[0.9] tracking-tight mb-8">
+            Анна<br>
+            <span class="italic text-muted">Ветютнева</span>
+        </h1>
+        <div class="max-w-2xl">
+            <p class="text-xl md:text-2xl font-light leading-relaxed">
+                Я проектирую UI/UX и управляю продуктами. От сложной системной логики до чистой визуальной эстетики.
             </p>
-            <div class="flex gap-4">
-                <a href="#projects" class="bg-accent text-text px-8 py-4 rounded-full font-bold text-[15px] hover:bg-gray-200 transition-colors">Мои работы</a>
-                <a href="https://t.me/annavetyutneva" target="_blank" class="bg-white border border-border text-text px-8 py-4 rounded-full font-bold text-[15px] hover:bg-gray-50 transition-colors flex items-center gap-2">
-                    <i class="ph-fill ph-telegram-logo text-xl"></i> Связаться
+            <div class="mt-10">
+                <a href="https://t.me/annavetyutneva" target="_blank" class="inline-flex items-center gap-2 border-b border-black pb-1 text-lg hover:text-muted hover:border-muted transition-colors">
+                    Связаться в Telegram <i class="ph ph-arrow-right"></i>
                 </a>
-            </div>
-        </header>
-
-        <!-- Project: Блянер -->
-        <div id="projects" class="mb-32">
-            
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 gap-4">
-                <div>
-                    <div class="flex gap-2 mb-4">
-                        <span class="tag">Web App</span>
-                        <span class="tag">Mobile UI</span>
-                        <span class="tag">SaaS</span>
-                    </div>
-                    <h2 class="text-4xl font-bold mb-2 tracking-tight">Блянер (Blyaner)</h2>
-                    <p class="text-muted text-lg max-w-xl">Ультимативный таск-трекер для хаоса. Продукт, который объединяет трекинг сна, тайм-менеджмент и Канбан в одном "атомарном" интерфейсе.</p>
-                </div>
-                <a href="https://blyaner.vercel.app" target="_blank" class="text-accent font-bold flex items-center gap-1 hover:opacity-80 transition-opacity">
-                    Смотреть лайв <i class="ph-bold ph-arrow-up-right"></i>
-                </a>
-            </div>
-
-            <!-- Bento Grid for Project -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                
-                <!-- Main Desktop Feature -->
-                <div class="bento-card md:col-span-2 md:row-span-2 relative group h-[400px] md:h-[600px] bg-card">
-                    <div class="absolute inset-0 p-8 md:p-12 pb-0 flex items-end justify-center overflow-hidden">
-                        <img src="https://ninjahvoya-ship-it.github.io/client-prototypes/portfolio/assets/desktop-day.png" alt="Desktop Dashboard" class="mockup-img rounded-t-xl shadow-2xl object-contain object-bottom translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                    </div>
-                    <div class="absolute top-6 left-6 flex gap-2">
-                        <span class="bg-black/40 backdrop-blur-md text-text px-4 py-2 rounded-full text-xs font-bold shadow-lg border border-border">Desktop Dashboard</span>
-                    </div>
-                </div>
-
-                <!-- Mobile View -->
-                <div class="bento-card relative group h-[400px] md:h-[600px] bg-card">
-                    <div class="absolute inset-0 p-8 flex items-center justify-center">
-                        <img src="https://ninjahvoya-ship-it.github.io/client-prototypes/portfolio/assets/mobile-day.png" alt="Mobile View" class="mockup-img object-contain scale-95 group-hover:scale-100 transition-transform duration-500">
-                    </div>
-                    <div class="absolute top-6 left-6">
-                        <span class="bg-black/40 backdrop-blur-md text-text px-4 py-2 rounded-full text-xs font-bold shadow-lg border border-border">Mobile Adaptive</span>
-                    </div>
-                </div>
-
-                <!-- Weekly View -->
-                <div class="bento-card md:col-span-2 relative h-[300px] md:h-[400px] bg-card">
-                    <div class="absolute inset-0 p-8 md:p-12 pb-0 flex items-end justify-center overflow-hidden">
-                        <img src="https://ninjahvoya-ship-it.github.io/client-prototypes/portfolio/assets/desktop-week.png" alt="Weekly Kanban" class="mockup-img rounded-t-xl shadow-2xl object-cover object-top translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                    </div>
-                    <div class="absolute top-6 left-6">
-                        <span class="bg-black/40 backdrop-blur-md text-text px-4 py-2 rounded-full text-xs font-bold shadow-lg border border-border">Weekly Kanban</span>
-                    </div>
-                </div>
-
-                <!-- Auth / Login -->
-                <div class="bento-card relative h-[300px] md:h-[400px] bg-card">
-                    <div class="absolute inset-0 flex items-center justify-center p-8">
-                        <img src="https://ninjahvoya-ship-it.github.io/client-prototypes/portfolio/assets/auth.png" alt="Auth Screen" class="mockup-img rounded-xl shadow-2xl object-cover">
-                    </div>
-                    <div class="absolute top-6 left-6">
-                        <span class="bg-black/40 backdrop-blur-md text-text px-4 py-2 rounded-full text-xs font-bold shadow-lg border border-border">Auth Flow</span>
-                    </div>
-                </div>
-
-            </div>
-            
-            <!-- Description & Tech Details -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12 pt-12 border-t border-border">
-                <div class="md:col-span-2">
-                    <h3 class="text-xl font-bold mb-4">О проекте</h3>
-                    <p class="text-muted leading-relaxed mb-4">
-                        Блянер (Planner) был задуман как инструмент для людей с СДВГ и тех, кому сложно удерживать фокус в стандартных таск-трекерах. Главная задача состояла в том, чтобы убрать когнитивную перегрузку и объединить задачи с трекингом физического состояния (сон).
-                    </p>
-                    <p class="text-muted leading-relaxed">
-                        Я разработала концепцию атомарного UI, где левый сайдбар работает как постоянный дашборд (показывая сон, прогресс и навигацию), а центральная область переключается между фокус-режимом одного дня и канбан-доской на неделю. Интерфейс построен на контрасте мягкого лавандового фона (#9A90DA) и кислотно-лаймовых акцентов для удержания внимания.
-                    </p>
-                </div>
-                <div>
-                    <h3 class="text-xl font-bold mb-4">Моя роль</h3>
-                    <ul class="space-y-3 text-muted">
-                        <li class="flex items-center gap-2"><i class="ph-fill ph-check-circle text-accent"></i> UI/UX Архитектура</li>
-                        <li class="flex items-center gap-2"><i class="ph-fill ph-check-circle text-accent"></i> Дизайн-система (Atomic)</li>
-                        <li class="flex items-center gap-2"><i class="ph-fill ph-check-circle text-accent"></i> Мобильная адаптация</li>
-                        <li class="flex items-center gap-2"><i class="ph-fill ph-check-circle text-accent"></i> Frontend (Next.js + Tailwind)</li>
-                    </ul>
-                </div>
             </div>
         </div>
+    </header>
 
-        <!-- Project: Otiwa -->
-        <div class="mb-32">
-            
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 gap-4">
-                <div>
-                    <div class="flex gap-2 mb-4">
-                        <span class="tag">Marketplace</span>
-                        <span class="tag">Product Management</span>
-                        <span class="tag">B2B / B2C</span>
+    <main>
+        <!-- PROJECT 1: Editorial Layout (Asymmetric & Full Width) -->
+        <section class="mt-20 pt-20 border-t border-black/10">
+            <div class="px-6 md:px-12 lg:px-24 mb-12">
+                <div class="flex flex-col md:flex-row md:items-end justify-between gap-8">
+                    <div>
+                        <span class="text-sm font-bold uppercase tracking-widest text-muted block mb-4">Web App • UI/UX</span>
+                        <h2 class="font-serif text-5xl md:text-7xl">Блянер</h2>
                     </div>
-                    <h2 class="text-4xl font-bold mb-2 tracking-tight">Маркетплейс «Отива» (Otiwa)</h2>
-                    <p class="text-muted text-lg max-w-xl">Управление разработкой крупного сервиса заказа товаров и услуг. Полный цикл продакт-менеджмента от ТЗ до релиза.</p>
-                </div>
-                <a href="#" class="text-accent font-bold flex items-center gap-1 hover:opacity-80 transition-opacity">
-                    Смотреть проект <i class="ph-bold ph-arrow-up-right"></i>
-                </a>
-            </div>
-
-            <!-- Bento Grid for Project -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                
-                <!-- Main Desktop Feature -->
-                <div class="bento-card md:col-span-2 md:row-span-2 relative group h-[400px] md:h-[600px] bg-card">
-                    <div class="absolute inset-0 p-8 md:p-12 pb-0 flex items-start justify-center overflow-hidden">
-                        <img src="https://ninjahvoya-ship-it.github.io/client-prototypes/portfolio/assets/otiwa-main.png" alt="Otiwa Main" class="mockup-img rounded-t-xl shadow-2xl object-cover object-top translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                    </div>
-                    <div class="absolute top-6 left-6 flex gap-2">
-                        <span class="bg-black/40 backdrop-blur-md text-text px-4 py-2 rounded-full text-xs font-bold shadow-lg border border-border">Main Feed</span>
-                    </div>
-                </div>
-
-                <!-- B2B View -->
-                <div class="bento-card relative group h-[400px] md:h-[600px] bg-white">
-                    <div class="absolute inset-0 p-8 flex items-center justify-center">
-                        <img src="https://ninjahvoya-ship-it.github.io/client-prototypes/portfolio/assets/otiwa-b2b.png" alt="Otiwa B2B" class="mockup-img shadow-2xl object-cover object-top scale-95 group-hover:scale-100 transition-transform duration-500 border border-gray-200 rounded-lg">
-                    </div>
-                    <div class="absolute top-6 left-6">
-                        <span class="bg-black/40 backdrop-blur-md text-text px-4 py-2 rounded-full text-xs font-bold shadow-lg border border-border">Otiwa Business</span>
-                    </div>
-                </div>
-
-                <!-- Finance View -->
-                <div class="bento-card md:col-span-2 relative h-[300px] md:h-[400px] bg-card">
-                    <div class="absolute inset-0 p-8 md:p-12 pb-0 flex items-start justify-center overflow-hidden">
-                        <img src="https://ninjahvoya-ship-it.github.io/client-prototypes/portfolio/assets/otiwa-finance.png" alt="Otiwa Finance" class="mockup-img rounded-t-xl shadow-2xl object-cover object-top translate-y-4 group-hover:translate-y-0 transition-transform duration-500 border border-gray-200">
-                    </div>
-                    <div class="absolute top-6 left-6">
-                        <span class="bg-black/40 backdrop-blur-md text-text px-4 py-2 rounded-full text-xs font-bold shadow-lg border border-border">Finance & Billing</span>
-                    </div>
-                </div>
-
-            </div>
-            
-            <!-- Description & Tech Details -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12 pt-12 border-t border-border">
-                <div class="md:col-span-2">
-                    <h3 class="text-xl font-bold mb-4">О проекте</h3>
-                    <p class="text-muted leading-relaxed mb-4">
-                        Разработка сложного двухстороннего маркетплейса (пользователи и исполнители). Проект требовал глубокого погружения в бизнес-логику: от системы формирования заказов до сложного финансового модуля со стоимостью ответов по разным категориям.
-                    </p>
-                    <p class="text-muted leading-relaxed">
-                        В этом проекте я выступала в роли Product/Project Manager. Моя главная задача — перевести требования заказчика на язык разработки, составить исчерпывающее техническое задание и довести продукт до успешного релиза в срок.
-                    </p>
-                </div>
-                <div>
-                    <h3 class="text-xl font-bold mb-4">Моя роль (Management)</h3>
-                    <ul class="space-y-3 text-muted">
-                        <li class="flex items-center gap-2"><i class="ph-fill ph-check-circle text-accent"></i> Разработка ТЗ</li>
-                        <li class="flex items-center gap-2"><i class="ph-fill ph-check-circle text-accent"></i> Управление командой IT</li>
-                        <li class="flex items-center gap-2"><i class="ph-fill ph-check-circle text-accent"></i> Контроль сроков и качества</li>
-                        <li class="flex items-center gap-2"><i class="ph-fill ph-check-circle text-accent"></i> Коммуникация с заказчиком</li>
-                    </ul>
+                    <p class="max-w-md text-lg font-light">Ультимативный таск-трекер с атомарным интерфейсом, объединяющий Канбан и трекинг сна.</p>
                 </div>
             </div>
-        </div>
 
-    </div>
+            <!-- Massive Full-bleed Image -->
+            <div class="w-full h-[60vh] md:h-[85vh] bg-[#9A90DA] px-6 md:px-24 pt-12 md:pt-24 img-reveal">
+                <img src="https://ninjahvoya-ship-it.github.io/client-prototypes/portfolio/assets/desktop-day.png" alt="Blyaner Desktop" class="w-full h-full object-cover object-top shadow-2xl rounded-t-2xl">
+            </div>
+
+            <!-- Description & Asymmetric Grid -->
+            <div class="px-6 md:px-12 lg:px-24 py-20">
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-12 mb-20">
+                    <div class="md:col-span-4">
+                        <h3 class="font-serif text-3xl mb-6 italic">Задача</h3>
+                        <p class="font-light leading-relaxed">Разработать инструмент для людей с СДВГ. Убрать когнитивную перегрузку, сделать акцент на один день, добавить трекинг сна и мягкие, но контрастные цвета для удержания фокуса.</p>
+                        
+                        <h3 class="font-serif text-3xl mb-6 italic mt-12">Роль</h3>
+                        <ul class="font-light space-y-2">
+                            <li>— UI/UX Архитектура</li>
+                            <li>— Дизайн-система</li>
+                            <li>— Frontend (Next.js)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="md:col-span-8 flex flex-col md:flex-row gap-8">
+                        <!-- Mobile Mockup (Vertical) -->
+                        <div class="w-full md:w-1/3 bg-[#222] rounded-2xl p-8 img-reveal shadow-lg">
+                            <img src="https://ninjahvoya-ship-it.github.io/client-prototypes/portfolio/assets/mobile-day.png" alt="Mobile" class="w-full object-contain">
+                        </div>
+                        <!-- Week Mockup (Horizontal) -->
+                        <div class="w-full md:w-2/3 bg-[#9A90DA] rounded-2xl p-8 img-reveal flex items-center shadow-lg">
+                            <img src="https://ninjahvoya-ship-it.github.io/client-prototypes/portfolio/assets/desktop-week.png" alt="Week" class="w-full object-cover rounded-xl shadow-xl">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROJECT 2: Sticky Scroll Case Study Layout -->
+        <section class="border-t border-black/10 bg-white">
+            <div class="px-6 md:px-12 lg:px-24 py-20">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 relative">
+                    
+                    <!-- Left Sidebar: Sticky Context -->
+                    <div class="lg:col-span-4 relative">
+                        <div class="sticky top-20">
+                            <span class="text-sm font-bold uppercase tracking-widest text-muted block mb-4">Marketplace • Product Mgmt</span>
+                            <h2 class="font-serif text-5xl md:text-7xl mb-8">Otiwa</h2>
+                            <p class="font-light text-lg mb-8 leading-relaxed">
+                                Управление разработкой двустороннего маркетплейса услуг. Полный цикл продакт-менеджмента от формирования ТЗ до финансового модуля и релиза.
+                            </p>
+                            
+                            <h3 class="font-serif text-2xl mb-4 italic">Моя ответственность</h3>
+                            <ul class="font-light space-y-3 pb-8 border-b border-black/10">
+                                <li>— Написание технических заданий</li>
+                                <li>— Руководство командой IT</li>
+                                <li>— Коммуникация с заказчиком</li>
+                                <li>— Контроль сроков</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Scrolling Mockups -->
+                    <div class="lg:col-span-8 space-y-12">
+                        <!-- Image 1 -->
+                        <div class="bg-[#EAF5D9] p-8 md:p-16 rounded-2xl img-reveal">
+                            <img src="https://ninjahvoya-ship-it.github.io/client-prototypes/portfolio/assets/otiwa-main.png" alt="Otiwa Main" class="w-full shadow-2xl rounded-xl">
+                            <p class="mt-6 text-sm text-center text-muted uppercase tracking-widest font-semibold">Главная лента платформы</p>
+                        </div>
+                        
+                        <!-- Image 2 -->
+                        <div class="bg-gray-100 p-8 md:p-16 rounded-2xl border border-black/5 img-reveal">
+                            <img src="https://ninjahvoya-ship-it.github.io/client-prototypes/portfolio/assets/otiwa-b2b.png" alt="Otiwa B2B" class="w-full shadow-2xl rounded-xl">
+                            <p class="mt-6 text-sm text-center text-muted uppercase tracking-widest font-semibold">Лендинг для исполнителей (B2B)</p>
+                        </div>
+
+                        <!-- Image 3 -->
+                        <div class="bg-[#DFF1FA] p-8 md:p-16 rounded-2xl img-reveal">
+                            <img src="https://ninjahvoya-ship-it.github.io/client-prototypes/portfolio/assets/otiwa-finance.png" alt="Otiwa Finance" class="w-full shadow-2xl rounded-xl">
+                            <p class="mt-6 text-sm text-center text-muted uppercase tracking-widest font-semibold">Финансовый дашборд и биллинг</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-[#1A1A1A] text-[#F4F4F0] py-16 px-6 md:px-12 lg:px-24 text-center">
+        <h2 class="font-serif text-4xl italic mb-6">Готовы обсудить проект?</h2>
+        <a href="https://t.me/annavetyutneva" class="inline-block bg-[#F4F4F0] text-[#1A1A1A] px-8 py-4 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-white transition-colors">
+            Написать в Telegram
+        </a>
+    </footer>
 
 </body>
 </html>
