@@ -63,10 +63,13 @@
                 overflow-y: auto;
                 position: relative;
             } 
-            /* Fix the bottom bar position on desktop so it sticks to the bottom of the container, not the viewport */
+            /* Fix the bottom bar position on desktop */
             .fixed.bottom-0 {
                 position: absolute;
                 bottom: 0;
+                left: 0;
+                width: 100%;
+                border-radius: 0 0 30px 30px; /* Match the phone bezel curve at the bottom */
             }
         }
         
