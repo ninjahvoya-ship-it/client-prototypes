@@ -147,17 +147,17 @@
             transform: scale(1.1);
         }
         
-        /* The liquid flowing tooltip */
+        /* Liquid tooltip */
         .side-tooltip {
             position: absolute;
             right: 100%;
-            margin-right: -1px; /* Overlap by 1px to hide the seam */
+            margin-right: -2px; /* Pull it slightly under the button to hide seams */
             top: 50%;
-            transform: translateY(-50%) translateX(20px);
+            transform: translateY(-50%) translateX(10px) scale(0.9);
             background: #1F2937;
             color: #FFFFFF;
-            padding: 10px 16px;
-            border-radius: 14px 0 0 14px; 
+            padding: 8px 14px;
+            border-radius: 12px 0 0 12px;
             font-family: 'JetBrains Mono', monospace;
             font-size: 11px;
             font-weight: 700;
@@ -166,37 +166,15 @@
             white-space: nowrap;
             opacity: 0;
             visibility: hidden;
-            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transition: all 0.2s ease-out;
             pointer-events: none;
-            z-index: -1; /* Place behind the button to hide seams */
+            z-index: -1;
         }
-        
-        /* Flowing liquid joint (SVG-like curve using box-shadow) */
-        .side-tooltip::after, .side-tooltip::before {
-            content: '';
-            position: absolute;
-            right: -10px; 
-            width: 10px;
-            height: 10px;
-            background: transparent;
-        }
-        
-        .side-tooltip::before {
-            top: -10px;
-            border-bottom-right-radius: 10px;
-            box-shadow: 5px 5px 0 5px #1F2937;
-        }
-        
-        .side-tooltip::after {
-            bottom: -10px;
-            border-top-right-radius: 10px;
-            box-shadow: 5px -5px 0 5px #1F2937;
-        }
-        
+
         .side-btn:hover .side-tooltip {
             opacity: 1;
             visibility: visible;
-            transform: translateY(-50%) translateX(1px); /* Ensure tight connection */
+            transform: translateY(-50%) translateX(0) scale(1);
         }
     </style>
 </head>
