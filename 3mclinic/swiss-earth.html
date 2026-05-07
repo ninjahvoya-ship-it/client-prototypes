@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>3M Clinic - Earthy Swiss Concept</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { 
+                        serif: ['Cormorant Garamond', 'serif'],
+                        sans: ['Montserrat', 'sans-serif']
+                    },
+                    colors: {
+                        'brand-green': '#10673A',  /* Forest Green */
+                        'brand-copper': '#8C4409', /* Copper / Rust */
+                        'brand-cream': '#F1EDE2',  /* Cream / Off-white */
+                        'brand-surface': '#FFFFFF', /* Pure white for cards to pop against cream */
+                        'brand-dark': '#272925',   /* Very dark grey-green */
+                        'brand-muted': '#8E918B',
+                        'brand-border': '#E3DED1'  /* Slightly darker cream for borders */
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { 
+            background-color: #E5E5E5; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            min-height: 100vh; 
+            margin: 0; 
+            font-family: 'Montserrat', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .app-container { 
+            width: 100%; 
+            max-width: 400px; 
+            background-color: #F1EDE2; 
+            min-height: 100vh; 
+            position: relative; 
+            overflow-x: hidden; 
+            overflow-y: auto; 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1); 
+        }
+        @media (min-width: 400px) { 
+            .app-container { 
+                min-height: 850px; 
+                height: 850px; 
+                border-radius: 0px; 
+                margin: 20px; 
+                border: 1px solid #D1CDC2;
+            } 
+        }
+        ::-webkit-scrollbar { display: none; }
+        .app-container { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        /* Fine lines tailored to the new palette */
+        .fine-border { border: 1px solid #E3DED1; }
+        .fine-border-b { border-bottom: 1px solid #E3DED1; }
+        .fine-border-t { border-top: 1px solid #E3DED1; }
+        
+        .hide-scroll::-webkit-scrollbar { display: none; }
+        .hide-scroll { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="text-brand-dark antialiased">
+    <div class="app-container pb-32">
+        
+        <!-- Header -->
+        <header class="px-6 pt-12 pb-4 flex justify-between items-center fine-border-b bg-brand-cream sticky top-0 z-50">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 fine-border bg-brand-surface flex items-center justify-center font-sans font-medium text-xs tracking-widest text-brand-dark">
+                    АВ
+                </div>
+                <h1 class="text-xl font-serif font-bold text-brand-dark tracking-wide uppercase">3M Clinic</h1>
+            </div>
+            <button class="w-10 h-10 flex items-center justify-end text-brand-dark">
+                <i class="ph-light ph-bell text-[24px]"></i>
+            </button>
+        </header>
+
+        <!-- Dynamic Appointment Banner -->
+        <div class="p-6">
+            <div class="w-full relative bg-brand-surface fine-border p-6 flex flex-col gap-6 shadow-sm">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <!-- Pill uses the Copper color -->
+                        <span class="text-[9px] uppercase tracking-[0.15em] font-sans text-white bg-brand-copper px-2 py-1 mb-3 inline-block">Активная запись</span>
+                        <h2 class="font-serif text-2xl text-brand-dark leading-tight mt-1">Осмотр и<br>консультация</h2>
+                    </div>
+                    <div class="w-12 h-12 rounded-full overflow-hidden fine-border">
+                        <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?q=80&w=250&auto=format&fit=crop" class="w-full h-full object-cover" alt="Doctor">
+                    </div>
+                </div>
+                
+                <div class="flex flex-col gap-3">
+                    <div class="flex items-center gap-3 text-brand-dark">
+                        <i class="ph-light ph-calendar-blank text-lg text-brand-copper"></i>
+                        <span class="font-sans text-xs font-medium">Завтра, 14 мая в 14:30</span>
+                    </div>
+                    <div class="flex items-center gap-3 text-brand-dark">
+                        <i class="ph-light ph-map-pin text-lg text-brand-muted"></i>
+                        <span class="font-sans text-xs font-medium">Невский пр-т, 114</span>
+                    </div>
+                </div>
+                
+                <div class="flex gap-2 w-full mt-2">
+                    <!-- Main button uses the Forest Green -->
+                    <button class="flex-1 bg-brand-green text-white font-sans text-[9px] uppercase tracking-[0.1em] py-3 hover:bg-brand-copper transition-colors">Детали визита</button>
+                    <button class="w-12 h-12 fine-border bg-brand-cream flex items-center justify-center text-brand-dark hover:bg-brand-surface transition-colors">
+                        <i class="ph-light ph-qr-code text-lg"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Actions Grid -->
+        <div class="px-6 mb-8">
+            <div class="grid grid-cols-2 gap-3">
+                <div class="fine-border bg-brand-surface p-5 flex flex-col items-center text-center cursor-pointer hover:bg-brand-cream transition-colors shadow-sm">
+                    <i class="ph-light ph-plus text-2xl text-brand-green mb-3"></i>
+                    <span class="font-sans text-[10px] uppercase tracking-[0.1em] font-medium text-brand-dark">Новая запись</span>
+                </div>
+                <div class="fine-border bg-brand-surface p-5 flex flex-col items-center text-center cursor-pointer hover:bg-brand-cream transition-colors shadow-sm">
+                    <i class="ph-light ph-users text-2xl text-brand-dark mb-3"></i>
+                    <span class="font-sans text-[10px] uppercase tracking-[0.1em] font-medium text-brand-dark">Моя семья</span>
+                </div>
+                <div class="fine-border bg-brand-surface p-5 flex flex-col items-center text-center cursor-pointer hover:bg-brand-cream transition-colors shadow-sm">
+                    <i class="ph-light ph-file-text text-2xl text-brand-dark mb-3"></i>
+                    <span class="font-sans text-[10px] uppercase tracking-[0.1em] font-medium text-brand-dark">Документы</span>
+                </div>
+                <div class="fine-border bg-brand-surface p-5 flex flex-col items-center text-center cursor-pointer hover:bg-brand-cream transition-colors shadow-sm">
+                    <i class="ph-light ph-wallet text-2xl text-brand-copper mb-3"></i>
+                    <span class="font-sans text-[10px] uppercase tracking-[0.1em] font-medium text-brand-dark">Счет: 1450 ₽</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Doctors Scroll -->
+        <div class="pl-6 mb-10">
+            <div class="flex items-center gap-2 mb-4">
+                <i class="ph-light ph-asterisk text-brand-copper text-xs"></i>
+                <h3 class="font-sans text-[10px] uppercase tracking-[0.2em] text-brand-muted">Наши специалисты</h3>
+            </div>
+            
+            <div class="flex gap-4 overflow-x-auto hide-scroll pr-6 pb-2">
+                <!-- Doctor Card -->
+                <div class="w-[140px] shrink-0">
+                    <div class="w-full aspect-[3/4] relative overflow-hidden bg-brand-surface fine-border p-1 mb-3">
+                        <img src="https://images.unsplash.com/photo-1594824436998-058d203d8d34?q=80&w=400&auto=format&fit=crop" class="w-full h-full object-cover grayscale" alt="Dr. Ivanov">
+                        <div class="absolute inset-0 bg-brand-copper/10 mix-blend-multiply"></div>
+                    </div>
+                    <h4 class="font-serif text-base text-brand-dark leading-tight mb-1">Алексей<br>Иванов</h4>
+                    <p class="font-sans text-[9px] uppercase tracking-[0.1em] text-brand-copper font-medium">Главный врач</p>
+                </div>
+                
+                <!-- Doctor Card -->
+                <div class="w-[140px] shrink-0">
+                    <div class="w-full aspect-[3/4] relative overflow-hidden bg-brand-surface fine-border p-1 mb-3">
+                        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=400&auto=format&fit=crop" class="w-full h-full object-cover grayscale" alt="Dr. Smirnova">
+                        <div class="absolute inset-0 bg-brand-copper/10 mix-blend-multiply"></div>
+                    </div>
+                    <h4 class="font-serif text-base text-brand-dark leading-tight mb-1">Мария<br>Смирнова</h4>
+                    <p class="font-sans text-[9px] uppercase tracking-[0.1em] text-brand-muted">Ортодонт</p>
+                </div>
+
+                <!-- Doctor Card -->
+                <div class="w-[140px] shrink-0">
+                    <div class="w-full aspect-[3/4] relative overflow-hidden bg-brand-surface fine-border p-1 mb-3">
+                        <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?q=80&w=400&auto=format&fit=crop" class="w-full h-full object-cover grayscale" alt="Dr. Sokolov">
+                        <div class="absolute inset-0 bg-brand-copper/10 mix-blend-multiply"></div>
+                    </div>
+                    <h4 class="font-serif text-base text-brand-dark leading-tight mb-1">Дмитрий<br>Соколов</h4>
+                    <p class="font-sans text-[9px] uppercase tracking-[0.1em] text-brand-muted">Хирург</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Navigation -->
+        <div class="fixed bottom-0 left-0 w-full bg-brand-cream/95 backdrop-blur-md fine-border-t flex justify-center z-50">
+            <div class="w-full max-w-[400px] flex justify-between items-center px-8 py-4">
+                <a href="#" class="flex flex-col items-center gap-1.5 text-brand-green">
+                    <i class="ph-fill ph-asterisk text-xl"></i>
+                    <span class="text-[8px] font-sans uppercase tracking-[0.1em] font-medium">Главная</span>
+                </a>
+                <a href="#" class="flex flex-col items-center gap-1.5 text-brand-muted hover:text-brand-dark transition-colors">
+                    <i class="ph-light ph-calendar-blank text-xl"></i>
+                    <span class="text-[8px] font-sans uppercase tracking-[0.1em] font-medium">Визиты</span>
+                </a>
+                <a href="#" class="flex flex-col items-center gap-1.5 text-brand-muted hover:text-brand-dark transition-colors">
+                    <i class="ph-light ph-user text-xl"></i>
+                    <span class="text-[8px] font-sans uppercase tracking-[0.1em] font-medium">Профиль</span>
+                </a>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
