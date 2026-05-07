@@ -112,51 +112,52 @@
         /* Floating Sidebar */
         .floating-sidebar {
             position: fixed;
-            right: -10px; /* Hide the hard right edge */
+            right: 0;
             top: 50%;
             transform: translateY(-50%);
             background: #E4FF00; /* Lemon Accent */
             border: 1px solid #D4ED00;
-            border-radius: 40px 0 0 40px; /* Much softer, pill-like curve */
-            padding: 24px 16px 24px 20px;
+            border-right: none;
+            border-radius: 24px 0 0 24px; /* Back to original smaller radius */
+            padding: 16px 10px; /* Back to compact padding */
             display: flex;
             flex-direction: column;
-            gap: 16px;
-            box-shadow: -8px 8px 30px rgba(228,255,0,0.15), inset 2px 0 10px rgba(255,255,255,0.4);
+            gap: 12px;
+            box-shadow: -8px 0 30px rgba(228,255,0,0.15);
             z-index: 100;
-            backdrop-filter: blur(10px);
         }
         
         .side-btn {
             position: relative;
-            width: 48px;
-            height: 48px;
-            border-radius: 50%; /* Perfect circles inside the pill */
+            width: 44px; /* Compact size */
+            height: 44px;
+            border-radius: 14px; /* Squircle shape instead of perfect circle */
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #1F2937; /* Dark graphite for icons on lemon */
-            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-            background: rgba(255, 255, 255, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.5);
+            color: #1F2937;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            background: transparent;
+            z-index: 2;
         }
         
         .side-btn:hover {
             background: #1F2937;
             color: #E4FF00;
-            transform: scale(1.15) translateX(-4px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-            border-color: #1F2937;
+            transform: scale(1.1);
         }
         
+        /* The liquid flowing tooltip */
         .side-tooltip {
             position: absolute;
             right: 100%;
-            margin-right: 20px;
+            margin-right: 0; /* Attach directly to the sidebar */
+            top: 50%;
+            transform: translateY(-50%) translateX(20px);
             background: #1F2937;
             color: #FFFFFF;
-            padding: 8px 16px;
-            border-radius: 12px;
+            padding: 10px 16px;
+            border-radius: 14px 0 0 14px; /* Flat on the right side where it connects */
             font-family: 'JetBrains Mono', monospace;
             font-size: 11px;
             font-weight: 700;
@@ -165,28 +166,37 @@
             white-space: nowrap;
             opacity: 0;
             visibility: hidden;
-            transform: translateX(10px);
-            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
             pointer-events: none;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            z-index: 1;
         }
         
-        /* Tiny triangle for tooltip */
-        .side-tooltip::after {
+        /* Flowing liquid joint (SVG-like curve using box-shadow) */
+        .side-tooltip::after, .side-tooltip::before {
             content: '';
             position: absolute;
-            top: 50%;
-            left: 100%;
-            transform: translateY(-50%);
-            border-width: 6px;
-            border-style: solid;
-            border-color: transparent transparent transparent #1F2937;
+            right: -10px; /* Connect to sidebar */
+            width: 10px;
+            height: 10px;
+            background: transparent;
+        }
+        
+        .side-tooltip::before {
+            top: -10px;
+            border-bottom-right-radius: 10px;
+            box-shadow: 5px 5px 0 5px #1F2937;
+        }
+        
+        .side-tooltip::after {
+            bottom: -10px;
+            border-top-right-radius: 10px;
+            box-shadow: 5px -5px 0 5px #1F2937;
         }
         
         .side-btn:hover .side-tooltip {
             opacity: 1;
             visibility: visible;
-            transform: translateX(0);
+            transform: translateY(-50%) translateX(0); /* Slides out smoothly */
         }
     </style>
 </head>
@@ -204,28 +214,23 @@
     <!-- Floating Icon Sidebar -->
     <div class="floating-sidebar hidden md:flex">
         <a href="#blyaner" class="side-btn">
-            <!-- Planner: overlapping abstract layers instead of a literal calendar -->
-            <i class="ph-bold ph-stack-simple text-[22px]"></i>
+            <i class="ph-bold ph-calendar-check text-[20px]"></i>
             <span class="side-tooltip">Блянер</span>
         </a>
         <a href="#otiwa" class="side-btn">
-            <!-- Marketplace: intersecting circles/nodes instead of a literal store -->
-            <i class="ph-bold ph-graph text-[22px]"></i>
+            <i class="ph-bold ph-storefront text-[20px]"></i>
             <span class="side-tooltip">Otiwa Marketplace</span>
         </a>
         <a href="#prostoseller" class="side-btn">
-            <!-- Data/Dashboard: sliders/toggles instead of a table -->
-            <i class="ph-bold ph-sliders-horizontal text-[22px]"></i>
+            <i class="ph-bold ph-chart-line-up text-[20px]"></i>
             <span class="side-tooltip">Prostoseller</span>
         </a>
         <a href="#3mclinic" class="side-btn">
-            <!-- Health: spark/wave instead of a literal heart -->
-            <i class="ph-bold ph-activity text-[22px]"></i>
+            <i class="ph-bold ph-tooth text-[20px]"></i>
             <span class="side-tooltip">3M Clinic</span>
         </a>
         <a href="#booktracker" class="side-btn">
-            <!-- Book: bookmark/library lines instead of a literal book -->
-            <i class="ph-bold ph-bookmarks-simple text-[22px]"></i>
+            <i class="ph-bold ph-book-open text-[20px]"></i>
             <span class="side-tooltip">Book Tracker</span>
         </a>
     </div>
