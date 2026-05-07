@@ -199,28 +199,30 @@
                         <span class="chip">UI/UX</span>
                     </div>
                     <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-4">Блянер (Blyaner)</h2>
-                    <p class="text-xl text-muted font-light">Атомарный таск-трекер, объединяющий Канбан-доску и трекинг сна. Разработан специально для удержания фокуса и снижения когнитивной нагрузки.</p>
+                    <p class="text-xl text-muted font-light">Веб-приложение для десктопа, смартфона и посадочная страница (Landing).</p>
                 </div>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
                 <!-- Text block -->
-                <div class="md:col-span-5 flex flex-col gap-6">
-                    <div class="grid-frame p-8 items-start justify-start flex-col h-[300px]">
-                        <h3 class="font-bold text-lg mb-4">Моя роль</h3>
-                        <ul class="role-list text-sm">
-                            <li>Аналитика аудитории и формирование MVP</li>
-                            <li>Проектирование UX (Атомарный интерфейс)</li>
-                            <li>Создание UI-кита и Дизайн-системы</li>
-                            <li>Frontend-разработка (Next.js + Tailwind)</li>
-                        </ul>
-                    </div>
-                    <div class="grid-frame p-8 items-start justify-start flex-col h-[300px]">
-                        <h3 class="font-bold text-lg mb-2">Проблема & Решение</h3>
-                        <p class="text-sm text-muted leading-relaxed">
-                            <b>Проблема:</b> Классические трекеры создают когнитивный перегруз. Огромные бэклоги демотивируют пользователей с СДВГ.<br><br>
-                            <b>Решение:</b> Строгое разделение: станичный сайдбар с биометрией (сон) и два режима работы — «Фокус одного дня» (ничего лишнего) и «Канбан на неделю». Контрастная палитра (лаванда + лайм) удерживает внимание.
+                <div class="md:col-span-5 flex flex-col gap-6 w-full">
+                    <div class="grid-frame p-8 items-start justify-start flex-col h-[624px]">
+                        <h3 class="font-bold text-lg mb-4">Суть проекта</h3>
+                        <p class="text-sm text-muted leading-relaxed mb-8">
+                            Персональный планер для соло-фаундеров, фрилансеров и людей с хаотичным графиком, множеством параллельных задач и проблемным ощущением времени.<br><br>
+                            Он собирает задачи, проекты, дедлайны, таймер и сон в одном личном планере, чтобы пользователь видел не только список дел, но и реальную нагрузку, потраченное время и связь продуктивности с состоянием. Его задача — дать понятную личную структуру, не перегружая корпоративным функционалом.
                         </p>
+
+                        <h3 class="font-bold text-lg mb-4">Моя роль</h3>
+                        <ul class="role-list text-sm space-y-2">
+                            <li>Составление продуктовой концепции и MVP scope.</li>
+                            <li>Проработка карты экранов, логики взаимодействия и навигации.</li>
+                            <li>Проектирование «атомарной» UX-архитектуры.</li>
+                            <li>Разработка UI-кита и дизайн-системы.</li>
+                            <li>Проработка Business rules, Use cases, Edge cases.</li>
+                            <li>Проектирование схемы БД и модели данных.</li>
+                            <li>Прописывание структуры репозитория, маршрутов (routes) и базового layout.</li>
+                        </ul>
                     </div>
                 </div>
 
@@ -263,7 +265,7 @@
                         <span class="chip">B2B / B2C</span>
                     </div>
                     <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-4">Otiwa</h2>
-                    <p class="text-xl text-muted font-light">Управление разработкой двустороннего маркетплейса услуг и биллинговой системы.</p>
+                    <p class="text-xl text-muted font-light">Сайт и адаптация под мобильные устройства. Управление разработкой маркетплейса услуг и биллинговой системы.</p>
                 </div>
             </div>
 
@@ -276,18 +278,20 @@
                 </div>
 
                 <div class="md:col-span-4 flex flex-col gap-6">
-                    <div class="grid-frame p-8 items-start justify-start flex-col h-[300px]">
-                        <h3 class="font-bold text-lg mb-4">Моя ответственность</h3>
-                        <ul class="role-list text-sm">
-                            <li>Аналитика и проектирование базы данных</li>
-                            <li>Написание исчерпывающих ТЗ</li>
-                            <li>Руководство командой ИТ-разработки</li>
-                            <li>Контроль сроков и качества</li>
-                        </ul>
+                    <div class="grid-frame p-8 items-start justify-start flex-col h-[300px] overflow-y-auto">
+                        <h3 class="font-bold text-lg mb-2">Архитектура продукта</h3>
+                        <p class="text-sm text-muted leading-relaxed">
+                            Платформа соединяет клиентов, которым нужно решить задачу, и профессионалов, которые ищут заказы. Главной технической сложностью была разработка "Биллингового модуля" (система финансов), которая рассчитывает динамическую стоимость отклика, холдирует средства (безопасная сделка) и автоматически распределяет комиссию платформы.
+                        </p>
                     </div>
                     <div class="grid-frame p-8 items-start justify-start flex-col h-[300px]">
-                        <h3 class="font-bold text-lg mb-2">Задача бизнеса</h3>
-                        <p class="text-sm text-muted leading-relaxed">Создать масштабируемую B2B/B2C платформу. Спроектировать сложный финансовый модуль для расчета стоимости откликов.</p>
+                        <h3 class="font-bold text-lg mb-4">Product Management</h3>
+                        <ul class="role-list text-sm space-y-2">
+                            <li>Написание исчерпывающих технических заданий.</li>
+                            <li>Проектирование пользовательских сценариев и логики.</li>
+                            <li>Руководство командой ИТ-разработки.</li>
+                            <li>Контроль сроков и качества.</li>
+                        </ul>
                     </div>
                 </div>
 
@@ -313,7 +317,7 @@
                         <span class="chip">Adaptive UX</span>
                     </div>
                     <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-4">Prostoseller</h2>
-                    <p class="text-xl text-muted font-light">Адаптация сложной архитектуры данных (таблицы, аналитика) под мобильные устройства и планшеты.</p>
+                    <p class="text-xl text-muted font-light">Десктоп, планшет, моб. Комплексный редизайн аналитической платформы для селлеров маркетплейсов.</p>
                 </div>
             </div>
 
@@ -322,11 +326,11 @@
                 <div class="md:col-span-12 grid-frame p-8 items-start justify-start flex-col md:flex-row gap-8 min-h-[160px]">
                     <div class="flex-1">
                         <h3 class="font-bold text-lg mb-2">Проблема</h3>
-                        <p class="text-sm text-muted">B2B-платформы часто игнорируют мобильный UX. Селлерам приходилось открывать огромные таблицы с телефона, что ломало работу.</p>
+                        <p class="text-sm text-muted">B2B-платформы часто игнорируют мобильный UX из-за обилия данных. Селлерам приходилось открывать огромные таблицы с телефона.</p>
                     </div>
                     <div class="flex-1">
                         <h3 class="font-bold text-lg mb-2">Решение</h3>
-                        <p class="text-sm text-muted">Mobile-first подход. Таблицы превращены в информационные карточки на смартфонах, а на планшетах реализована система умных скроллов.</p>
+                        <p class="text-sm text-muted">Mobile-first подход. На десктопе — чистые таблицы и дашборды. На смартфонах — данные свернуты в удобные информационные карточки. На планшетах — система умных скроллов для сложной даты.</p>
                     </div>
                 </div>
 
@@ -361,14 +365,17 @@
                 <!-- Text -->
                 <div class="md:col-span-4 flex flex-col gap-6">
                     <div class="grid-frame p-8 items-start justify-start flex-col h-[624px]">
-                        <h3 class="font-bold text-2xl mb-8">Моя роль</h3>
-                        <ul class="role-list text-sm space-y-5">
-                            <li><b>Аналитика:</b> интеграция с YCLIENTS API.</li>
-                            <li><b>UX-архитектура:</b> проектирование логики линейной воронки записи без корзины.</li>
-                            <li><b>Проектирование логики:</b> система лояльности и флоу "Семейного аккаунта" (запись детей и родственников).</li>
-                            <li><b>Сценарии:</b> работа с медицинскими документами (нативные шторки, скачивание КЛКТ и PDF-планов лечения).</li>
-                            <li><b>UI-дизайн:</b> разработка концепции (премиум-лайфстайл / Pure Glass) с отказом от стерильного медицинского стиля.</li>
-                            <li><b>Прототипирование:</b> сборка полностью интерактивного кликабельного HTML-прототипа со свайпами и анимациями.</li>
+                        <h3 class="font-bold text-lg mb-2">Архитектура UX</h3>
+                        <p class="text-sm text-muted leading-relaxed mb-6">
+                            Отказ от классического медицинского стиля ("стерильные белые интерфейсы") в пользу премиального лайфстайл-приложения. Разработана строгая линейная воронка записи вместо "корзины" услуг, чтобы избежать конфликтов бронирования в расписании врачей.
+                        </p>
+                        
+                        <h3 class="font-bold text-lg mb-4">Моя роль</h3>
+                        <ul class="role-list text-sm space-y-3">
+                            <li>Аналитика интеграции (YCLIENTS API).</li>
+                            <li>Проектирование логики воронки записи.</li>
+                            <li>Разработка UI-концепции (Pure Glass).</li>
+                            <li>Создание кликабельного прототипа.</li>
                         </ul>
                     </div>
                 </div>
