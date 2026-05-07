@@ -109,29 +109,75 @@
         
         ::selection { background: #E4FF00; color: #000; }
         
-        /* Sidebar styling */
-        .project-nav-item {
+        /* Floating Sidebar */
+        .floating-sidebar {
+            position: fixed;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #FFFFFF;
+            border: 1px solid #E5E7EB;
+            border-right: none;
+            border-radius: 24px 0 0 24px;
+            padding: 16px 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            box-shadow: -8px 0 30px rgba(0,0,0,0.03);
+            z-index: 100;
+        }
+        .side-btn {
+            position: relative;
+            width: 44px;
+            height: 44px;
+            border-radius: 14px;
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            padding: 10px 16px;
+            justify-content: center;
+            color: #9CA3AF;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            background: transparent;
+        }
+        .side-btn:hover {
+            background: #F3F4F6;
+            color: #1F2937;
+            transform: scale(1.1);
+        }
+        .side-tooltip {
+            position: absolute;
+            right: 100%;
+            margin-right: 16px;
+            background: #1F2937;
+            color: #FFFFFF;
+            padding: 8px 14px;
             border-radius: 8px;
-            font-size: 14px;
-            font-weight: 500;
-            color: #4B5563;
-            transition: all 0.2s ease;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateX(10px);
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            pointer-events: none;
         }
-        .project-nav-item:hover {
-            background-color: #FFFFFF;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-            color: #1F2937;
+        /* Tiny triangle for tooltip */
+        .side-tooltip::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 100%;
+            transform: translateY(-50%);
+            border-width: 5px;
+            border-style: solid;
+            border-color: transparent transparent transparent #1F2937;
         }
-        .project-nav-item i {
-            color: #D1D5DB;
-            transition: color 0.2s ease;
-        }
-        .project-nav-item:hover i {
-            color: #1F2937;
+        .side-btn:hover .side-tooltip {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(0);
         }
     </style>
 </head>
@@ -146,44 +192,40 @@
         </div>
     </nav>
 
-    <!-- Compact Hero with Sidebar -->
-    <header class="max-w-[1400px] mx-auto px-6 md:px-12 py-20 lg:py-24">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            
-            <!-- Left: Hero Text -->
-            <div class="lg:col-span-8">
-                <h1 class="text-4xl md:text-6xl lg:text-[72px] font-bold tracking-tight leading-[1.1] mb-8">
-                    Системный подход <br>к <span class="bg-accent px-2">продуктовому дизайну</span>.
-                </h1>
-                <p class="text-lg md:text-xl text-muted font-light leading-relaxed max-w-2xl">
-                    Разрабатываю UX-архитектуру, собираю дизайн-системы и руковожу ИТ-командой от формирования ТЗ до релиза. Фокус на B2B-интерфейсах, SaaS и сложной логике.
-                </p>
-            </div>
+    <!-- Floating Icon Sidebar -->
+    <div class="floating-sidebar hidden md:flex">
+        <a href="#blyaner" class="side-btn">
+            <i class="ph-bold ph-calendar-check text-2xl"></i>
+            <span class="side-tooltip">Блянер</span>
+        </a>
+        <a href="#otiwa" class="side-btn">
+            <i class="ph-bold ph-storefront text-2xl"></i>
+            <span class="side-tooltip">Otiwa Marketplace</span>
+        </a>
+        <a href="#prostoseller" class="side-btn">
+            <i class="ph-bold ph-table text-2xl"></i>
+            <span class="side-tooltip">Prostoseller</span>
+        </a>
+        <a href="#3mclinic" class="side-btn">
+            <i class="ph-bold ph-heartbeat text-2xl"></i>
+            <span class="side-tooltip">3M Clinic</span>
+        </a>
+        <a href="#booktracker" class="side-btn">
+            <i class="ph-bold ph-book-open text-2xl"></i>
+            <span class="side-tooltip">Book Tracker</span>
+        </a>
+    </div>
 
-            <!-- Right: Project Index (Sidebar) -->
-            <div class="lg:col-span-4 flex lg:justify-end">
-                <div class="w-full max-w-sm bg-surface border border-border p-3 rounded-xl">
-                    <div class="text-[10px] font-mono text-muted uppercase tracking-widest px-4 pt-2 pb-3">Index / Projects</div>
-                    <div class="flex flex-col gap-1">
-                        <a href="#blyaner" class="project-nav-item">
-                            <span>01. Блянер</span> <i class="ph-bold ph-arrow-right"></i>
-                        </a>
-                        <a href="#otiwa" class="project-nav-item">
-                            <span>02. Otiwa Marketplace</span> <i class="ph-bold ph-arrow-right"></i>
-                        </a>
-                        <a href="#prostoseller" class="project-nav-item">
-                            <span>03. Prostoseller</span> <i class="ph-bold ph-arrow-right"></i>
-                        </a>
-                        <a href="#3mclinic" class="project-nav-item">
-                            <span>04. 3M Clinic App</span> <i class="ph-bold ph-arrow-right"></i>
-                        </a>
-                        <a href="#booktracker" class="project-nav-item">
-                            <span>05. Book Tracker</span> <i class="ph-bold ph-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
 
+    <!-- Clean Hero -->
+    <header class="max-w-[1400px] mx-auto px-6 md:px-12 py-20 lg:py-32">
+        <div class="max-w-4xl">
+            <h1 class="text-4xl md:text-6xl lg:text-[80px] font-bold tracking-tight leading-[1.05] mb-8">
+                Системный подход <br>к <span class="bg-accent px-2">продуктовому дизайну</span>.
+            </h1>
+            <p class="text-lg md:text-xl text-muted font-light leading-relaxed max-w-2xl">
+                Разрабатываю UX-архитектуру, собираю дизайн-системы и руковожу ИТ-командой от формирования ТЗ до релиза. Фокус на B2B-интерфейсах, SaaS и сложной логике.
+            </p>
         </div>
     </header>
 
