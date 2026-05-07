@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>3M Clinic - Wellness Concept</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['DM Sans', 'sans-serif'] },
+                    colors: {
+                        'w-bg': '#F8F8F5',       /* Off-white warm background */
+                        'w-green': '#D2E6C3',    /* Pastel Mint/Pistachio */
+                        'w-purple': '#E3DBFA',   /* Soft Lavender */
+                        'w-gray': '#EAEAEA',
+                        'w-dark': '#292A29',     /* Charcoal instead of pure black */
+                        'w-muted': '#9F9F9F'
+                    },
+                    borderRadius: {
+                        '4xl': '32px',
+                        '5xl': '40px'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { 
+            background-color: #E5E5E5; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            min-height: 100vh; 
+            margin: 0; 
+        }
+        .app-container { 
+            width: 100%; 
+            max-width: 400px; 
+            background-color: #F8F8F5; 
+            min-height: 100vh; 
+            position: relative; 
+            overflow-x: hidden; 
+            overflow-y: auto; 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1); 
+        }
+        @media (min-width: 400px) { 
+            .app-container { 
+                min-height: 850px; 
+                height: 850px; 
+                border-radius: 40px; 
+                margin: 20px; 
+            } 
+        }
+        
+        /* Hide scrollbar for clean look */
+        .app-container::-webkit-scrollbar { display: none; }
+        .app-container { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        /* Smooth fade for images */
+        .img-fade {
+            transition: transform 10s ease;
+        }
+        .app-container:hover .img-fade {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body class="text-w-dark antialiased">
+    <div class="app-container pb-32">
+        
+        <!-- Header -->
+        <div class="px-6 pt-12 pb-6 flex justify-between items-end">
+            <div>
+                <p class="text-w-dark font-medium text-sm tracking-widest mb-1 uppercase">May 7, 2026</p>
+                <h1 class="text-w-muted text-[17px] font-normal">How is your smile today?</h1>
+            </div>
+            <div class="w-12 h-12 rounded-full bg-w-gray overflow-hidden border-2 border-white shadow-sm">
+                <img src="https://i.pravatar.cc/150?img=47" class="w-full h-full object-cover" alt="Profile">
+            </div>
+        </div>
+
+        <!-- Main Hero Card (Photo + Quote) -->
+        <div class="px-6 mb-6">
+            <div class="relative w-full aspect-[4/5] rounded-5xl overflow-hidden bg-w-gray shadow-sm group">
+                <!-- Aesthetic Unsplash Photo -->
+                <img src="https://images.unsplash.com/photo-1512413914588-9fa4dbfeddf2?q=80&w=1000&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover img-fade" alt="Wellness">
+                
+                <!-- Smooth dark gradient overlay at the bottom -->
+                <div class="absolute inset-0 bg-gradient-to-b from-black/0 via-black/10 to-black/70"></div>
+                
+                <!-- Text Content -->
+                <div class="absolute bottom-0 left-0 p-8 w-full">
+                    <div class="flex items-center gap-2 mb-3 opacity-90">
+                        <i class="ph-fill ph-sparkle text-white"></i>
+                        <span class="text-white text-xs uppercase tracking-widest font-semibold">Join 3M Clinic</span>
+                    </div>
+                    <h2 class="text-white text-[38px] font-medium leading-[1.1] mb-2 tracking-tight">Your health<br>is our priority</h2>
+                </div>
+                
+                <!-- Floating icon top right -->
+                <div class="absolute top-6 right-6 w-11 h-11 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center border border-white/30">
+                    <i class="ph ph-leaf text-white text-xl"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Interactive Wellness Widget -->
+        <div class="px-6 mb-6">
+            <div class="bg-white rounded-[36px] p-8 shadow-[0_8px_30px_rgba(0,0,0,0.03)] flex flex-col items-center text-center relative overflow-hidden">
+                <p class="text-w-muted text-[10px] uppercase tracking-widest font-bold mb-2">Rate Wellness</p>
+                <h3 class="text-xl font-medium mb-10 tracking-tight">Готовы к визиту?</h3>
+                
+                <!-- Mood Slider Graphic from reference -->
+                <div class="w-full flex items-center justify-between relative mb-10 px-4">
+                    <!-- Background line -->
+                    <div class="absolute left-6 right-6 h-[2px] bg-[#F0F0F0] top-1/2 -translate-y-1/2 z-0"></div>
+                    
+                    <!-- Nodes -->
+                    <div class="w-[10px] h-[10px] rounded-full bg-w-purple z-10 relative"></div>
+                    <div class="w-[10px] h-[10px] rounded-full bg-[#F0F0F0] z-10 relative"></div>
+                    
+                    <!-- Current Selection (The 4-petal flower from reference) -->
+                    <div class="relative z-10 flex items-center justify-center">
+                        <div class="w-9 h-9 flex flex-wrap justify-between content-between rotate-45">
+                            <div class="w-[16px] h-[16px] rounded-full bg-w-green"></div>
+                            <div class="w-[16px] h-[16px] rounded-full bg-w-green"></div>
+                            <div class="w-[16px] h-[16px] rounded-full bg-w-green"></div>
+                            <div class="w-[16px] h-[16px] rounded-full bg-w-green"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="w-[10px] h-[10px] rounded-full bg-[#F0F0F0] z-10 relative"></div>
+                </div>
+                
+                <button class="bg-w-green text-w-dark font-medium text-sm px-10 py-3.5 rounded-full hover:bg-[#C1DDAF] transition-colors tracking-wide">
+                    Submit
+                </button>
+            </div>
+        </div>
+
+        <!-- Purple Abstract Card (Family/Secondary Action) -->
+        <div class="px-6 mb-6">
+            <div class="bg-w-purple rounded-[36px] p-8 flex items-center justify-between relative overflow-hidden h-[180px]">
+                <div class="relative z-10">
+                    <div class="w-10 h-10 rounded-full bg-white/50 flex items-center justify-center mb-4">
+                        <i class="ph ph-users text-xl text-w-dark"></i>
+                    </div>
+                    <h3 class="text-[22px] font-medium mb-1 tracking-tight">Семья</h3>
+                    <p class="text-w-dark/60 text-sm">Управление профилями</p>
+                </div>
+                
+                <!-- Giant abstract flower in background -->
+                <div class="absolute -right-12 -bottom-12 opacity-40 scale-150 rotate-12">
+                    <div class="w-[120px] h-[120px] flex flex-wrap justify-between content-between rotate-45">
+                        <div class="w-[55px] h-[55px] rounded-full bg-white"></div>
+                        <div class="w-[55px] h-[55px] rounded-full bg-white"></div>
+                        <div class="w-[55px] h-[55px] rounded-full bg-white"></div>
+                        <div class="w-[55px] h-[55px] rounded-full bg-white"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Floating Bottom Bar (Pill) -->
+        <div class="fixed bottom-8 left-0 w-full px-8 flex justify-center z-50">
+            <div class="bg-white/95 backdrop-blur-xl shadow-[0_15px_40px_rgba(0,0,0,0.08)] rounded-full px-8 py-5 flex items-center justify-between gap-10 border border-w-gray/50">
+                <button class="text-w-dark relative flex flex-col items-center">
+                    <div class="w-1.5 h-1.5 bg-w-dark rounded-full absolute -bottom-3"></div>
+                    <i class="ph-fill ph-house text-[26px]"></i>
+                </button>
+                <button class="text-w-muted hover:text-w-dark transition-colors">
+                    <i class="ph ph-calendar-blank text-[26px]"></i>
+                </button>
+                <button class="text-w-muted hover:text-w-dark transition-colors">
+                    <i class="ph ph-chat-circle text-[26px]"></i>
+                </button>
+                <button class="text-w-muted hover:text-w-dark transition-colors">
+                    <i class="ph ph-user text-[26px]"></i>
+                </button>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
