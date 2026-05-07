@@ -151,13 +151,13 @@
         .side-tooltip {
             position: absolute;
             right: 100%;
-            margin-right: 0; /* Attach directly to the sidebar */
+            margin-right: -1px; /* Overlap by 1px to hide the seam */
             top: 50%;
             transform: translateY(-50%) translateX(20px);
             background: #1F2937;
             color: #FFFFFF;
             padding: 10px 16px;
-            border-radius: 14px 0 0 14px; /* Flat on the right side where it connects */
+            border-radius: 14px 0 0 14px; 
             font-family: 'JetBrains Mono', monospace;
             font-size: 11px;
             font-weight: 700;
@@ -168,14 +168,14 @@
             visibility: hidden;
             transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
             pointer-events: none;
-            z-index: 1;
+            z-index: -1; /* Place behind the button to hide seams */
         }
         
         /* Flowing liquid joint (SVG-like curve using box-shadow) */
         .side-tooltip::after, .side-tooltip::before {
             content: '';
             position: absolute;
-            right: -10px; /* Connect to sidebar */
+            right: -10px; 
             width: 10px;
             height: 10px;
             background: transparent;
@@ -196,7 +196,7 @@
         .side-btn:hover .side-tooltip {
             opacity: 1;
             visibility: visible;
-            transform: translateY(-50%) translateX(0); /* Slides out smoothly */
+            transform: translateY(-50%) translateX(1px); /* Ensure tight connection */
         }
     </style>
 </head>
