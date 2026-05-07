@@ -112,45 +112,51 @@
         /* Floating Sidebar */
         .floating-sidebar {
             position: fixed;
-            right: 0;
+            right: -10px; /* Hide the hard right edge */
             top: 50%;
             transform: translateY(-50%);
-            background: #FFFFFF;
-            border: 1px solid #E5E7EB;
-            border-right: none;
-            border-radius: 24px 0 0 24px;
-            padding: 16px 10px;
+            background: #E4FF00; /* Lemon Accent */
+            border: 1px solid #D4ED00;
+            border-radius: 40px 0 0 40px; /* Much softer, pill-like curve */
+            padding: 24px 16px 24px 20px;
             display: flex;
             flex-direction: column;
-            gap: 12px;
-            box-shadow: -8px 0 30px rgba(0,0,0,0.03);
+            gap: 16px;
+            box-shadow: -8px 8px 30px rgba(228,255,0,0.15), inset 2px 0 10px rgba(255,255,255,0.4);
             z-index: 100;
+            backdrop-filter: blur(10px);
         }
+        
         .side-btn {
             position: relative;
-            width: 44px;
-            height: 44px;
-            border-radius: 14px;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%; /* Perfect circles inside the pill */
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #9CA3AF;
-            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-            background: transparent;
+            color: #1F2937; /* Dark graphite for icons on lemon */
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            background: rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.5);
         }
+        
         .side-btn:hover {
-            background: #F3F4F6;
-            color: #1F2937;
-            transform: scale(1.1);
+            background: #1F2937;
+            color: #E4FF00;
+            transform: scale(1.15) translateX(-4px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            border-color: #1F2937;
         }
+        
         .side-tooltip {
             position: absolute;
             right: 100%;
-            margin-right: 16px;
+            margin-right: 20px;
             background: #1F2937;
             color: #FFFFFF;
-            padding: 8px 14px;
-            border-radius: 8px;
+            padding: 8px 16px;
+            border-radius: 12px;
             font-family: 'JetBrains Mono', monospace;
             font-size: 11px;
             font-weight: 700;
@@ -162,7 +168,9 @@
             transform: translateX(10px);
             transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
             pointer-events: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
+        
         /* Tiny triangle for tooltip */
         .side-tooltip::after {
             content: '';
@@ -170,10 +178,11 @@
             top: 50%;
             left: 100%;
             transform: translateY(-50%);
-            border-width: 5px;
+            border-width: 6px;
             border-style: solid;
             border-color: transparent transparent transparent #1F2937;
         }
+        
         .side-btn:hover .side-tooltip {
             opacity: 1;
             visibility: visible;
@@ -195,23 +204,28 @@
     <!-- Floating Icon Sidebar -->
     <div class="floating-sidebar hidden md:flex">
         <a href="#blyaner" class="side-btn">
-            <i class="ph-bold ph-calendar-check text-2xl"></i>
+            <!-- Planner: overlapping abstract layers instead of a literal calendar -->
+            <i class="ph-bold ph-stack-simple text-[22px]"></i>
             <span class="side-tooltip">Блянер</span>
         </a>
         <a href="#otiwa" class="side-btn">
-            <i class="ph-bold ph-storefront text-2xl"></i>
+            <!-- Marketplace: intersecting circles/nodes instead of a literal store -->
+            <i class="ph-bold ph-graph text-[22px]"></i>
             <span class="side-tooltip">Otiwa Marketplace</span>
         </a>
         <a href="#prostoseller" class="side-btn">
-            <i class="ph-bold ph-table text-2xl"></i>
+            <!-- Data/Dashboard: sliders/toggles instead of a table -->
+            <i class="ph-bold ph-sliders-horizontal text-[22px]"></i>
             <span class="side-tooltip">Prostoseller</span>
         </a>
         <a href="#3mclinic" class="side-btn">
-            <i class="ph-bold ph-heartbeat text-2xl"></i>
+            <!-- Health: spark/wave instead of a literal heart -->
+            <i class="ph-bold ph-activity text-[22px]"></i>
             <span class="side-tooltip">3M Clinic</span>
         </a>
         <a href="#booktracker" class="side-btn">
-            <i class="ph-bold ph-book-open text-2xl"></i>
+            <!-- Book: bookmark/library lines instead of a literal book -->
+            <i class="ph-bold ph-bookmarks-simple text-[22px]"></i>
             <span class="side-tooltip">Book Tracker</span>
         </a>
     </div>
