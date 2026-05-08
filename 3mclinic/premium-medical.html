@@ -40,7 +40,7 @@
         .app-container { 
             width: 100%; 
             max-width: 400px; 
-            background-color: var(--brand-bg); 
+            background-color: #F4EFE6; /* Cotton cream */
             min-height: 100vh; 
             position: relative; 
             overflow-x: hidden; 
@@ -48,36 +48,42 @@
             box-shadow: 0 20px 40px rgba(0,0,0,0.1); 
             background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
         }
-        .app-container { 
-            width: 100%; 
-            max-width: 400px; 
-            background-color: #FFFFFF; 
-            min-height: 100vh; 
-            position: relative; 
-            overflow-x: hidden; 
-            overflow-y: auto; 
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1); 
-        }
         @media (min-width: 400px) { 
             .app-container { 
                 min-height: 850px; 
                 height: 850px; 
                 border-radius: 0px; 
                 margin: 20px; 
-                border: 1px solid var(--brand-border);
+                border: 1px solid #E8DED1;
             } 
         }
         
         ::-webkit-scrollbar { display: none; }
         .app-container { -ms-overflow-style: none; scrollbar-width: none; }
         
+        /* Hardcoded palette classes to bypass Tailwind CDN issues */
+        .bg-cream { background-color: #F4EFE6 !important; }
+        .bg-surface { background-color: #FCFAF6 !important; }
+        .bg-rolex { background-color: #006039 !important; }
+        .bg-coffee { background-color: #9C5426 !important; }
+        .bg-espresso { background-color: #2A2624 !important; }
+        
+        .text-rolex { color: #006039 !important; }
+        .text-coffee { color: #9C5426 !important; }
+        .text-espresso { color: #2A2624 !important; }
+        .text-cream { color: #F4EFE6 !important; }
+        .text-muted-warm { color: #9E9892 !important; }
+        
+        .border-warm { border-color: #E8DED1 !important; }
+        .border-coffee { border-color: #9C5426 !important; }
+
         /* Fine lines tailored for clinic */
-        .fine-border { border: 1px solid var(--brand-border); }
-        .fine-border-b { border-bottom: 1px solid var(--brand-border); }
-        .fine-border-t { border-top: 1px solid var(--brand-border); }
+        .fine-border { border: 1px solid #E8DED1 !important; }
+        .fine-border-b { border-bottom: 1px solid #E8DED1 !important; }
+        .fine-border-t { border-top: 1px solid #E8DED1 !important; }
     </style>
 </head>
-<body class="text-brand-dark antialiased">
+<body class="text-espresso antialiased">
     <div class="app-container pb-32">
         
         <!-- Header -->
@@ -85,14 +91,14 @@
             <div class="flex items-center gap-3">
                 <img src="https://ninjahvoya-ship-it.github.io/client-prototypes/3mclinic/assets/3m-logo.jpg" alt="3M Clinic Logo" class="h-10 object-contain mix-blend-multiply">
             </div>
-            <button class="w-10 h-10 flex items-center justify-end text-brand-dark">
+            <button class="w-10 h-10 flex items-center justify-end text-espresso">
                 <i class="ph-light ph-list text-[26px]"></i>
             </button>
         </header>
 
         <!-- Main Banner -->
         <div class="p-6">
-            <div class="w-full aspect-[4/5] relative overflow-hidden bg-brand-surface border border-[#E8DED1]">
+            <div class="w-full aspect-[4/5] relative overflow-hidden bg-surface border border-[#E8DED1]">
                 <!-- Image - Clinical/Aesthetic feel -->
                 <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=1000&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover mix-blend-multiply opacity-60" alt="Clinic Interior">
                 
@@ -101,15 +107,15 @@
                     <div class="flex justify-between items-start">
                         <span class="text-[9px] uppercase tracking-[0.15em] font-sans text-white bg-brand-stone px-3 py-1">Premium Patient</span>
                         <div class="w-8 h-8 rounded-full border border-brand-dark/20 flex items-center justify-center backdrop-blur-md">
-                            <i class="ph-light ph-qr-code text-brand-dark"></i>
+                            <i class="ph-light ph-qr-code text-espresso"></i>
                         </div>
                     </div>
                     
                     <div class="bg-[#FCFAF6] bg-opacity-95 backdrop-blur-md p-5 border border-[#E8DED1]">
-                        <p class="text-[9px] uppercase tracking-[0.2em] font-sans text-brand-muted mb-2">Ваш баланс</p>
+                        <p class="text-[9px] uppercase tracking-[0.2em] font-sans text-muted-warm mb-2">Ваш баланс</p>
                         <div class="flex items-baseline gap-1 mb-5">
-                            <h2 class="text-4xl font-serif text-brand-green tracking-tight">1 450</h2>
-                            <span class="text-lg font-serif text-brand-dark">₽</span>
+                            <h2 class="text-4xl font-serif text-rolex tracking-tight">1 450</h2>
+                            <span class="text-lg font-serif text-espresso">₽</span>
                         </div>
                         <button class="bg-brand-green text-white font-sans text-[10px] uppercase tracking-[0.15em] font-medium px-6 py-3 w-full hover:bg-brand-stone transition-colors">
                             Пополнить счет
@@ -122,39 +128,39 @@
         <!-- Categories -->
         <div class="px-6 mb-8 mt-2">
             <div class="flex items-center gap-2 mb-4">
-                <i class="ph-light ph-asterisk text-brand-green text-xs"></i>
-                <h3 class="font-sans text-[10px] uppercase tracking-[0.2em] text-brand-muted">Направления</h3>
+                <i class="ph-light ph-asterisk text-rolex text-xs"></i>
+                <h3 class="font-sans text-[10px] uppercase tracking-[0.2em] text-muted-warm">Направления</h3>
             </div>
             
             <div class="flex flex-col">
                 <div class="flex justify-between items-center py-4 fine-border-b cursor-pointer group">
-                    <span class="font-serif text-lg text-brand-dark group-hover:text-brand-green transition-colors">Эстетика и отбеливание</span>
-                    <i class="ph-light ph-arrow-right text-brand-muted"></i>
+                    <span class="font-serif text-lg text-espresso group-hover:text-rolex transition-colors">Эстетика и отбеливание</span>
+                    <i class="ph-light ph-arrow-right text-muted-warm"></i>
                 </div>
                 <div class="flex justify-between items-center py-4 fine-border-b cursor-pointer group">
-                    <span class="font-serif text-lg text-brand-dark group-hover:text-brand-green transition-colors">Терапевтическое лечение</span>
-                    <i class="ph-light ph-arrow-right text-brand-muted"></i>
+                    <span class="font-serif text-lg text-espresso group-hover:text-rolex transition-colors">Терапевтическое лечение</span>
+                    <i class="ph-light ph-arrow-right text-muted-warm"></i>
                 </div>
                 <div class="flex justify-between items-center py-4 fine-border-b cursor-pointer group">
-                    <span class="font-serif text-lg text-brand-dark group-hover:text-brand-green transition-colors">Хирургия и имплантология</span>
-                    <i class="ph-light ph-arrow-right text-brand-muted"></i>
+                    <span class="font-serif text-lg text-espresso group-hover:text-rolex transition-colors">Хирургия и имплантология</span>
+                    <i class="ph-light ph-arrow-right text-muted-warm"></i>
                 </div>
             </div>
         </div>
 
         <!-- Featured Card -->
         <div class="px-6 mb-8">
-            <div class="fine-border p-6 relative bg-brand-surface">
+            <div class="fine-border p-6 relative bg-surface">
                 <div class="flex justify-between items-start mb-6">
-                    <h4 class="font-serif text-xl text-brand-dark">Отбеливание<br>ZOOM4</h4>
+                    <h4 class="font-serif text-xl text-espresso">Отбеливание<br>ZOOM4</h4>
                     <span class="text-[9px] uppercase tracking-[0.15em] font-sans text-white bg-brand-stone px-2 py-1">Хит</span>
                 </div>
                 
-                <p class="font-sans text-[11px] leading-relaxed text-brand-muted mb-6 w-4/5">Клиническая процедура для безопасного и эффективного осветления эмали.</p>
+                <p class="font-sans text-[11px] leading-relaxed text-muted-warm mb-6 w-4/5">Клиническая процедура для безопасного и эффективного осветления эмали.</p>
                 
                 <div class="flex justify-between items-end">
-                    <span class="font-serif text-xl text-brand-green">15 000 ₽</span>
-                    <button class="font-sans text-[9px] uppercase tracking-[0.15em] border border-brand-dark text-brand-dark px-4 py-2 hover:bg-brand-dark hover:text-white transition-colors">Записаться</button>
+                    <span class="font-serif text-xl text-rolex">15 000 ₽</span>
+                    <button class="font-sans text-[9px] uppercase tracking-[0.15em] border border-brand-dark text-espresso px-4 py-2 hover:bg-brand-dark hover:text-white transition-colors">Записаться</button>
                 </div>
             </div>
         </div>
@@ -162,15 +168,15 @@
         <!-- Bottom Navigation -->
         <div class="fixed bottom-0 left-0 w-full bg-[#F4EFE6] bg-opacity-95 backdrop-blur-md fine-border-t flex justify-center z-50">
             <div class="w-full max-w-[400px] flex justify-between items-center px-8 py-4">
-                <a href="#" class="flex flex-col items-center gap-1.5 text-brand-green">
+                <a href="#" class="flex flex-col items-center gap-1.5 text-rolex">
                     <i class="ph-fill ph-asterisk text-xl"></i>
                     <span class="text-[8px] font-sans uppercase tracking-[0.1em] font-medium">Главная</span>
                 </a>
-                <a href="#" class="flex flex-col items-center gap-1.5 text-brand-muted hover:text-brand-dark transition-colors">
+                <a href="#" class="flex flex-col items-center gap-1.5 text-muted-warm hover:text-espresso transition-colors">
                     <i class="ph-light ph-calendar-blank text-xl"></i>
                     <span class="text-[8px] font-sans uppercase tracking-[0.1em] font-medium">Визиты</span>
                 </a>
-                <a href="#" class="flex flex-col items-center gap-1.5 text-brand-muted hover:text-brand-dark transition-colors">
+                <a href="#" class="flex flex-col items-center gap-1.5 text-muted-warm hover:text-espresso transition-colors">
                     <i class="ph-light ph-user text-xl"></i>
                     <span class="text-[8px] font-sans uppercase tracking-[0.1em] font-medium">Профиль</span>
                 </a>
