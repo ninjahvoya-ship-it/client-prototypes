@@ -274,10 +274,7 @@
             <i class="ph-bold ph-tooth text-[20px]"></i>
             <span class="side-tooltip">3M Clinic</span>
         </a>
-        <a href="#booktracker" class="side-btn">
-            <i class="ph-bold ph-book-open text-[20px]"></i>
-            <span class="side-tooltip">Book Tracker</span>
-        </a>
+        <!-- Hidden Book Tracker Sidebar Link -->
     </div>
 
 
@@ -304,8 +301,16 @@
                         <span class="chip">SaaS</span>
                         <span class="chip">UI/UX</span>
                     </div>
-                    <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-4">Блянер (Blyaner)</h2>
-                    <p class="text-xl text-muted font-light">Атомарный таск-трекер, объединяющий Канбан-доску, фокус-режим и трекинг сна.</p>
+                    <div class="flex items-center gap-6 mb-4">
+                        <h2 class="text-4xl md:text-5xl font-bold tracking-tight">Блянер (Blyaner)</h2>
+                        <a href="https://blyaner.vercel.app" target="_blank" class="hidden md:flex items-center gap-2 px-4 py-2 border border-[#E5E7EB] rounded-full text-sm font-medium hover:bg-black hover:text-[#E4FF00] hover:border-black transition-all">
+                            Live Demo <i class="ph-bold ph-arrow-up-right"></i>
+                        </a>
+                    </div>
+                    <p class="text-xl text-muted font-light mb-4">Атомарный таск-трекер, объединяющий Канбан-доску, фокус-режим и трекинг сна.</p>
+                    <a href="https://blyaner.vercel.app" target="_blank" class="md:hidden inline-flex items-center gap-2 text-sm font-bold text-black border-b-2 border-[#E4FF00] pb-1">
+                        Смотреть Live Demo <i class="ph-bold ph-arrow-up-right"></i>
+                    </a>
                 </div>
             </div>
 
@@ -357,8 +362,16 @@
                         <span class="chip">Product Mgmt</span>
                         <span class="chip">B2B / B2C</span>
                     </div>
-                    <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-4">Otiwa</h2>
-                    <p class="text-xl text-muted font-light">Управление разработкой двустороннего маркетплейса услуг и биллинговой системы.</p>
+                    <div class="flex items-center gap-6 mb-4">
+                        <h2 class="text-4xl md:text-5xl font-bold tracking-tight">Otiwa</h2>
+                        <a href="https://otiwa.com" target="_blank" class="hidden md:flex items-center gap-2 px-4 py-2 border border-[#E5E7EB] rounded-full text-sm font-medium hover:bg-black hover:text-[#E4FF00] hover:border-black transition-all">
+                            Visit Website <i class="ph-bold ph-arrow-up-right"></i>
+                        </a>
+                    </div>
+                    <p class="text-xl text-muted font-light mb-4">Управление разработкой двустороннего маркетплейса услуг и биллинговой системы.</p>
+                    <a href="https://otiwa.com" target="_blank" class="md:hidden inline-flex items-center gap-2 text-sm font-bold text-black border-b-2 border-[#E4FF00] pb-1">
+                        Перейти на сайт <i class="ph-bold ph-arrow-up-right"></i>
+                    </a>
                 </div>
             </div>
 
@@ -500,52 +513,7 @@
         </section>
 
 
-        <!-- CASE 5: Book Tracker -->
-        <section id="booktracker" class="case-section">
-            <div class="grid grid-cols-1 md:grid-cols-12 gap-12 mb-12 items-end">
-                <div class="md:col-span-8">
-                    <div class="flex gap-2 flex-wrap mb-6">
-                        <span class="chip accent">Mobile PWA</span>
-                        <span class="chip">UI/UX</span>
-                    </div>
-                    <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-4">Book Tracker</h2>
-                    <p class="text-xl text-muted font-light">Светлое минималистичное приложение для чтения. Интеграция с FantLab API, дедупликация изданий и сканер обложек.</p>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
-                <div class="md:col-span-12 grid-frame p-8 items-start justify-start flex-col md:flex-row gap-8 min-h-[160px]">
-                    <div class="flex-1">
-                        <h3 class="font-bold text-lg mb-4">Моя роль</h3>
-                        <ul class="role-list text-sm">
-                            <li>UX-архитектура и проектирование PWA</li>
-                            <li>Дизайн-система (Cream & Cobalt)</li>
-                            <li>Верстка и мобильная адаптация</li>
-                        </ul>
-                    </div>
-                    <div class="flex-1">
-                        <h3 class="font-bold text-lg mb-2">Проблема & Решение</h3>
-                        <p class="text-sm text-muted leading-relaxed">
-                            <b>Проблема:</b> Существующие книжные трекеры перегружены социальным шумом, токсичными отзывами и плохим визуалом.<br><br>
-                            <b>Решение:</b> Фокус на эстетике "тихой роскоши". Отказ от визуального мусора в пользу кремового фона и антиквы (Cormorant). Умная дедупликация изданий через FantLab API и удобный сканер обложек.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="md:col-span-4 grid-frame h-[600px]">
-                    <span class="frame-label">frame: book-detail (portrait)</span>
-                    <div class="frame-placeholder"><b>Карточка книги</b><br>(Самый сочный экран)</div>
-                </div>
-                <div class="md:col-span-4 grid-frame h-[600px]">
-                    <span class="frame-label">frame: book-scanner (portrait)</span>
-                    <div class="frame-placeholder"><b>Сканер / Добавление</b><br>Флоу сканирования.</div>
-                </div>
-                <div class="md:col-span-4 grid-frame h-[600px]">
-                    <span class="frame-label">frame: book-profile (portrait)</span>
-                    <div class="frame-placeholder"><b>Профиль</b><br>Полки и статистика.</div>
-                </div>
-            </div>
-        </section>
+        <!-- Hidden Book Tracker Section -->
 
     </main>
 
