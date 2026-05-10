@@ -8,7 +8,7 @@
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <script>
-        tailwind.config = {
+                tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: { 
@@ -16,13 +16,17 @@
                         sans: ['Montserrat', 'sans-serif']
                     },
                     colors: {
-                        'brand-green': '#1A6B2E', /* The requested 3M logo color */
-                        'brand-stone': '#D9D4CF', /* Elegant taupe/stone instead of gold */
-                        'brand-surface': '#F5F5F4', /* Very soft warm grey for cards */
-                        'brand-dark': '#1C1C1C',    /* Deep graphite instead of black */
-                        'brand-muted': '#8A8A8A'
+                        'brand-green': '#006039',
+                        'brand-coffee': '#9C5426',
+                        'brand-cream': '#F4EFE6',
+                        'brand-surface': '#FCFAF6',
+                        'brand-dark': '#2A2624',
+                        'brand-muted': '#9E9892',
+                        'brand-border': '#E8DED1'
                     }
                 }
+            }
+        }
             }
         }
     </script>
@@ -156,7 +160,56 @@
             </div>
         </div>
 
-        <!-- Bottom Navigation -->
+        
+        <!-- Doctors -->
+        <div class="pl-6 mb-12">
+            <div class="flex items-center gap-2 mb-4">
+                <i class="ph-light ph-asterisk text-brand-green text-xs"></i>
+                <h3 class="font-sans text-[10px] uppercase tracking-[0.2em] text-brand-muted">Специалисты</h3>
+            </div>
+            <div class="flex gap-4 overflow-x-auto hide-scroll pr-6 pb-4 -mr-6">
+                <!-- Dr 1 -->
+                <div class="w-[140px] shrink-0">
+                    <div class="w-full aspect-[3/4] bg-brand-surface fine-border mb-3 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?q=80&w=400&auto=format&fit=crop" class="w-full h-full object-cover grayscale mix-blend-multiply" style="background-color: rgba(156,84,38,0.1);" alt="Dr. Sokolov">
+                    </div>
+                    <h4 class="font-serif text-lg text-brand-dark leading-tight mb-1">Д. Соколов</h4>
+                    <p class="font-sans text-[9px] uppercase tracking-[0.1em] text-brand-muted">Хирург</p>
+                </div>
+                <!-- Dr 2 -->
+                <div class="w-[140px] shrink-0">
+                    <div class="w-full aspect-[3/4] bg-brand-surface fine-border mb-3 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1594824436951-7f1262056841?q=80&w=400&auto=format&fit=crop" class="w-full h-full object-cover grayscale mix-blend-multiply" style="background-color: rgba(156,84,38,0.1);" alt="Dr. Ivanova">
+                    </div>
+                    <h4 class="font-serif text-lg text-brand-dark leading-tight mb-1">Е. Иванова</h4>
+                    <p class="font-sans text-[9px] uppercase tracking-[0.1em] text-brand-muted">Ортодонт</p>
+                </div>
+                <!-- Dr 3 -->
+                <div class="w-[140px] shrink-0">
+                    <div class="w-full aspect-[3/4] bg-brand-surface fine-border mb-3 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=400&auto=format&fit=crop" class="w-full h-full object-cover grayscale mix-blend-multiply" style="background-color: rgba(156,84,38,0.1);" alt="Dr. Petrov">
+                    </div>
+                    <h4 class="font-serif text-lg text-brand-dark leading-tight mb-1">А. Петров</h4>
+                    <p class="font-sans text-[9px] uppercase tracking-[0.1em] text-brand-muted">Терапевт</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Insurance & Installments -->
+        <div class="px-6 mb-12">
+            <div class="fine-border p-5 relative overflow-hidden bg-brand-surface border-l-4" style="border-left-color: #006039;">
+                <div class="flex items-start gap-4 relative z-10">
+                    <i class="ph-light ph-shield-check text-brand-green text-3xl mt-1"></i>
+                    <div>
+                        <h3 class="font-serif text-xl text-brand-dark mb-1">ДМС и Рассрочка</h3>
+                        <p class="font-sans text-[11px] text-brand-muted leading-relaxed">
+                            Оформление рассрочки 0% и лечение по полисам страхования.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+<!-- Bottom Navigation -->
         <div class="absolute bottom-0 left-0 w-full rounded-b-[28px] bg-cream bg-opacity-95 backdrop-blur-md fine-border-t flex justify-center z-50">
             <div class="w-full max-w-[400px] flex justify-between items-center px-8 py-4">
                 <a href="#" class="flex flex-col items-center gap-1.5 text-rolex">
