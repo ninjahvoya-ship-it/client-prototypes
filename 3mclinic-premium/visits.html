@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>3M Clinic - Visits (Rolex & Coffee)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { 
+                        serif: ['Cormorant Garamond', 'serif'],
+                        sans: ['Montserrat', 'sans-serif']
+                    },
+                    colors: {
+                        'brand-green': '#006039',
+                        'brand-coffee': '#9C5426',
+                        'brand-cream': '#F4EFE6',
+                        'brand-surface': '#FCFAF6',
+                        'brand-dark': '#2A2624',
+                        'brand-muted': '#9E9892',
+                        'brand-border': '#E8DED1'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { 
+            background-color: #E5E5E5; 
+            margin: 0; 
+            font-family: 'Montserrat', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .app-container { 
+            width: 100%; 
+            max-width: 400px; 
+            margin: 0 auto;
+            background-color: #F4EFE6; 
+            min-height: 100vh; 
+            position: relative; 
+            overflow-x: hidden; 
+            padding-bottom: 120px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1); 
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+        }
+        @media (min-width: 400px) { 
+            .app-container { min-height: 850px; height: 850px; border-radius: 0; margin-top: 20px; margin-bottom: 20px; border: 1px solid #E8DED1; overflow-y: auto;} 
+        }
+        .app-container::-webkit-scrollbar { display: none; }
+        .app-container { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        .fine-border { border: 1px solid #E8DED1; }
+        .fine-border-b { border-bottom: 1px solid #E8DED1; }
+        .fine-border-t { border-top: 1px solid #E8DED1; }
+        
+        /* Segmented Control styles */
+        .tab-btn {
+            color: #9E9892;
+            transition: all 0.2s ease;
+        }
+        .tab-btn.active {
+            color: #2A2624;
+            background-color: #FCFAF6;
+            border: 1px solid #E8DED1;
+        }
+        
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+    </style>
+</head>
+<body class="text-brand-dark antialiased">
+    <div class="app-container">
+        
+        <!-- Header -->
+        <header class="px-6 pt-12 pb-4 flex justify-between items-center bg-brand-cream sticky top-0 z-40">
+            <h1 class="text-3xl font-serif text-brand-dark tracking-wide">Мои визиты</h1>
+            <button class="w-10 h-10 flex items-center justify-end text-brand-dark">
+                <i class="ph-light ph-magnifying-glass text-[24px]"></i>
+            </button>
+        </header>
+
+        <!-- Segmented Control -->
+        <div class="px-6 pb-6 sticky top-[80px] z-40 bg-brand-cream fine-border-b">
+            <div class="bg-[#E8DED1]/30 p-1 flex">
+                <button onclick="switchTab('upcoming')" id="btn-upcoming" class="tab-btn active flex-1 py-2 text-[10px] uppercase tracking-[0.1em] font-bold text-center">
+                    Предстоящие
+                </button>
+                <button onclick="switchTab('past')" id="btn-past" class="tab-btn flex-1 py-2 text-[10px] uppercase tracking-[0.1em] font-bold text-center">
+                    Прошедшие
+                </button>
+            </div>
+        </div>
+
+        <main class="p-6">
+            
+            <!-- UPCOMING VISITS -->
+            <div id="tab-upcoming" class="tab-content active space-y-6">
+                
+                <!-- Visit 1 -->
+                <div class="bg-brand-surface fine-border p-5 relative overflow-hidden shadow-sm">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="text-[9px] uppercase tracking-[0.15em] font-sans text-brand-surface bg-brand-green px-2 py-1 font-bold">Подтвержден</span>
+                        <p class="font-sans text-[11px] text-brand-muted tracking-wide flex items-center gap-1">
+                            <i class="ph-light ph-clock"></i> 40 мин
+                        </p>
+                    </div>
+                    
+                    <h3 class="font-serif text-2xl text-brand-dark mb-1">16 мая, 12:00</h3>
+                    <p class="font-sans text-[12px] font-medium text-brand-coffee mb-4">Лечение кариеса</p>
+                    
+                    <div class="flex items-center gap-3 py-4 fine-border-t fine-border-b mb-5">
+                        <div class="w-10 h-10 bg-brand-cream fine-border overflow-hidden shrink-0">
+                            <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?q=80&w=400&auto=format&fit=crop" class="w-full h-full object-cover grayscale mix-blend-multiply" style="background-color: rgba(156,84,38,0.1);" alt="Dr. Sokolov">
+                        </div>
+                        <div>
+                            <p class="font-serif text-lg text-brand-dark leading-none mb-1">Д. Соколов</p>
+                            <p class="font-sans text-[9px] uppercase tracking-[0.1em] text-brand-muted">Стоматолог-хирург</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex gap-2">
+                        <button class="bg-brand-green text-brand-surface font-sans text-[9px] uppercase tracking-[0.1em] font-bold px-4 py-3 w-full hover:bg-brand-coffee transition-colors">
+                            Перенести
+                        </button>
+                        <button class="border border-brand-green text-brand-green font-sans text-[9px] uppercase tracking-[0.1em] font-bold px-4 py-3 w-full hover:bg-brand-green hover:text-brand-surface transition-colors">
+                            Отменить
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Visit 2 -->
+                <div class="bg-brand-surface fine-border p-5 relative overflow-hidden shadow-sm">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="text-[9px] uppercase tracking-[0.15em] font-sans text-brand-dark bg-brand-border px-2 py-1 font-bold">Ожидает оплаты</span>
+                        <p class="font-sans text-[11px] text-brand-muted tracking-wide flex items-center gap-1">
+                            <i class="ph-light ph-clock"></i> 60 мин
+                        </p>
+                    </div>
+                    
+                    <h3 class="font-serif text-2xl text-brand-dark mb-1">21 июня, 15:30</h3>
+                    <p class="font-sans text-[12px] font-medium text-brand-coffee mb-4">Отбеливание ZOOM4</p>
+                    
+                    <div class="flex items-center gap-3 py-4 fine-border-t fine-border-b mb-5">
+                        <div class="w-10 h-10 bg-brand-cream fine-border overflow-hidden shrink-0">
+                            <img src="https://images.unsplash.com/photo-1594824436951-7f1262056841?q=80&w=400&auto=format&fit=crop" class="w-full h-full object-cover grayscale mix-blend-multiply" style="background-color: rgba(156,84,38,0.1);" alt="Dr. Ivanova">
+                        </div>
+                        <div>
+                            <p class="font-serif text-lg text-brand-dark leading-none mb-1">Е. Иванова</p>
+                            <p class="font-sans text-[9px] uppercase tracking-[0.1em] text-brand-muted">Ортодонт</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex gap-2">
+                        <button class="bg-brand-coffee text-brand-surface font-sans text-[9px] uppercase tracking-[0.1em] font-bold px-4 py-3 w-full hover:bg-brand-dark transition-colors">
+                            Оплатить аванс
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- PAST VISITS -->
+            <div id="tab-past" class="tab-content space-y-6">
+                
+                <!-- Past Visit 1 -->
+                <div class="bg-brand-cream border border-brand-border/50 p-5 relative overflow-hidden">
+                    <div class="flex justify-between items-start mb-4 opacity-60">
+                        <p class="font-serif text-xl text-brand-dark mb-1">10 апреля 2026</p>
+                        <span class="font-serif text-lg text-brand-dark">3 500 ₽</span>
+                    </div>
+                    
+                    <p class="font-sans text-[12px] font-medium text-brand-dark mb-4 opacity-80">Консультация ортодонта</p>
+                    
+                    <div class="flex items-center gap-3 pt-4 fine-border-t opacity-70">
+                        <div class="w-8 h-8 bg-brand-surface fine-border overflow-hidden shrink-0">
+                            <img src="https://images.unsplash.com/photo-1594824436951-7f1262056841?q=80&w=400&auto=format&fit=crop" class="w-full h-full object-cover grayscale mix-blend-multiply" style="background-color: rgba(156,84,38,0.1);" alt="Dr. Ivanova">
+                        </div>
+                        <div>
+                            <p class="font-serif text-[16px] text-brand-dark leading-none mb-1">Е. Иванова</p>
+                            <p class="font-sans text-[8px] uppercase tracking-[0.1em] text-brand-muted">Ортодонт</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Review Button -->
+                    <div class="mt-5">
+                        <button class="border border-brand-border text-brand-dark font-sans text-[9px] uppercase tracking-[0.1em] font-bold px-4 py-3 w-full hover:bg-brand-surface transition-colors flex justify-center items-center gap-2">
+                            <i class="ph-fill ph-star text-brand-coffee"></i>
+                            Оставить отзыв
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+        </main>
+
+        <!-- Bottom Navigation -->
+        <div class="fixed bottom-0 left-0 w-full bg-brand-cream/95 backdrop-blur-md fine-border-t flex justify-center z-50">
+            <div class="w-full max-w-[400px] flex justify-between items-center px-6 py-4 pb-8">
+                <a href="index-active.html" class="flex flex-col items-center gap-1.5 text-brand-muted hover:text-brand-dark transition-colors">
+                    <i class="ph-light ph-asterisk text-xl"></i>
+                    <span class="text-[8px] font-sans uppercase tracking-[0.1em] font-medium">Главная</span>
+                </a>
+                <a href="services.html" class="flex flex-col items-center gap-1.5 text-brand-muted hover:text-brand-dark transition-colors">
+                    <i class="ph-light ph-receipt text-xl"></i>
+                    <span class="text-[8px] font-sans uppercase tracking-[0.1em] font-medium">Услуги</span>
+                </a>
+                <a href="#" class="flex flex-col items-center gap-1.5 text-brand-green">
+                    <i class="ph-fill ph-calendar-blank text-xl"></i>
+                    <span class="text-[8px] font-sans uppercase tracking-[0.1em] font-medium">Визиты</span>
+                </a>
+                <a href="profile.html" class="flex flex-col items-center gap-1.5 text-brand-muted hover:text-brand-dark transition-colors">
+                    <i class="ph-light ph-user text-xl"></i>
+                    <span class="text-[8px] font-sans uppercase tracking-[0.1em] font-medium">Профиль</span>
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function switchTab(tab) {
+            // Reset buttons
+            document.getElementById('btn-upcoming').className = 'tab-btn flex-1 py-2 text-[10px] uppercase tracking-[0.1em] font-bold text-center';
+            document.getElementById('btn-past').className = 'tab-btn flex-1 py-2 text-[10px] uppercase tracking-[0.1em] font-bold text-center';
+            
+            // Set active button
+            document.getElementById('btn-' + tab).classList.add('active');
+            
+            // Hide all content
+            document.getElementById('tab-upcoming').classList.remove('active');
+            document.getElementById('tab-past').classList.remove('active');
+            
+            // Show target content
+            document.getElementById('tab-' + tab).classList.add('active');
+        }
+    </script>
+</body>
+</html>
