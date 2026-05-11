@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design System — Rolex & Coffee (3M Clinic Premium)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { 
+                        serif: ['Cormorant Garamond', 'serif'],
+                        sans: ['Montserrat', 'sans-serif']
+                    },
+                    colors: {
+                        'brand-green': '#006039',
+                        'brand-coffee': '#9C5426',
+                        'brand-danger': '#8E2C2C',
+                        'brand-cream': '#F4EFE6',
+                        'brand-surface': '#FCFAF6',
+                        'brand-dark': '#2A2624',
+                        'brand-muted': '#9E9892',
+                        'brand-border': '#E8DED1'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { 
+            background-color: #E5E5E5; 
+            font-family: 'Montserrat', sans-serif;
+            color: #2A2624;
+            padding: 40px;
+        }
+        .ds-container { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            background-color: #FCFAF6; /* brand-surface */
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1); 
+            border: 1px solid #E8DED1;
+            overflow: hidden;
+        }
+        
+        .fine-border { border: 1px solid #E8DED1; }
+        .fine-border-b { border-bottom: 1px solid #E8DED1; }
+        .fine-border-t { border-top: 1px solid #E8DED1; }
+        
+        /* Noise texture for background context */
+        .noise-bg {
+            background-color: #F4EFE6;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <div class="ds-container">
+        
+        <!-- Header -->
+        <div class="bg-brand-cream fine-border-b p-12 text-center noise-bg">
+            <h1 class="text-5xl font-serif text-brand-dark mb-4">Design System</h1>
+            <p class="font-sans text-sm uppercase tracking-[0.2em] text-brand-coffee font-bold">Rolex & Coffee • Premium Medical Editorial</p>
+        </div>
+
+        <div class="p-12 space-y-20">
+
+            <!-- 1. PHILOSOPHY -->
+            <section>
+                <div class="flex items-center gap-3 mb-6">
+                    <i class="ph-fill ph-diamond text-brand-green text-2xl"></i>
+                    <h2 class="text-3xl font-serif text-brand-dark">Философия (Vibe)</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-brand-dark leading-relaxed">
+                    <div class="bg-brand-cream fine-border p-8 noise-bg">
+                        <h3 class="font-bold text-sm uppercase tracking-widest text-brand-green mb-4">Отказ от "мыла"</h3>
+                        <p class="text-sm">Никаких скруглений (border-radius: 0) и мыльных цветных плашек, которые ассоциируются с массовыми необанками (Тинькофф/Сбер) или дешевыми приложениями. Формы строгие, как в дорогих печатных журналах и меню ресторанов Michelin.</p>
+                    </div>
+                    <div class="bg-brand-cream fine-border p-8 noise-bg">
+                        <h3 class="font-bold text-sm uppercase tracking-widest text-brand-coffee mb-4">Old Money эстетика</h3>
+                        <p class="text-sm">Используем тонкие линии (`fine-border` 1px) для разделения контента, глубокие приглушенные цвета, много "воздуха" и классическую антикву (шрифт с засечками). Фотографии врачей и клиники затонированы в теплую кофейную сепию.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 2. COLORS -->
+            <section>
+                <div class="flex items-center gap-3 mb-6">
+                    <i class="ph-fill ph-palette text-brand-green text-2xl"></i>
+                    <h2 class="text-3xl font-serif text-brand-dark">Палитра (Colors)</h2>
+                </div>
+                
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    <!-- Color 1 -->
+                    <div class="fine-border">
+                        <div class="h-32 bg-brand-green"></div>
+                        <div class="p-4 bg-white">
+                            <h3 class="font-bold text-sm mb-1">Rolex Green</h3>
+                            <p class="text-xs text-brand-muted font-mono mb-2">#006039 / brand-green</p>
+                            <p class="text-[11px] leading-tight">Главный акцентный цвет. Кнопки CTA, важные заголовки, активные элементы.</p>
+                        </div>
+                    </div>
+                    <!-- Color 2 -->
+                    <div class="fine-border">
+                        <div class="h-32 bg-brand-coffee"></div>
+                        <div class="p-4 bg-white">
+                            <h3 class="font-bold text-sm mb-1">Terracotta Coffee</h3>
+                            <p class="text-xs text-brand-muted font-mono mb-2">#9C5426 / brand-coffee</p>
+                            <p class="text-[11px] leading-tight">Вторичный акцент. Иконки, премиум-карточки, бейджи, ховер-эффекты.</p>
+                        </div>
+                    </div>
+                    <!-- Color 3 -->
+                    <div class="fine-border">
+                        <div class="h-32 bg-brand-danger"></div>
+                        <div class="p-4 bg-white">
+                            <h3 class="font-bold text-sm mb-1">Aged Wine</h3>
+                            <p class="text-xs text-brand-muted font-mono mb-2">#8E2C2C / brand-danger</p>
+                            <p class="text-[11px] leading-tight">Цвет для деструктивных действий (Отмена, Ошибка). Приглушенный красный.</p>
+                        </div>
+                    </div>
+                    <!-- Color 4 -->
+                    <div class="fine-border">
+                        <div class="h-32 bg-brand-dark"></div>
+                        <div class="p-4 bg-white">
+                            <h3 class="font-bold text-sm mb-1">Espresso (Text)</h3>
+                            <p class="text-xs text-brand-muted font-mono mb-2">#2A2624 / brand-dark</p>
+                            <p class="text-[11px] leading-tight">Базовый цвет всех текстов. Теплый темно-серый/коричневый (не глухой черный).</p>
+                        </div>
+                    </div>
+                    <!-- Color 5 -->
+                    <div class="fine-border">
+                        <div class="h-32 bg-brand-muted"></div>
+                        <div class="p-4 bg-white">
+                            <h3 class="font-bold text-sm mb-1">Muted Warm</h3>
+                            <p class="text-xs text-brand-muted font-mono mb-2">#9E9892 / brand-muted</p>
+                            <p class="text-[11px] leading-tight">Вторичный текст, подписи, неактивные иконки.</p>
+                        </div>
+                    </div>
+                    <!-- Color 6 -->
+                    <div class="fine-border">
+                        <div class="h-32 bg-brand-border"></div>
+                        <div class="p-4 bg-white">
+                            <h3 class="font-bold text-sm mb-1">Hairline Border</h3>
+                            <p class="text-xs text-brand-muted font-mono mb-2">#E8DED1 / brand-border</p>
+                            <p class="text-[11px] leading-tight">Тонкие обводки (1px), разделители карточек и секций.</p>
+                        </div>
+                    </div>
+                    <!-- Color 7 -->
+                    <div class="fine-border">
+                        <div class="h-32 bg-brand-cream noise-bg"></div>
+                        <div class="p-4 bg-white">
+                            <h3 class="font-bold text-sm mb-1">Cotton Cream</h3>
+                            <p class="text-xs text-brand-muted font-mono mb-2">#F4EFE6 / brand-cream</p>
+                            <p class="text-[11px] leading-tight">Главный цвет фона приложения. Текстурный эффект дорогой бумаги.</p>
+                        </div>
+                    </div>
+                    <!-- Color 8 -->
+                    <div class="fine-border">
+                        <div class="h-32 bg-brand-surface"></div>
+                        <div class="p-4 bg-white">
+                            <h3 class="font-bold text-sm mb-1">Linen Surface</h3>
+                            <p class="text-xs text-brand-muted font-mono mb-2">#FCFAF6 / brand-surface</p>
+                            <p class="text-[11px] leading-tight">Цвет для карточек, модалок и форм, лежащих поверх кремового фона.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. TYPOGRAPHY -->
+            <section>
+                <div class="flex items-center gap-3 mb-6">
+                    <i class="ph-fill ph-text-t text-brand-green text-2xl"></i>
+                    <h2 class="text-3xl font-serif text-brand-dark">Типографика (Typography)</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <!-- Serif -->
+                    <div>
+                        <h3 class="text-sm font-sans font-bold uppercase tracking-widest text-brand-muted mb-4 border-b border-brand-border pb-2">Cormorant Garamond (Serif)</h3>
+                        <div class="space-y-6">
+                            <div>
+                                <p class="text-[10px] uppercase tracking-widest text-brand-muted mb-1">Heading 1 / text-4xl</p>
+                                <h1 class="font-serif text-4xl text-brand-dark">Стоимость услуг</h1>
+                            </div>
+                            <div>
+                                <p class="text-[10px] uppercase tracking-widest text-brand-muted mb-1">Heading 2 / text-2xl</p>
+                                <h2 class="font-serif text-2xl text-brand-dark">Предстоящий визит</h2>
+                            </div>
+                            <div>
+                                <p class="text-[10px] uppercase tracking-widest text-brand-muted mb-1">Heading 3 / text-lg</p>
+                                <h3 class="font-serif text-lg text-brand-dark">Отбеливание ZOOM4</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sans -->
+                    <div>
+                        <h3 class="text-sm font-sans font-bold uppercase tracking-widest text-brand-muted mb-4 border-b border-brand-border pb-2">Montserrat (Sans-Serif)</h3>
+                        <div class="space-y-6">
+                            <div>
+                                <p class="text-[10px] uppercase tracking-widest text-brand-muted mb-1">Body Text / text-[12px]</p>
+                                <p class="font-sans text-[12px] text-brand-dark leading-relaxed">Клиническая процедура для безопасного и эффективного осветления эмали. Требуется предварительная консультация.</p>
+                            </div>
+                            <div>
+                                <p class="text-[10px] uppercase tracking-widest text-brand-muted mb-1">Micro Caps / text-[10px] uppercase tracking-[0.2em]</p>
+                                <p class="font-sans text-[10px] uppercase tracking-[0.2em] font-bold text-brand-green">Направления</p>
+                            </div>
+                            <div>
+                                <p class="text-[10px] uppercase tracking-widest text-brand-muted mb-1">Button Text / text-[9px] uppercase tracking-[0.15em] font-bold</p>
+                                <p class="font-sans text-[9px] uppercase tracking-[0.15em] font-bold text-brand-dark">Записаться на прием</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4. UI COMPONENTS -->
+            <section>
+                <div class="flex items-center gap-3 mb-6">
+                    <i class="ph-fill ph-squares-four text-brand-green text-2xl"></i>
+                    <h2 class="text-3xl font-serif text-brand-dark">Компоненты (UI Elements)</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    
+                    <!-- Buttons -->
+                    <div class="bg-white fine-border p-8">
+                        <h3 class="text-sm font-sans font-bold uppercase tracking-widest text-brand-muted mb-6">Кнопки (Buttons)</h3>
+                        <div class="space-y-4 max-w-[300px]">
+                            <!-- Primary -->
+                            <button class="bg-brand-green text-brand-surface font-sans text-[10px] uppercase tracking-[0.15em] font-bold px-6 py-4 w-full hover:bg-brand-coffee transition-colors">
+                                Главное действие (Primary)
+                            </button>
+                            <!-- Secondary -->
+                            <button class="bg-brand-surface border border-brand-green text-brand-green font-sans text-[10px] uppercase tracking-[0.15em] font-bold px-6 py-4 w-full hover:bg-brand-green hover:text-brand-surface transition-colors">
+                                Второстепенное (Secondary)
+                            </button>
+                            <!-- Danger -->
+                            <button class="bg-brand-surface border border-brand-danger text-brand-danger font-sans text-[10px] uppercase tracking-[0.15em] font-bold px-6 py-4 w-full hover:bg-brand-danger hover:text-brand-surface transition-colors">
+                                Опасное действие (Danger)
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Badges & Chips -->
+                    <div class="bg-white fine-border p-8">
+                        <h3 class="text-sm font-sans font-bold uppercase tracking-widest text-brand-muted mb-6">Теги и Чипы (Badges)</h3>
+                        
+                        <div class="space-y-6">
+                            <div>
+                                <p class="text-[10px] text-brand-muted mb-2">Статусы визита (Status Badges)</p>
+                                <div class="flex gap-2 flex-wrap">
+                                    <span class="text-[9px] uppercase tracking-[0.15em] font-sans text-brand-surface bg-brand-green px-2 py-1 font-bold">Подтвержден</span>
+                                    <span class="text-[9px] uppercase tracking-[0.15em] font-sans text-brand-surface bg-brand-coffee px-2 py-1 font-bold">Требует подтверждения</span>
+                                    <span class="text-[9px] uppercase tracking-[0.15em] font-sans text-brand-surface bg-brand-muted px-2 py-1 font-bold">Ожидает визита / Выполнен</span>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <p class="text-[10px] text-brand-muted mb-2">Фильтры (Filter Chips)</p>
+                                <div class="flex gap-2 flex-wrap">
+                                    <button class="bg-brand-surface border border-brand-coffee text-brand-coffee px-5 py-2 text-[10px] uppercase tracking-[0.1em] font-bold">Активный</button>
+                                    <button class="bg-brand-surface border border-brand-border text-brand-muted px-5 py-2 text-[10px] uppercase tracking-[0.1em] font-medium hover:bg-brand-cream transition-colors">Неактивный</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cards -->
+                    <div class="bg-white fine-border p-8 md:col-span-2">
+                        <h3 class="text-sm font-sans font-bold uppercase tracking-widest text-brand-muted mb-6">Карточки (Cards)</h3>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- Service Row -->
+                            <div class="bg-brand-surface fine-border p-4">
+                                <div class="flex justify-between items-start mb-2">
+                                    <div class="flex items-center gap-2">
+                                        <span class="bg-brand-coffee text-brand-surface text-[10px] font-bold px-2 py-0.5 font-sans">Зуб 46</span>
+                                        <span class="text-[13px] font-sans font-medium text-brand-dark">Лечение кариеса</span>
+                                    </div>
+                                </div>
+                                <div class="flex justify-between items-center mt-3 pt-3 fine-border-t">
+                                    <span class="text-[10px] font-sans uppercase tracking-[0.1em] text-brand-green font-bold flex items-center gap-1"><i class="ph-bold ph-check"></i> Выполнено</span>
+                                    <span class="font-serif text-lg text-brand-dark">4 500 ₽</span>
+                                </div>
+                            </div>
+
+                            <!-- Doctor / Info Card -->
+                            <div class="bg-brand-surface fine-border shadow-sm p-4 flex items-center justify-between group cursor-pointer hover:border-brand-coffee transition-colors">
+                                <div class="flex items-center gap-4">
+                                    <div class="w-12 h-12 bg-brand-cream fine-border flex items-center justify-center text-brand-coffee">
+                                        <i class="ph-light ph-user-circle text-2xl"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-serif text-xl mb-0.5 text-brand-dark">Выбрать врача</h3>
+                                        <p class="text-[10px] font-sans text-brand-muted">Расписание специалистов</p>
+                                    </div>
+                                </div>
+                                <i class="ph-light ph-caret-right text-brand-muted group-hover:text-brand-coffee transition-colors"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+        </div>
+    </div>
+</body>
+</html>
