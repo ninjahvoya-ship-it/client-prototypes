@@ -347,6 +347,23 @@
         function closeSheets() {
             document.getElementById('plan-sheet').classList.remove('active');
         }
+    
+        function switchTab(tab) {
+            // Reset buttons
+            document.getElementById('btn-upcoming').className = 'tab-btn flex-1 py-2 text-[10px] uppercase tracking-[0.1em] font-bold text-center';
+            document.getElementById('btn-past').className = 'tab-btn flex-1 py-2 text-[10px] uppercase tracking-[0.1em] font-bold text-center';
+            
+            // Set active button
+            document.getElementById('btn-' + tab).classList.add('active');
+            
+            // Hide all content
+            document.getElementById('tab-upcoming').classList.remove('active');
+            document.getElementById('tab-past').classList.remove('active');
+            
+            // Show target content
+            document.getElementById('tab-' + tab).classList.add('active');
+        }
+
     </script>
 
 </body>
