@@ -63,10 +63,11 @@
             transition: all 0.2s ease;
         }
         
+        
         .tab-btn.active {
-            color: #006039;
+            color: #9C5426;
             background-color: #FCFAF6;
-            border: 1px solid #006039;
+            border: 1px solid #9C5426;
         }
         
         .tab-content { display: none; }
@@ -136,14 +137,14 @@
                 <!-- Visit 2 -->
                 <div class="bg-brand-surface fine-border p-5 relative overflow-hidden shadow-sm">
                     <div class="flex justify-between items-start mb-4">
-                        <span class="text-[9px] uppercase tracking-[0.15em] font-sans text-brand-dark bg-brand-border px-2 py-1 font-bold">Требует подтверждения</span>
+                        <span class="text-[9px] uppercase tracking-[0.15em] font-sans text-brand-surface bg-brand-muted px-2 py-1 font-bold">Ожидает визита</span>
                         <p class="font-sans text-[11px] text-brand-muted tracking-wide flex items-center gap-1">
                             <i class="ph-light ph-clock"></i> 60 мин
                         </p>
                     </div>
                     
                     <h3 class="font-serif text-2xl text-brand-dark mb-1">21 июня, 15:30</h3>
-                    <p class="font-sans text-[12px] font-medium text-brand-coffee mb-4">Отбеливание ZOOM4</p>
+                    <p class="font-sans text-[12px] font-medium text-brand-coffee mb-4">Лечение пульпита (молочный зуб)</p>
                     
                     <div class="flex items-center gap-3 py-4 fine-border-t fine-border-b mb-5">
                         <div class="w-10 h-10 bg-brand-cream fine-border overflow-hidden shrink-0">
@@ -151,13 +152,22 @@
                         </div>
                         <div>
                             <p class="font-serif text-lg text-brand-dark leading-none mb-1">Е. Иванова</p>
-                            <p class="font-sans text-[9px] uppercase tracking-[0.1em] text-brand-muted">Ортодонт</p>
+                            <p class="font-sans text-[9px] uppercase tracking-[0.1em] text-brand-muted">Детский стоматолог</p>
                         </div>
+                    </div>
+
+                    <!-- Family Member Badge -->
+                    <div class="flex items-center gap-2 mb-5 px-3 py-2 bg-brand-cream fine-border">
+                        <i class="ph-fill ph-baby text-brand-coffee text-lg"></i>
+                        <span class="font-sans text-[10px] font-medium text-brand-dark">Записан: Ваня (Сын)</span>
                     </div>
                     
                     <div class="flex gap-2">
                         <button class="bg-brand-green text-brand-surface font-sans text-[9px] uppercase tracking-[0.1em] font-bold px-4 py-3 w-full hover:bg-brand-coffee transition-colors">
-                            Оплатить аванс
+                            Перенести
+                        </button>
+                        <button class="border border-brand-green text-brand-green font-sans text-[9px] uppercase tracking-[0.1em] font-bold px-4 py-3 w-full hover:bg-brand-green hover:text-brand-surface transition-colors">
+                            Отменить
                         </button>
                     </div>
                 </div>
@@ -276,6 +286,7 @@
             border-top-left-radius: 24px; border-top-right-radius: 24px; padding: 24px; z-index: 10001;
             transform: translate(-50%, 100%); transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
             padding-bottom: max(24px, env(safe-area-inset-bottom)); border-top: 1px solid #E8DED1;
+            max-height: 85vh; overflow-y: auto;
         }
         .bottom-sheet-overlay.active { display: block; }
         .bottom-sheet-overlay.active .bottom-sheet { transform: translate(-50%, 0); }
@@ -283,32 +294,60 @@
     </style>
 
     <div id="plan-sheet" class="bottom-sheet-overlay" onclick="if(event.target === this) closeSheets()">
-        <div class="bottom-sheet">
+        <div class="bottom-sheet hide-scroll">
             <div class="w-12 h-1 bg-brand-border rounded-full mb-6 mx-auto"></div>
-            <h2 class="text-2xl font-serif mb-2 text-center text-brand-dark">План лечения</h2>
-            <p class="text-[11px] font-sans text-brand-muted text-center mb-6 uppercase tracking-wider">От 28 марта 2026</p>
-
-            <div class="space-y-4 mb-6">
-                <!-- Step 1 -->
-                <div class="bg-brand-surface fine-border p-4 flex items-center justify-between">
-                    <div>
-                        <span class="text-[9px] uppercase tracking-[0.1em] font-sans text-brand-green font-bold mb-1 block">Этап 1</span>
-                        <h3 class="font-serif text-lg text-brand-dark mb-1">Проф. гигиена полости рта</h3>
-                    </div>
-                    <span class="font-serif text-lg text-brand-dark">5 500 ₽</span>
+            
+            <div class="flex justify-between items-start mb-6">
+                <div>
+                    <h2 class="text-2xl font-serif text-brand-dark mb-1">План лечения</h2>
+                    <p class="text-[11px] font-sans text-brand-muted uppercase tracking-wider">От 28 марта 2026</p>
                 </div>
-
-                <!-- Step 2 -->
-                <div class="bg-brand-surface fine-border p-4 flex items-center justify-between opacity-50">
-                    <div>
-                        <span class="text-[9px] uppercase tracking-[0.1em] font-sans text-brand-muted font-bold mb-1 block">Этап 2</span>
-                        <h3 class="font-serif text-lg text-brand-dark mb-1">Лечение кариеса (3 зуба)</h3>
-                    </div>
-                    <span class="font-serif text-lg text-brand-dark">14 000 ₽</span>
+                <div class="text-right">
+                    <p class="text-[9px] font-sans uppercase tracking-[0.15em] text-brand-muted mb-1">Общая сумма</p>
+                    <p class="font-serif text-xl text-brand-green">19 500 ₽</p>
                 </div>
             </div>
 
-            <button onclick="closeSheets()" class="w-full bg-brand-cream text-brand-dark py-3.5 font-sans text-[10px] uppercase tracking-[0.15em] font-bold hover:bg-brand-border transition-colors fine-border">
+            <!-- Stages -->
+            <div class="space-y-6 mb-8">
+                
+                <!-- Stage 1 -->
+                <div>
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="w-5 h-5 rounded-full bg-brand-green text-brand-surface flex items-center justify-center font-sans text-[10px] font-bold">1</span>
+                        <h3 class="font-serif text-lg text-brand-dark">Санация полости рта</h3>
+                    </div>
+                    
+                    <div class="bg-brand-surface fine-border p-4 mb-2">
+                        <div class="flex justify-between items-start mb-2">
+                            <div class="flex items-center gap-2">
+                                <span class="bg-brand-coffee text-brand-surface text-[10px] font-bold px-2 py-0.5 font-sans">Зуб 46</span>
+                                <span class="text-[13px] font-sans font-medium text-brand-dark">Лечение кариеса</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center mt-3 pt-3 fine-border-t">
+                            <span class="text-[10px] font-sans uppercase tracking-[0.1em] text-brand-green font-bold flex items-center gap-1"><i class="ph-bold ph-check"></i> Выполнено</span>
+                            <span class="font-serif text-lg text-brand-dark">4 500 ₽</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-brand-surface fine-border p-4 opacity-70">
+                        <div class="flex justify-between items-start mb-2">
+                            <div class="flex items-center gap-2">
+                                <span class="bg-brand-border text-brand-dark text-[10px] font-bold px-2 py-0.5 font-sans">Зуб 37</span>
+                                <span class="text-[13px] font-sans font-medium text-brand-dark">Лечение пульпита</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center mt-3 pt-3 fine-border-t">
+                            <span class="text-[10px] font-sans uppercase tracking-[0.1em] text-brand-muted font-bold">Ожидает</span>
+                            <span class="font-serif text-lg text-brand-dark">15 000 ₽</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <button onclick="closeSheets()" class="w-full bg-brand-cream text-brand-dark py-4 font-sans text-[10px] uppercase tracking-[0.15em] font-bold hover:bg-brand-border transition-colors fine-border">
                 Закрыть
             </button>
         </div>
