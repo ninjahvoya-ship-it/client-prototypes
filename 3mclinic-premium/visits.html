@@ -63,9 +63,9 @@
             transition: all 0.2s ease;
         }
         .tab-btn.active {
-            color: #2A2624;
-            background-color: #FCFAF6;
-            border: 1px solid #E8DED1;
+            color: #FFFFFF;
+            background-color: #006039;
+            border: 1px solid #006039;
         }
         
         .tab-content { display: none; }
@@ -167,15 +167,41 @@
             <div id="tab-past" class="tab-content space-y-6">
                 
                 <!-- Past Visit 1 -->
-                <div class="bg-brand-cream border border-brand-border/50 p-5 relative overflow-hidden">
-                    <div class="flex justify-between items-start mb-4 opacity-60">
-                        <p class="font-serif text-xl text-brand-dark mb-1">10 апреля 2026</p>
-                        <span class="font-serif text-lg text-brand-dark">3 500 ₽</span>
+                <div class="bg-brand-surface border border-brand-coffee p-5 relative overflow-hidden shadow-sm opacity-90">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="text-[9px] uppercase tracking-[0.15em] font-sans text-brand-surface bg-brand-muted px-2 py-1 font-bold">Выполнен</span>
+                        <p class="font-serif text-lg text-brand-dark mb-1">12 апреля 2026</p>
                     </div>
                     
-                    <p class="font-sans text-[12px] font-medium text-brand-dark mb-4 opacity-80">Консультация ортодонта</p>
+                    <p class="font-sans text-[12px] font-medium text-brand-dark mb-4">Лечение кариеса</p>
                     
-                    <div class="flex items-center gap-3 pt-4 fine-border-t opacity-70">
+                    <div class="flex items-center gap-3 pt-4 fine-border-t mb-5">
+                        <div class="w-8 h-8 bg-brand-surface fine-border overflow-hidden shrink-0">
+                            <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?q=80&w=400&auto=format&fit=crop" class="w-full h-full object-cover grayscale mix-blend-multiply" style="background-color: rgba(156,84,38,0.1);" alt="Dr. Sokolov">
+                        </div>
+                        <div>
+                            <p class="font-serif text-[16px] text-brand-dark leading-none mb-1">Д. Соколов</p>
+                            <p class="font-sans text-[8px] uppercase tracking-[0.1em] text-brand-muted">Хирург</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex gap-2">
+                        <a href="booking.html" class="bg-brand-coffee text-brand-surface font-sans text-[9px] uppercase tracking-[0.1em] font-bold px-4 py-3 w-full hover:bg-brand-dark transition-colors text-center flex items-center justify-center gap-1.5">
+                            <i class="ph-bold ph-arrow-counter-clockwise"></i> Повторить
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Past Visit 2 -->
+                <div class="bg-brand-surface border border-brand-coffee p-5 relative overflow-hidden shadow-sm opacity-90">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="text-[9px] uppercase tracking-[0.15em] font-sans text-brand-surface bg-brand-muted px-2 py-1 font-bold">Выполнен</span>
+                        <p class="font-serif text-lg text-brand-dark mb-1">28 марта 2026</p>
+                    </div>
+                    
+                    <p class="font-sans text-[12px] font-medium text-brand-dark mb-4">Первичная консультация</p>
+                    
+                    <div class="flex items-center gap-3 pt-4 fine-border-t mb-5">
                         <div class="w-8 h-8 bg-brand-surface fine-border overflow-hidden shrink-0">
                             <img src="https://images.unsplash.com/photo-1594824436951-7f1262056841?q=80&w=400&auto=format&fit=crop" class="w-full h-full object-cover grayscale mix-blend-multiply" style="background-color: rgba(156,84,38,0.1);" alt="Dr. Ivanova">
                         </div>
@@ -185,15 +211,13 @@
                         </div>
                     </div>
                     
-                    <!-- Review Button -->
-                    <div class="mt-5">
-                        <button class="border border-brand-border text-brand-dark font-sans text-[9px] uppercase tracking-[0.1em] font-bold px-4 py-3 w-full hover:bg-brand-surface transition-colors flex justify-center items-center gap-2">
-                            <i class="ph-fill ph-star text-brand-coffee"></i>
-                            Оставить отзыв
+                    <div class="flex gap-2">
+                        <button onclick="openPlan()" class="border border-brand-coffee text-brand-coffee font-sans text-[9px] uppercase tracking-[0.1em] font-bold px-4 py-3 w-full hover:bg-brand-coffee hover:text-brand-surface transition-colors text-center flex items-center justify-center gap-1.5">
+                            <i class="ph-bold ph-file-text"></i> План лечения
                         </button>
                     </div>
                 </div>
-
+                <!--
             </div>
 
         </main>
@@ -239,5 +263,64 @@
             document.getElementById('tab-' + tab).classList.add('active');
         }
     </script>
+
+    <!-- Treatment Plan Sheet -->
+    <style>
+        .bottom-sheet-overlay {
+            display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 10000;
+            animation: fadeIn 0.3s ease-out;
+        }
+        .bottom-sheet {
+            position: absolute; bottom: 0; left: 50%; width: 100%; max-width: 400px; background: #FCFAF6;
+            border-top-left-radius: 24px; border-top-right-radius: 24px; padding: 24px; z-index: 10001;
+            transform: translate(-50%, 100%); transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            padding-bottom: max(24px, env(safe-area-inset-bottom)); border-top: 1px solid #E8DED1;
+        }
+        .bottom-sheet-overlay.active { display: block; }
+        .bottom-sheet-overlay.active .bottom-sheet { transform: translate(-50%, 0); }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    </style>
+
+    <div id="plan-sheet" class="bottom-sheet-overlay" onclick="if(event.target === this) closeSheets()">
+        <div class="bottom-sheet">
+            <div class="w-12 h-1 bg-brand-border rounded-full mb-6 mx-auto"></div>
+            <h2 class="text-2xl font-serif mb-2 text-center text-brand-dark">План лечения</h2>
+            <p class="text-[11px] font-sans text-brand-muted text-center mb-6 uppercase tracking-wider">От 28 марта 2026</p>
+
+            <div class="space-y-4 mb-6">
+                <!-- Step 1 -->
+                <div class="bg-brand-surface fine-border p-4 flex items-center justify-between">
+                    <div>
+                        <span class="text-[9px] uppercase tracking-[0.1em] font-sans text-brand-green font-bold mb-1 block">Этап 1</span>
+                        <h3 class="font-serif text-lg text-brand-dark mb-1">Проф. гигиена полости рта</h3>
+                    </div>
+                    <span class="font-serif text-lg text-brand-dark">5 500 ₽</span>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="bg-brand-surface fine-border p-4 flex items-center justify-between opacity-50">
+                    <div>
+                        <span class="text-[9px] uppercase tracking-[0.1em] font-sans text-brand-muted font-bold mb-1 block">Этап 2</span>
+                        <h3 class="font-serif text-lg text-brand-dark mb-1">Лечение кариеса (3 зуба)</h3>
+                    </div>
+                    <span class="font-serif text-lg text-brand-dark">14 000 ₽</span>
+                </div>
+            </div>
+
+            <button onclick="closeSheets()" class="w-full bg-brand-cream text-brand-dark py-3.5 font-sans text-[10px] uppercase tracking-[0.15em] font-bold hover:bg-brand-border transition-colors fine-border">
+                Закрыть
+            </button>
+        </div>
+    </div>
+
+    <script>
+        function openPlan() {
+            document.getElementById('plan-sheet').classList.add('active');
+        }
+        function closeSheets() {
+            document.getElementById('plan-sheet').classList.remove('active');
+        }
+    </script>
+
 </body>
 </html>
