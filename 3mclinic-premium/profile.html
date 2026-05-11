@@ -7,6 +7,49 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- QR Code Modal -->
+    <style>
+        .modal-overlay {
+            display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 10000;
+            backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+            align-items: center; justify-content: center; padding: 24px;
+            animation: fadeIn 0.2s ease-out;
+        }
+        .modal-overlay.active { display: flex; }
+        .modal-card {
+            width: 100%; max-width: 320px; background: #FCFAF6;
+            padding: 32px 24px; border: 1px solid #E8DED1;
+            transform: scale(0.95); opacity: 0; transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .modal-overlay.active .modal-card { transform: scale(1); opacity: 1; }
+    </style>
+
+    <div id="modal-qr" class="modal-overlay" onclick="if(event.target === this) closeModals()">
+        <div class="modal-card flex flex-col items-center">
+            <h2 class="text-2xl font-serif text-brand-dark mb-1 text-center">Ваша карта</h2>
+            <p class="text-[11px] font-sans text-brand-muted text-center mb-6">Покажите администратору</p>
+            
+            <div class="bg-white p-4 fine-border mb-6">
+                <!-- Using a placeholder QR code image -->
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=3MClinic-Premium-User-12345" alt="QR Code" class="w-48 h-48 mix-blend-multiply opacity-90">
+            </div>
+            
+            <p class="font-sans text-[16px] text-brand-dark font-bold tracking-widest mb-6 text-center">8800 555 3535</p>
+
+            <button onclick="closeModals()" class="w-full border border-brand-border text-brand-dark py-4 font-sans text-[10px] uppercase tracking-[0.15em] font-bold hover:bg-brand-surface transition-colors">
+                Закрыть
+            </button>
+        </div>
+    </div>
+
+    <script>
+        function openQR() { document.getElementById('modal-qr').classList.add('active'); }
+        function closeModals() {
+            document.querySelectorAll('.modal-overlay').forEach(m => m.classList.remove('active'));
+        }
+    </script>
+
     <script>
         tailwind.config = {
             theme: {
@@ -119,7 +162,7 @@
                                 <span class="text-lg font-serif text-brand-dark">₽</span>
                             </div>
                         </div>
-                        <i class="ph-light ph-qr-code text-3xl text-brand-coffee cursor-pointer hover:opacity-70 transition-opacity"></i>
+                        <i onclick="openQR()" class="ph-light ph-qr-code text-3xl text-brand-coffee cursor-pointer hover:opacity-70 transition-opacity"></i>
                     </div>
                     
                     <div class="flex gap-2">
@@ -233,6 +276,49 @@
         </div>
 
     </div>
+
+    
+    <!-- QR Code Modal -->
+    <style>
+        .modal-overlay {
+            display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 10000;
+            backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+            align-items: center; justify-content: center; padding: 24px;
+            animation: fadeIn 0.2s ease-out;
+        }
+        .modal-overlay.active { display: flex; }
+        .modal-card {
+            width: 100%; max-width: 320px; background: #FCFAF6;
+            padding: 32px 24px; border: 1px solid #E8DED1;
+            transform: scale(0.95); opacity: 0; transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .modal-overlay.active .modal-card { transform: scale(1); opacity: 1; }
+    </style>
+
+    <div id="modal-qr" class="modal-overlay" onclick="if(event.target === this) closeModals()">
+        <div class="modal-card flex flex-col items-center">
+            <h2 class="text-2xl font-serif text-brand-dark mb-1 text-center">Ваша карта</h2>
+            <p class="text-[11px] font-sans text-brand-muted text-center mb-6">Покажите администратору</p>
+            
+            <div class="bg-white p-4 fine-border mb-6">
+                <!-- Using a placeholder QR code image -->
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=3MClinic-Premium-User-12345" alt="QR Code" class="w-48 h-48 mix-blend-multiply opacity-90">
+            </div>
+            
+            <p class="font-sans text-[16px] text-brand-dark font-bold tracking-widest mb-6 text-center">8800 555 3535</p>
+
+            <button onclick="closeModals()" class="w-full border border-brand-border text-brand-dark py-4 font-sans text-[10px] uppercase tracking-[0.15em] font-bold hover:bg-brand-surface transition-colors">
+                Закрыть
+            </button>
+        </div>
+    </div>
+
+    <script>
+        function openQR() { document.getElementById('modal-qr').classList.add('active'); }
+        function closeModals() {
+            document.querySelectorAll('.modal-overlay').forEach(m => m.classList.remove('active'));
+        }
+    </script>
 
     <script>
         function toggleSearch() {
