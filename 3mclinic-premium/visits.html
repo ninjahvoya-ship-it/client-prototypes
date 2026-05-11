@@ -224,7 +224,7 @@
                     
                     <div class="flex gap-2">
                         <button onclick="openPlan()" class="border border-brand-coffee text-brand-coffee font-sans text-[9px] uppercase tracking-[0.1em] font-bold px-4 py-3 w-full hover:bg-brand-coffee hover:text-brand-surface transition-colors text-center flex items-center justify-center gap-1.5">
-                            <i class="ph-bold ph-file-text"></i> План лечения
+                            <i class="ph-bold ph-file-text"></i> Документы
                         </button>
                     </div>
                 </div>
@@ -297,57 +297,31 @@
         <div class="bottom-sheet hide-scroll">
             <div class="w-12 h-1 bg-brand-border rounded-full mb-6 mx-auto"></div>
             
-            <div class="flex justify-between items-start mb-6">
-                <div>
-                    <h2 class="text-2xl font-serif text-brand-dark mb-1">План лечения</h2>
-                    <p class="text-[11px] font-sans text-brand-muted uppercase tracking-wider">От 28 марта 2026</p>
+            <div class="mb-6">
+                <h2 class="text-[26px] font-serif text-brand-dark mb-1 leading-tight">Медицинские документы</h2>
+                <p class="text-[10px] font-sans text-brand-muted uppercase tracking-wider">От 28 мар 2026 • Е. Иванова</p>
+            </div>
+
+            <!-- Attached File -->
+            <div class="flex items-center gap-4 bg-brand-cream fine-border p-4 mb-8">
+                <div class="w-10 h-10 bg-brand-surface fine-border flex items-center justify-center shrink-0">
+                    <i class="ph-fill ph-file-pdf text-brand-coffee text-2xl"></i>
                 </div>
-                <div class="text-right">
-                    <p class="text-[9px] font-sans uppercase tracking-[0.15em] text-brand-muted mb-1">Общая сумма</p>
-                    <p class="font-serif text-xl text-brand-green">19 500 ₽</p>
+                <div>
+                    <p class="font-serif text-[17px] text-brand-dark mb-1 leading-tight">План_лечения_Ветютнева.pdf</p>
+                    <p class="font-sans text-[10px] text-brand-muted tracking-wide">245 КБ • Загружен врачом</p>
                 </div>
             </div>
 
-            <!-- Stages -->
-            <div class="space-y-6 mb-8">
-                
-                <!-- Stage 1 -->
-                <div>
-                    <div class="flex items-center gap-2 mb-3">
-                        <span class="w-5 h-5 rounded-full bg-brand-green text-brand-surface flex items-center justify-center font-sans text-[10px] font-bold">1</span>
-                        <h3 class="font-serif text-lg text-brand-dark">Санация полости рта</h3>
-                    </div>
-                    
-                    <div class="bg-brand-surface fine-border p-4 mb-2">
-                        <div class="flex justify-between items-start mb-2">
-                            <div class="flex items-center gap-2">
-                                <span class="bg-brand-coffee text-brand-surface text-[10px] font-bold px-2 py-0.5 font-sans">Зуб 46</span>
-                                <span class="text-[13px] font-sans font-medium text-brand-dark">Лечение кариеса</span>
-                            </div>
-                        </div>
-                        <div class="flex justify-between items-center mt-3 pt-3 fine-border-t">
-                            <span class="text-[10px] font-sans uppercase tracking-[0.1em] text-brand-green font-bold flex items-center gap-1"><i class="ph-bold ph-check"></i> Выполнено</span>
-                            <span class="font-serif text-lg text-brand-dark">4 500 ₽</span>
-                        </div>
-                    </div>
-
-                    <div class="bg-brand-surface fine-border p-4 opacity-70">
-                        <div class="flex justify-between items-start mb-2">
-                            <div class="flex items-center gap-2">
-                                <span class="bg-brand-border text-brand-dark text-[10px] font-bold px-2 py-0.5 font-sans">Зуб 37</span>
-                                <span class="text-[13px] font-sans font-medium text-brand-dark">Лечение пульпита</span>
-                            </div>
-                        </div>
-                        <div class="flex justify-between items-center mt-3 pt-3 fine-border-t">
-                            <span class="text-[10px] font-sans uppercase tracking-[0.1em] text-brand-muted font-bold">Ожидает</span>
-                            <span class="font-serif text-lg text-brand-dark">15 000 ₽</span>
-                        </div>
-                    </div>
-                </div>
-
+            <!-- Doctor's Comment -->
+            <h4 class="font-sans text-[10px] uppercase tracking-[0.2em] font-bold text-brand-green mb-3">Комментарий врача</h4>
+            <div class="bg-brand-cream fine-border border-l-2 p-5 mb-8 shadow-sm" style="border-left-color: #006039;">
+                <p class="font-sans text-[12px] text-brand-dark leading-relaxed">
+                    Удалили 34-й зуб. Заживление пройдет за 3-5 дней. Подробный расчет стоимости дальнейшей имплантации и терапии прикрепила в файле выше. Следующий осмотр планируем через месяц.
+                </p>
             </div>
 
-            <button onclick="closeSheets()" class="w-full bg-brand-cream text-brand-dark py-4 font-sans text-[10px] uppercase tracking-[0.15em] font-bold hover:bg-brand-border transition-colors fine-border">
+            <button onclick="closeSheets()" class="w-full bg-brand-surface text-brand-dark py-4 font-sans text-[10px] uppercase tracking-[0.15em] font-bold hover:bg-brand-border transition-colors fine-border">
                 Закрыть
             </button>
         </div>
