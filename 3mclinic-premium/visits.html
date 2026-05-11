@@ -278,6 +278,83 @@
 
     </div>
 
+    
+    <!-- Modal Overlays -->
+    <style>
+        .modal-overlay {
+            display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 10000;
+            backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+            align-items: center; justify-content: center; padding: 24px;
+            animation: fadeIn 0.2s ease-out;
+        }
+        .modal-overlay.active { display: flex; }
+        .modal-card {
+            width: 100%; max-width: 360px; background: #FCFAF6;
+            padding: 32px 24px; border: 1px solid #E8DED1;
+            transform: scale(0.95); opacity: 0; transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .modal-overlay.active .modal-card { transform: scale(1); opacity: 1; }
+    </style>
+
+    <!-- 1. Confirm Modal -->
+    <div id="modal-confirm" class="modal-overlay" onclick="if(event.target === this) closeModals()">
+        <div class="modal-card">
+            <div class="w-12 h-12 bg-brand-surface border border-brand-green flex items-center justify-center mb-6 mx-auto">
+                <i class="ph-light ph-check text-brand-green text-2xl"></i>
+            </div>
+            <h2 class="text-2xl font-serif text-brand-dark mb-2 text-center">Визит подтвержден</h2>
+            <p class="text-[12px] font-sans text-brand-muted text-center leading-relaxed mb-8">
+                Ждем вас 16 мая в 12:00.<br>Врач: Дмитрий Соколов.
+            </p>
+            <button onclick="closeModals()" class="w-full bg-brand-green text-brand-surface py-4 font-sans text-[10px] uppercase tracking-[0.15em] font-bold hover:bg-brand-coffee transition-colors">
+                Отлично
+            </button>
+        </div>
+    </div>
+
+    <!-- 2. Cancel Modal -->
+    <div id="modal-cancel" class="modal-overlay" onclick="if(event.target === this) closeModals()">
+        <div class="modal-card">
+            <div class="w-12 h-12 bg-brand-surface border border-brand-danger flex items-center justify-center mb-6 mx-auto">
+                <i class="ph-light ph-x text-brand-danger text-2xl"></i>
+            </div>
+            <h2 class="text-2xl font-serif text-brand-dark mb-2 text-center">Отменить визит?</h2>
+            <p class="text-[12px] font-sans text-brand-muted text-center leading-relaxed mb-8">
+                Вы уверены, что хотите отменить запись к хирургу Д. Соколову 16 мая в 12:00? Действие нельзя отменить.
+            </p>
+            <div class="flex gap-2">
+                <button onclick="closeModals()" class="w-full border border-brand-border text-brand-dark py-4 font-sans text-[10px] uppercase tracking-[0.15em] font-bold hover:bg-brand-surface transition-colors">
+                    Назад
+                </button>
+                <button onclick="closeModals()" class="w-full bg-brand-danger text-brand-surface py-4 font-sans text-[10px] uppercase tracking-[0.15em] font-bold hover:bg-brand-dark transition-colors">
+                    Отменить
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. Reschedule / Call Modal (Late Cancel) -->
+    <div id="modal-call" class="modal-overlay" onclick="if(event.target === this) closeModals()">
+        <div class="modal-card">
+            <div class="w-12 h-12 bg-brand-surface border border-brand-coffee flex items-center justify-center mb-6 mx-auto">
+                <i class="ph-light ph-phone-call text-brand-coffee text-2xl"></i>
+            </div>
+            <h2 class="text-2xl font-serif text-brand-dark mb-2 text-center">Свяжитесь с клиникой</h2>
+            <p class="text-[12px] font-sans text-brand-muted text-center leading-relaxed mb-8">
+                До визита осталось менее 24 часов. Перенос или отмена записи возможны только через администратора.
+            </p>
+            <div class="flex gap-2">
+                <button onclick="closeModals()" class="w-full border border-brand-border text-brand-dark py-4 font-sans text-[10px] uppercase tracking-[0.15em] font-bold hover:bg-brand-surface transition-colors">
+                    Позже
+                </button>
+                <a href="tel:+70000000000" class="w-full bg-brand-coffee text-brand-surface py-4 font-sans text-[10px] uppercase tracking-[0.15em] font-bold text-center flex items-center justify-center hover:bg-brand-dark transition-colors">
+                    Позвонить
+                </a>
+            </div>
+        </div>
+    </div>
+
+
     <script>
         function openConfirm() { document.getElementById('modal-confirm').classList.add('active'); }
         function openCancel() { document.getElementById('modal-cancel').classList.add('active'); }
