@@ -1,62 +1,39 @@
-# 3M Clinic Premium — Карта экранов (User Flow)
+# 3M Clinic Premium — Структура экранов
 
 ```mermaid
-graph TD
-    %% Base Styles
-    classDef default fill:#FCFAF6,stroke:#E8DED1,stroke-width:1px,color:#2A2624;
-    classDef screen fill:#F4EFE6,stroke:#9C5426,stroke-width:2px,color:#2A2624,font-weight:bold;
-    classDef modal fill:#FFFFFF,stroke:#006039,stroke-width:1px,color:#006039,stroke-dasharray: 5 5;
-    classDef highlight fill:#006039,stroke:#006039,stroke-width:1px,color:#FFFFFF;
+flowchart TB
+    classDef screen fill:#F4EFE6,stroke:#006039,stroke-width:2px,color:#2A2624,font-weight:bold;
+    classDef modal fill:#FCFAF6,stroke:#9C5426,stroke-width:1px,color:#2A2624,stroke-dasharray: 4 4;
+    classDef state fill:#E8DED1,stroke:#9E9892,stroke-width:1px,color:#2A2624;
 
-    %% SCREENS
-    Home[1. Главный экран<br/>index.html / index-active.html]:::screen
-    Services[2. Услуги / Прайс<br/>services.html]:::screen
-    Booking[3. Календарь записи<br/>booking.html]:::screen
-    Visits[4. Мои визиты<br/>visits.html]:::screen
-    Profile[5. Профиль<br/>profile.html]:::screen
+    Home[1. Главная]:::screen
+    Services[2. Услуги / Прайс]:::screen
+    Visits[3. Мои визиты]:::screen
+    Profile[4. Профиль]:::screen
 
-    %% MODALS & BOTTOM SHEETS
-    ModQR([Шторка: Карта Лояльности QR]):::modal
-    ModService([Шторка: Как вас записать?]):::modal
-    ModConfirm([Модалка: Визит подтвержден]):::modal
-    ModCancel([Модалка: Отменить визит?]):::modal
-    ModCall([Модалка: Свяжитесь с клиникой]):::modal
-    ModPlan([Шторка: План лечения]):::modal
+    %% Главная Ветка
+    Home --- H1([Шторка: QR Лояльности]):::modal
+    Home --- H2[Блок: Предстоящий визит]:::state
+    H2 --- H2a([Модалка: Перенос / Звонок]):::modal
 
-    %% GLOBAL NAVIGATION (Tabbar)
-    Tabbar((Нижнее меню)):::highlight
-    Tabbar -->|Главная| Home
-    Tabbar -->|Услуги| Services
-    Tabbar -->|Визиты| Visits
-    Tabbar -->|Профиль| Profile
+    %% Услуги Ветка
+    Services --- S1[Клик по любой услуге]:::state
+    S1 --- S1a([Шторка: Ближайшее время / Врач]):::modal
+    S1a --- Booking[Экран: Календарь записи]:::screen
 
-    %% FLOW: HOME
-    Home -->|Клик на QR-код| ModQR
-    Home -->|Клик Записаться| Services
-    Home -->|Клик Детали визита| Visits
-    Home -->|Клик Перенести визит| ModCall
+    %% Визиты Ветка
+    Visits --- V1[Вкладка: Предстоящие]:::state
+    Visits --- V2[Вкладка: Прошедшие]:::state
 
-    %% FLOW: SERVICES
-    Services -->|Поиск| SearchBar[Строка поиска]
-    Services -->|Клик по услуге| ModService
-    ModService -->|Ближайшее время| Booking
-    ModService -->|Выбрать врача| Booking
+    V1 --- V1a([Модалка: Визит подтвержден]):::modal
+    V1 --- V1b([Модалка: Отменить визит?]):::modal
+    V1 --- V1c([Модалка: Звонок в клинику]):::modal
 
-    %% FLOW: BOOKING
-    Booking -->|Подтвердить запись| SuccessState[Редирект на Главную / Успех]
+    V2 --- V2a([Шторка: Документы / План лечения]):::modal
+    V2 -. Клик: Повторить запись .-> Booking
 
-    %% FLOW: VISITS
-    Visits -->|Таб: Предстоящие| VUpcoming[Ожидает / Подтвержден]
-    Visits -->|Таб: Прошедшие| VPast[История визитов]
+    %% Профиль Ветка
+    Profile --- P1([Шторка: QR Лояльности]):::modal
+    Profile --- P2([Поиск по документам]):::modal
 
-    VUpcoming -->|Подтвердить| ModConfirm
-    VUpcoming -->|Отменить| ModCancel
-    VUpcoming -->|Перенести| ModCall
-
-    VPast -->|Повторить запись| Booking
-    VPast -->|План лечения| ModPlan
-
-    %% FLOW: PROFILE
-    Profile -->|Поиск по документам| SearchBar
-    Profile -->|Клик на QR-код| ModQR
 ```
