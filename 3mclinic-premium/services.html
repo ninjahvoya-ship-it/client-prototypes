@@ -75,9 +75,23 @@
     <div class="app-container">
 
         <!-- 1. Header -->
-        <header class="px-6 pt-12 pb-4 flex justify-between items-center bg-brand-cream sticky top-0 z-40 border-b border-brand-green/30">
-            <h1 class="text-3xl font-serif text-brand-dark tracking-wide">Стоимость услуг</h1>
-            <div class="w-10 h-10"></div>
+        <header class="px-6 pt-12 pb-4 bg-brand-cream sticky top-0 z-40 border-b border-brand-green/30">
+            <div class="flex justify-between items-center" id="header-default">
+                <h1 class="text-3xl font-serif text-brand-dark tracking-wide">Прайс</h1>
+                <button onclick="toggleSearch()" class="w-10 h-10 flex items-center justify-end text-brand-dark hover:text-brand-green transition-colors">
+                    <i class="ph-light ph-magnifying-glass text-[24px]"></i>
+                </button>
+            </div>
+            <!-- Hidden Search Bar -->
+            <div class="hidden flex justify-between items-center mt-2" id="header-search">
+                <div class="bg-brand-surface fine-border p-2 flex items-center gap-2 w-full">
+                    <i class="ph-light ph-magnifying-glass text-brand-muted text-lg ml-1"></i>
+                    <input type="text" placeholder="Поиск услуг..." class="bg-transparent border-none outline-none font-sans text-sm w-full placeholder-brand-muted text-brand-dark">
+                </div>
+                <button onclick="toggleSearch()" class="ml-4 font-sans text-[10px] uppercase tracking-[0.1em] font-bold text-brand-danger">
+                    Отмена
+                </button>
+            </div>
         </header>
         <!-- Minimal Services List -->
         <div class="px-6 pt-6 pb-24">
@@ -297,12 +311,25 @@
         </div>
     </div>
 
+    
     <script>
+        function toggleSearch() {
+            const defaultHeader = document.getElementById('header-default');
+            const searchHeader = document.getElementById('header-search');
+            if (searchHeader.classList.contains('hidden')) {
+                searchHeader.classList.remove('hidden');
+                defaultHeader.classList.add('hidden');
+            } else {
+                searchHeader.classList.add('hidden');
+                defaultHeader.classList.remove('hidden');
+            }
+        }
+        
         function filterCategory(btn, cat) {
             document.querySelectorAll('.cat-btn').forEach(b => {
-                b.className = 'cat-btn bg-brand-surface border border-brand-border text-brand-muted px-5 py-2 text-[10px] uppercase tracking-[0.1em] font-medium whitespace-nowrap hover:bg-brand-cream transition-colors';
+                b.className = 'cat-btn bg-brand-surface border border-brand-border text-brand-muted px-4 py-2 text-[9px] uppercase tracking-[0.1em] font-medium whitespace-nowrap hover:bg-brand-cream transition-colors';
             });
-            btn.className = 'cat-btn active bg-brand-surface border border-brand-coffee text-brand-coffee px-5 py-2 text-[10px] uppercase tracking-[0.1em] font-bold whitespace-nowrap';
+            btn.className = 'cat-btn active bg-brand-surface border border-brand-green text-brand-green px-4 py-2 text-[9px] uppercase tracking-[0.1em] font-bold whitespace-nowrap';
 
             document.querySelectorAll('.cat-section').forEach(s => {
                 if(cat === 'all' || s.id === 'cat-' + cat) {
@@ -323,6 +350,5 @@
             document.getElementById('service-sheet').classList.remove('active');
         }
     </script>
-
 </body>
 </html>
