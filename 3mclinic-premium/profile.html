@@ -379,23 +379,8 @@
         <header class="px-6 pt-12 pb-4 bg-brand-cream sticky top-0 z-40 fine-border-b">
             <div class="flex justify-between items-center" id="header-default">
                 <h1 class="text-3xl font-serif text-brand-dark tracking-wide">Профиль</h1>
-                <div class="flex gap-2">
-                    <button onclick="toggleSearch()" class="w-10 h-10 flex items-center justify-center text-brand-dark hover:text-brand-green transition-colors">
-                        <i class="ph-light ph-magnifying-glass text-[24px]"></i>
-                    </button>
-                    <button class="w-10 h-10 flex items-center justify-end text-brand-dark">
-                        <i class="ph-light ph-gear text-[24px]"></i>
-                    </button>
-                </div>
-            </div>
-            <!-- Hidden Search Bar -->
-            <div class="hidden flex justify-between items-center mt-2" id="header-search">
-                <div class="bg-brand-surface fine-border p-2 flex items-center gap-2 w-full">
-                    <i class="ph-light ph-magnifying-glass text-brand-muted text-lg ml-1"></i>
-                    <input type="text" placeholder="Поиск по документам..." class="bg-transparent border-none outline-none font-sans text-sm w-full placeholder-brand-muted text-brand-dark">
-                </div>
-                <button onclick="toggleSearch()" class="ml-4 font-sans text-[10px] uppercase tracking-[0.1em] font-bold text-brand-danger">
-                    Отмена
+                <button class="w-10 h-10 flex items-center justify-end text-brand-dark">
+                    <i class="ph-light ph-gear text-[24px]"></i>
                 </button>
             </div>
         </header>
@@ -518,13 +503,6 @@
                         <div class="flex items-center gap-3">
                             <i class="ph-light ph-file-text text-brand-coffee text-xl"></i>
                             <span class="font-serif text-lg text-brand-dark group-hover:text-brand-coffee transition-colors">Справки для ФНС (Налог)</span>
-                        </div>
-                        <i class="ph-light ph-arrow-right text-brand-muted"></i>
-                    </a>
-                    <a href="#" class="flex justify-between items-center py-4 fine-border-b cursor-pointer group">
-                        <div class="flex items-center gap-3">
-                            <i class="ph-light ph-images text-brand-coffee text-xl"></i>
-                            <span class="font-serif text-lg text-brand-dark group-hover:text-brand-coffee transition-colors">Снимки и КТ</span>
                         </div>
                         <i class="ph-light ph-arrow-right text-brand-muted"></i>
                     </a>
@@ -652,19 +630,6 @@
         }
     </script>
 
-    <script>
-        function toggleSearch() {
-            const defaultHeader = document.getElementById('header-default');
-            const searchHeader = document.getElementById('header-search');
-            if (searchHeader.classList.contains('hidden')) {
-                searchHeader.classList.remove('hidden');
-                defaultHeader.classList.add('hidden'); // Optional: hide title to save space, or keep it. Let's hide title to focus on search.
-            } else {
-                searchHeader.classList.add('hidden');
-                defaultHeader.classList.remove('hidden');
-            }
-        }
-    </script>
 </body>
 
 </html>
