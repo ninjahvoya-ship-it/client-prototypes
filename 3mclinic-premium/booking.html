@@ -3,15 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>3M Clinic - Booking Calendar</title>
+    <title>3M Clinic - Premium Booking</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script>
+        window.tailwind = window.tailwind || {};
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: { 
+                    fontFamily: {
                         serif: ['Cormorant Garamond', 'serif'],
                         sans: ['Montserrat', 'sans-serif']
                     },
@@ -21,6 +22,7 @@
                         'brand-cream': '#F4EFE6',
                         'brand-surface': '#FCFAF6',
                         'brand-dark': '#2A2624',
+                        'brand-danger': '#8E2C2C',
                         'brand-muted': '#9E9892',
                         'brand-border': '#E8DED1'
                     }
@@ -29,201 +31,658 @@
         }
     </script>
     <style>
-        body { 
-            background-color: #E5E5E5; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            min-height: 100vh; 
-            margin: 0; 
+        body {
+            background-color: #E5E5E5;
+            margin: 0;
             font-family: 'Montserrat', sans-serif;
             -webkit-tap-highlight-color: transparent;
+            font-weight: 500;
+            text-rendering: geometricPrecision;
+            -webkit-font-smoothing: antialiased;
+            font-synthesis-weight: none;
         }
-        .app-container { 
-            width: 100%; 
-            max-width: 400px; 
-            background-color: #F4EFE6; 
-            min-height: 100vh; 
-            position: relative; 
-            overflow-x: hidden; 
-            overflow-y: auto; 
-            padding-bottom: 40px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1); 
+        .app-container {
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #F4EFE6;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+            overflow-y: auto;
+            padding-bottom: 128px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
             background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
         }
-        @media (min-width: 400px) { 
-            .app-container { 
-                min-height: 850px; 
-                height: 850px; 
-                border-radius: 0px; 
-                margin: 20px; 
-                border: 1px solid #E8DED1;
-            } 
+        @media (min-width: 400px) {
+            .app-container { min-height: 850px; height: 850px; margin-top: 20px; margin-bottom: 20px; border: 1px solid #E8DED1; }
         }
         ::-webkit-scrollbar { display: none; }
         .app-container { -ms-overflow-style: none; scrollbar-width: none; }
-        
+        .font-sans { font-weight: 600; }
+        .font-serif { font-weight: 600; }
+        .font-medium { font-weight: 600; }
+        .font-bold { font-weight: 700; }
+        .text-brand-muted { color: #625B54 !important; }
+        .text-\[8px\] { font-size: 9px; }
+        .text-\[9px\] { font-size: 10px; }
+        .text-\[10px\] { font-size: 10.5px; }
+
         .fine-border { border: 1px solid #E8DED1; }
         .fine-border-b { border-bottom: 1px solid #E8DED1; }
         .fine-border-t { border-top: 1px solid #E8DED1; }
         .hide-scroll::-webkit-scrollbar { display: none; }
         .hide-scroll { -ms-overflow-style: none; scrollbar-width: none; }
-        
-        /* Custom date picker styling */
+
+        .step-panel { display: none; }
+        .step-panel.active { display: block; }
+        .select-card, .date-btn, .time-slot, .patient-chip { transition: all 0.2s ease; }
+        .select-card.selected {
+            border-color: #006039;
+            box-shadow: inset 0 0 0 1px #006039;
+        }
+        .select-card .check-icon { display: none; }
+        .select-card.selected .check-icon { display: block; }
+        .select-card.selected .empty-mark { display: none; }
         .date-btn {
             border: 1px solid #E8DED1;
             background: #FCFAF6;
             color: #2A2624;
-            transition: all 0.2s ease;
         }
         .date-btn.active {
             background: #006039;
             border-color: #006039;
-            color: white;
+            color: #FCFAF6;
+        }
+        .date-btn.disabled {
+            opacity: 0.4;
+            pointer-events: none;
         }
         .time-slot {
             border: 1px solid #E8DED1;
             background: #FCFAF6;
             color: #2A2624;
-            transition: all 0.2s ease;
-        }
-        .time-slot:hover {
-            border-color: #9C5426;
-            color: #9C5426;
         }
         .time-slot.active {
             background: #9C5426;
             border-color: #9C5426;
-            color: white;
+            color: #FCFAF6;
         }
         .time-slot.disabled {
             background: transparent;
-            color: #E8DED1;
+            color: #D8CFC5;
             border-color: transparent;
             pointer-events: none;
             text-decoration: line-through;
         }
+        .patient-chip.active {
+            background: #006039;
+            border-color: #006039;
+            color: #FCFAF6;
+        }
+        .patient-chip:not(.active) {
+            background: #FCFAF6;
+            border-color: #E8DED1;
+            color: #625B54;
+        }
+        .success-overlay {
+            display: none;
+            position: absolute;
+            inset: 0;
+            z-index: 80;
+            background: #F4EFE6;
+            padding: 48px 24px;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .success-overlay.active { display: flex; }
+        .bottom-sheet-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.4);
+            z-index: 10000;
+            animation: fadeIn 0.3s ease-out;
+        }
+        .bottom-sheet {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 100%;
+            max-width: 400px;
+            max-height: 88vh;
+            overflow-y: auto;
+            background: #FCFAF6;
+            border-top-left-radius: 24px;
+            border-top-right-radius: 24px;
+            padding: 24px;
+            padding-bottom: max(24px, env(safe-area-inset-bottom));
+            border-top: 1px solid #E8DED1;
+            transform: translate(-50%, 100%);
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .bottom-sheet-overlay.active { display: block; }
+        .bottom-sheet-overlay.active .bottom-sheet { transform: translate(-50%, 0); }
+        .role-chip.active {
+            background: #006039;
+            border-color: #006039;
+            color: #FCFAF6;
+        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
 <body class="text-brand-dark antialiased">
     <div class="app-container">
-        
-        <!-- Header -->
+
         <header class="px-6 pt-12 pb-4 flex justify-between items-center fine-border-b bg-brand-cream sticky top-0 z-50">
-            <a href="services.html" class="w-10 h-10 flex items-center justify-start text-brand-dark">
+            <button onclick="goBack()" class="w-10 h-10 flex items-center justify-start text-brand-dark">
                 <i class="ph-light ph-arrow-left text-[24px]"></i>
+            </button>
+            <div class="text-center">
+                <h1 id="step-title" class="text-[10px] font-sans uppercase tracking-[0.2em] text-brand-dark">Запись</h1>
+                <p id="step-subtitle" class="text-[8px] font-sans uppercase tracking-[0.16em] text-brand-muted mt-1">Шаг 1 из 3</p>
+            </div>
+            <a href="services.html" class="w-10 h-10 flex items-center justify-end text-brand-muted">
+                <i class="ph-light ph-x text-[22px]"></i>
             </a>
-            <h1 class="text-[10px] font-sans font-medium uppercase tracking-[0.2em] text-brand-dark">Выбор времени</h1>
-            <div class="w-10 h-10"></div> <!-- Spacer -->
         </header>
 
-        <!-- Doctor Summary Card -->
-        <div class="px-6 mt-6 mb-8">
-            <div class="bg-brand-surface fine-border p-4 flex items-center gap-4">
-                <div class="w-16 h-16 bg-brand-cream fine-border overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?q=80&w=400&auto=format&fit=crop" class="w-full h-full object-cover grayscale mix-blend-multiply" style="background-color: rgba(156,84,38,0.1);" alt="Dr. Sokolov">
+        <div class="h-1 bg-brand-border">
+            <div id="progress-bar" class="h-1 bg-brand-green transition-all duration-300" style="width: 33.33%"></div>
+        </div>
+
+        <main class="relative">
+            <section id="step-service" class="step-panel px-6 pt-8">
+                <div class="mb-7">
+                    <p class="text-[10px] uppercase tracking-[0.2em] font-sans text-brand-green mb-2">Услуга</p>
+                    <h2 class="font-serif text-3xl text-brand-dark leading-none">Что будем лечить?</h2>
                 </div>
-                <div>
-                    <span class="text-[9px] font-sans uppercase tracking-[0.1em] text-brand-coffee">Стоматолог-хирург</span>
-                    <h2 class="font-serif text-xl text-brand-dark leading-tight mt-1">Дмитрий Соколов</h2>
-                    <p class="font-sans text-[10px] text-brand-muted mt-1">Сложное удаление (от 6 000 ₽)</p>
+
+                <div class="mb-8" data-category-section="therapy">
+                    <h3 class="font-sans text-[10px] uppercase tracking-[0.2em] font-bold text-brand-green mb-3">Терапия</h3>
+                    <div class="space-y-3">
+                        <button data-service-scope="therapy" class="select-card w-full bg-brand-surface fine-border p-4 text-left flex justify-between items-center" onclick="selectService(this, 'Лечение кариеса', 'от 4 500 ₽', '~40 мин')">
+                            <span>
+                                <span class="block font-serif text-xl text-brand-dark">Лечение кариеса</span>
+                                <span class="block font-sans text-[10px] text-brand-muted mt-1">от 4 500 ₽ • ~40 мин</span>
+                            </span>
+                            <span class="empty-mark w-7 h-7 fine-border flex items-center justify-center text-brand-muted"><i class="ph-light ph-plus"></i></span>
+                            <i class="check-icon ph-fill ph-check-circle text-2xl text-brand-green"></i>
+                        </button>
+                        <button data-service-scope="therapy" class="select-card w-full bg-brand-surface fine-border p-4 text-left flex justify-between items-center" onclick="selectService(this, 'Профессиональная гигиена', '5 500 ₽', '~60 мин')">
+                            <span>
+                                <span class="block font-serif text-xl text-brand-dark">Профессиональная гигиена</span>
+                                <span class="block font-sans text-[10px] text-brand-muted mt-1">5 500 ₽ • ~60 мин</span>
+                            </span>
+                            <span class="empty-mark w-7 h-7 fine-border flex items-center justify-center text-brand-muted"><i class="ph-light ph-plus"></i></span>
+                            <i class="check-icon ph-fill ph-check-circle text-2xl text-brand-green"></i>
+                        </button>
+                    </div>
                 </div>
+
+                <div data-category-section="surgery">
+                    <h3 class="font-sans text-[10px] uppercase tracking-[0.2em] font-bold text-brand-green mb-3">Хирургия</h3>
+                    <div class="space-y-3">
+                        <button data-service-scope="surgery" class="select-card w-full bg-brand-surface fine-border p-4 text-left flex justify-between items-center" onclick="selectService(this, 'Удаление зуба', 'от 3 000 ₽', '~30 мин')">
+                            <span>
+                                <span class="block font-serif text-xl text-brand-dark">Удаление зуба</span>
+                                <span class="block font-sans text-[10px] text-brand-muted mt-1">от 3 000 ₽ • ~30 мин</span>
+                            </span>
+                            <span class="empty-mark w-7 h-7 fine-border flex items-center justify-center text-brand-muted"><i class="ph-light ph-plus"></i></span>
+                            <i class="check-icon ph-fill ph-check-circle text-2xl text-brand-green"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <section id="step-doctor" class="step-panel px-6 pt-8">
+                <div class="mb-7">
+                    <p class="text-[10px] uppercase tracking-[0.2em] font-sans text-brand-green mb-2">Специалист</p>
+                    <h2 class="font-serif text-3xl text-brand-dark leading-none">Выберите врача</h2>
+                    <p id="doctor-context" class="font-sans text-[10px] text-brand-muted leading-relaxed mt-3">Покажем врачей, которые подходят под выбранную услугу.</p>
+                </div>
+
+                <div class="space-y-3">
+                    <button class="select-card w-full bg-brand-surface fine-border p-4 text-left flex items-center justify-between" onclick="selectDoctor(this, 'Магомедова И.М.', 'Терапевт', '4.9 • Стаж 8 лет')">
+                        <span class="flex items-center gap-4 min-w-0">
+                            <span class="w-16 h-16 bg-brand-cream fine-border overflow-hidden shrink-0">
+                                <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=300&auto=format&fit=crop" class="w-full h-full object-cover grayscale mix-blend-multiply" alt="Магомедова И.М.">
+                            </span>
+                            <span class="min-w-0">
+                                <span class="block font-serif text-xl text-brand-dark leading-tight">Магомедова И.М.</span>
+                                <span class="block font-sans text-[9px] text-brand-coffee uppercase tracking-[0.12em] mt-1">Терапевт</span>
+                                <span class="block font-sans text-[10px] text-brand-muted mt-1">4.9 • Стаж 8 лет</span>
+                            </span>
+                        </span>
+                        <i class="check-icon ph-fill ph-check-circle text-2xl text-brand-green shrink-0"></i>
+                        <span class="empty-mark w-7 h-7 fine-border shrink-0"></span>
+                    </button>
+
+                    <button class="select-card w-full bg-brand-surface fine-border p-4 text-left flex items-center justify-between" onclick="selectDoctor(this, 'Дмитрий Соколов', 'Стоматолог-хирург', '4.8 • Стаж 12 лет')">
+                        <span class="flex items-center gap-4 min-w-0">
+                            <span class="w-16 h-16 bg-brand-cream fine-border overflow-hidden shrink-0">
+                                <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?q=80&w=300&auto=format&fit=crop" class="w-full h-full object-cover grayscale mix-blend-multiply" alt="Дмитрий Соколов">
+                            </span>
+                            <span class="min-w-0">
+                                <span class="block font-serif text-xl text-brand-dark leading-tight">Дмитрий Соколов</span>
+                                <span class="block font-sans text-[9px] text-brand-coffee uppercase tracking-[0.12em] mt-1">Стоматолог-хирург</span>
+                                <span class="block font-sans text-[10px] text-brand-muted mt-1">4.8 • Стаж 12 лет</span>
+                            </span>
+                        </span>
+                        <i class="check-icon ph-fill ph-check-circle text-2xl text-brand-green shrink-0"></i>
+                        <span class="empty-mark w-7 h-7 fine-border shrink-0"></span>
+                    </button>
+
+                    <button class="select-card w-full bg-brand-surface fine-border p-4 text-left flex items-center justify-between" onclick="selectDoctor(this, 'Любой свободный врач', 'Подбор по ближайшему времени', 'Найдем первый доступный слот')">
+                        <span class="flex items-center gap-4">
+                            <span class="w-16 h-16 bg-brand-cream fine-border flex items-center justify-center text-brand-green text-3xl shrink-0">
+                                <i class="ph-light ph-users-three"></i>
+                            </span>
+                            <span>
+                                <span class="block font-serif text-xl text-brand-dark leading-tight">Любой врач</span>
+                                <span class="block font-sans text-[10px] text-brand-muted mt-1">Найдем самое ближайшее время</span>
+                            </span>
+                        </span>
+                        <i class="check-icon ph-fill ph-check-circle text-2xl text-brand-green shrink-0"></i>
+                        <span class="empty-mark w-7 h-7 fine-border shrink-0"></span>
+                    </button>
+                </div>
+            </section>
+
+            <section id="step-time" class="step-panel pt-8">
+                <div class="px-6 mb-6">
+                <p id="time-kicker" class="text-[10px] uppercase tracking-[0.2em] font-sans text-brand-green mb-2">Дата и время</p>
+                <h2 id="time-heading" class="font-serif text-3xl text-brand-dark leading-none">Май 2026</h2>
             </div>
-        </div>
 
-        <!-- Month Selector -->
-        <div class="px-6 mb-4 flex justify-between items-center">
-            <h3 class="font-serif text-2xl text-brand-green">Май 2026</h3>
-            <div class="flex gap-2">
-                <button class="w-8 h-8 fine-border bg-brand-surface flex items-center justify-center text-brand-muted"><i class="ph-light ph-caret-left"></i></button>
-                <button class="w-8 h-8 fine-border bg-brand-surface flex items-center justify-center text-brand-dark hover:bg-brand-cream"><i class="ph-light ph-caret-right"></i></button>
+                <div id="summary-card" class="mx-6 mb-8 bg-brand-surface fine-border p-4">
+                    <p class="text-[9px] font-sans uppercase tracking-[0.16em] text-brand-muted mb-2">Вы выбрали</p>
+                    <h3 id="summary-service" class="font-serif text-xl text-brand-dark leading-tight">Лечение кариеса</h3>
+                    <p id="summary-doctor" class="font-sans text-[10px] text-brand-muted mt-1">Магомедова И.М. • Терапевт</p>
+                </div>
+
+                <div class="px-6 mb-3 flex items-end justify-between gap-4">
+                    <h3 class="font-sans text-[10px] uppercase tracking-[0.2em] text-brand-green">Май 2026</h3>
+                    <span class="font-sans text-[9px] uppercase tracking-[0.12em] text-brand-muted text-right">Доступно 2 месяца</span>
+                </div>
+                <div class="flex gap-3 overflow-x-auto hide-scroll px-6 pb-6 fine-border-b mb-6">
+                    <button class="date-btn w-14 shrink-0 flex flex-col items-center justify-center py-3" data-date="13 мая" onclick="selectDate(this)">
+                        <span class="font-sans text-[9px] uppercase tracking-widest mb-1 opacity-70">Ср</span>
+                        <span class="font-serif text-2xl">13</span>
+                    </button>
+                    <button class="date-btn active w-14 shrink-0 flex flex-col items-center justify-center py-3" data-date="14 мая" onclick="selectDate(this)">
+                        <span class="font-sans text-[9px] uppercase tracking-widest mb-1 opacity-70">Чт</span>
+                        <span class="font-serif text-2xl">14</span>
+                    </button>
+                    <button class="date-btn w-14 shrink-0 flex flex-col items-center justify-center py-3" data-date="15 мая" onclick="selectDate(this)">
+                        <span class="font-sans text-[9px] uppercase tracking-widest mb-1 opacity-70">Пт</span>
+                        <span class="font-serif text-2xl">15</span>
+                    </button>
+                    <button class="date-btn w-14 shrink-0 flex flex-col items-center justify-center py-3" data-date="16 мая" onclick="selectDate(this)">
+                        <span class="font-sans text-[9px] uppercase tracking-widest mb-1 opacity-70">Сб</span>
+                        <span class="font-serif text-2xl">16</span>
+                    </button>
+                    <button class="date-btn w-14 shrink-0 flex flex-col items-center justify-center py-3" data-date="17 мая" onclick="selectDate(this)">
+                        <span class="font-sans text-[9px] uppercase tracking-widest mb-1 opacity-70">Вс</span>
+                        <span class="font-serif text-2xl">17</span>
+                    </button>
+                    <button class="date-btn disabled w-14 shrink-0 flex flex-col items-center justify-center py-3" data-date="18 мая" onclick="selectDate(this)">
+                        <span class="font-sans text-[9px] uppercase tracking-widest mb-1 opacity-70">Пн</span>
+                        <span class="font-serif text-2xl">18</span>
+                    </button>
+                    <button class="date-btn w-14 shrink-0 flex flex-col items-center justify-center py-3" data-date="19 мая" onclick="selectDate(this)">
+                        <span class="font-sans text-[9px] uppercase tracking-widest mb-1 opacity-70">Вт</span>
+                        <span class="font-serif text-2xl">19</span>
+                    </button>
+                    <button class="date-btn w-14 shrink-0 flex flex-col items-center justify-center py-3" data-date="20 мая" onclick="selectDate(this)">
+                        <span class="font-sans text-[9px] uppercase tracking-widest mb-1 opacity-70">Ср</span>
+                        <span class="font-serif text-2xl">20</span>
+                    </button>
+                    <div class="shrink-0 flex flex-col justify-center px-2 text-brand-green">
+                        <span class="font-sans text-[9px] uppercase tracking-[0.18em] leading-tight">Июнь</span>
+                        <span class="font-serif text-lg leading-none">2026</span>
+                    </div>
+                    <button class="date-btn w-14 shrink-0 flex flex-col items-center justify-center py-3" data-date="1 июня" onclick="selectDate(this)">
+                        <span class="font-sans text-[9px] uppercase tracking-widest mb-1 opacity-70">Пн</span>
+                        <span class="font-serif text-2xl">1</span>
+                    </button>
+                    <button class="date-btn w-14 shrink-0 flex flex-col items-center justify-center py-3" data-date="2 июня" onclick="selectDate(this)">
+                        <span class="font-sans text-[9px] uppercase tracking-widest mb-1 opacity-70">Вт</span>
+                        <span class="font-serif text-2xl">2</span>
+                    </button>
+                    <button class="date-btn w-14 shrink-0 flex flex-col items-center justify-center py-3" data-date="3 июня" onclick="selectDate(this)">
+                        <span class="font-sans text-[9px] uppercase tracking-widest mb-1 opacity-70">Ср</span>
+                        <span class="font-serif text-2xl">3</span>
+                    </button>
+                    <button class="date-btn w-14 shrink-0 flex flex-col items-center justify-center py-3" data-date="4 июня" onclick="selectDate(this)">
+                        <span class="font-sans text-[9px] uppercase tracking-widest mb-1 opacity-70">Чт</span>
+                        <span class="font-serif text-2xl">4</span>
+                    </button>
+                </div>
+
+                <div class="px-6">
+                    <h4 class="font-sans text-[10px] uppercase tracking-[0.2em] text-brand-muted mb-4">Утро</h4>
+                    <div class="grid grid-cols-4 gap-2 mb-6">
+                        <button class="time-slot py-2 text-[13px] font-sans" onclick="selectTime(this)">10:00</button>
+                        <button class="time-slot py-2 text-[13px] font-sans" onclick="selectTime(this)">10:30</button>
+                        <button class="time-slot disabled py-2 text-[13px] font-sans">11:00</button>
+                        <button class="time-slot py-2 text-[13px] font-sans" onclick="selectTime(this)">11:30</button>
+                    </div>
+
+                    <h4 class="font-sans text-[10px] uppercase tracking-[0.2em] text-brand-muted mb-4">День</h4>
+                    <div class="grid grid-cols-4 gap-2 mb-6">
+                        <button class="time-slot active py-2 text-[13px] font-sans" onclick="selectTime(this)">14:00</button>
+                        <button class="time-slot py-2 text-[13px] font-sans" onclick="selectTime(this)">15:30</button>
+                        <button class="time-slot py-2 text-[13px] font-sans" onclick="selectTime(this)">16:00</button>
+                        <button class="time-slot py-2 text-[13px] font-sans" onclick="selectTime(this)">17:30</button>
+                    </div>
+
+                    <h4 class="font-sans text-[10px] uppercase tracking-[0.2em] text-brand-muted mb-4">Кого записываем?</h4>
+                    <div class="flex gap-3 overflow-x-auto hide-scroll pb-2">
+                        <button class="patient-chip active fine-border px-4 py-3 font-sans text-[10px] uppercase tracking-[0.12em]" onclick="selectPatient(this, 'Себя')">Себя</button>
+                        <button class="patient-chip bg-brand-surface fine-border px-4 py-3 font-sans text-[10px] uppercase tracking-[0.12em]" onclick="selectPatient(this, 'Ваня (сын)')">Ваня (сын)</button>
+                        <button class="patient-chip fine-border px-4 py-3 text-brand-muted" onclick="openFamilySheet()"><i class="ph-light ph-plus"></i></button>
+                    </div>
+                </div>
+            </section>
+
+            <div id="success-screen" class="success-overlay flex-col">
+                <div class="w-20 h-20 bg-brand-green text-brand-surface flex items-center justify-center text-4xl mb-8">
+                    <i class="ph-light ph-check"></i>
+                </div>
+                <p class="text-[10px] uppercase tracking-[0.2em] font-sans text-brand-green mb-3">Запись подтверждена</p>
+                <h2 class="font-serif text-4xl text-brand-dark leading-none mb-4">Ждем вас</h2>
+                <p id="success-copy" class="font-sans text-[12px] text-brand-muted leading-relaxed max-w-[280px] mb-10">14 мая в 14:00. Информация о визите добавлена на главный экран.</p>
+                <a href="index-active.html" class="w-full bg-brand-surface fine-border text-brand-dark py-4 font-sans text-[10px] uppercase tracking-[0.15em] font-bold">На главную</a>
             </div>
-        </div>
+        </main>
 
-        <!-- Horizontal Date Scroll -->
-        <div class="flex gap-3 overflow-x-auto hide-scroll px-6 pb-6 border-b border-brand-border mb-6">
-            
-            <button class="date-btn w-14 shrink-0 flex flex-col items-center justify-center py-3">
-                <span class="font-sans text-[9px] uppercase tracking-widest mb-1 opacity-70">Пт</span>
-                <span class="font-serif text-2xl">15</span>
-            </button>
-            
-            <button class="date-btn active w-14 shrink-0 flex flex-col items-center justify-center py-3">
-                <span class="font-sans text-[9px] uppercase tracking-widest mb-1 opacity-80">Сб</span>
-                <span class="font-serif text-2xl">16</span>
-            </button>
-            
-            <button class="date-btn w-14 shrink-0 flex flex-col items-center justify-center py-3">
-                <span class="font-sans text-[9px] uppercase tracking-widest mb-1 opacity-70">Вс</span>
-                <span class="font-serif text-2xl">17</span>
-            </button>
-            
-            <button class="date-btn w-14 shrink-0 flex flex-col items-center justify-center py-3 opacity-50 cursor-not-allowed">
-                <span class="font-sans text-[9px] uppercase tracking-widest mb-1 opacity-70">Пн</span>
-                <span class="font-serif text-2xl">18</span>
-            </button>
-            
-            <button class="date-btn w-14 shrink-0 flex flex-col items-center justify-center py-3">
-                <span class="font-sans text-[9px] uppercase tracking-widest mb-1 opacity-70">Вт</span>
-                <span class="font-serif text-2xl">19</span>
-            </button>
-
-            <button class="date-btn w-14 shrink-0 flex flex-col items-center justify-center py-3">
-                <span class="font-sans text-[9px] uppercase tracking-widest mb-1 opacity-70">Ср</span>
-                <span class="font-serif text-2xl">20</span>
-            </button>
-        </div>
-
-        <!-- Time Slots Grid -->
-        <div class="px-6 mb-24">
-            <h4 class="font-sans text-[10px] uppercase tracking-[0.2em] text-brand-muted mb-4">Утро</h4>
-            <div class="grid grid-cols-4 gap-2 mb-6">
-                <button class="time-slot disabled py-2 text-[13px] font-sans font-medium">09:00</button>
-                <button class="time-slot disabled py-2 text-[13px] font-sans font-medium">09:30</button>
-                <button class="time-slot py-2 text-[13px] font-sans font-medium">10:00</button>
-                <button class="time-slot py-2 text-[13px] font-sans font-medium">10:30</button>
-                <button class="time-slot py-2 text-[13px] font-sans font-medium">11:00</button>
-                <button class="time-slot py-2 text-[13px] font-sans font-medium">11:30</button>
-            </div>
-
-            <h4 class="font-sans text-[10px] uppercase tracking-[0.2em] text-brand-muted mb-4">День</h4>
-            <div class="grid grid-cols-4 gap-2 mb-6">
-                <button class="time-slot active py-2 text-[13px] font-sans font-medium">12:00</button>
-                <button class="time-slot py-2 text-[13px] font-sans font-medium">12:30</button>
-                <button class="time-slot disabled py-2 text-[13px] font-sans font-medium">13:00</button>
-                <button class="time-slot disabled py-2 text-[13px] font-sans font-medium">13:30</button>
-                <button class="time-slot py-2 text-[13px] font-sans font-medium">14:00</button>
-                <button class="time-slot py-2 text-[13px] font-sans font-medium">14:30</button>
-                <button class="time-slot py-2 text-[13px] font-sans font-medium">15:00</button>
-                <button class="time-slot py-2 text-[13px] font-sans font-medium">15:30</button>
-                <button class="time-slot py-2 text-[13px] font-sans font-medium">16:00</button>
-                <button class="time-slot py-2 text-[13px] font-sans font-medium">16:30</button>
-                <button class="time-slot disabled py-2 text-[13px] font-sans font-medium">17:00</button>
-                <button class="time-slot disabled py-2 text-[13px] font-sans font-medium">17:30</button>
-            </div>
-            
-            <h4 class="font-sans text-[10px] uppercase tracking-[0.2em] text-brand-muted mb-4">Вечер</h4>
-            <div class="grid grid-cols-4 gap-2">
-                <button class="time-slot py-2 text-[13px] font-sans font-medium">18:00</button>
-                <button class="time-slot py-2 text-[13px] font-sans font-medium">18:30</button>
-                <button class="time-slot py-2 text-[13px] font-sans font-medium">19:00</button>
-                <button class="time-slot py-2 text-[13px] font-sans font-medium">19:30</button>
-            </div>
-        </div>
-
-        <!-- Sticky Bottom CTA -->
-        <div class="fixed bottom-0 left-0 w-full bg-brand-cream/95 backdrop-blur-md fine-border-t p-6 pb-8 z-50">
+        <div id="booking-footer" class="fixed bottom-0 left-0 w-full bg-brand-cream/95 backdrop-blur-md fine-border-t p-6 pb-8 z-50">
             <div class="max-w-[400px] mx-auto flex gap-4 items-center">
-                <div class="flex-1">
-                    <p class="font-sans text-[9px] uppercase tracking-[0.1em] text-brand-muted mb-1">16 мая, 12:00</p>
-                    <p class="font-serif text-lg text-brand-dark leading-none">от 6 000 ₽</p>
+                <div class="flex-1 min-w-0">
+                    <p id="footer-meta" class="font-sans text-[9px] uppercase tracking-[0.12em] text-brand-muted mb-1">Выберите услугу</p>
+                    <p id="footer-title" class="font-serif text-lg text-brand-dark leading-none truncate">Новая запись</p>
                 </div>
-                <button class="bg-brand-green text-white font-sans text-[10px] uppercase tracking-[0.15em] font-medium px-8 py-4 hover:bg-brand-coffee transition-colors">
-                    Подтвердить
+                <button id="btn-next" onclick="nextStep()" disabled class="bg-brand-border text-brand-muted font-sans text-[10px] uppercase tracking-[0.15em] font-bold px-7 py-4 transition-colors">
+                    Далее
                 </button>
             </div>
         </div>
 
+        <div id="family-sheet" class="bottom-sheet-overlay" onclick="if(event.target === this) closeFamilySheet()">
+            <div class="bottom-sheet hide-scroll">
+                <div class="w-12 h-1 bg-brand-border rounded-full mb-6 mx-auto"></div>
+                <h2 class="text-2xl font-serif text-brand-dark mb-1 text-center">Новый профиль</h2>
+                <p class="text-[11px] font-sans text-brand-muted text-center mb-8 uppercase tracking-wider">Добавить члена семьи</p>
+
+                <div class="mb-6">
+                    <label class="text-[10px] font-sans uppercase tracking-[0.2em] font-bold text-brand-green mb-3 block">Кем приходится?</label>
+                    <div class="flex gap-2 overflow-x-auto hide-scroll pb-2">
+                        <button class="role-chip active bg-brand-surface fine-border px-4 py-2.5 font-sans text-[10px] uppercase tracking-[0.12em] shrink-0" onclick="selectRole(this)">Сын</button>
+                        <button class="role-chip bg-brand-surface fine-border px-4 py-2.5 font-sans text-[10px] uppercase tracking-[0.12em] shrink-0" onclick="selectRole(this)">Дочь</button>
+                        <button class="role-chip bg-brand-surface fine-border px-4 py-2.5 font-sans text-[10px] uppercase tracking-[0.12em] shrink-0" onclick="selectRole(this)">Мать</button>
+                        <button class="role-chip bg-brand-surface fine-border px-4 py-2.5 font-sans text-[10px] uppercase tracking-[0.12em] shrink-0" onclick="selectRole(this)">Отец</button>
+                        <button class="role-chip bg-brand-surface fine-border px-4 py-2.5 font-sans text-[10px] uppercase tracking-[0.12em] shrink-0" onclick="selectRole(this)">Другое</button>
+                    </div>
+                </div>
+
+                <div class="space-y-4 mb-8">
+                    <div>
+                        <label class="text-[10px] font-sans uppercase tracking-[0.16em] text-brand-muted mb-2 block">Имя</label>
+                        <input id="family-name" type="text" placeholder="Например: Иван" class="w-full bg-brand-cream fine-border px-4 py-3.5 font-sans text-[13px] text-brand-dark outline-none focus:border-brand-green">
+                    </div>
+                    <div>
+                        <label class="text-[10px] font-sans uppercase tracking-[0.16em] text-brand-muted mb-2 block">Фамилия</label>
+                        <input type="text" placeholder="Иванов" class="w-full bg-brand-cream fine-border px-4 py-3.5 font-sans text-[13px] text-brand-dark outline-none focus:border-brand-green">
+                    </div>
+                    <div>
+                        <label class="text-[10px] font-sans uppercase tracking-[0.16em] text-brand-muted mb-2 block">Отчество</label>
+                        <input type="text" placeholder="Иванович" class="w-full bg-brand-cream fine-border px-4 py-3.5 font-sans text-[13px] text-brand-dark outline-none focus:border-brand-green">
+                    </div>
+                    <div>
+                        <label class="text-[10px] font-sans uppercase tracking-[0.16em] text-brand-muted mb-2 block">Дата рождения</label>
+                        <input type="date" class="w-full bg-brand-cream fine-border px-4 py-3.5 font-sans text-[13px] text-brand-dark outline-none focus:border-brand-green" style="min-height: 48px; -webkit-appearance: none;">
+                    </div>
+                </div>
+
+                <div class="flex gap-2">
+                    <button onclick="closeFamilySheet()" class="w-full bg-brand-surface text-brand-dark py-4 font-sans text-[10px] uppercase tracking-[0.15em] font-bold hover:bg-brand-border transition-colors fine-border">
+                        Отмена
+                    </button>
+                    <button onclick="addFamilyMember()" class="w-full bg-brand-green text-brand-surface py-4 font-sans text-[10px] uppercase tracking-[0.15em] font-bold hover:bg-brand-coffee transition-colors">
+                        Добавить
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const mode = params.get('mode') || 'service';
+        const initialService = params.get('service');
+        const initialPrice = params.get('price') || 'от 4 500 ₽';
+
+        const state = {
+            mode,
+            currentStep: 1,
+            service: initialService || null,
+            price: initialPrice,
+            duration: '~40 мин',
+            doctor: mode === 'quick' ? 'Любой свободный врач' : (mode === 'reschedule' ? 'Дмитрий Соколов' : null),
+            doctorRole: mode === 'quick' ? 'Подбор по ближайшему времени' : (mode === 'reschedule' ? 'Стоматолог-хирург' : null),
+            date: mode === 'reschedule' ? '16 мая' : '14 мая',
+            time: '14:00',
+            patient: 'Себя'
+        };
+
+        const flow = mode === 'doctor'
+            ? (initialService ? ['doctor', 'time'] : ['doctor', 'service', 'time'])
+            : (mode === 'quick' || mode === 'reschedule')
+                ? ['time']
+                : ['service', 'doctor', 'time'];
+
+        const labels = {
+            service: ['Выбор услуги', 'Что будем лечить?'],
+            doctor: ['Специалист', 'Выберите врача'],
+            time: ['Дата и время', 'Май 2026']
+        };
+
+        function activeKey() {
+            return flow[state.currentStep - 1];
+        }
+
+        function setButton(enabled, text, primary = false) {
+            const btn = document.getElementById('btn-next');
+            btn.disabled = !enabled;
+            btn.innerText = text;
+            btn.className = enabled
+                ? (primary
+                    ? 'bg-brand-green text-brand-surface font-sans text-[10px] uppercase tracking-[0.15em] font-bold px-7 py-4 hover:bg-brand-coffee transition-colors'
+                    : 'bg-brand-surface text-brand-green fine-border font-sans text-[10px] uppercase tracking-[0.15em] font-bold px-7 py-4 hover:border-brand-green transition-colors')
+                : 'bg-brand-border text-brand-muted font-sans text-[10px] uppercase tracking-[0.15em] font-bold px-7 py-4 transition-colors';
+        }
+
+        function updateFooter() {
+            const meta = document.getElementById('footer-meta');
+            const title = document.getElementById('footer-title');
+            const key = activeKey();
+
+            if (key === 'service') {
+                meta.innerText = state.doctor ? state.doctor : 'Выберите услугу';
+                title.innerText = state.service || 'Новая запись';
+                setButton(Boolean(state.service), 'Далее');
+            } else if (key === 'doctor') {
+                meta.innerText = state.service ? state.service : 'Выберите врача';
+                title.innerText = state.doctor || 'Специалист';
+                setButton(Boolean(state.doctor), 'Далее');
+            } else {
+                meta.innerText = `${state.date}, ${state.time}`;
+                title.innerText = mode === 'reschedule' ? (state.service || 'Лечение кариеса') : (state.price || 'Новая запись');
+                setButton(true, mode === 'reschedule' ? 'Перенести' : 'Подтвердить', true);
+            }
+        }
+
+        function updateStep() {
+            document.querySelectorAll('.step-panel').forEach(panel => panel.classList.remove('active'));
+            const key = activeKey();
+            document.getElementById('step-' + key).classList.add('active');
+
+            document.getElementById('step-title').innerText = mode === 'quick'
+                ? (state.service || 'Ближайшее время')
+                : (mode === 'reschedule' ? 'Перенос визита' : labels[key][0]);
+            document.getElementById('step-subtitle').innerText = (mode === 'quick' || mode === 'reschedule')
+                ? 'Шаг 1 из 1'
+                : `Шаг ${state.currentStep} из ${flow.length}`;
+            document.getElementById('progress-bar').style.width = `${(state.currentStep / flow.length) * 100}%`;
+
+            if (key === 'doctor') {
+                document.getElementById('doctor-context').innerText = state.service
+                    ? `Показаны врачи, выполняющие выбранную услугу: ${state.service}.`
+                    : 'Выберите специалиста, а затем услугу из его профиля.';
+            }
+
+            if (key === 'service') {
+                filterServicesForDoctor();
+            }
+
+            if (key === 'time') {
+                document.getElementById('time-kicker').innerText = mode === 'reschedule' ? 'Новое время' : 'Дата и время';
+                document.getElementById('time-heading').innerText = mode === 'reschedule' ? 'Выберите новое окно' : 'Май 2026';
+                document.getElementById('summary-service').innerText = state.service || (mode === 'reschedule' ? 'Лечение кариеса' : 'Острая боль');
+                document.getElementById('summary-doctor').innerText = `${state.doctor || 'Любой свободный врач'} • ${state.doctorRole || 'Подбор по ближайшему времени'}`;
+            }
+
+            updateFooter();
+        }
+
+        function selectService(el, name, price, duration) {
+            document.querySelectorAll('#step-service .select-card').forEach(card => card.classList.remove('selected'));
+            el.classList.add('selected');
+            state.service = name;
+            state.price = price;
+            state.duration = duration;
+            updateFooter();
+        }
+
+        function selectDoctor(el, name, role, details) {
+            document.querySelectorAll('#step-doctor .select-card').forEach(card => card.classList.remove('selected'));
+            el.classList.add('selected');
+            state.doctor = name;
+            state.doctorRole = role;
+            if (mode === 'doctor' && !initialService) {
+                state.service = null;
+                state.price = 'от 4 500 ₽';
+                state.duration = '~40 мин';
+            }
+            updateFooter();
+        }
+
+        function filterServicesForDoctor() {
+            const serviceIntro = document.querySelector('#step-service .mb-7 p');
+            const serviceHeading = document.querySelector('#step-service .mb-7 h2');
+            const allCards = document.querySelectorAll('#step-service [data-service-scope]');
+            let scope = 'all';
+
+            if (state.doctor === 'Магомедова И.М.') scope = 'therapy';
+            if (state.doctor === 'Дмитрий Соколов') scope = 'surgery';
+
+            allCards.forEach(card => {
+                card.classList.remove('selected');
+                card.style.display = (scope === 'all' || card.dataset.serviceScope === scope) ? 'flex' : 'none';
+            });
+
+            document.querySelectorAll('[data-category-section]').forEach(section => {
+                section.style.display = (scope === 'all' || section.dataset.categorySection === scope) ? 'block' : 'none';
+            });
+
+            if (mode === 'doctor' && state.doctor) {
+                serviceIntro.innerText = 'Услуги врача';
+                serviceHeading.innerText = state.doctor === 'Любой свободный врач'
+                    ? 'Выберите услугу'
+                    : state.doctor;
+            } else {
+                serviceIntro.innerText = 'Услуга';
+                serviceHeading.innerText = 'Что будем лечить?';
+            }
+        }
+
+        function selectDate(el) {
+            document.querySelectorAll('.date-btn').forEach(btn => btn.classList.remove('active'));
+            el.classList.add('active');
+            state.date = el.dataset.date;
+            updateFooter();
+        }
+
+        function selectTime(el) {
+            document.querySelectorAll('.time-slot').forEach(slot => slot.classList.remove('active'));
+            el.classList.add('active');
+            state.time = el.innerText.trim();
+            updateFooter();
+        }
+
+        function selectPatient(el, name) {
+            document.querySelectorAll('.patient-chip').forEach(chip => chip.classList.remove('active'));
+            el.classList.add('active');
+            state.patient = name;
+        }
+
+        function openFamilySheet() {
+            document.getElementById('family-sheet').classList.add('active');
+        }
+
+        function closeFamilySheet() {
+            document.getElementById('family-sheet').classList.remove('active');
+        }
+
+        function selectRole(el) {
+            document.querySelectorAll('.role-chip').forEach(chip => chip.classList.remove('active'));
+            el.classList.add('active');
+        }
+
+        function addFamilyMember() {
+            const name = document.getElementById('family-name').value.trim() || 'Новый пациент';
+            state.patient = name;
+            closeFamilySheet();
+            document.querySelectorAll('.patient-chip').forEach(chip => chip.classList.remove('active'));
+
+            const addButton = document.querySelector('.patient-chip[onclick="openFamilySheet()"]');
+            const chip = document.createElement('button');
+            chip.className = 'patient-chip active fine-border px-4 py-3 font-sans text-[10px] uppercase tracking-[0.12em]';
+            chip.innerText = name;
+            chip.onclick = function () { selectPatient(chip, name); };
+            addButton.parentNode.insertBefore(chip, addButton);
+        }
+
+        function nextStep() {
+            if (activeKey() !== 'time') {
+                state.currentStep++;
+                updateStep();
+                document.querySelector('.app-container').scrollTop = 0;
+                return;
+            }
+
+            if (mode === 'reschedule') {
+                document.getElementById('success-copy').innerText = `Визит перенесен на ${state.date}, ${state.time}. Обновленное время появится в разделе “Мои визиты”.`;
+            } else {
+                document.getElementById('success-copy').innerText = `${state.date} в ${state.time}. ${state.patient === 'Себя' ? 'Информация о визите добавлена на главный экран.' : 'Запись добавлена в семейные визиты.'}`;
+            }
+            document.getElementById('success-screen').classList.add('active');
+            document.getElementById('booking-footer').classList.add('hidden');
+        }
+
+        function goBack() {
+            if (state.currentStep > 1) {
+                state.currentStep--;
+                updateStep();
+                document.querySelector('.app-container').scrollTop = 0;
+            } else {
+                window.location.href = 'services.html';
+            }
+        }
+
+        updateStep();
+    </script>
 </body>
 </html>

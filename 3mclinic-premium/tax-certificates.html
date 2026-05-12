@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>3M Clinic - Tax Certificates</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        window.tailwind = window.tailwind || {};
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['Cormorant Garamond', 'serif'],
+                        sans: ['Montserrat', 'sans-serif']
+                    },
+                    colors: {
+                        'brand-green': '#006039',
+                        'brand-coffee': '#9C5426',
+                        'brand-danger': '#8E2C2C',
+                        'brand-cream': '#F4EFE6',
+                        'brand-surface': '#FCFAF6',
+                        'brand-dark': '#2A2624',
+                        'brand-muted': '#9E9892',
+                        'brand-border': '#E8DED1'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #E5E5E5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+            font-weight: 500;
+            text-rendering: geometricPrecision;
+            -webkit-font-smoothing: antialiased;
+            font-synthesis-weight: none;
+        }
+        .app-container {
+            width: 100%;
+            max-width: 400px;
+            background-color: #F4EFE6;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+            overflow-y: auto;
+            padding-bottom: 120px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+        }
+        @media (min-width: 400px) {
+            .app-container { min-height: 850px; height: 850px; margin: 20px; border: 1px solid #E8DED1; overflow-y: auto; }
+        }
+        .app-container::-webkit-scrollbar, .hide-scroll::-webkit-scrollbar { display: none; }
+        .app-container, .hide-scroll { -ms-overflow-style: none; scrollbar-width: none; }
+        .font-sans { font-weight: 600; }
+        .font-serif { font-weight: 600; }
+        .font-medium { font-weight: 600; }
+        .font-bold { font-weight: 700; }
+        .text-brand-muted { color: #625B54 !important; }
+        .text-\[8px\] { font-size: 9px; }
+        .text-\[9px\] { font-size: 10px; }
+        .text-\[10px\] { font-size: 10.5px; }
+        .fine-border { border: 1px solid #E8DED1; }
+        .fine-border-b { border-bottom: 1px solid #E8DED1; }
+        .fine-border-t { border-top: 1px solid #E8DED1; }
+
+        .page-header {
+            padding: 48px 24px 20px;
+            background: #F4EFE6;
+            position: sticky;
+            top: 0;
+            z-index: 40;
+            border-bottom: 1px solid #E8DED1;
+        }
+        .page-header-row { display: flex; align-items: center; justify-content: space-between; }
+        .back-link {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            color: #2A2624;
+            text-decoration: none;
+            font-size: 24px;
+        }
+        .header-spacer { width: 40px; height: 40px; }
+        .page-title {
+            margin: 0;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 30px;
+            line-height: 1;
+            font-weight: 600;
+            color: #2A2624;
+            letter-spacing: 0;
+        }
+        .content { padding: 32px 24px 96px; }
+        .section { margin-bottom: 40px; }
+        .section-heading {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+        .section-heading i { color: #006039; font-size: 12px; }
+        .section-heading h2 {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10.5px;
+            line-height: 1.2;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            font-weight: 700;
+            color: #006039;
+        }
+        .certificate-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 0;
+            border-bottom: 1px solid #E8DED1;
+        }
+        .certificate-main {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-width: 0;
+            flex: 1 1 auto;
+            padding-right: 8px;
+        }
+        .certificate-icon {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #9C5426;
+            font-size: 20px;
+            flex: 0 0 auto;
+        }
+        .certificate-title {
+            margin: 0 0 4px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 20px;
+            line-height: 1.08;
+            font-weight: 600;
+            color: #2A2624;
+        }
+        .certificate-meta {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10.5px;
+            line-height: 1.4;
+            font-weight: 600;
+            color: #625B54;
+        }
+        .certificate-action {
+            border: 1px solid #9C5426;
+            color: #9C5426;
+            background: #FCFAF6;
+            padding: 10px 12px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 9px;
+            line-height: 1;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+        .status-pill {
+            display: inline-flex;
+            align-items: center;
+            min-height: 32px;
+            border: 1px solid #E8DED1;
+            color: #625B54;
+            background: #FCFAF6;
+            padding: 0 10px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 9px;
+            line-height: 1;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+        .request-card {
+            border: 1px solid #E8DED1;
+            background: #FCFAF6;
+            padding: 20px;
+            border-left: 4px solid #006039;
+        }
+        .request-card h3 {
+            margin: 0 0 8px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 24px;
+            line-height: 1.05;
+            color: #2A2624;
+        }
+        .request-card p {
+            margin: 0 0 18px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 11px;
+            line-height: 1.55;
+            font-weight: 600;
+            color: #625B54;
+        }
+        .primary-btn {
+            width: 100%;
+            background: #006039;
+            color: #FCFAF6;
+            border: 0;
+            padding: 16px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-weight: 700;
+        }
+        .bottom-sheet-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.4);
+            z-index: 10000;
+            animation: fadeIn 0.3s ease-out;
+        }
+        .bottom-sheet {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 100%;
+            max-width: 400px;
+            background: #FCFAF6;
+            border-top-left-radius: 24px;
+            border-top-right-radius: 24px;
+            padding: 24px;
+            z-index: 10001;
+            transform: translate(-50%, 100%);
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            padding-bottom: max(24px, env(safe-area-inset-bottom));
+            border-top: 1px solid #E8DED1;
+            max-height: 88vh;
+            overflow-y: auto;
+            box-sizing: border-box;
+        }
+        .bottom-sheet-overlay.active { display: block; }
+        .bottom-sheet-overlay.active .bottom-sheet { transform: translate(-50%, 0); }
+        .field-label {
+            display: block;
+            margin-bottom: 8px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10px;
+            line-height: 1.2;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            font-weight: 600;
+            color: #625B54;
+        }
+        .field {
+            width: 100%;
+            box-sizing: border-box;
+            background: #F4EFE6;
+            border: 1px solid #E8DED1;
+            padding: 14px 16px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            color: #2A2624;
+            outline: none;
+            min-height: 48px;
+        }
+        .sheet-actions { display: flex; gap: 8px; margin-top: 24px; }
+        .secondary-btn {
+            width: 100%;
+            background: #FCFAF6;
+            color: #2A2624;
+            border: 1px solid #E8DED1;
+            padding: 16px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-weight: 700;
+        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            background: rgba(244, 239, 230, 0.95);
+            backdrop-filter: blur(12px);
+            border-top: 1px solid #E8DED1;
+            z-index: 50;
+        }
+        .bottom-nav-inner {
+            width: 100%;
+            max-width: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 24px 32px;
+            box-sizing: border-box;
+        }
+        .nav-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            color: #625B54;
+            text-decoration: none;
+        }
+        .nav-link.active { color: #006039; }
+        .nav-link i { font-size: 20px; }
+        .nav-link span {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 9px;
+            line-height: 1;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body class="text-brand-dark antialiased">
+    <div class="app-container">
+        <header class="page-header">
+            <div class="page-header-row">
+                <a href="profile.html" class="back-link" aria-label="Назад в профиль">
+                    <i class="ph-light ph-arrow-left"></i>
+                </a>
+                <h1 class="page-title">Справки для ФНС</h1>
+                <div class="header-spacer"></div>
+            </div>
+        </header>
+
+        <main class="content">
+            <section class="section">
+                <div class="section-heading">
+                    <i class="ph-light ph-asterisk"></i>
+                    <h2>Готовые документы</h2>
+                </div>
+
+                <div class="certificate-row">
+                    <div class="certificate-main">
+                        <div class="certificate-icon">
+                            <i class="ph-light ph-file-pdf"></i>
+                        </div>
+                        <div>
+                            <h3 class="certificate-title">Справка за 2025 год</h3>
+                            <p class="certificate-meta">Анна Ветютнева • оплачено 84 500 ₽</p>
+                        </div>
+                    </div>
+                    <button class="certificate-action" onclick="openDownloadSheet('Справка за 2025 год')">Скачать</button>
+                </div>
+
+                <div class="certificate-row">
+                    <div class="certificate-main">
+                        <div class="certificate-icon">
+                            <i class="ph-light ph-file-pdf"></i>
+                        </div>
+                        <div>
+                            <h3 class="certificate-title">Справка за 2024 год</h3>
+                            <p class="certificate-meta">Анна Ветютнева • оплачено 47 200 ₽</p>
+                        </div>
+                    </div>
+                    <button class="certificate-action" onclick="openDownloadSheet('Справка за 2024 год')">Скачать</button>
+                </div>
+            </section>
+
+            <section class="section">
+                <div class="section-heading">
+                    <i class="ph-light ph-asterisk"></i>
+                    <h2>В работе</h2>
+                </div>
+
+                <div class="certificate-row">
+                    <div class="certificate-main">
+                        <div class="certificate-icon">
+                            <i class="ph-light ph-hourglass-medium"></i>
+                        </div>
+                        <div>
+                            <h3 class="certificate-title">Справка за 2026 год</h3>
+                            <p class="certificate-meta">Иван Ветютнев • заявка от 12 мая</p>
+                        </div>
+                    </div>
+                    <span class="status-pill">В обработке</span>
+                </div>
+            </section>
+
+            <section class="section">
+                <div class="section-heading">
+                    <i class="ph-light ph-asterisk"></i>
+                    <h2>Новая заявка</h2>
+                </div>
+
+                <div class="request-card">
+                    <h3>Запросить справку</h3>
+                    <p>Клиника подготовит документ для налогового вычета и пришлёт его на email. Когда PDF будет готов, он появится в списке документов.</p>
+                    <button class="primary-btn" onclick="openRequestSheet()">Запросить справку</button>
+                </div>
+            </section>
+        </main>
+
+        <div class="bottom-nav">
+            <div class="bottom-nav-inner">
+                <a href="index-active.html" class="nav-link">
+                    <i class="ph-light ph-asterisk"></i>
+                    <span>Главная</span>
+                </a>
+                <a href="services.html" class="nav-link">
+                    <i class="ph-light ph-receipt"></i>
+                    <span>Услуги</span>
+                </a>
+                <a href="visits.html" class="nav-link">
+                    <i class="ph-light ph-calendar-blank"></i>
+                    <span>Визиты</span>
+                </a>
+                <a href="profile.html" class="nav-link active">
+                    <i class="ph-fill ph-user"></i>
+                    <span>Профиль</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div id="request-sheet" class="bottom-sheet-overlay" onclick="if(event.target === this) closeSheets()">
+        <div class="bottom-sheet hide-scroll">
+            <div class="w-12 h-1 bg-brand-border rounded-full mb-6 mx-auto"></div>
+            <h2 class="text-2xl font-serif text-brand-dark mb-1 text-center">Запросить справку</h2>
+            <p class="text-[11px] font-sans text-brand-muted text-center mb-8 uppercase tracking-wider">Для налогового вычета</p>
+
+            <div class="space-y-4">
+                <div>
+                    <label class="field-label">Год</label>
+                    <select class="field">
+                        <option>2026</option>
+                        <option>2025</option>
+                        <option>2024</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="field-label">Пациент</label>
+                    <select class="field">
+                        <option>Анна Ветютнева</option>
+                        <option>Иван Ветютнев</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="field-label">ИНН плательщика</label>
+                    <input class="field" inputmode="numeric" placeholder="12 цифр">
+                </div>
+                <div>
+                    <label class="field-label">Email для отправки</label>
+                    <input class="field" type="email" placeholder="anna@mail.ru">
+                </div>
+            </div>
+
+            <div class="sheet-actions">
+                <button class="secondary-btn" onclick="closeSheets()">Отмена</button>
+                <button class="primary-btn" onclick="submitRequest()">Отправить</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="download-sheet" class="bottom-sheet-overlay" onclick="if(event.target === this) closeSheets()">
+        <div class="bottom-sheet">
+            <div class="w-12 h-1 bg-brand-border rounded-full mb-6 mx-auto"></div>
+            <div class="w-12 h-12 bg-brand-surface fine-border flex items-center justify-center mb-6 mx-auto">
+                <i class="ph-light ph-download-simple text-brand-green text-2xl"></i>
+            </div>
+            <h2 id="download-title" class="text-2xl font-serif text-brand-dark mb-2 text-center">Справка готова</h2>
+            <p class="text-[11px] font-sans text-brand-muted text-center mb-8 leading-relaxed">В рабочем приложении здесь начнётся скачивание PDF-файла или откроется системное меню “Поделиться”.</p>
+            <button class="primary-btn" onclick="closeSheets()">Понятно</button>
+        </div>
+    </div>
+
+    <div id="success-sheet" class="bottom-sheet-overlay" onclick="if(event.target === this) closeSheets()">
+        <div class="bottom-sheet">
+            <div class="w-12 h-1 bg-brand-border rounded-full mb-6 mx-auto"></div>
+            <div class="w-12 h-12 bg-brand-surface fine-border flex items-center justify-center mb-6 mx-auto">
+                <i class="ph-light ph-check text-brand-green text-2xl"></i>
+            </div>
+            <h2 class="text-2xl font-serif text-brand-dark mb-2 text-center">Заявка отправлена</h2>
+            <p class="text-[11px] font-sans text-brand-muted text-center mb-8 leading-relaxed">Администратор подготовит справку и пришлёт уведомление, когда документ будет доступен для скачивания.</p>
+            <button class="primary-btn" onclick="closeSheets()">Готово</button>
+        </div>
+    </div>
+
+    <script>
+        function openRequestSheet() {
+            document.getElementById('request-sheet').classList.add('active');
+        }
+        function openDownloadSheet(title) {
+            document.getElementById('download-title').innerText = title;
+            document.getElementById('download-sheet').classList.add('active');
+        }
+        function submitRequest() {
+            closeSheets();
+            document.getElementById('success-sheet').classList.add('active');
+        }
+        function closeSheets() {
+            document.querySelectorAll('.bottom-sheet-overlay').forEach(sheet => sheet.classList.remove('active'));
+        }
+    </script>
+</body>
+</html>

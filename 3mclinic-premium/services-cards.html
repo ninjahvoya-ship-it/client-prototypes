@@ -6,8 +6,9 @@
     <title>3M Clinic | Home Screen</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script>
+        window.tailwind = window.tailwind || {};
         tailwind.config = {
             theme: {
                 extend: {
@@ -38,6 +39,10 @@
             margin: 0; 
             font-family: 'Montserrat', sans-serif;
             -webkit-tap-highlight-color: transparent;
+            font-weight: 500;
+            text-rendering: geometricPrecision;
+            -webkit-font-smoothing: antialiased;
+            font-synthesis-weight: none;
         }
         .app-container { 
             width: 100%; 
@@ -62,7 +67,15 @@
         }
         ::-webkit-scrollbar { display: none; }
         .app-container { -ms-overflow-style: none; scrollbar-width: none; }
-        
+        .font-sans { font-weight: 600; }
+        .font-serif { font-weight: 600; }
+        .font-medium { font-weight: 600; }
+        .font-bold { font-weight: 700; }
+        .text-brand-muted { color: #625B54 !important; }
+        .text-\[8px\] { font-size: 9px; }
+        .text-\[9px\] { font-size: 10px; }
+        .text-\[10px\] { font-size: 10.5px; }
+
         .fine-border { border: 1px solid #E8DED1; }
         .fine-border-b { border-bottom: 1px solid #E8DED1; }
         .fine-border-t { border-top: 1px solid #E8DED1; }
@@ -347,7 +360,10 @@
 
         function openServiceSheet(el) {
             let serviceName = el.querySelector('h4').innerText;
+            let servicePrice = el.querySelector('span').innerText;
             document.getElementById('sheet-service-name').innerText = serviceName;
+            document.getElementById('link-quick').href = 'booking.html?mode=quick&service=' + encodeURIComponent(serviceName) + '&price=' + encodeURIComponent(servicePrice);
+            document.getElementById('link-doctor').href = 'booking.html?mode=doctor&service=' + encodeURIComponent(serviceName) + '&price=' + encodeURIComponent(servicePrice);
             document.getElementById('service-sheet').classList.add('active');
         }
 

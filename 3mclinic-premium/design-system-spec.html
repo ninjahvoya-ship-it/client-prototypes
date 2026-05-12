@@ -6,8 +6,9 @@
     <title>Design System — Rolex & Coffee (3M Clinic Premium)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script>
+        window.tailwind = window.tailwind || {};
         tailwind.config = {
             theme: {
                 extend: {
@@ -35,7 +36,19 @@
             font-family: 'Montserrat', sans-serif;
             color: #2A2624;
             padding: 40px;
+            font-weight: 500;
+            text-rendering: geometricPrecision;
+            -webkit-font-smoothing: antialiased;
+            font-synthesis-weight: none;
         }
+        .font-sans { font-weight: 600; }
+        .font-serif { font-weight: 600; }
+        .font-medium { font-weight: 600; }
+        .font-bold { font-weight: 700; }
+        .text-brand-muted { color: #625B54 !important; }
+        .text-\[8px\] { font-size: 9px; }
+        .text-\[9px\] { font-size: 10px; }
+        .text-\[10px\] { font-size: 10.5px; }
         .ds-container { 
             max-width: 1200px; 
             margin: 0 auto; 

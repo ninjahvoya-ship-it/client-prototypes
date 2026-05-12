@@ -6,8 +6,9 @@
     <title>3M Clinic - Visits (Rolex & Coffee)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script>
+        window.tailwind = window.tailwind || {};
         tailwind.config = {
             theme: {
                 extend: {
@@ -35,6 +36,10 @@
             margin: 0; 
             font-family: 'Montserrat', sans-serif;
             -webkit-tap-highlight-color: transparent;
+            font-weight: 500;
+            text-rendering: geometricPrecision;
+            -webkit-font-smoothing: antialiased;
+            font-synthesis-weight: none;
         }
         .app-container { 
             width: 100%; 
@@ -53,7 +58,15 @@
         }
         .app-container::-webkit-scrollbar { display: none; }
         .app-container { -ms-overflow-style: none; scrollbar-width: none; }
-        
+        .font-sans { font-weight: 600; }
+        .font-serif { font-weight: 600; }
+        .font-medium { font-weight: 600; }
+        .font-bold { font-weight: 700; }
+        .text-brand-muted { color: #625B54 !important; }
+        .text-\[8px\] { font-size: 9px; }
+        .text-\[9px\] { font-size: 10px; }
+        .text-\[10px\] { font-size: 10.5px; }
+
         .fine-border { border: 1px solid #E8DED1; }
         .fine-border-b { border-bottom: 1px solid #E8DED1; }
         .fine-border-t { border-top: 1px solid #E8DED1; }
@@ -69,6 +82,10 @@
             color: #9C5426;
             background-color: #FCFAF6;
             border: 1px solid #9C5426;
+        }
+        .visit-focus {
+            border-color: #006039 !important;
+            box-shadow: inset 0 0 0 1px #006039, 0 18px 36px rgba(0, 96, 57, 0.12);
         }
         
         .tab-content { display: none; }
@@ -104,7 +121,7 @@
             <div id="tab-upcoming" class="tab-content active space-y-6">
                 
                 <!-- Visit 1 -->
-                <div class="bg-brand-surface fine-border p-5 relative overflow-hidden shadow-sm">
+                <div id="upcoming-1" class="bg-brand-surface fine-border p-5 relative overflow-hidden shadow-sm">
                     <div class="flex justify-between items-start mb-4">
                         <span class="text-[9px] uppercase tracking-[0.15em] font-sans text-brand-surface bg-brand-green px-2 py-1 font-bold">Подтвержден</span>
                         <p class="font-sans text-[11px] text-brand-muted tracking-wide flex items-center gap-1">
@@ -126,9 +143,9 @@
                     </div>
                     
                     <div class="flex gap-2">
-                        <button onclick="openCall()" class="bg-brand-green text-brand-surface font-sans text-[9px] uppercase tracking-[0.1em] font-bold px-4 py-3 w-full hover:bg-brand-coffee transition-colors">
+                        <a href="booking.html?mode=reschedule&visit=upcoming-1&service=%D0%9B%D0%B5%D1%87%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%B0%D1%80%D0%B8%D0%B5%D1%81%D0%B0&price=%D0%BE%D1%82%204%20500%20%E2%82%BD" class="text-center bg-brand-green text-brand-surface font-sans text-[9px] uppercase tracking-[0.1em] font-bold px-4 py-3 w-full hover:bg-brand-coffee transition-colors">
                             Перенести
-                        </button>
+                        </a>
                         <button onclick="openCancel()" class="border border-brand-danger text-brand-danger font-sans text-[9px] uppercase tracking-[0.1em] font-bold px-4 py-3 w-full hover:bg-brand-danger hover:text-brand-surface transition-colors">
                             Отменить
                         </button>
@@ -417,6 +434,22 @@
             // Show target content
             document.getElementById('tab-' + tab).classList.add('active');
         }
+
+        function focusVisitFromUrl() {
+            const params = new URLSearchParams(window.location.search);
+            const visitId = params.get('visit');
+            if (!visitId) return;
+
+            switchTab(visitId.startsWith('past') ? 'past' : 'upcoming');
+
+            const visit = document.getElementById(visitId);
+            if (!visit) return;
+
+            visit.classList.add('visit-focus');
+            setTimeout(() => visit.scrollIntoView({ behavior: 'smooth', block: 'center' }), 120);
+        }
+
+        window.addEventListener('DOMContentLoaded', focusVisitFromUrl);
 
     </script>
 

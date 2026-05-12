@@ -6,7 +6,7 @@
     <title>3M Clinic - Profile (Rolex & Coffee)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- QR Code Modal -->
     <style>
@@ -36,9 +36,11 @@
             border-top-left-radius: 24px; border-top-right-radius: 24px; padding: 24px; z-index: 10001;
             transform: translate(-50%, 100%); transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
             padding-bottom: max(24px, env(safe-area-inset-bottom)); border-top: 1px solid #E8DED1;
+            max-height: 88vh; overflow-y: auto;
         }
         .bottom-sheet-overlay.active { display: block; }
         .bottom-sheet-overlay.active .bottom-sheet { transform: translate(-50%, 0); }
+        .role-chip.active { background: #006039; border-color: #006039; color: #FCFAF6; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 
@@ -82,14 +84,230 @@
         </div>
     </div>
 
+    <div id="family-sheet" class="bottom-sheet-overlay" onclick="if(event.target === this) closeModals()">
+        <div class="bottom-sheet hide-scroll">
+            <div class="w-12 h-1 bg-brand-border rounded-full mb-6 mx-auto"></div>
+            <h2 class="text-2xl font-serif text-brand-dark mb-1 text-center">Новый профиль</h2>
+            <p class="text-[11px] font-sans text-brand-muted text-center mb-8 uppercase tracking-wider">Добавить члена семьи</p>
+
+            <div class="mb-6">
+                <label class="text-[10px] font-sans uppercase tracking-[0.2em] font-bold text-brand-green mb-3 block">Кем приходится?</label>
+                <div class="flex gap-2 overflow-x-auto hide-scroll pb-2">
+                    <button class="role-chip active bg-brand-surface fine-border px-4 py-2.5 font-sans text-[10px] uppercase tracking-[0.12em] shrink-0" onclick="selectRole(this)">Сын</button>
+                    <button class="role-chip bg-brand-surface fine-border px-4 py-2.5 font-sans text-[10px] uppercase tracking-[0.12em] shrink-0" onclick="selectRole(this)">Дочь</button>
+                    <button class="role-chip bg-brand-surface fine-border px-4 py-2.5 font-sans text-[10px] uppercase tracking-[0.12em] shrink-0" onclick="selectRole(this)">Мать</button>
+                    <button class="role-chip bg-brand-surface fine-border px-4 py-2.5 font-sans text-[10px] uppercase tracking-[0.12em] shrink-0" onclick="selectRole(this)">Отец</button>
+                    <button class="role-chip bg-brand-surface fine-border px-4 py-2.5 font-sans text-[10px] uppercase tracking-[0.12em] shrink-0" onclick="selectRole(this)">Другое</button>
+                </div>
+            </div>
+
+            <div class="space-y-4 mb-8">
+                <div>
+                    <label class="text-[10px] font-sans uppercase tracking-[0.16em] text-brand-muted mb-2 block">Имя</label>
+                    <input id="profile-family-name" type="text" placeholder="Например: Иван" class="w-full bg-brand-cream fine-border px-4 py-3.5 font-sans text-[13px] text-brand-dark outline-none focus:border-brand-green">
+                </div>
+                <div>
+                    <label class="text-[10px] font-sans uppercase tracking-[0.16em] text-brand-muted mb-2 block">Фамилия</label>
+                    <input type="text" placeholder="Иванов" class="w-full bg-brand-cream fine-border px-4 py-3.5 font-sans text-[13px] text-brand-dark outline-none focus:border-brand-green">
+                </div>
+                <div>
+                    <label class="text-[10px] font-sans uppercase tracking-[0.16em] text-brand-muted mb-2 block">Отчество</label>
+                    <input type="text" placeholder="Иванович" class="w-full bg-brand-cream fine-border px-4 py-3.5 font-sans text-[13px] text-brand-dark outline-none focus:border-brand-green">
+                </div>
+                <div>
+                    <label class="text-[10px] font-sans uppercase tracking-[0.16em] text-brand-muted mb-2 block">Дата рождения</label>
+                    <input type="date" class="w-full bg-brand-cream fine-border px-4 py-3.5 font-sans text-[13px] text-brand-dark outline-none focus:border-brand-green" style="min-height: 48px; -webkit-appearance: none;">
+                </div>
+            </div>
+
+            <div class="flex gap-2">
+                <button onclick="closeModals()" class="w-full bg-brand-surface text-brand-dark py-4 font-sans text-[10px] uppercase tracking-[0.15em] font-bold hover:bg-brand-border transition-colors fine-border">
+                    Отмена
+                </button>
+            <button onclick="addProfileFamilyMember()" class="w-full bg-brand-green text-brand-surface py-4 font-sans text-[10px] uppercase tracking-[0.15em] font-bold hover:bg-brand-coffee transition-colors">
+                    Добавить
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="relative-edit-sheet" class="bottom-sheet-overlay" onclick="if(event.target === this) closeModals()">
+        <div class="bottom-sheet hide-scroll">
+            <div class="w-12 h-1 bg-brand-border rounded-full mb-6 mx-auto"></div>
+            <h2 class="text-2xl font-serif text-brand-dark mb-1 text-center">Профиль пациента</h2>
+            <p class="text-[11px] font-sans text-brand-muted text-center mb-8 uppercase tracking-wider">Редактирование члена семьи</p>
+
+            <div class="mb-6">
+                <label class="text-[10px] font-sans uppercase tracking-[0.2em] font-bold text-brand-green mb-3 block">Кем приходится?</label>
+                <div class="flex gap-2 overflow-x-auto hide-scroll pb-2">
+                    <button class="role-chip active bg-brand-surface fine-border px-4 py-2.5 font-sans text-[10px] uppercase tracking-[0.12em] shrink-0" onclick="selectRole(this)">Сын</button>
+                    <button class="role-chip bg-brand-surface fine-border px-4 py-2.5 font-sans text-[10px] uppercase tracking-[0.12em] shrink-0" onclick="selectRole(this)">Дочь</button>
+                    <button class="role-chip bg-brand-surface fine-border px-4 py-2.5 font-sans text-[10px] uppercase tracking-[0.12em] shrink-0" onclick="selectRole(this)">Другое</button>
+                </div>
+            </div>
+
+            <div class="space-y-4 mb-8">
+                <div>
+                    <label class="text-[10px] font-sans uppercase tracking-[0.16em] text-brand-muted mb-2 block">Имя</label>
+                    <input type="text" value="Иван" class="w-full bg-brand-cream fine-border px-4 py-3.5 font-sans text-[13px] text-brand-dark outline-none focus:border-brand-green">
+                </div>
+                <div>
+                    <label class="text-[10px] font-sans uppercase tracking-[0.16em] text-brand-muted mb-2 block">Фамилия</label>
+                    <input type="text" value="Ветютнев" class="w-full bg-brand-cream fine-border px-4 py-3.5 font-sans text-[13px] text-brand-dark outline-none focus:border-brand-green">
+                </div>
+                <div>
+                    <label class="text-[10px] font-sans uppercase tracking-[0.16em] text-brand-muted mb-2 block">Отчество</label>
+                    <input type="text" placeholder="Отчество" class="w-full bg-brand-cream fine-border px-4 py-3.5 font-sans text-[13px] text-brand-dark outline-none focus:border-brand-green">
+                </div>
+                <div>
+                    <label class="text-[10px] font-sans uppercase tracking-[0.16em] text-brand-muted mb-2 block">Дата рождения</label>
+                    <input type="date" value="2021-05-12" class="w-full bg-brand-cream fine-border px-4 py-3.5 font-sans text-[13px] text-brand-dark outline-none focus:border-brand-green" style="min-height: 48px; -webkit-appearance: none;">
+                </div>
+            </div>
+
+            <div class="space-y-3">
+                <button onclick="closeModals()" class="w-full bg-brand-green text-brand-surface py-4 font-sans text-[10px] uppercase tracking-[0.15em] font-bold hover:bg-brand-coffee transition-colors">
+                    Сохранить
+                </button>
+                <button onclick="openDeleteRelativeConfirm()" class="w-full bg-brand-surface text-brand-danger py-4 font-sans text-[10px] uppercase tracking-[0.15em] font-bold hover:bg-brand-danger hover:text-brand-surface transition-colors fine-border">
+                    Удалить профиль
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="relative-delete-confirm-sheet" class="bottom-sheet-overlay" onclick="if(event.target === this) closeDeleteRelativeConfirm()">
+        <div class="bottom-sheet hide-scroll">
+            <div class="w-12 h-1 bg-brand-border rounded-full mb-6 mx-auto"></div>
+            <div class="w-12 h-12 bg-brand-surface border border-brand-danger flex items-center justify-center mb-6 mx-auto">
+                <i class="ph-light ph-trash text-brand-danger text-2xl"></i>
+            </div>
+            <h2 class="text-2xl font-serif text-brand-dark mb-2 text-center">Удалить профиль?</h2>
+            <p class="text-[11px] font-sans text-brand-muted text-center mb-8 leading-relaxed">
+                Член семьи исчезнет из списка пациентов. В реальном приложении данные можно будет восстановить через администратора клиники.
+            </p>
+            <div class="flex gap-2">
+                <button onclick="closeDeleteRelativeConfirm()" class="w-full bg-brand-surface text-brand-dark py-4 font-sans text-[10px] uppercase tracking-[0.15em] font-bold hover:bg-brand-border transition-colors fine-border">
+                    Отмена
+                </button>
+                <button onclick="deleteRelative()" class="w-full bg-brand-danger text-brand-surface py-4 font-sans text-[10px] uppercase tracking-[0.15em] font-bold hover:bg-brand-dark transition-colors">
+                    Удалить
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="loyalty-history-sheet" class="bottom-sheet-overlay" onclick="if(event.target === this) closeModals()">
+        <div class="bottom-sheet hide-scroll">
+            <div class="w-12 h-1 bg-brand-border rounded-full mb-6 mx-auto"></div>
+            <h2 class="text-2xl font-serif text-brand-dark mb-1 text-center">Карта лояльности</h2>
+            <p class="text-[11px] font-sans text-brand-muted text-center mb-8 uppercase tracking-wider">Полная история операций</p>
+
+            <div class="bg-brand-green text-brand-surface p-5 mb-6 relative overflow-hidden">
+                <i class="ph-light ph-star absolute -right-5 -bottom-7 text-[100px] opacity-10"></i>
+                <p class="text-[9px] uppercase tracking-[0.18em] font-sans text-brand-surface/80 mb-2">Серебряный статус</p>
+                <div class="flex items-baseline gap-1 mb-3">
+                    <h3 class="text-4xl font-serif tracking-tight">1 450</h3>
+                    <span class="text-lg font-serif opacity-80">₽</span>
+                </div>
+                <div class="h-1.5 bg-brand-surface/20 mb-2">
+                    <div class="h-full bg-brand-surface" style="width: 75%;"></div>
+                </div>
+                <p class="font-sans text-[10px] text-brand-surface/80">До 10% скидки осталось 550 баллов</p>
+            </div>
+
+            <div class="space-y-5 mb-8">
+                <div>
+                    <p class="font-sans text-[10px] uppercase tracking-[0.2em] font-bold text-brand-green mb-3">Май 2026</p>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center gap-4">
+                            <div>
+                                <p class="font-serif text-lg text-brand-dark leading-none mb-1">Кэшбек за лечение</p>
+                                <p class="font-sans text-[10px] text-brand-muted">16 мая • Д. Соколов</p>
+                            </div>
+                            <span class="font-serif text-lg text-brand-green">+300 ₽</span>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <p class="font-sans text-[10px] uppercase tracking-[0.2em] font-bold text-brand-green mb-3">Март 2026</p>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center gap-4">
+                            <div>
+                                <p class="font-serif text-lg text-brand-dark leading-none mb-1">Кэшбек за визит</p>
+                                <p class="font-sans text-[10px] text-brand-muted">28 мар • Е. Иванова</p>
+                            </div>
+                            <span class="font-serif text-lg text-brand-green">+450 ₽</span>
+                        </div>
+                        <div class="flex justify-between items-center gap-4">
+                            <div>
+                                <p class="font-serif text-lg text-brand-dark leading-none mb-1">Списание на кассе</p>
+                                <p class="font-sans text-[10px] text-brand-muted">12 фев • Оплата лечения</p>
+                            </div>
+                            <span class="font-serif text-lg text-brand-dark">-1 000 ₽</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button onclick="closeModals()" class="w-full bg-brand-surface text-brand-dark py-4 font-sans text-[10px] uppercase tracking-[0.15em] font-bold hover:bg-brand-border transition-colors fine-border">
+                Закрыть
+            </button>
+        </div>
+    </div>
+
     <script>
+        let activeFamilyRow = null;
         function openQR() { document.getElementById('modal-qr').classList.add('active'); }
+        function openFamilySheet() { document.getElementById('family-sheet').classList.add('active'); }
+        function openRelativeEdit(el) {
+            activeFamilyRow = el ? el.closest('.family-member-row') : document.querySelector('.family-member-row');
+            document.getElementById('relative-edit-sheet').classList.add('active');
+        }
+        function openLoyaltyHistory() { window.location.href = 'loyalty.html'; }
+        function openDeleteRelativeConfirm() { document.getElementById('relative-delete-confirm-sheet').classList.add('active'); }
+        function closeDeleteRelativeConfirm() { document.getElementById('relative-delete-confirm-sheet').classList.remove('active'); }
+        function selectRole(el) {
+            document.querySelectorAll('.role-chip').forEach(chip => chip.classList.remove('active'));
+            el.classList.add('active');
+        }
+        function addProfileFamilyMember() {
+            const name = document.getElementById('profile-family-name').value.trim() || 'Новый пациент';
+            closeModals();
+            const addButton = document.querySelector('button[onclick="openFamilySheet()"]');
+            const row = document.createElement('button');
+            row.type = 'button';
+            row.setAttribute('onclick', 'openRelativeEdit(this)');
+            row.className = 'family-member-row flex justify-between items-center p-4 fine-border-b group text-left w-full';
+            row.innerHTML = `
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-brand-cream fine-border flex items-center justify-center text-brand-muted shrink-0">
+                        <i class="ph-light ph-user text-xl"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-serif text-lg text-brand-dark leading-none mb-1">${name}</h4>
+                        <p class="text-[10px] font-sans text-brand-muted">Профиль добавлен</p>
+                    </div>
+                </div>
+                <i class="ph-light ph-caret-right text-brand-muted"></i>
+            `;
+            addButton.parentNode.insertBefore(row, addButton);
+        }
+        function deleteRelative() {
+            if (activeFamilyRow) {
+                activeFamilyRow.remove();
+                activeFamilyRow = null;
+            }
+            closeModals();
+        }
         function closeModals() {
             document.querySelectorAll('.modal-overlay').forEach(m => m.classList.remove('active'));
+            document.querySelectorAll('.bottom-sheet-overlay').forEach(m => m.classList.remove('active'));
         }
     </script>
 
     <script>
+        window.tailwind = window.tailwind || {};
         tailwind.config = {
             theme: {
                 extend: {
@@ -117,6 +335,10 @@
             margin: 0; 
             font-family: 'Montserrat', sans-serif;
             -webkit-tap-highlight-color: transparent;
+            font-weight: 500;
+            text-rendering: geometricPrecision;
+            -webkit-font-smoothing: antialiased;
+            font-synthesis-weight: none;
         }
         .app-container { 
             width: 100%; 
@@ -135,7 +357,15 @@
         }
         .app-container::-webkit-scrollbar { display: none; }
         .app-container { -ms-overflow-style: none; scrollbar-width: none; }
-        
+        .font-sans { font-weight: 600; }
+        .font-serif { font-weight: 600; }
+        .font-medium { font-weight: 600; }
+        .font-bold { font-weight: 700; }
+        .text-brand-muted { color: #625B54 !important; }
+        .text-\[8px\] { font-size: 9px; }
+        .text-\[9px\] { font-size: 10px; }
+        .text-\[10px\] { font-size: 10.5px; }
+
         .fine-border { border: 1px solid #E8DED1; }
         .fine-border-b { border-bottom: 1px solid #E8DED1; }
         .fine-border-t { border-top: 1px solid #E8DED1; }
@@ -146,7 +376,7 @@
     <div class="app-container">
         
         <!-- Header -->
-        <header class="px-6 pt-12 pb-4 bg-brand-cream sticky top-0 z-40 border-b border-brand-green/30">
+        <header class="px-6 pt-12 pb-4 bg-brand-cream sticky top-0 z-40 fine-border-b">
             <div class="flex justify-between items-center" id="header-default">
                 <h1 class="text-3xl font-serif text-brand-dark tracking-wide">Профиль</h1>
                 <div class="flex gap-2">
@@ -188,29 +418,60 @@
             <div class="mb-10">
                 <div class="flex items-center gap-2 mb-3">
                     <i class="ph-light ph-asterisk text-brand-green text-xs"></i>
-                    <h3 class="font-sans text-[10px] uppercase tracking-[0.2em] font-bold text-brand-green">Лояльность</h3>
+                    <h3 class="font-sans text-[10px] uppercase tracking-[0.2em] font-bold text-brand-green">Карта лояльности</h3>
                 </div>
                 
-                <div class="bg-brand-surface fine-border p-6 relative overflow-hidden shadow-sm">
-                    <i class="ph-light ph-wallet absolute -right-6 -bottom-6 text-[120px] text-brand-coffee opacity-5"></i>
-                    <div class="relative z-10 flex justify-between items-end mb-6">
-                        <div>
-                            <p class="text-[9px] uppercase tracking-[0.2em] font-sans text-brand-muted mb-1">Кешбэк 5%</p>
-                            <div class="flex items-baseline gap-1">
-                                <h3 class="text-4xl font-serif text-brand-dark tracking-tight">1 450</h3>
-                                <span class="text-lg font-serif text-brand-dark">₽</span>
+                <div class="bg-brand-surface fine-border overflow-hidden shadow-sm">
+                    <div class="bg-brand-green text-brand-surface p-6 relative overflow-hidden">
+                        <i class="ph-light ph-star absolute -right-6 -bottom-8 text-[130px] opacity-10"></i>
+                        <div class="relative z-10">
+                            <div class="flex justify-between items-center mb-5">
+                                <span class="text-[9px] uppercase tracking-[0.15em] font-sans text-brand-green bg-brand-surface px-2 py-1 font-bold">Серебряный статус</span>
+                                <i onclick="openQR()" class="ph-light ph-qr-code text-3xl cursor-pointer hover:opacity-80 transition-opacity"></i>
+                            </div>
+                            <p class="text-[9px] uppercase tracking-[0.2em] font-sans text-brand-surface/80 mb-1">Ваш баланс</p>
+                            <div class="flex items-baseline gap-1 mb-5">
+                                <h3 class="text-4xl font-serif tracking-tight">1 450</h3>
+                                <span class="text-lg font-serif opacity-80">₽</span>
+                            </div>
+                            <div class="h-1.5 bg-brand-surface/20 mb-2">
+                                <div class="h-full bg-brand-surface" style="width: 75%;"></div>
+                            </div>
+                            <p class="font-sans text-[10px] text-brand-surface/80 leading-relaxed">До 10% скидки осталось 550 баллов</p>
+                        </div>
+                    </div>
+
+                    <div class="p-5">
+                        <div class="flex justify-between items-center mb-4">
+                            <h4 class="font-sans text-[10px] uppercase tracking-[0.2em] font-bold text-brand-green">История начислений</h4>
+                            <button onclick="openLoyaltyHistory()" class="font-sans text-[9px] uppercase tracking-[0.12em] font-bold text-brand-coffee">Ещё</button>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center gap-4">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-9 h-9 bg-brand-cream fine-border flex items-center justify-center text-brand-green shrink-0">
+                                        <i class="ph-light ph-plus"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-serif text-lg text-brand-dark leading-none mb-1">Кэшбек за визит</p>
+                                        <p class="font-sans text-[10px] text-brand-muted">28 мар 2026</p>
+                                    </div>
+                                </div>
+                                <span class="font-serif text-lg text-brand-green whitespace-nowrap">+450 ₽</span>
+                            </div>
+                            <div class="flex justify-between items-center gap-4">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-9 h-9 bg-brand-cream fine-border flex items-center justify-center text-brand-danger shrink-0">
+                                        <i class="ph-light ph-minus"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-serif text-lg text-brand-dark leading-none mb-1">Списание на кассе</p>
+                                        <p class="font-sans text-[10px] text-brand-muted">12 фев 2026</p>
+                                    </div>
+                                </div>
+                                <span class="font-serif text-lg text-brand-dark whitespace-nowrap">-1 000 ₽</span>
                             </div>
                         </div>
-                        <i onclick="openQR()" class="ph-light ph-qr-code text-3xl text-brand-coffee cursor-pointer hover:opacity-70 transition-opacity"></i>
-                    </div>
-                    
-                    <div class="flex gap-2">
-                        <button class="bg-brand-coffee text-brand-surface font-sans text-[9px] uppercase tracking-[0.15em] font-bold px-4 py-3 w-full hover:bg-brand-dark transition-colors">
-                            Потратить
-                        </button>
-                        <button class="border border-brand-coffee text-brand-coffee font-sans text-[9px] uppercase tracking-[0.15em] font-bold px-4 py-3 w-full hover:bg-brand-coffee hover:text-brand-surface transition-colors">
-                            История
-                        </button>
                     </div>
                 </div>
             </div>
@@ -223,7 +484,7 @@
                 </div>
                 
                 <div class="flex flex-col bg-brand-surface fine-border shadow-sm">
-                    <div class="flex justify-between items-center p-4 fine-border-b group">
+                    <button onclick="openRelativeEdit(this)" class="family-member-row flex justify-between items-center p-4 fine-border-b group text-left w-full">
                         <div class="flex items-center gap-3">
                             <div class="w-10 h-10 bg-brand-cream fine-border flex items-center justify-center text-brand-muted shrink-0">
                                 <i class="ph-light ph-baby text-xl"></i>
@@ -234,9 +495,9 @@
                             </div>
                         </div>
                         <i class="ph-light ph-caret-right text-brand-muted"></i>
-                    </div>
+                    </button>
                     
-                    <button class="flex items-center gap-3 p-4 hover:bg-brand-cream transition-colors text-left w-full">
+                    <button onclick="openFamilySheet()" class="flex items-center gap-3 p-4 hover:bg-brand-cream transition-colors text-left w-full">
                         <div class="w-10 h-10 bg-brand-cream fine-border flex items-center justify-center text-brand-green shrink-0">
                             <i class="ph-light ph-plus text-xl"></i>
                         </div>
@@ -252,23 +513,15 @@
                     <h3 class="font-sans text-[10px] uppercase tracking-[0.2em] font-bold text-brand-green">Медицинская карта</h3>
                 </div>
                 
-                <!-- Medical Chips -->
-                <div class="flex gap-2 overflow-x-auto pb-4 -mx-6 px-6 hide-scroll">
-                    <button class="bg-brand-surface border border-brand-coffee text-brand-coffee px-4 py-1.5 text-[9px] uppercase tracking-[0.1em] font-bold whitespace-nowrap">Все документы</button>
-                    <button class="bg-brand-surface border border-brand-border text-brand-muted px-4 py-1.5 text-[9px] uppercase tracking-[0.1em] font-medium whitespace-nowrap hover:bg-brand-cream transition-colors">Снимки</button>
-                    <button class="bg-brand-surface border border-brand-border text-brand-muted px-4 py-1.5 text-[9px] uppercase tracking-[0.1em] font-medium whitespace-nowrap hover:bg-brand-cream transition-colors">Справки</button>
-                    <button class="bg-brand-surface border border-brand-border text-brand-muted px-4 py-1.5 text-[9px] uppercase tracking-[0.1em] font-medium whitespace-nowrap hover:bg-brand-cream transition-colors">Анализы</button>
-                </div>
-                
                 <div class="flex flex-col">
-                    <a href="#" class="flex justify-between items-center py-4 fine-border-b cursor-pointer group">
+                    <a href="tax-certificates.html" class="flex justify-between items-center py-4 fine-border-b cursor-pointer group">
                         <div class="flex items-center gap-3">
                             <i class="ph-light ph-file-text text-brand-coffee text-xl"></i>
                             <span class="font-serif text-lg text-brand-dark group-hover:text-brand-coffee transition-colors">Справки для ФНС (Налог)</span>
                         </div>
                         <i class="ph-light ph-arrow-right text-brand-muted"></i>
                     </a>
-                    <a href="#" class="flex justify-between items-center py-4 fine-border-b cursor-pointer group">
+                    <a href="health-forms.html" class="flex justify-between items-center py-4 fine-border-b cursor-pointer group">
                         <div class="flex items-center gap-3">
                             <i class="ph-light ph-images text-brand-coffee text-xl"></i>
                             <span class="font-serif text-lg text-brand-dark group-hover:text-brand-coffee transition-colors">Снимки и КТ</span>
@@ -395,6 +648,7 @@
         function openQR() { document.getElementById('modal-qr').classList.add('active'); }
         function closeModals() {
             document.querySelectorAll('.modal-overlay').forEach(m => m.classList.remove('active'));
+            document.querySelectorAll('.bottom-sheet-overlay').forEach(m => m.classList.remove('active'));
         }
     </script>
 

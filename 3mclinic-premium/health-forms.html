@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>3M Clinic - Health Forms</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        window.tailwind = window.tailwind || {};
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['Cormorant Garamond', 'serif'],
+                        sans: ['Montserrat', 'sans-serif']
+                    },
+                    colors: {
+                        'brand-green': '#006039',
+                        'brand-coffee': '#9C5426',
+                        'brand-danger': '#8E2C2C',
+                        'brand-cream': '#F4EFE6',
+                        'brand-surface': '#FCFAF6',
+                        'brand-dark': '#2A2624',
+                        'brand-muted': '#9E9892',
+                        'brand-border': '#E8DED1'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #E5E5E5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+            font-weight: 500;
+            text-rendering: geometricPrecision;
+            -webkit-font-smoothing: antialiased;
+            font-synthesis-weight: none;
+        }
+        .app-container {
+            width: 100%;
+            max-width: 400px;
+            background-color: #F4EFE6;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+            overflow-y: auto;
+            padding-bottom: 120px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+        }
+        @media (min-width: 400px) {
+            .app-container { min-height: 850px; height: 850px; margin: 20px; border: 1px solid #E8DED1; overflow-y: auto; }
+        }
+        .app-container::-webkit-scrollbar, .hide-scroll::-webkit-scrollbar { display: none; }
+        .app-container, .hide-scroll { -ms-overflow-style: none; scrollbar-width: none; }
+        .font-sans { font-weight: 600; }
+        .font-serif { font-weight: 600; }
+        .font-medium { font-weight: 600; }
+        .font-bold { font-weight: 700; }
+        .text-brand-muted { color: #625B54 !important; }
+        .text-\[8px\] { font-size: 9px; }
+        .text-\[9px\] { font-size: 10px; }
+        .text-\[10px\] { font-size: 10.5px; }
+        .fine-border { border: 1px solid #E8DED1; }
+        .fine-border-b { border-bottom: 1px solid #E8DED1; }
+        .fine-border-t { border-top: 1px solid #E8DED1; }
+
+        .page-header {
+            padding: 48px 24px 20px;
+            background: #F4EFE6;
+            position: sticky;
+            top: 0;
+            z-index: 40;
+            border-bottom: 1px solid #E8DED1;
+        }
+        .page-header-row { display: flex; align-items: center; justify-content: space-between; }
+        .back-link {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            color: #2A2624;
+            text-decoration: none;
+            font-size: 24px;
+        }
+        .header-spacer { width: 40px; height: 40px; }
+        .page-title {
+            margin: 0;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 30px;
+            line-height: 1;
+            font-weight: 600;
+            color: #2A2624;
+            letter-spacing: 0;
+        }
+        .filters {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding: 24px 24px 16px;
+        }
+        .filter-chip {
+            flex: 0 0 auto;
+            background: #FCFAF6;
+            border: 1px solid #E8DED1;
+            color: #625B54;
+            padding: 8px 16px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 9px;
+            line-height: 1;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 700;
+        }
+        .filter-chip.active { border-color: #9C5426; color: #9C5426; }
+        .content { padding: 24px 24px 96px; }
+        .section { margin-bottom: 40px; }
+        .section-heading {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+        .section-heading i { color: #006039; font-size: 12px; }
+        .section-heading h2 {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10.5px;
+            line-height: 1.2;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            font-weight: 700;
+            color: #006039;
+        }
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 0;
+            border-bottom: 1px solid #E8DED1;
+        }
+        .info-main {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-width: 0;
+            flex: 1 1 auto;
+            padding-right: 8px;
+        }
+        .info-icon {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #9C5426;
+            font-size: 20px;
+            flex: 0 0 auto;
+        }
+        .info-title {
+            margin: 0 0 4px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 20px;
+            line-height: 1.08;
+            font-weight: 600;
+            color: #2A2624;
+        }
+        .info-meta {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10.5px;
+            line-height: 1.4;
+            font-weight: 600;
+            color: #625B54;
+        }
+        .status-pill {
+            display: inline-flex;
+            align-items: center;
+            min-height: 32px;
+            border: 1px solid #E8DED1;
+            color: #625B54;
+            background: #FCFAF6;
+            padding: 0 10px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 9px;
+            line-height: 1;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+        .status-pill.ok { border-color: #006039; color: #006039; }
+        .request-card {
+            border: 1px solid #E8DED1;
+            background: #FCFAF6;
+            padding: 20px;
+            border-left: 4px solid #006039;
+        }
+        .request-card h3 {
+            margin: 0 0 8px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 24px;
+            line-height: 1.05;
+            color: #2A2624;
+        }
+        .request-card p {
+            margin: 0 0 18px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 11px;
+            line-height: 1.55;
+            font-weight: 600;
+            color: #625B54;
+        }
+        .primary-btn {
+            width: 100%;
+            background: #006039;
+            color: #FCFAF6;
+            border: 0;
+            padding: 16px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-weight: 700;
+        }
+        .bottom-sheet-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.4);
+            z-index: 10000;
+            animation: fadeIn 0.3s ease-out;
+        }
+        .bottom-sheet {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 100%;
+            max-width: 400px;
+            background: #FCFAF6;
+            border-top-left-radius: 24px;
+            border-top-right-radius: 24px;
+            padding: 24px;
+            z-index: 10001;
+            transform: translate(-50%, 100%);
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            padding-bottom: max(24px, env(safe-area-inset-bottom));
+            border-top: 1px solid #E8DED1;
+            max-height: 88vh;
+            overflow-y: auto;
+            box-sizing: border-box;
+        }
+        .bottom-sheet-overlay.active { display: block; }
+        .bottom-sheet-overlay.active .bottom-sheet { transform: translate(-50%, 0); }
+        .field-label {
+            display: block;
+            margin-bottom: 8px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10px;
+            line-height: 1.2;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            font-weight: 600;
+            color: #625B54;
+        }
+        .field {
+            width: 100%;
+            box-sizing: border-box;
+            background: #F4EFE6;
+            border: 1px solid #E8DED1;
+            padding: 14px 16px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            color: #2A2624;
+            outline: none;
+            min-height: 48px;
+        }
+        .allergy-editor {
+            border: 1px solid #E8DED1;
+            background: #FCFAF6;
+        }
+        .allergy-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 14px 0;
+            border-bottom: 1px solid #E8DED1;
+        }
+        .allergy-row:last-child { border-bottom: 0; }
+        .allergy-name {
+            margin: 0 0 3px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 19px;
+            line-height: 1.05;
+            font-weight: 600;
+            color: #2A2624;
+        }
+        .allergy-hint {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10px;
+            line-height: 1.35;
+            font-weight: 600;
+            color: #625B54;
+        }
+        .toggle-pair {
+            display: flex;
+            border: 1px solid #E8DED1;
+            background: #F4EFE6;
+            flex: 0 0 auto;
+        }
+        .toggle-option {
+            border: 0;
+            background: transparent;
+            color: #625B54;
+            padding: 9px 10px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 9px;
+            line-height: 1;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 700;
+        }
+        .toggle-option.active {
+            background: #006039;
+            color: #FCFAF6;
+        }
+        .toggle-option.danger.active {
+            background: #8E2C2C;
+            color: #FCFAF6;
+        }
+        .sheet-actions { display: flex; gap: 8px; margin-top: 24px; }
+        .secondary-btn {
+            width: 100%;
+            background: #FCFAF6;
+            color: #2A2624;
+            border: 1px solid #E8DED1;
+            padding: 16px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-weight: 700;
+        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            background: rgba(244, 239, 230, 0.95);
+            backdrop-filter: blur(12px);
+            border-top: 1px solid #E8DED1;
+            z-index: 50;
+        }
+        .bottom-nav-inner {
+            width: 100%;
+            max-width: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 24px 32px;
+            box-sizing: border-box;
+        }
+        .nav-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            color: #625B54;
+            text-decoration: none;
+        }
+        .nav-link.active { color: #006039; }
+        .nav-link i { font-size: 20px; }
+        .nav-link span {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 9px;
+            line-height: 1;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body class="text-brand-dark antialiased">
+    <div class="app-container">
+        <header class="page-header">
+            <div class="page-header-row">
+                <a href="profile.html" class="back-link" aria-label="Назад в профиль">
+                    <i class="ph-light ph-arrow-left"></i>
+                </a>
+                <h1 class="page-title">Анкеты и аллергии</h1>
+                <div class="header-spacer"></div>
+            </div>
+        </header>
+
+        <div class="filters hide-scroll">
+            <button class="filter-chip active">Анна</button>
+            <button class="filter-chip">Иван</button>
+        </div>
+
+        <main class="content">
+            <section class="section">
+                <div class="section-heading">
+                    <i class="ph-light ph-asterisk"></i>
+                    <h2>Аллергии</h2>
+                </div>
+
+                <div class="info-row">
+                    <div class="info-main">
+                        <div class="info-icon"><i class="ph-light ph-syringe"></i></div>
+                        <div>
+                            <h3 class="info-title">Анестетики</h3>
+                            <p class="info-meta">Реакций не отмечено</p>
+                        </div>
+                    </div>
+                    <span class="status-pill ok">Нет</span>
+                </div>
+                <div class="info-row">
+                    <div class="info-main">
+                        <div class="info-icon"><i class="ph-light ph-pill"></i></div>
+                        <div>
+                            <h3 class="info-title">Антибиотики</h3>
+                            <p class="info-meta">Пенициллин • сыпь</p>
+                        </div>
+                    </div>
+                    <span class="status-pill">Есть</span>
+                </div>
+                <div class="info-row">
+                    <div class="info-main">
+                        <div class="info-icon"><i class="ph-light ph-hand"></i></div>
+                        <div>
+                            <h3 class="info-title">Латекс</h3>
+                            <p class="info-meta">Нет реакции по анкете</p>
+                        </div>
+                    </div>
+                    <span class="status-pill ok">Нет</span>
+                </div>
+            </section>
+
+            <section class="section">
+                <div class="section-heading">
+                    <i class="ph-light ph-asterisk"></i>
+                    <h2>Медицинская анкета</h2>
+                </div>
+
+                <div class="info-row">
+                    <div class="info-main">
+                        <div class="info-icon"><i class="ph-light ph-clipboard-text"></i></div>
+                        <div>
+                            <h3 class="info-title">Общий статус</h3>
+                            <p class="info-meta">Заполнена 12 мая 2026</p>
+                        </div>
+                    </div>
+                    <span class="status-pill ok">Актуальна</span>
+                </div>
+                <div class="info-row">
+                    <div class="info-main">
+                        <div class="info-icon"><i class="ph-light ph-heartbeat"></i></div>
+                        <div>
+                            <h3 class="info-title">Важное для врача</h3>
+                            <p class="info-meta">Гипертония • принимает препараты</p>
+                        </div>
+                    </div>
+                    <span class="status-pill">Важно</span>
+                </div>
+            </section>
+
+            <section class="section">
+                <div class="section-heading">
+                    <i class="ph-light ph-asterisk"></i>
+                    <h2>Перед приёмом</h2>
+                </div>
+
+                <div class="request-card">
+                    <h3>Обновить анкету</h3>
+                    <p>Если изменились аллергии, препараты или состояние здоровья, обновите анкету. Краткое резюме будет видно врачу перед визитом.</p>
+                    <button class="primary-btn" onclick="openFormSheet()">Обновить анкету</button>
+                </div>
+            </section>
+        </main>
+
+        <div class="bottom-nav">
+            <div class="bottom-nav-inner">
+                <a href="index-active.html" class="nav-link">
+                    <i class="ph-light ph-asterisk"></i>
+                    <span>Главная</span>
+                </a>
+                <a href="services.html" class="nav-link">
+                    <i class="ph-light ph-receipt"></i>
+                    <span>Услуги</span>
+                </a>
+                <a href="visits.html" class="nav-link">
+                    <i class="ph-light ph-calendar-blank"></i>
+                    <span>Визиты</span>
+                </a>
+                <a href="profile.html" class="nav-link active">
+                    <i class="ph-fill ph-user"></i>
+                    <span>Профиль</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div id="form-sheet" class="bottom-sheet-overlay" onclick="if(event.target === this) closeSheets()">
+        <div class="bottom-sheet hide-scroll">
+            <div class="w-12 h-1 bg-brand-border rounded-full mb-6 mx-auto"></div>
+            <h2 class="text-2xl font-serif text-brand-dark mb-1 text-center">Обновить анкету</h2>
+            <p class="text-[11px] font-sans text-brand-muted text-center mb-8 uppercase tracking-wider">Данные для врача</p>
+
+            <div class="space-y-4">
+                <div>
+                    <label class="field-label">Пациент</label>
+                    <select class="field">
+                        <option>Анна Ветютнева</option>
+                        <option>Иван Ветютнев</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="field-label">Аллергии</label>
+                    <div class="allergy-editor px-4">
+                        <div class="allergy-row">
+                            <div>
+                                <p class="allergy-name">Анестетики</p>
+                                <p class="allergy-hint">Лидокаин, артикаин</p>
+                            </div>
+                            <div class="toggle-pair">
+                                <button type="button" class="toggle-option active" onclick="selectAllergy(this)">Нет</button>
+                                <button type="button" class="toggle-option danger" onclick="selectAllergy(this)">Есть</button>
+                            </div>
+                        </div>
+                        <div class="allergy-row">
+                            <div>
+                                <p class="allergy-name">Антибиотики</p>
+                                <p class="allergy-hint">Пенициллин, макролиды</p>
+                            </div>
+                            <div class="toggle-pair">
+                                <button type="button" class="toggle-option" onclick="selectAllergy(this)">Нет</button>
+                                <button type="button" class="toggle-option danger active" onclick="selectAllergy(this)">Есть</button>
+                            </div>
+                        </div>
+                        <div class="allergy-row">
+                            <div>
+                                <p class="allergy-name">Латекс</p>
+                                <p class="allergy-hint">Перчатки, коффердам</p>
+                            </div>
+                            <div class="toggle-pair">
+                                <button type="button" class="toggle-option active" onclick="selectAllergy(this)">Нет</button>
+                                <button type="button" class="toggle-option danger" onclick="selectAllergy(this)">Есть</button>
+                            </div>
+                        </div>
+                        <div class="allergy-row">
+                            <div>
+                                <p class="allergy-name">Йод</p>
+                                <p class="allergy-hint">Антисептики</p>
+                            </div>
+                            <div class="toggle-pair">
+                                <button type="button" class="toggle-option active" onclick="selectAllergy(this)">Нет</button>
+                                <button type="button" class="toggle-option danger" onclick="selectAllergy(this)">Есть</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <label class="field-label">Если есть реакция</label>
+                    <textarea class="field" rows="3" placeholder="Например: пенициллин — сыпь"></textarea>
+                </div>
+                <div>
+                    <label class="field-label">Принимаемые препараты</label>
+                    <textarea class="field" rows="3" placeholder="Название и дозировка"></textarea>
+                </div>
+                <div>
+                    <label class="field-label">Важные комментарии</label>
+                    <textarea class="field" rows="3" placeholder="Что врачу важно знать перед приёмом"></textarea>
+                </div>
+            </div>
+
+            <div class="sheet-actions">
+                <button class="secondary-btn" onclick="closeSheets()">Отмена</button>
+                <button class="primary-btn" onclick="submitForm()">Сохранить</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="success-sheet" class="bottom-sheet-overlay" onclick="if(event.target === this) closeSheets()">
+        <div class="bottom-sheet">
+            <div class="w-12 h-1 bg-brand-border rounded-full mb-6 mx-auto"></div>
+            <div class="w-12 h-12 bg-brand-surface fine-border flex items-center justify-center mb-6 mx-auto">
+                <i class="ph-light ph-check text-brand-green text-2xl"></i>
+            </div>
+            <h2 class="text-2xl font-serif text-brand-dark mb-2 text-center">Анкета обновлена</h2>
+            <p class="text-[11px] font-sans text-brand-muted text-center mb-8 leading-relaxed">Краткое резюме будет передано врачу перед ближайшим визитом.</p>
+            <button class="primary-btn" onclick="closeSheets()">Готово</button>
+        </div>
+    </div>
+
+    <script>
+        function openFormSheet() {
+            document.getElementById('form-sheet').classList.add('active');
+        }
+        function selectAllergy(button) {
+            button.parentElement.querySelectorAll('.toggle-option').forEach(option => option.classList.remove('active'));
+            button.classList.add('active');
+        }
+        function submitForm() {
+            closeSheets();
+            document.getElementById('success-sheet').classList.add('active');
+        }
+        function closeSheets() {
+            document.querySelectorAll('.bottom-sheet-overlay').forEach(sheet => sheet.classList.remove('active'));
+        }
+    </script>
+</body>
+</html>
