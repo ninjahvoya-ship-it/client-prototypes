@@ -240,6 +240,28 @@
                         </button>
                     </div>
                 </div>
+
+                <div data-category-section="ortho" class="mt-8">
+                    <h3 class="font-sans text-[10px] uppercase tracking-[0.2em] font-bold text-brand-green mb-3">Ортодонтия</h3>
+                    <div class="space-y-3">
+                        <button data-service-scope="ortho" class="select-card w-full bg-brand-surface fine-border p-4 text-left flex justify-between items-center gap-4" onclick="selectService(this, 'Консультация ортодонта', 'от 2 500 ₽', '~30 мин')">
+                            <span class="min-w-0 flex-1">
+                                <span class="block font-serif text-xl text-brand-dark">Консультация ортодонта</span>
+                                <span class="block font-sans text-[10px] text-brand-muted mt-1">от 2 500 ₽ • ~30 мин</span>
+                            </span>
+                            <span class="empty-mark"></span>
+                            <i class="check-icon ph-fill ph-check-circle text-2xl text-brand-green"></i>
+                        </button>
+                        <button data-service-scope="ortho" class="select-card w-full bg-brand-surface fine-border p-4 text-left flex justify-between items-center gap-4" onclick="selectService(this, 'Диагностика прикуса', 'от 4 000 ₽', '~45 мин')">
+                            <span class="min-w-0 flex-1">
+                                <span class="block font-serif text-xl text-brand-dark">Диагностика прикуса</span>
+                                <span class="block font-sans text-[10px] text-brand-muted mt-1">от 4 000 ₽ • ~45 мин</span>
+                            </span>
+                            <span class="empty-mark"></span>
+                            <i class="check-icon ph-fill ph-check-circle text-2xl text-brand-green"></i>
+                        </button>
+                    </div>
+                </div>
             </section>
 
             <section id="step-doctor" class="step-panel px-6 pt-8">
@@ -470,6 +492,8 @@
         const initialService = params.get('service');
         const initialPrice = params.get('price') || 'от 4 500 ₽';
         const initialDuration = params.get('duration') || '~40 мин';
+        const initialDoctor = params.get('doctor');
+        const initialDoctorRole = params.get('role');
 
         const state = {
             mode,
@@ -477,8 +501,8 @@
             service: initialService || null,
             price: initialPrice,
             duration: initialDuration,
-            doctor: mode === 'quick' ? 'Любой свободный врач' : (mode === 'reschedule' ? 'Дмитрий Соколов' : null),
-            doctorRole: mode === 'quick' ? 'Подбор по ближайшему времени' : (mode === 'reschedule' ? 'Стоматолог-хирург' : null),
+            doctor: initialDoctor || (mode === 'quick' ? 'Любой свободный врач' : (mode === 'reschedule' ? 'Дмитрий Соколов' : null)),
+            doctorRole: initialDoctorRole || (mode === 'quick' ? 'Подбор по ближайшему времени' : (mode === 'reschedule' ? 'Стоматолог-хирург' : null)),
             date: mode === 'reschedule' ? '16 мая' : '14 мая',
             time: '14:00',
             patient: 'Себя'
@@ -488,7 +512,7 @@
             ? (initialService ? ['doctor', 'time'] : ['doctor', 'service', 'time'])
             : (mode === 'quick' || mode === 'reschedule')
                 ? ['time']
-                : (initialService ? ['doctor', 'time'] : ['service', 'doctor', 'time']);
+                : (initialService ? ['doctor', 'time'] : (initialDoctor ? ['service', 'time'] : ['service', 'doctor', 'time']));
 
         const labels = {
             service: ['Выбор услуги', 'Что будем лечить?'],
@@ -594,6 +618,8 @@
 
             if (state.doctor === 'Магомедова И.М.') scope = 'therapy';
             if (state.doctor === 'Дмитрий Соколов') scope = 'surgery';
+            if (state.doctor === 'Е. Иванова') scope = 'ortho';
+            if (state.doctor === 'А. Петров') scope = 'therapy';
 
             allCards.forEach(card => {
                 card.classList.remove('selected');
@@ -604,7 +630,7 @@
                 section.style.display = (scope === 'all' || section.dataset.categorySection === scope) ? 'block' : 'none';
             });
 
-            if (mode === 'doctor' && state.doctor) {
+            if (state.doctor) {
                 serviceIntro.innerText = 'Услуги врача';
                 serviceHeading.innerText = state.doctor === 'Любой свободный врач'
                     ? 'Выберите услугу'
