@@ -81,6 +81,15 @@
         .fine-border-t { border-top: 1px solid #E8DED1; }
         .hide-scroll::-webkit-scrollbar { display: none; }
         .hide-scroll { -ms-overflow-style: none; scrollbar-width: none; }
+        .service-plus {
+            color: #625B54;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+        .service-row:hover .service-plus {
+            background: #006039;
+            color: #FCFAF6;
+        }
+        .service-row:hover .service-plus i { color: inherit; }
     </style>
 </head>
 <body>
@@ -126,7 +135,7 @@
                 </div>
                 
                 <div class="flex flex-col">
-                    <div class="flex justify-between items-center py-4 fine-border-b cursor-pointer group" onclick="openServiceSheet(this)">
+                    <div class="service-row flex justify-between items-center py-4 fine-border-b cursor-pointer group" onclick="openServiceSheet(this)">
                         <div class="flex-1 min-w-0 pr-4">
                             <h4 class="font-serif text-lg text-brand-dark group-hover:text-brand-green transition-colors leading-tight mb-1">Лечение кариеса</h4>
                             <p class="text-[10px] font-sans text-brand-muted tracking-wide flex items-center gap-1">
@@ -135,13 +144,13 @@
                         </div>
                         <div class="flex items-center gap-3 shrink-0">
                             <span class="font-serif text-lg text-brand-dark whitespace-nowrap">от 3 500&nbsp;₽</span>
-                            <div class="w-8 h-8 flex items-center justify-center text-brand-muted group-hover:bg-brand-green group-hover:text-brand-surface transition-all duration-300">
+                            <div class="service-plus w-8 h-8 flex items-center justify-center">
                                 <i class="ph-light ph-plus text-xl"></i>
                             </div>
                         </div>
                     </div>
 
-                    <div class="flex justify-between items-center py-4 fine-border-b cursor-pointer group" onclick="openServiceSheet(this)">
+                    <div class="service-row flex justify-between items-center py-4 fine-border-b cursor-pointer group" onclick="openServiceSheet(this)">
                         <div class="flex-1 min-w-0 pr-4">
                             <h4 class="font-serif text-lg text-brand-dark group-hover:text-brand-green transition-colors leading-tight mb-1">Лечение пульпита</h4>
                             <p class="text-[10px] font-sans text-brand-muted tracking-wide flex items-center gap-1">
@@ -150,13 +159,13 @@
                         </div>
                         <div class="flex items-center gap-3 shrink-0">
                             <span class="font-serif text-lg text-brand-dark whitespace-nowrap">от 8 000&nbsp;₽</span>
-                            <div class="w-8 h-8 flex items-center justify-center text-brand-muted group-hover:bg-brand-green group-hover:text-brand-surface transition-all duration-300">
+                            <div class="service-plus w-8 h-8 flex items-center justify-center">
                                 <i class="ph-light ph-plus text-xl"></i>
                             </div>
                         </div>
                     </div>
 
-                    <div class="flex justify-between items-center py-4 fine-border-b cursor-pointer group" onclick="openServiceSheet(this)">
+                    <div class="service-row flex justify-between items-center py-4 fine-border-b cursor-pointer group" onclick="openServiceSheet(this)">
                         <div class="flex-1 min-w-0 pr-4">
                             <h4 class="font-serif text-lg text-brand-dark group-hover:text-brand-green transition-colors leading-tight mb-1">Комплексная эстетическая реставрация фронтальной группы зубов</h4>
                             <p class="text-[10px] font-sans text-brand-muted tracking-wide flex items-center gap-1">
@@ -165,7 +174,7 @@
                         </div>
                         <div class="flex items-center gap-3 shrink-0">
                             <span class="font-serif text-lg text-brand-dark whitespace-nowrap">от 6 500&nbsp;₽</span>
-                            <div class="w-8 h-8 flex items-center justify-center text-brand-muted group-hover:bg-brand-green group-hover:text-brand-surface transition-all duration-300">
+                            <div class="service-plus w-8 h-8 flex items-center justify-center">
                                 <i class="ph-light ph-plus text-xl"></i>
                             </div>
                         </div>
@@ -181,7 +190,7 @@
                 </div>
                 
                 <div class="flex flex-col">
-                    <div class="flex justify-between items-center py-4 fine-border-b cursor-pointer group" onclick="openServiceSheet(this)">
+                    <div class="service-row flex justify-between items-center py-4 fine-border-b cursor-pointer group" onclick="openServiceSheet(this)">
                         <div class="flex-1 min-w-0 pr-4">
                             <h4 class="font-serif text-lg text-brand-dark group-hover:text-brand-green transition-colors leading-tight mb-1">Удаление зуба (простое)</h4>
                             <p class="text-[10px] font-sans text-brand-muted tracking-wide flex items-center gap-1">
@@ -190,13 +199,13 @@
                         </div>
                         <div class="flex items-center gap-3 shrink-0">
                             <span class="font-serif text-lg text-brand-dark whitespace-nowrap">от 3 000&nbsp;₽</span>
-                            <div class="w-8 h-8 flex items-center justify-center text-brand-muted group-hover:bg-brand-green group-hover:text-brand-surface transition-all duration-300">
+                            <div class="service-plus w-8 h-8 flex items-center justify-center">
                                 <i class="ph-light ph-plus text-xl"></i>
                             </div>
                         </div>
                     </div>
 
-                    <div class="flex justify-between items-center py-4 fine-border-b cursor-pointer group" onclick="openServiceSheet(this)">
+                    <div class="service-row flex justify-between items-center py-4 fine-border-b cursor-pointer group" onclick="openServiceSheet(this)">
                         <div class="flex-1 min-w-0 pr-4">
                             <h4 class="font-serif text-lg text-brand-dark group-hover:text-brand-green transition-colors leading-tight mb-1">Удаление зуба мудрости</h4>
                             <p class="text-[10px] font-sans text-brand-muted tracking-wide flex items-center gap-1">
@@ -205,13 +214,13 @@
                         </div>
                         <div class="flex items-center gap-3 shrink-0">
                             <span class="font-serif text-lg text-brand-dark whitespace-nowrap">от 6 000&nbsp;₽</span>
-                            <div class="w-8 h-8 flex items-center justify-center text-brand-muted group-hover:bg-brand-green group-hover:text-brand-surface transition-all duration-300">
+                            <div class="service-plus w-8 h-8 flex items-center justify-center">
                                 <i class="ph-light ph-plus text-xl"></i>
                             </div>
                         </div>
                     </div>
 
-                    <div class="flex justify-between items-center py-4 fine-border-b cursor-pointer group" onclick="openServiceSheet(this)">
+                    <div class="service-row flex justify-between items-center py-4 fine-border-b cursor-pointer group" onclick="openServiceSheet(this)">
                         <div class="flex-1 min-w-0 pr-4">
                             <h4 class="font-serif text-lg text-brand-dark group-hover:text-brand-green transition-colors leading-tight mb-1">Имплантат Osstem (Юж. Корея)</h4>
                             <p class="text-[10px] font-sans text-brand-muted tracking-wide flex items-center gap-1">
@@ -220,7 +229,7 @@
                         </div>
                         <div class="flex items-center gap-3 shrink-0">
                             <span class="font-serif text-lg text-brand-dark whitespace-nowrap">от 35 000&nbsp;₽</span>
-                            <div class="w-8 h-8 flex items-center justify-center text-brand-muted group-hover:bg-brand-green group-hover:text-brand-surface transition-all duration-300">
+                            <div class="service-plus w-8 h-8 flex items-center justify-center">
                                 <i class="ph-light ph-plus text-xl"></i>
                             </div>
                         </div>

@@ -271,6 +271,17 @@
         }
         .bottom-sheet-overlay.active { display: block; }
         .bottom-sheet-overlay.active .bottom-sheet { transform: translate(-50%, 0); }
+        .booking-option:hover {
+            background: #006039;
+            border-color: #006039;
+        }
+        .booking-option:hover .booking-option-title,
+        .booking-option:hover .booking-option-arrow {
+            color: #FCFAF6;
+        }
+        .booking-option:hover .booking-option-copy {
+            color: rgba(252, 250, 246, 0.82);
+        }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 
@@ -282,30 +293,30 @@
             <p class="text-[11px] font-sans text-brand-muted text-center mb-8 uppercase tracking-wider">С чего начнем?</p>
 
             <div class="space-y-3 mb-6">
-                <a href="booking.html?mode=doctor" class="w-full block bg-brand-cream border border-brand-green p-4 flex items-center justify-between hover:bg-brand-green group transition-colors">
+                <a href="booking.html?mode=doctor" class="booking-option w-full block bg-brand-surface fine-border p-4 flex items-center justify-between group transition-colors">
                     <div class="flex items-center gap-3 shrink-0">
                         <div class="w-12 h-12 bg-brand-surface fine-border flex items-center justify-center text-brand-green group-hover:bg-brand-surface group-hover:text-brand-green transition-colors">
                             <i class="ph-light ph-user-circle text-2xl"></i>
                         </div>
                         <div>
-                            <h3 class="font-serif text-xl mb-0.5 text-brand-dark group-hover:text-brand-surface transition-colors">Выбрать врача</h3>
-                            <p class="text-[10px] font-sans text-brand-muted group-hover:text-brand-surface/80 transition-colors">Сначала специалист, потом его услуги</p>
+                            <h3 class="booking-option-title font-serif text-xl mb-0.5 text-brand-dark transition-colors">Выбрать врача</h3>
+                            <p class="booking-option-copy text-[10px] font-sans text-brand-muted transition-colors">Сначала специалист, потом его услуги</p>
                         </div>
                     </div>
-                    <i class="ph-light ph-caret-right text-brand-green group-hover:text-brand-surface transition-colors"></i>
+                    <i class="booking-option-arrow ph-light ph-caret-right text-brand-green transition-colors"></i>
                 </a>
 
-                <a href="booking.html" class="w-full block bg-brand-surface fine-border p-4 flex items-center justify-between hover:border-brand-coffee transition-colors">
+                <a href="booking.html" class="booking-option w-full block bg-brand-surface fine-border p-4 flex items-center justify-between group transition-colors">
                     <div class="flex items-center gap-3 shrink-0">
-                        <div class="w-12 h-12 bg-brand-cream fine-border flex items-center justify-center text-brand-coffee">
+                        <div class="w-12 h-12 bg-brand-surface fine-border flex items-center justify-center text-brand-green group-hover:bg-brand-surface group-hover:text-brand-green transition-colors">
                             <i class="ph-light ph-receipt text-2xl"></i>
                         </div>
                         <div>
-                            <h3 class="font-serif text-xl mb-0.5 text-brand-dark">Выбрать услугу</h3>
-                            <p class="text-[10px] font-sans text-brand-muted">Стандартный порядок записи</p>
+                            <h3 class="booking-option-title font-serif text-xl mb-0.5 text-brand-dark transition-colors">Выбрать услугу</h3>
+                            <p class="booking-option-copy text-[10px] font-sans text-brand-muted transition-colors">Стандартный порядок записи</p>
                         </div>
                     </div>
-                    <i class="ph-light ph-caret-right text-brand-muted"></i>
+                    <i class="booking-option-arrow ph-light ph-caret-right text-brand-green transition-colors"></i>
                 </a>
             </div>
 
