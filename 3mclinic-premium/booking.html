@@ -469,13 +469,14 @@
         const mode = params.get('mode') || 'service';
         const initialService = params.get('service');
         const initialPrice = params.get('price') || 'от 4 500 ₽';
+        const initialDuration = params.get('duration') || '~40 мин';
 
         const state = {
             mode,
             currentStep: 1,
             service: initialService || null,
             price: initialPrice,
-            duration: '~40 мин',
+            duration: initialDuration,
             doctor: mode === 'quick' ? 'Любой свободный врач' : (mode === 'reschedule' ? 'Дмитрий Соколов' : null),
             doctorRole: mode === 'quick' ? 'Подбор по ближайшему времени' : (mode === 'reschedule' ? 'Стоматолог-хирург' : null),
             date: mode === 'reschedule' ? '16 мая' : '14 мая',
@@ -487,7 +488,7 @@
             ? (initialService ? ['doctor', 'time'] : ['doctor', 'service', 'time'])
             : (mode === 'quick' || mode === 'reschedule')
                 ? ['time']
-                : ['service', 'doctor', 'time'];
+                : (initialService ? ['doctor', 'time'] : ['service', 'doctor', 'time']);
 
         const labels = {
             service: ['Выбор услуги', 'Что будем лечить?'],
