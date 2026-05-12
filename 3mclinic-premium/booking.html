@@ -84,6 +84,12 @@
         .select-card .check-icon { display: none; }
         .select-card.selected .check-icon { display: block; }
         .select-card.selected .empty-mark { display: none; }
+        .select-card .empty-mark {
+            width: 28px;
+            height: 28px;
+            border: 1px solid #E8DED1;
+            flex: 0 0 28px;
+        }
         .date-btn {
             border: 1px solid #E8DED1;
             background: #FCFAF6;
@@ -109,9 +115,9 @@
             color: #FCFAF6;
         }
         .time-slot.disabled {
-            background: transparent;
+            background: #F4EFE6;
             color: #D8CFC5;
-            border-color: transparent;
+            border-color: #E8DED1;
             pointer-events: none;
             text-decoration: line-through;
         }
@@ -202,20 +208,20 @@
                 <div class="mb-8" data-category-section="therapy">
                     <h3 class="font-sans text-[10px] uppercase tracking-[0.2em] font-bold text-brand-green mb-3">Терапия</h3>
                     <div class="space-y-3">
-                        <button data-service-scope="therapy" class="select-card w-full bg-brand-surface fine-border p-4 text-left flex justify-between items-center" onclick="selectService(this, 'Лечение кариеса', 'от 4 500 ₽', '~40 мин')">
-                            <span>
+                        <button data-service-scope="therapy" class="select-card w-full bg-brand-surface fine-border p-4 text-left flex justify-between items-center gap-4" onclick="selectService(this, 'Лечение кариеса', 'от 4 500 ₽', '~40 мин')">
+                            <span class="min-w-0 flex-1">
                                 <span class="block font-serif text-xl text-brand-dark">Лечение кариеса</span>
                                 <span class="block font-sans text-[10px] text-brand-muted mt-1">от 4 500 ₽ • ~40 мин</span>
                             </span>
-                            <span class="empty-mark w-7 h-7 fine-border flex items-center justify-center text-brand-muted"><i class="ph-light ph-plus"></i></span>
+                            <span class="empty-mark"></span>
                             <i class="check-icon ph-fill ph-check-circle text-2xl text-brand-green"></i>
                         </button>
-                        <button data-service-scope="therapy" class="select-card w-full bg-brand-surface fine-border p-4 text-left flex justify-between items-center" onclick="selectService(this, 'Профессиональная гигиена', '5 500 ₽', '~60 мин')">
-                            <span>
+                        <button data-service-scope="therapy" class="select-card w-full bg-brand-surface fine-border p-4 text-left flex justify-between items-center gap-4" onclick="selectService(this, 'Профессиональная гигиена', '5 500 ₽', '~60 мин')">
+                            <span class="min-w-0 flex-1">
                                 <span class="block font-serif text-xl text-brand-dark">Профессиональная гигиена</span>
                                 <span class="block font-sans text-[10px] text-brand-muted mt-1">5 500 ₽ • ~60 мин</span>
                             </span>
-                            <span class="empty-mark w-7 h-7 fine-border flex items-center justify-center text-brand-muted"><i class="ph-light ph-plus"></i></span>
+                            <span class="empty-mark"></span>
                             <i class="check-icon ph-fill ph-check-circle text-2xl text-brand-green"></i>
                         </button>
                     </div>
@@ -224,12 +230,12 @@
                 <div data-category-section="surgery">
                     <h3 class="font-sans text-[10px] uppercase tracking-[0.2em] font-bold text-brand-green mb-3">Хирургия</h3>
                     <div class="space-y-3">
-                        <button data-service-scope="surgery" class="select-card w-full bg-brand-surface fine-border p-4 text-left flex justify-between items-center" onclick="selectService(this, 'Удаление зуба', 'от 3 000 ₽', '~30 мин')">
-                            <span>
+                        <button data-service-scope="surgery" class="select-card w-full bg-brand-surface fine-border p-4 text-left flex justify-between items-center gap-4" onclick="selectService(this, 'Удаление зуба', 'от 3 000 ₽', '~30 мин')">
+                            <span class="min-w-0 flex-1">
                                 <span class="block font-serif text-xl text-brand-dark">Удаление зуба</span>
                                 <span class="block font-sans text-[10px] text-brand-muted mt-1">от 3 000 ₽ • ~30 мин</span>
                             </span>
-                            <span class="empty-mark w-7 h-7 fine-border flex items-center justify-center text-brand-muted"><i class="ph-light ph-plus"></i></span>
+                            <span class="empty-mark"></span>
                             <i class="check-icon ph-fill ph-check-circle text-2xl text-brand-green"></i>
                         </button>
                     </div>
@@ -293,7 +299,7 @@
             <section id="step-time" class="step-panel pt-8">
                 <div class="px-6 mb-6">
                 <p id="time-kicker" class="text-[10px] uppercase tracking-[0.2em] font-sans text-brand-green mb-2">Дата и время</p>
-                <h2 id="time-heading" class="font-serif text-3xl text-brand-dark leading-none">Май 2026</h2>
+                <h2 id="time-heading" class="font-serif text-3xl text-brand-dark leading-none">Когда удобно?</h2>
             </div>
 
                 <div id="summary-card" class="mx-6 mb-8 bg-brand-surface fine-border p-4">
@@ -549,7 +555,7 @@
 
             if (key === 'time') {
                 document.getElementById('time-kicker').innerText = mode === 'reschedule' ? 'Новое время' : 'Дата и время';
-                document.getElementById('time-heading').innerText = mode === 'reschedule' ? 'Выберите новое окно' : 'Май 2026';
+                document.getElementById('time-heading').innerText = mode === 'reschedule' ? 'Выберите новое окно' : 'Когда удобно?';
                 document.getElementById('summary-service').innerText = state.service || (mode === 'reschedule' ? 'Лечение кариеса' : 'Острая боль');
                 document.getElementById('summary-doctor').innerText = `${state.doctor || 'Любой свободный врач'} • ${state.doctorRole || 'Подбор по ближайшему времени'}`;
             }
