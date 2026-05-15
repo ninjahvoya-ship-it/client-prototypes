@@ -108,7 +108,7 @@
             <div class="hidden flex justify-between items-center mt-2" id="header-search">
                 <div class="bg-brand-surface fine-border p-2 flex items-center gap-2 w-full">
                     <i class="ph-light ph-magnifying-glass text-brand-muted text-lg ml-1"></i>
-                    <input type="text" placeholder="Поиск услуг..." class="bg-transparent border-none outline-none font-sans text-sm w-full placeholder-brand-muted text-brand-dark">
+                    <input id="service-search" type="text" placeholder="Поиск услуг..." oninput="renderServices(currentCategory)" class="bg-transparent border-none outline-none font-sans text-sm w-full placeholder-brand-muted text-brand-dark">
                 </div>
                 <button onclick="toggleSearch()" class="ml-4 font-sans text-[10px] uppercase tracking-[0.1em] font-bold text-brand-danger">
                     Отмена
@@ -117,125 +117,11 @@
         </header>
 
         <!-- Category Chips -->
-        <div class="flex gap-2 overflow-x-auto pb-4 pl-6 pr-6 hide-scroll mt-6 mb-2">
-            <button onclick="filterCategory(this, 'all')" class="cat-btn active bg-brand-surface border border-brand-coffee text-brand-coffee px-4 py-2 text-[9px] uppercase tracking-[0.1em] font-bold whitespace-nowrap">Все услуги</button>
-            <button onclick="filterCategory(this, 'therapy')" class="cat-btn bg-brand-surface border border-brand-border text-brand-muted px-4 py-2 text-[9px] uppercase tracking-[0.1em] font-medium whitespace-nowrap hover:bg-brand-cream transition-colors">Терапия</button>
-            <button onclick="filterCategory(this, 'surgery')" class="cat-btn bg-brand-surface border border-brand-border text-brand-muted px-4 py-2 text-[9px] uppercase tracking-[0.1em] font-medium whitespace-nowrap hover:bg-brand-cream transition-colors">Хирургия</button>
-            <button onclick="filterCategory(this, 'ortho')" class="cat-btn bg-brand-surface border border-brand-border text-brand-muted px-4 py-2 text-[9px] uppercase tracking-[0.1em] font-medium whitespace-nowrap hover:bg-brand-cream transition-colors">Ортодонтия</button>
-            <button onclick="filterCategory(this, 'kids')" class="cat-btn bg-brand-surface border border-brand-border text-brand-muted px-4 py-2 text-[9px] uppercase tracking-[0.1em] font-medium whitespace-nowrap hover:bg-brand-cream transition-colors">Детям</button>
+        <div id="category-chips" class="flex gap-2 overflow-x-auto pb-4 pl-6 pr-6 hide-scroll mt-6 mb-2">
         </div>
         <!-- Minimal Services List -->
         <div class="px-6 pt-6 pb-24">
-            
-            <!-- Category: Терапия -->
-            <div class="mb-10">
-                <div class="flex items-center gap-2 mb-2">
-                    <i class="ph-light ph-asterisk text-brand-green text-xs"></i>
-                    <h3 class="font-sans text-[10px] uppercase tracking-[0.2em] font-bold text-brand-green">Терапия</h3>
-                </div>
-                
-                <div class="flex flex-col">
-                    <div class="service-row flex justify-between items-center py-4 fine-border-b cursor-pointer group" onclick="openServiceSheet(this)">
-                        <div class="flex-1 min-w-0 pr-4">
-                            <h4 class="font-serif text-lg text-brand-dark group-hover:text-brand-green transition-colors leading-tight mb-1">Лечение кариеса</h4>
-                            <p class="text-[10px] font-sans text-brand-muted tracking-wide flex items-center gap-1">
-                                ~40 мин
-                            </p>
-                        </div>
-                        <div class="flex items-center gap-3 shrink-0">
-                            <span class="font-serif text-lg text-brand-dark whitespace-nowrap">от 3 500&nbsp;₽</span>
-                            <div class="service-plus w-8 h-8 flex items-center justify-center">
-                                <i class="ph-light ph-plus text-xl"></i>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="service-row flex justify-between items-center py-4 fine-border-b cursor-pointer group" onclick="openServiceSheet(this)">
-                        <div class="flex-1 min-w-0 pr-4">
-                            <h4 class="font-serif text-lg text-brand-dark group-hover:text-brand-green transition-colors leading-tight mb-1">Лечение пульпита</h4>
-                            <p class="text-[10px] font-sans text-brand-muted tracking-wide flex items-center gap-1">
-                                ~60 мин
-                            </p>
-                        </div>
-                        <div class="flex items-center gap-3 shrink-0">
-                            <span class="font-serif text-lg text-brand-dark whitespace-nowrap">от 8 000&nbsp;₽</span>
-                            <div class="service-plus w-8 h-8 flex items-center justify-center">
-                                <i class="ph-light ph-plus text-xl"></i>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="service-row flex justify-between items-center py-4 fine-border-b cursor-pointer group" onclick="openServiceSheet(this)">
-                        <div class="flex-1 min-w-0 pr-4">
-                            <h4 class="font-serif text-lg text-brand-dark group-hover:text-brand-green transition-colors leading-tight mb-1">Комплексная эстетическая реставрация фронтальной группы зубов</h4>
-                            <p class="text-[10px] font-sans text-brand-muted tracking-wide flex items-center gap-1">
-                                ~60 мин
-                            </p>
-                        </div>
-                        <div class="flex items-center gap-3 shrink-0">
-                            <span class="font-serif text-lg text-brand-dark whitespace-nowrap">от 6 500&nbsp;₽</span>
-                            <div class="service-plus w-8 h-8 flex items-center justify-center">
-                                <i class="ph-light ph-plus text-xl"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Category: Хирургия -->
-            <div class="mb-10">
-                <div class="flex items-center gap-2 mb-2">
-                    <i class="ph-light ph-asterisk text-brand-green text-xs"></i>
-                    <h3 class="font-sans text-[10px] uppercase tracking-[0.2em] font-bold text-brand-green">Хирургия</h3>
-                </div>
-                
-                <div class="flex flex-col">
-                    <div class="service-row flex justify-between items-center py-4 fine-border-b cursor-pointer group" onclick="openServiceSheet(this)">
-                        <div class="flex-1 min-w-0 pr-4">
-                            <h4 class="font-serif text-lg text-brand-dark group-hover:text-brand-green transition-colors leading-tight mb-1">Удаление зуба (простое)</h4>
-                            <p class="text-[10px] font-sans text-brand-muted tracking-wide flex items-center gap-1">
-                                ~20 мин
-                            </p>
-                        </div>
-                        <div class="flex items-center gap-3 shrink-0">
-                            <span class="font-serif text-lg text-brand-dark whitespace-nowrap">от 3 000&nbsp;₽</span>
-                            <div class="service-plus w-8 h-8 flex items-center justify-center">
-                                <i class="ph-light ph-plus text-xl"></i>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="service-row flex justify-between items-center py-4 fine-border-b cursor-pointer group" onclick="openServiceSheet(this)">
-                        <div class="flex-1 min-w-0 pr-4">
-                            <h4 class="font-serif text-lg text-brand-dark group-hover:text-brand-green transition-colors leading-tight mb-1">Удаление зуба мудрости</h4>
-                            <p class="text-[10px] font-sans text-brand-muted tracking-wide flex items-center gap-1">
-                                ~40 мин
-                            </p>
-                        </div>
-                        <div class="flex items-center gap-3 shrink-0">
-                            <span class="font-serif text-lg text-brand-dark whitespace-nowrap">от 6 000&nbsp;₽</span>
-                            <div class="service-plus w-8 h-8 flex items-center justify-center">
-                                <i class="ph-light ph-plus text-xl"></i>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="service-row flex justify-between items-center py-4 fine-border-b cursor-pointer group" onclick="openServiceSheet(this)">
-                        <div class="flex-1 min-w-0 pr-4">
-                            <h4 class="font-serif text-lg text-brand-dark group-hover:text-brand-green transition-colors leading-tight mb-1">Имплантат Osstem (Юж. Корея)</h4>
-                            <p class="text-[10px] font-sans text-brand-muted tracking-wide flex items-center gap-1">
-                                ~60 мин
-                            </p>
-                        </div>
-                        <div class="flex items-center gap-3 shrink-0">
-                            <span class="font-serif text-lg text-brand-dark whitespace-nowrap">от 35 000&nbsp;₽</span>
-                            <div class="service-plus w-8 h-8 flex items-center justify-center">
-                                <i class="ph-light ph-plus text-xl"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <div id="services-list"></div>
 
             <!-- Insurance & Installments -->
             <div class="mb-4 mt-12">
@@ -344,6 +230,186 @@
 
     
     <script>
+        const priceSections = [
+            {
+                id: 'therapy',
+                title: 'Терапия',
+                items: [
+                    ['Консультация врача-стоматолога терапевта', '0 ₽'],
+                    ['Прицельный снимок зуба', '500 ₽'],
+                    ['Коффердам', '500 ₽'],
+                    ['Анестезия', '1 000 ₽'],
+                    ['Лечение поверхностного кариеса', '6 500 ₽'],
+                    ['Лечение среднего кариеса', '7 500 ₽'],
+                    ['Лечение глубокого кариеса', '8 500 ₽'],
+                    ['Художественная реставрация зуба пломбировочным материалом светового отверждения', '6 500 ₽'],
+                    ['Постановка пломбы перед ортопедическим лечением', '6 500 ₽'],
+                    ['Лечение 1-канального пульпита', '8 000 ₽'],
+                    ['Лечение 2-канального пульпита', '10 000 ₽'],
+                    ['Лечение 3-канального пульпита', '12 000 ₽'],
+                    ['Извлечение анкерного штифта', '4 000 ₽'],
+                    ['Восстановление эндодонтически пролеченного зуба', '6 500 ₽'],
+                    ['Восстановление эндодонтически пролеченного зуба с использованием стекловолоконного штифта для дальнейшего восстановления ортопедической конструкцией', '7 500 ₽'],
+                    ['Лечение 1-канального периодонтита', '10 000 ₽'],
+                    ['Лечение 2-канального периодонтита', '12 000 ₽'],
+                    ['Лечение 3-канального периодонтита', '14 000 ₽'],
+                    ['Постановка временной пломбы', '2 000 ₽'],
+                    ['Герметизация фиссур', '5 000 ₽'],
+                    ['Лечение клиновидного дефекта', '6 500 ₽']
+                ]
+            },
+            {
+                id: 'orthopedics',
+                title: 'Ортопедия',
+                items: [
+                    ['Съемный акриловый протез', '35 000 ₽'],
+                    ['Съемный протез на балке с фиксацией на 4 имплантах', '120 000 ₽'],
+                    ['Съемный протез на балке с фиксацией на 6 имплантах', '140 000 ₽'],
+                    ['Съемный акриловый протез с металлическим каркасом (кнопочная фиксация)', '60 000 ₽'],
+                    ['Съемный акриловый протез без металлического каркаса (кнопочная фиксация)', '45 000 ₽'],
+                    ['Бюгельный протез с опорно-удерживающими кламерами', '55 000 ₽'],
+                    ['Бюгельный протез с микрозамками (двухсторонний)', '80 000 ₽'],
+                    ['Протез акри-фри', '55 000 ₽'],
+                    ['Замена замка бюгельного протеза', '10 000 ₽'],
+                    ['Микропротез на 1-3 зуба (акрил)', '15 000 ₽'],
+                    ['Микропротез на 1-3 зуба (нейлон)', '15 000 ₽'],
+                    ['Индивидуальная ложка', '5 000 ₽'],
+                    ['Фиксация 1-й коронки на постоянный цемент (Temp Bond)', '3 000 ₽'],
+                    ['Шинирование 1 зуба', '3 000 ₽'],
+                    ['Снятие 1-й штампованной коронки', '700 ₽'],
+                    ['Снятие 1-й металлокерамической коронки', '1 200 ₽'],
+                    ['Снятие цельнолитой коронки', '1 000 ₽'],
+                    ['Починка съемного протеза: 1 элемент', '5 000 ₽'],
+                    ['Починка съемного протеза: дополнительный элемент', '5 000 ₽'],
+                    ['Перебазировка съемного протеза', '6 000 ₽'],
+                    ['Чистка и полировка съемного протеза', '3 000 ₽'],
+                    ['Коронка пластмассовая временная (клиническая)', '2 000 ₽'],
+                    ['Коронка пластмассовая фрезерованная временная CAD/CAM', '7 500 ₽'],
+                    ['Коронка металлокерамическая', '18 000 ₽'],
+                    ['Коронка керамическая E-MAX', '18 000 ₽'],
+                    ['Коронка на основе диоксида циркония', '20 000 ₽'],
+                    ['Винир керамический E-MAX', '18 000 ₽'],
+                    ['Вкладка культевая керамическая E-MAX', '12 000 ₽'],
+                    ['Вкладка штифто-культевая на основе диоксида циркония', '12 000 ₽'],
+                    ['Восстановление культи зуба материалом стекловолоконный штифт', '7 000 ₽']
+                ]
+            },
+            {
+                id: 'implantology',
+                title: 'Имплантология',
+                items: [
+                    ['Удаление 1 импланта, установленного в сторонней стоматологической клинике', '7 000 ₽'],
+                    ['Операция открытый синус-лифтинг без учета стоимости костно-пластических материалов', '40 000 ₽'],
+                    ['Операция закрытый синус-лифтинг без учета стоимости костно-пластических материалов', '40 000 ₽'],
+                    ['Установка импланта ОСТЕМ', '25 000 ₽'],
+                    ['Пластика десны', '20 000 ₽'],
+                    ['Забор соединительного десневого трансплантата с неба', '12 900 ₽'],
+                    ['Костная пластика: замещение или восстановление костного дефекта остеопластическим материалом Bio-Oss 0.5 размер S', '15 900 ₽'],
+                    ['Костная пластика: использование резорбируемой мембраны Bio-Gide 25x25 mm', '40 000 ₽'],
+                    ['Мульти винты', '10 000 ₽']
+                ]
+            },
+            {
+                id: 'implants',
+                title: 'Импланты',
+                items: [
+                    ['Straumann (Швейцария)', '50 000 ₽'],
+                    ['Snucone (Южная Корея)', '18 000 ₽'],
+                    ['Osstem (Южная Корея)', '18 000 ₽'],
+                    ['Ankylos (Германия)', '35 000 ₽'],
+                    ['G-Dental (Италия)', '30 000 ₽'],
+                    ['Nobel (Швейцария)', '18 000 ₽']
+                ]
+            },
+            {
+                id: 'surgery',
+                title: 'Хирургия',
+                items: [
+                    ['Консультация врача-стоматолога хирурга-имплантолога', '0 ₽'],
+                    ['Осмотр после удаления, имплантации', '0 ₽'],
+                    ['Анестезия', '1 000 ₽'],
+                    ['Наложение одного шва', '1 000 ₽'],
+                    ['Кюретаж лунки после удаления зуба (лечение альвеолита)', '2 000 ₽'],
+                    ['Удаление подвижного зуба', '3 000 ₽'],
+                    ['Удаление постоянного зуба простое', '4 000 ₽'],
+                    ['Удаление постоянного зуба среднее', '5 000 ₽'],
+                    ['Удаление постоянного зуба сложное', '5 000 ₽'],
+                    ['Удаление зуба с разъединением корней', '7 500 ₽'],
+                    ['Удаление дистопированного зуба мудрости', '12 000 ₽'],
+                    ['Удаление зуба мудрости 1, 2, 3 категории сложности', '10 000 ₽'],
+                    ['Периостотомия', '8 500 ₽'],
+                    ['Вскрытие пародонтального абсцесса', '5 000 ₽']
+                ]
+            },
+            {
+                id: 'hygiene',
+                title: 'Гигиена',
+                items: [
+                    ['Отбеливание ZOOM', '20 000 ₽'],
+                    ['Отбеливание AMAZING WHITE', '18 000 ₽'],
+                    ['Профессиональная гигиена (УЗ-чистка, Air Flow, полировка)', '6 500 ₽'],
+                    ['Покрытие фтор-лаком 1 челюсти', '3 000 ₽']
+                ]
+            }
+        ];
+
+        const categoryFromUrl = new URLSearchParams(window.location.search).get('category');
+        let currentCategory = priceSections.some(section => section.id === categoryFromUrl) ? categoryFromUrl : 'all';
+
+        function renderCategoryChips() {
+            const chipBase = 'cat-btn bg-brand-surface border border-brand-border text-brand-muted px-4 py-2 text-[9px] uppercase tracking-[0.1em] font-medium whitespace-nowrap hover:bg-brand-cream transition-colors';
+            const chipActive = 'cat-btn active bg-brand-surface border border-brand-coffee text-brand-coffee px-4 py-2 text-[9px] uppercase tracking-[0.1em] font-bold whitespace-nowrap';
+            const chips = [
+                `<button onclick="filterCategory(this, 'all')" class="${currentCategory === 'all' ? chipActive : chipBase}">Все услуги</button>`,
+                ...priceSections.map(section => `<button onclick="filterCategory(this, '${section.id}')" class="${currentCategory === section.id ? chipActive : chipBase}">${section.title}</button>`)
+            ];
+            document.getElementById('category-chips').innerHTML = chips.join('');
+        }
+
+        function renderServices(category = currentCategory) {
+            currentCategory = category;
+            const searchInput = document.getElementById('service-search');
+            const query = searchInput ? searchInput.value.trim().toLowerCase() : '';
+            const sections = priceSections
+                .filter(section => category === 'all' || section.id === category)
+                .map(section => {
+                    const items = section.items.filter(([name]) => name.toLowerCase().includes(query));
+                    if (!items.length) return '';
+                    return `
+                        <div id="cat-${section.id}" class="cat-section mb-10">
+                            <div class="flex items-center gap-2 mb-2">
+                                <i class="ph-light ph-asterisk text-brand-green text-xs"></i>
+                                <h3 class="font-sans text-[10px] uppercase tracking-[0.2em] font-bold text-brand-green">${section.title}</h3>
+                            </div>
+                            <div class="flex flex-col">
+                                ${items.map(([name, price]) => `
+                                    <div class="service-row flex justify-between items-center py-4 fine-border-b cursor-pointer group" onclick="openServiceSheet(this)">
+                                        <div class="flex-1 min-w-0 pr-4">
+                                            <h4 class="font-serif text-lg text-brand-dark group-hover:text-brand-green transition-colors leading-tight mb-1">${name}</h4>
+                                            <p class="text-[10px] font-sans text-brand-muted tracking-wide">${section.title}</p>
+                                        </div>
+                                        <div class="flex items-center gap-3 shrink-0">
+                                            <span class="font-serif text-lg text-brand-dark whitespace-nowrap">${price}</span>
+                                            <div class="service-plus w-8 h-8 flex items-center justify-center">
+                                                <i class="ph-light ph-plus text-xl"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    `;
+                })
+                .join('');
+
+            document.getElementById('services-list').innerHTML = sections || `
+                <div class="fine-border bg-brand-surface p-5 text-center">
+                    <p class="font-sans text-[10px] uppercase tracking-[0.16em] text-brand-muted">Ничего не найдено</p>
+                </div>
+            `;
+            renderCategoryChips();
+        }
+
         function toggleSearch() {
             const defaultHeader = document.getElementById('header-default');
             const searchHeader = document.getElementById('header-search');
@@ -357,18 +423,7 @@
         }
         
         function filterCategory(btn, cat) {
-            document.querySelectorAll('.cat-btn').forEach(b => {
-                b.className = 'cat-btn bg-brand-surface border border-brand-border text-brand-muted px-4 py-2 text-[9px] uppercase tracking-[0.1em] font-medium whitespace-nowrap hover:bg-brand-cream transition-colors';
-            });
-            btn.className = 'cat-btn active bg-brand-surface border border-brand-coffee text-brand-coffee px-4 py-2 text-[9px] uppercase tracking-[0.1em] font-bold whitespace-nowrap';
-
-            document.querySelectorAll('.cat-section').forEach(s => {
-                if(cat === 'all' || s.id === 'cat-' + cat) {
-                    s.style.display = 'block';
-                } else {
-                    s.style.display = 'none';
-                }
-            });
+            renderServices(cat);
         }
 
         function openServiceSheet(el) {
@@ -383,6 +438,8 @@
         function closeSheets() {
             document.getElementById('service-sheet').classList.remove('active');
         }
+
+        renderServices();
     </script>
 </body>
 </html>
