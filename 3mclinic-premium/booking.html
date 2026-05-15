@@ -272,30 +272,45 @@
                 </div>
 
                 <div class="space-y-3">
-                    <button class="select-card w-full bg-brand-surface fine-border p-4 text-left flex items-center justify-between" onclick="selectDoctor(this, 'Магомедова И.М.', 'Терапевт', '4.9 • Стаж 8 лет')">
+                    <button class="select-card w-full bg-brand-surface fine-border p-4 text-left flex items-center justify-between" onclick="selectDoctor(this, 'Муртузалиев Шамиль Шахбанович', 'Стоматолог-терапевт, хирург, ортопед', 'Стаж 14 лет')">
                         <span class="flex items-center gap-4 min-w-0">
                             <span class="w-16 h-16 bg-brand-cream fine-border overflow-hidden shrink-0">
-                                <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=300&auto=format&fit=crop" class="w-full h-full object-cover grayscale mix-blend-multiply" alt="Магомедова И.М.">
+                                <img src="assets/doctor-murtuzaliev.jpeg" class="w-full h-full object-cover grayscale mix-blend-multiply" alt="Муртузалиев Шамиль Шахбанович">
                             </span>
                             <span class="min-w-0">
-                                <span class="block font-serif text-xl text-brand-dark leading-tight">Магомедова И.М.</span>
-                                <span class="block font-sans text-[9px] text-brand-coffee uppercase tracking-[0.12em] mt-1">Терапевт</span>
-                                <span class="block font-sans text-[10px] text-brand-muted mt-1">4.9 • Стаж 8 лет</span>
+                                <span class="block font-serif text-xl text-brand-dark leading-tight">Ш. Муртузалиев</span>
+                                <span class="block font-sans text-[9px] text-brand-coffee uppercase tracking-[0.12em] mt-1">Терапевт · хирург · ортопед</span>
+                                <span class="block font-sans text-[10px] text-brand-muted mt-1">Стаж 14 лет</span>
                             </span>
                         </span>
                         <i class="check-icon ph-fill ph-check-circle text-2xl text-brand-green shrink-0"></i>
                         <span class="empty-mark w-7 h-7 fine-border shrink-0"></span>
                     </button>
 
-                    <button class="select-card w-full bg-brand-surface fine-border p-4 text-left flex items-center justify-between" onclick="selectDoctor(this, 'Дмитрий Соколов', 'Стоматолог-хирург', '4.8 • Стаж 12 лет')">
+                    <button class="select-card w-full bg-brand-surface fine-border p-4 text-left flex items-center justify-between" onclick="selectDoctor(this, 'Комбо Делан', 'Стоматолог-терапевт', 'Терапевтический прием')">
                         <span class="flex items-center gap-4 min-w-0">
                             <span class="w-16 h-16 bg-brand-cream fine-border overflow-hidden shrink-0">
-                                <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?q=80&w=300&auto=format&fit=crop" class="w-full h-full object-cover grayscale mix-blend-multiply" alt="Дмитрий Соколов">
+                                <img src="assets/doctor-kombo.jpeg" class="w-full h-full object-cover grayscale mix-blend-multiply" alt="Комбо Делан">
                             </span>
                             <span class="min-w-0">
-                                <span class="block font-serif text-xl text-brand-dark leading-tight">Дмитрий Соколов</span>
-                                <span class="block font-sans text-[9px] text-brand-coffee uppercase tracking-[0.12em] mt-1">Стоматолог-хирург</span>
-                                <span class="block font-sans text-[10px] text-brand-muted mt-1">4.8 • Стаж 12 лет</span>
+                                <span class="block font-serif text-xl text-brand-dark leading-tight">Д. Комбо</span>
+                                <span class="block font-sans text-[9px] text-brand-coffee uppercase tracking-[0.12em] mt-1">Стоматолог-терапевт</span>
+                                <span class="block font-sans text-[10px] text-brand-muted mt-1">Терапевтический прием</span>
+                            </span>
+                        </span>
+                        <i class="check-icon ph-fill ph-check-circle text-2xl text-brand-green shrink-0"></i>
+                        <span class="empty-mark w-7 h-7 fine-border shrink-0"></span>
+                    </button>
+
+                    <button class="select-card w-full bg-brand-surface fine-border p-4 text-left flex items-center justify-between" onclick="selectDoctor(this, 'Рабаданова Зайнаб Магомедовна', 'Главный врач, Стоматолог-терапевт', 'Стаж более 21 года')">
+                        <span class="flex items-center gap-4 min-w-0">
+                            <span class="w-16 h-16 bg-brand-cream fine-border flex items-center justify-center text-brand-green text-3xl shrink-0">
+                                <i class="ph-light ph-user"></i>
+                            </span>
+                            <span class="min-w-0">
+                                <span class="block font-serif text-xl text-brand-dark leading-tight">З. Рабаданова</span>
+                                <span class="block font-sans text-[9px] text-brand-coffee uppercase tracking-[0.12em] mt-1">Главный врач · терапевт</span>
+                                <span class="block font-sans text-[10px] text-brand-muted mt-1">Стаж более 21 года</span>
                             </span>
                         </span>
                         <i class="check-icon ph-fill ph-check-circle text-2xl text-brand-green shrink-0"></i>
@@ -620,6 +635,9 @@
             if (state.doctor === 'Дмитрий Соколов') scope = 'surgery';
             if (state.doctor === 'Е. Иванова') scope = 'ortho';
             if (state.doctor === 'А. Петров') scope = 'therapy';
+            if (state.doctor === 'Муртузалиев Шамиль Шахбанович') scope = 'all';
+            if (state.doctor === 'Комбо Делан') scope = 'therapy';
+            if (state.doctor === 'Рабаданова Зайнаб Магомедовна') scope = 'therapy';
 
             allCards.forEach(card => {
                 card.classList.remove('selected');
