@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>3M Clinic - AI Assistant</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        window.tailwind = window.tailwind || {};
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['Cormorant Garamond', 'serif'],
+                        sans: ['Montserrat', 'sans-serif']
+                    },
+                    colors: {
+                        'brand-green': '#006039',
+                        'brand-coffee': '#9C5426',
+                        'brand-cream': '#F4EFE6',
+                        'brand-surface': '#FCFAF6',
+                        'brand-dark': '#2A2624',
+                        'brand-muted': '#9E9892',
+                        'brand-border': '#E8DED1'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #E5E5E5;
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+            font-weight: 500;
+            text-rendering: geometricPrecision;
+            -webkit-font-smoothing: antialiased;
+        }
+        .app-container {
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #F4EFE6;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+            padding-bottom: 208px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+        }
+        @media (min-width: 400px) {
+            .app-container { min-height: 850px; height: 850px; border: 1px solid #E8DED1; margin-top: 20px; margin-bottom: 20px; overflow-y: auto; }
+        }
+        .app-container::-webkit-scrollbar { display: none; }
+        .app-container { -ms-overflow-style: none; scrollbar-width: none; }
+        .font-sans { font-weight: 600; }
+        .font-serif { font-weight: 600; }
+        .font-bold { font-weight: 700; }
+        .text-brand-muted { color: #625B54 !important; }
+        .text-\[8px\] { font-size: 9px; }
+        .text-\[9px\] { font-size: 10px; }
+        .text-\[10px\] { font-size: 10.5px; }
+        .fine-border { border: 1px solid #E8DED1; }
+        .fine-border-b { border-bottom: 1px solid #E8DED1; }
+        .fine-border-t { border-top: 1px solid #E8DED1; }
+        .assistant-mark {
+            background:
+                radial-gradient(circle at 30% 30%, rgba(252,250,246,0.92), transparent 18%),
+                linear-gradient(135deg, #006039 0%, #9C5426 100%);
+        }
+    </style>
+</head>
+<body class="text-brand-dark antialiased">
+    <div class="app-container">
+        <header class="px-6 pt-10 pb-4 bg-brand-cream sticky top-0 z-40 fine-border-b">
+            <div class="flex items-center justify-between gap-3">
+                <a href="index-active.html" class="w-10 h-10 flex items-center justify-start text-brand-dark hover:text-brand-green transition-colors" aria-label="Назад">
+                    <i class="ph-light ph-arrow-left text-[28px]"></i>
+                </a>
+                <div class="flex items-center gap-3 min-w-0 flex-1">
+                    <div class="assistant-mark w-10 h-10 shrink-0 flex items-center justify-center text-brand-surface">
+                        <i class="ph-fill ph-sparkle text-lg"></i>
+                    </div>
+                    <div class="min-w-0">
+                        <p class="font-serif text-2xl leading-none text-brand-dark truncate">Лара</p>
+                        <p class="font-sans text-[9px] uppercase tracking-[0.14em] text-brand-muted truncate">AI-консультант клиники</p>
+                    </div>
+                </div>
+                <button class="w-10 h-10 flex items-center justify-end text-brand-dark hover:text-brand-green transition-colors" aria-label="Меню">
+                    <i class="ph-light ph-dots-three text-[28px]"></i>
+                </button>
+            </div>
+        </header>
+
+        <main class="px-6 pt-8">
+            <section class="flex items-start gap-3">
+                <div class="assistant-mark w-8 h-8 shrink-0 flex items-center justify-center text-brand-surface mt-1">
+                    <i class="ph-fill ph-sparkle text-sm"></i>
+                </div>
+                <div class="bg-brand-surface fine-border p-5">
+                    <p class="font-serif text-2xl leading-snug text-brand-dark mb-4">Здравствуйте, я Лара.</p>
+                    <p class="font-sans text-[13px] leading-relaxed text-brand-muted mb-4">
+                        Помогу подобрать услугу, подготовиться к визиту, разобраться с записью или подсказать, какие документы можно найти в профиле.
+                    </p>
+                    <p class="font-sans text-[13px] leading-relaxed text-brand-muted">Чем могу помочь?</p>
+                </div>
+            </section>
+        </main>
+
+        <div class="fixed left-0 bottom-[88px] w-full flex justify-center z-40">
+            <div class="w-full max-w-[400px]">
+                <div class="bg-brand-surface/95 backdrop-blur-md fine-border-t p-3 flex items-center gap-3">
+                    <input type="text" placeholder="Напишите сообщение..." class="min-w-0 flex-1 bg-transparent border-none outline-none font-sans text-sm text-brand-dark placeholder-brand-muted">
+                    <button class="w-9 h-9 shrink-0 bg-brand-green text-brand-surface flex items-center justify-center hover:bg-brand-coffee transition-colors" aria-label="Отправить">
+                        <i class="ph-light ph-paper-plane-tilt text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Navigation -->
+        <div class="fixed bottom-0 left-0 w-full bg-brand-cream/95 backdrop-blur-md fine-border-t flex justify-center z-50">
+            <div class="w-full max-w-[400px] flex justify-between items-center px-4 py-4 pb-8">
+                <a href="ai.html" class="flex flex-col items-center gap-1.5 text-brand-green">
+                    <i class="ph-fill ph-sparkle text-xl"></i>
+                    <span class="text-[8px] font-sans uppercase tracking-[0.1em] font-medium">AI</span>
+                </a>
+                <a href="services.html" class="flex flex-col items-center gap-1.5 text-brand-muted hover:text-brand-dark transition-colors">
+                    <i class="ph-light ph-receipt text-xl"></i>
+                    <span class="text-[8px] font-sans uppercase tracking-[0.1em] font-medium">Услуги</span>
+                </a>
+                <a href="index-active.html" class="flex flex-col items-center gap-1.5 text-brand-muted hover:text-brand-dark transition-colors">
+                    <i class="ph-light ph-asterisk text-xl"></i>
+                    <span class="text-[8px] font-sans uppercase tracking-[0.1em] font-medium">Главная</span>
+                </a>
+                <a href="visits.html" class="flex flex-col items-center gap-1.5 text-brand-muted hover:text-brand-dark transition-colors">
+                    <i class="ph-light ph-calendar-blank text-xl"></i>
+                    <span class="text-[8px] font-sans uppercase tracking-[0.1em] font-medium">Визиты</span>
+                </a>
+                <a href="profile.html" class="flex flex-col items-center gap-1.5 text-brand-muted hover:text-brand-dark transition-colors">
+                    <i class="ph-light ph-user text-xl"></i>
+                    <span class="text-[8px] font-sans uppercase tracking-[0.1em] font-medium">Профиль</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
