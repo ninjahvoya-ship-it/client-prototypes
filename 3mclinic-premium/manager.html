@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>3M Clinic - AI Assistant</title>
+    <title>3M Clinic - Manager</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -47,7 +47,7 @@
             min-height: 100vh;
             position: relative;
             overflow-x: hidden;
-            padding-bottom: 208px;
+            padding-bottom: 120px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.1);
             background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
         }
@@ -66,75 +66,70 @@
         .fine-border { border: 1px solid #E8DED1; }
         .fine-border-b { border-bottom: 1px solid #E8DED1; }
         .fine-border-t { border-top: 1px solid #E8DED1; }
-        .assistant-mark {
-            background:
-                radial-gradient(circle at 30% 30%, rgba(252,250,246,0.92), transparent 18%),
-                linear-gradient(135deg, #006039 0%, #9C5426 100%);
-        }
     </style>
     <link rel="stylesheet" href="telegram-miniapp.css">
 </head>
 <body class="text-brand-dark antialiased">
     <div class="app-container">
         <header class="px-6 pt-10 pb-4 bg-brand-cream sticky top-0 z-40 fine-border-b">
-            <div class="flex items-center justify-between gap-3">
+            <div class="flex items-center justify-between">
                 <a href="index-active.html" class="w-10 h-10 flex items-center justify-start text-brand-dark hover:text-brand-green transition-colors" aria-label="Назад">
                     <i class="ph-light ph-arrow-left text-[28px]"></i>
                 </a>
-                <div class="flex items-center gap-3 min-w-0 flex-1">
-                    <div class="assistant-mark w-10 h-10 shrink-0 flex items-center justify-center text-brand-surface">
-                        <i class="ph-fill ph-sparkle text-lg"></i>
-                    </div>
-                    <div class="min-w-0">
-                        <p class="font-serif text-2xl leading-none text-brand-dark truncate">Лара</p>
-                        <p class="font-sans text-[9px] uppercase tracking-[0.14em] text-brand-muted truncate">AI-консультант клиники</p>
-                    </div>
-                </div>
-                <button class="w-10 h-10 flex items-center justify-end text-brand-dark hover:text-brand-green transition-colors" aria-label="Меню">
-                    <i class="ph-light ph-dots-three text-[28px]"></i>
-                </button>
+                <p class="font-sans text-[10px] uppercase tracking-[0.2em] text-brand-dark">Управляющая</p>
+                <a href="tel:+70000000000" class="w-10 h-10 flex items-center justify-end text-brand-green hover:text-brand-coffee transition-colors" aria-label="Позвонить">
+                    <i class="ph-light ph-phone-call text-[26px]"></i>
+                </a>
             </div>
         </header>
 
-        <main class="px-6 pt-8">
-            <section class="flex items-start gap-3">
-                <div class="assistant-mark w-8 h-8 shrink-0 flex items-center justify-center text-brand-surface mt-1">
-                    <i class="ph-fill ph-sparkle text-sm"></i>
+        <main class="px-6 pt-6">
+            <section class="mb-8">
+                <div class="w-full aspect-[3/4] bg-brand-surface fine-border overflow-hidden mb-6">
+                    <img src="assets/manager-khortieva.jpeg" class="w-full h-full object-cover grayscale mix-blend-multiply" style="background-color: rgba(156,84,38,0.1);" alt="Хортиева Элла">
                 </div>
-                <div class="bg-brand-surface fine-border p-5">
-                    <p class="font-serif text-2xl leading-snug text-brand-dark mb-4">Здравствуйте, я Лара.</p>
-                    <p class="font-sans text-[13px] leading-relaxed text-brand-muted mb-4">
-                        Помогу подобрать услугу, подготовиться к визиту, разобраться с записью или подсказать, какие документы можно найти в профиле.
-                    </p>
-                    <p class="font-sans text-[13px] leading-relaxed text-brand-muted">Чем могу помочь?</p>
+                <div class="pb-6 fine-border-b">
+                    <p class="font-sans text-[10px] uppercase tracking-[0.2em] font-bold text-brand-green mb-4">Управляющая клиникой</p>
+                    <h1 class="font-serif text-4xl text-brand-dark leading-none mb-4">Хортиева Элла</h1>
+                    <p class="font-sans text-[11px] uppercase tracking-[0.12em] leading-relaxed text-brand-muted">Сервис, команда и пациентский опыт</p>
                 </div>
             </section>
-        </main>
 
-        <div class="fixed left-0 bottom-[88px] w-full flex justify-center z-40">
-            <div class="w-full max-w-[400px]">
-                <div class="bg-brand-surface/95 backdrop-blur-md fine-border-t p-3 flex items-center gap-3">
-                    <input type="text" placeholder="Напишите сообщение..." class="min-w-0 flex-1 bg-transparent border-none outline-none font-sans text-sm text-brand-dark placeholder-brand-muted">
-                    <button class="w-9 h-9 shrink-0 bg-brand-green text-brand-surface flex items-center justify-center hover:bg-brand-coffee transition-colors" aria-label="Отправить">
-                        <i class="ph-light ph-paper-plane-tilt text-xl"></i>
-                    </button>
+            <section class="py-5 fine-border-b mb-2">
+                <div class="flex items-baseline justify-between gap-4">
+                    <p class="font-sans text-[10px] uppercase tracking-[0.2em] font-bold text-brand-green">Фокус</p>
+                    <p class="font-serif text-3xl text-brand-dark leading-none text-right">забота</p>
                 </div>
-            </div>
-        </div>
+            </section>
+
+            <section class="py-6 mb-6">
+                <p class="font-sans text-[10px] uppercase tracking-[0.2em] font-bold text-brand-green mb-2">О руководителе</p>
+                <div class="font-sans text-[12px] leading-relaxed text-brand-muted">
+                    <p class="py-4 fine-border-b">Отвечает за организацию работы клиники и качество сервиса на каждом этапе: от первого обращения до завершения лечения.</p>
+                    <p class="py-4 fine-border-b">Координирует команду администраторов и специалистов, чтобы пациенту было комфортно ориентироваться в записи, визитах и плане лечения.</p>
+                    <p class="py-4 fine-border-b">Следит за внимательной коммуникацией, аккуратной атмосферой и тем, чтобы визит в клинику проходил спокойно и предсказуемо.</p>
+                    <p class="py-4 fine-border-b">Помогает решать организационные вопросы и поддерживает единый стандарт премиального пациентского опыта в 3M Clinic.</p>
+                </div>
+            </section>
+
+            <a href="tel:+70000000000" class="block w-full bg-brand-green text-brand-surface font-sans text-[10px] uppercase tracking-[0.15em] font-bold px-6 py-4 text-center hover:bg-brand-coffee transition-colors">
+                Связаться с клиникой
+            </a>
+        </main>
 
         <!-- Bottom Navigation -->
         <div class="fixed bottom-0 left-0 w-full bg-brand-cream/95 backdrop-blur-md fine-border-t flex justify-center z-50">
             <div class="w-full max-w-[400px] flex justify-between items-center px-4 py-4 pb-8">
-                <a href="ai.html" class="flex flex-col items-center gap-1.5 text-brand-green">
-                    <i class="ph-fill ph-sparkle text-xl"></i>
+                <a href="ai.html" class="flex flex-col items-center gap-1.5 text-brand-muted hover:text-brand-dark transition-colors">
+                    <i class="ph-light ph-sparkle text-xl"></i>
                     <span class="text-[8px] font-sans uppercase tracking-[0.1em] font-medium">AI</span>
                 </a>
                 <a href="services.html" class="flex flex-col items-center gap-1.5 text-brand-muted hover:text-brand-dark transition-colors">
                     <i class="ph-light ph-squares-four text-xl"></i>
                     <span class="text-[8px] font-sans uppercase tracking-[0.1em] font-medium">Каталог</span>
                 </a>
-                <a href="index-active.html" class="flex flex-col items-center gap-1.5 text-brand-muted hover:text-brand-dark transition-colors">
-                    <i class="ph-light ph-asterisk text-xl"></i>
+                <a href="index-active.html" class="flex flex-col items-center gap-1.5 text-brand-green">
+                    <i class="ph-fill ph-asterisk text-xl"></i>
                     <span class="text-[8px] font-sans uppercase tracking-[0.1em] font-medium">Главная</span>
                 </a>
                 <a href="visits.html" class="flex flex-col items-center gap-1.5 text-brand-muted hover:text-brand-dark transition-colors">

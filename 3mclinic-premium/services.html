@@ -90,6 +90,41 @@
             color: #FCFAF6;
         }
         .service-row:hover .service-plus i { color: inherit; }
+        .catalog-tab {
+            background: transparent;
+            border: 1px solid #E8DED1;
+            color: #625B54;
+            transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+        }
+        .catalog-tab.active {
+            background: #006039;
+            border-color: #006039;
+            color: #FCFAF6;
+        }
+        .product-card {
+            background: #FCFAF6;
+            border: 1px solid #E8DED1;
+            transition: border-color 0.2s ease, transform 0.2s ease;
+        }
+        .product-card:hover {
+            border-color: #006039;
+            transform: translateY(-1px);
+        }
+        .product-visual {
+            background:
+                radial-gradient(circle at 30% 25%, rgba(255,255,255,0.72), transparent 28%),
+                linear-gradient(135deg, rgba(0,96,57,0.16), rgba(156,84,38,0.14));
+        }
+        .product-visual.coffee {
+            background:
+                radial-gradient(circle at 30% 25%, rgba(255,255,255,0.72), transparent 28%),
+                linear-gradient(135deg, rgba(156,84,38,0.22), rgba(244,239,230,0.74));
+        }
+        .product-visual.soft {
+            background:
+                radial-gradient(circle at 30% 25%, rgba(255,255,255,0.78), transparent 30%),
+                linear-gradient(135deg, rgba(232,222,209,0.85), rgba(0,96,57,0.12));
+        }
     </style>
     <link rel="stylesheet" href="telegram-miniapp.css">
 </head>
@@ -100,8 +135,8 @@
         <!-- 1. Header -->
         <header class="px-6 pt-12 pb-4 bg-brand-cream sticky top-0 z-40 fine-border-b">
             <div class="flex justify-between items-center" id="header-default">
-                <h1 class="text-3xl font-serif text-brand-dark tracking-wide">Стоимость услуг</h1>
-                <button onclick="toggleSearch()" class="w-10 h-10 flex items-center justify-end text-brand-dark hover:text-brand-green transition-colors">
+                <h1 class="text-3xl font-serif text-brand-dark tracking-wide">Каталог</h1>
+                <button onclick="toggleSearch()" class="w-10 h-10 flex items-center justify-end text-brand-dark hover:text-brand-green transition-colors" aria-label="Поиск">
                     <i class="ph-light ph-magnifying-glass text-[24px]"></i>
                 </button>
             </div>
@@ -109,7 +144,7 @@
             <div class="hidden flex justify-between items-center mt-2" id="header-search">
                 <div class="bg-brand-surface fine-border p-2 flex items-center gap-2 w-full">
                     <i class="ph-light ph-magnifying-glass text-brand-muted text-lg ml-1"></i>
-                    <input id="service-search" type="text" placeholder="Поиск услуг..." oninput="renderServices(currentCategory)" class="bg-transparent border-none outline-none font-sans text-sm w-full placeholder-brand-muted text-brand-dark">
+                    <input id="catalog-search" type="text" placeholder="Поиск по каталогу..." oninput="renderCurrentCatalog()" class="bg-transparent border-none outline-none font-sans text-sm w-full placeholder-brand-muted text-brand-dark">
                 </div>
                 <button onclick="toggleSearch()" class="ml-4 font-sans text-[10px] uppercase tracking-[0.1em] font-bold text-brand-danger">
                     Отмена
@@ -117,15 +152,24 @@
             </div>
         </header>
 
+        <!-- Catalog Switch -->
+        <div class="px-6 pt-6">
+            <div class="grid grid-cols-2 gap-2">
+                <button id="tab-services" onclick="setCatalogMode('services')" class="catalog-tab active py-3 font-sans text-[10px] uppercase tracking-[0.16em] font-bold">Услуги</button>
+                <button id="tab-products" onclick="setCatalogMode('products')" class="catalog-tab py-3 font-sans text-[10px] uppercase tracking-[0.16em] font-bold">Товары</button>
+            </div>
+        </div>
+
         <!-- Category Chips -->
         <div id="category-chips" class="flex gap-2 overflow-x-auto pb-4 pl-6 pr-6 hide-scroll mt-6 mb-2">
         </div>
-        <!-- Minimal Services List -->
+
+        <!-- Catalog List -->
         <div class="px-6 pt-6 pb-24">
-            <div id="services-list"></div>
+            <div id="catalog-list"></div>
 
             <!-- Insurance & Installments -->
-            <div class="mb-4 mt-12">
+            <div id="service-note" class="mb-4 mt-12">
                 <div class="fine-border p-5 relative overflow-hidden bg-brand-surface border-l-4 shadow-sm" style="border-left-color: #006039;">
                     <div class="flex items-start gap-4 relative z-10">
                         <i class="ph-light ph-shield-check text-brand-green text-3xl mt-1"></i>
@@ -140,7 +184,7 @@
             </div>
 
             <!-- Disclaimer -->
-            <div class="py-4 flex justify-center items-center">
+            <div id="service-disclaimer" class="py-4 flex justify-center items-center">
                 <p class="text-[10px] font-sans uppercase tracking-[0.1em] text-brand-muted text-center max-w-[280px] leading-relaxed mt-4">
                     Точная стоимость услуг определяется врачом после консультации и снимка.
                 </p>
@@ -156,8 +200,8 @@
                     <span class="text-[8px] font-sans uppercase tracking-[0.1em] font-medium">AI</span>
                 </a>
                 <a href="services.html" class="flex flex-col items-center gap-1.5 text-brand-green">
-                    <i class="ph-fill ph-receipt text-xl"></i>
-                    <span class="text-[8px] font-sans uppercase tracking-[0.1em] font-medium">Услуги</span>
+                    <i class="ph-fill ph-squares-four text-xl"></i>
+                    <span class="text-[8px] font-sans uppercase tracking-[0.1em] font-medium">Каталог</span>
                 </a>
                 <a href="index-active.html" class="flex flex-col items-center gap-1.5 text-brand-muted hover:text-brand-dark transition-colors">
                     <i class="ph-light ph-asterisk text-xl"></i>
@@ -358,22 +402,73 @@
             }
         ];
 
-        const categoryFromUrl = new URLSearchParams(window.location.search).get('category');
+        const productSections = [
+            {
+                id: 'brushes',
+                title: 'Щетки',
+                items: [
+                    ['Curaprox CS 5460 Ultra Soft', 'Ультрамягкая щетка для ежедневного ухода', '1 150 ₽', 'ph-tooth', 'soft'],
+                    ['Oral-B Pro 3 Electric', 'Электрическая щетка с датчиком давления', '6 900 ₽', 'ph-lightning', ''],
+                    ['Revyline RL 010 Kids', 'Мягкая детская щетка с компактной головкой', '690 ₽', 'ph-smiley', 'coffee']
+                ]
+            },
+            {
+                id: 'toothpaste',
+                title: 'Пасты',
+                items: [
+                    ['Biorepair Total Protective', 'Восстановление эмали и снижение чувствительности', '980 ₽', 'ph-drop', 'soft'],
+                    ['Apadent Total Care', 'Реминерализующая паста с nano-HAP', '1 650 ₽', 'ph-sparkle', ''],
+                    ['Curaprox Enzycal 1450', 'Ежедневная паста с мягким составом', '1 250 ₽', 'ph-leaf', 'coffee']
+                ]
+            },
+            {
+                id: 'irrigators',
+                title: 'Ирригаторы',
+                items: [
+                    ['Revyline RL 450', 'Портативный ирригатор для домашнего ухода', '4 900 ₽', 'ph-waves', ''],
+                    ['Waterpik WP-660', 'Стационарный ирригатор для всей семьи', '12 900 ₽', 'ph-drop-half', 'soft']
+                ]
+            },
+            {
+                id: 'rinse',
+                title: 'Ополаскиватели',
+                items: [
+                    ['Curasept ADS 205', 'Курс после хирургии и профессиональной гигиены', '1 450 ₽', 'ph-bottle', 'coffee'],
+                    ['Biorepair Mouthwash', 'Ежедневный уход и защита эмали', '890 ₽', 'ph-shield-check', 'soft']
+                ]
+            },
+            {
+                id: 'kids',
+                title: 'Для детей',
+                items: [
+                    ['Brush-Baby KidzSonic', 'Звуковая щетка для детей от 3 лет', '2 900 ₽', 'ph-star', ''],
+                    ['R.O.C.S. Kids паста', 'Мягкий вкус и бережная защита эмали', '520 ₽', 'ph-heart', 'coffee']
+                ]
+            }
+        ];
+
+        const params = new URLSearchParams(window.location.search);
+        const categoryFromUrl = params.get('category');
+        let catalogMode = params.get('tab') === 'products' ? 'products' : 'services';
         let currentCategory = priceSections.some(section => section.id === categoryFromUrl) ? categoryFromUrl : 'all';
+        let currentProductCategory = productSections.some(section => section.id === categoryFromUrl) ? categoryFromUrl : 'all';
+        let cartCount = 0;
 
         function renderCategoryChips() {
+            const sections = catalogMode === 'products' ? productSections : priceSections;
+            const activeCategory = catalogMode === 'products' ? currentProductCategory : currentCategory;
             const chipBase = 'cat-btn bg-brand-surface border border-brand-border text-brand-muted px-4 py-2 text-[9px] uppercase tracking-[0.1em] font-medium whitespace-nowrap hover:bg-brand-cream transition-colors';
             const chipActive = 'cat-btn active bg-brand-surface border border-brand-coffee text-brand-coffee px-4 py-2 text-[9px] uppercase tracking-[0.1em] font-bold whitespace-nowrap';
             const chips = [
-                `<button onclick="filterCategory(this, 'all')" class="${currentCategory === 'all' ? chipActive : chipBase}">Все услуги</button>`,
-                ...priceSections.map(section => `<button onclick="filterCategory(this, '${section.id}')" class="${currentCategory === section.id ? chipActive : chipBase}">${section.title}</button>`)
+                `<button onclick="filterCategory(this, 'all')" class="${activeCategory === 'all' ? chipActive : chipBase}">${catalogMode === 'products' ? 'Все товары' : 'Все услуги'}</button>`,
+                ...sections.map(section => `<button onclick="filterCategory(this, '${section.id}')" class="${activeCategory === section.id ? chipActive : chipBase}">${section.title}</button>`)
             ];
             document.getElementById('category-chips').innerHTML = chips.join('');
         }
 
         function renderServices(category = currentCategory) {
             currentCategory = category;
-            const searchInput = document.getElementById('service-search');
+            const searchInput = document.getElementById('catalog-search');
             const query = searchInput ? searchInput.value.trim().toLowerCase() : '';
             const sections = priceSections
                 .filter(section => category === 'all' || section.id === category)
@@ -407,12 +502,80 @@
                 })
                 .join('');
 
-            document.getElementById('services-list').innerHTML = sections || `
+            document.getElementById('catalog-list').innerHTML = sections || `
                 <div class="fine-border bg-brand-surface p-5 text-center">
                     <p class="font-sans text-[10px] uppercase tracking-[0.16em] text-brand-muted">Ничего не найдено</p>
                 </div>
             `;
             renderCategoryChips();
+        }
+
+        function renderProducts(category = currentProductCategory) {
+            currentProductCategory = category;
+            const searchInput = document.getElementById('catalog-search');
+            const query = searchInput ? searchInput.value.trim().toLowerCase() : '';
+            const sections = productSections
+                .filter(section => category === 'all' || section.id === category)
+                .map(section => {
+                    const items = section.items.filter(([name, description]) => `${name} ${description}`.toLowerCase().includes(query));
+                    if (!items.length) return '';
+                    return `
+                        <div id="goods-${section.id}" class="cat-section mb-10">
+                            <div class="flex items-center gap-2 mb-4">
+                                <i class="ph-light ph-asterisk text-brand-green text-xs"></i>
+                                <h3 class="font-sans text-[10px] uppercase tracking-[0.2em] font-bold text-brand-green">${section.title}</h3>
+                            </div>
+                            <div class="grid grid-cols-2 gap-3">
+                                ${items.map(([name, description, price, icon, tone]) => `
+                                    <article class="product-card p-3 flex flex-col min-h-[246px]">
+                                        <div class="product-visual ${tone} h-28 fine-border mb-4 flex items-center justify-center text-brand-green">
+                                            <i class="ph-light ${icon} text-[48px]"></i>
+                                        </div>
+                                        <div class="flex-1">
+                                            <h4 class="font-serif text-xl text-brand-dark leading-tight mb-2">${name}</h4>
+                                            <p class="font-sans text-[10px] leading-relaxed text-brand-muted">${description}</p>
+                                        </div>
+                                        <div class="flex items-center justify-between gap-3 mt-4">
+                                            <span class="font-serif text-xl text-brand-dark whitespace-nowrap">${price}</span>
+                                            <button onclick="addToCart(this)" class="w-9 h-9 bg-brand-green text-brand-surface flex items-center justify-center hover:bg-brand-coffee transition-colors" aria-label="Добавить в корзину">
+                                                <i class="ph-light ph-plus text-xl"></i>
+                                            </button>
+                                        </div>
+                                    </article>
+                                `).join('')}
+                            </div>
+                        </div>
+                    `;
+                })
+                .join('');
+
+            document.getElementById('catalog-list').innerHTML = sections || `
+                <div class="fine-border bg-brand-surface p-5 text-center">
+                    <p class="font-sans text-[10px] uppercase tracking-[0.16em] text-brand-muted">Ничего не найдено</p>
+                </div>
+            `;
+            renderCategoryChips();
+        }
+
+        function setCatalogMode(mode) {
+            catalogMode = mode;
+            document.getElementById('tab-services').classList.toggle('active', mode === 'services');
+            document.getElementById('tab-products').classList.toggle('active', mode === 'products');
+            document.getElementById('service-note').classList.toggle('hidden', mode === 'products');
+            document.getElementById('service-disclaimer').classList.toggle('hidden', mode === 'products');
+            const searchInput = document.getElementById('catalog-search');
+            if (searchInput) {
+                searchInput.placeholder = mode === 'products' ? 'Поиск товаров...' : 'Поиск услуг...';
+            }
+            renderCurrentCatalog();
+        }
+
+        function renderCurrentCatalog() {
+            if (catalogMode === 'products') {
+                renderProducts();
+            } else {
+                renderServices();
+            }
         }
 
         function toggleSearch() {
@@ -428,7 +591,19 @@
         }
         
         function filterCategory(btn, cat) {
-            renderServices(cat);
+            if (catalogMode === 'products') {
+                renderProducts(cat);
+            } else {
+                renderServices(cat);
+            }
+        }
+
+        function addToCart(button) {
+            cartCount += 1;
+            button.classList.remove('bg-brand-green');
+            button.classList.add('bg-brand-coffee');
+            button.innerHTML = '<i class="ph-light ph-check text-xl"></i>';
+            button.setAttribute('aria-label', `В корзине: ${cartCount}`);
         }
 
         function openServiceSheet(el) {
@@ -444,7 +619,7 @@
             document.getElementById('service-sheet').classList.remove('active');
         }
 
-        renderServices();
+        setCatalogMode(catalogMode);
     </script>
 </body>
 </html>
