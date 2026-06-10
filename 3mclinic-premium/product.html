@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>3M Clinic | Product</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        window.tailwind = window.tailwind || {};
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['Cormorant Garamond', 'serif'],
+                        sans: ['Montserrat', 'sans-serif']
+                    },
+                    colors: {
+                        'brand-green': '#006039',
+                        'brand-coffee': '#9C5426',
+                        'brand-cream': '#F4EFE6',
+                        'brand-surface': '#FCFAF6',
+                        'brand-dark': '#2A2624',
+                        'brand-muted': '#9E9892',
+                        'brand-border': '#E8DED1'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #E5E5E5;
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+            font-weight: 500;
+            text-rendering: geometricPrecision;
+            -webkit-font-smoothing: antialiased;
+        }
+        .app-container {
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #F4EFE6;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+            padding-bottom: 140px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+        }
+        @media (min-width: 400px) {
+            .app-container { min-height: 850px; height: 850px; border: 1px solid #E8DED1; margin-top: 20px; margin-bottom: 20px; overflow-y: auto; }
+        }
+        .app-container::-webkit-scrollbar { display: none; }
+        .app-container { -ms-overflow-style: none; scrollbar-width: none; }
+        .font-sans { font-weight: 600; }
+        .font-serif { font-weight: 600; }
+        .font-bold { font-weight: 700; }
+        .text-brand-muted { color: #625B54 !important; }
+        .text-\[8px\] { font-size: 9px; }
+        .text-\[9px\] { font-size: 10px; }
+        .text-\[10px\] { font-size: 10.5px; }
+        .fine-border { border: 1px solid #E8DED1; }
+        .fine-border-b { border-bottom: 1px solid #E8DED1; }
+        .fine-border-t { border-top: 1px solid #E8DED1; }
+        .fine-border-y { border-top: 1px solid #E8DED1; border-bottom: 1px solid #E8DED1; }
+        .product-visual {
+            background:
+                radial-gradient(circle at 30% 25%, rgba(255,255,255,0.72), transparent 28%),
+                linear-gradient(135deg, rgba(0,96,57,0.16), rgba(156,84,38,0.14));
+        }
+        .product-visual.coffee {
+            background:
+                radial-gradient(circle at 30% 25%, rgba(255,255,255,0.72), transparent 28%),
+                linear-gradient(135deg, rgba(156,84,38,0.22), rgba(244,239,230,0.74));
+        }
+        .product-visual.soft {
+            background:
+                radial-gradient(circle at 30% 25%, rgba(255,255,255,0.78), transparent 30%),
+                linear-gradient(135deg, rgba(232,222,209,0.85), rgba(0,96,57,0.12));
+        }
+    </style>
+    <link rel="stylesheet" href="telegram-miniapp.css">
+</head>
+<body class="text-brand-dark antialiased">
+    <div class="app-container">
+        <header class="px-6 pt-10 pb-4 bg-brand-cream sticky top-0 z-40 fine-border-b">
+            <div class="flex items-center justify-between">
+                <a href="services.html?tab=products" class="w-10 h-10 flex items-center justify-start text-brand-dark hover:text-brand-green transition-colors" aria-label="Назад">
+                    <i class="ph-light ph-arrow-left text-[28px]"></i>
+                </a>
+                <p class="font-sans text-[10px] uppercase tracking-[0.2em] text-brand-dark">Товар</p>
+                <button class="w-10 h-10 flex items-center justify-end text-brand-green hover:text-brand-coffee transition-colors" aria-label="Корзина">
+                    <i class="ph-light ph-shopping-bag-open text-[26px]"></i>
+                </button>
+            </div>
+        </header>
+
+        <main class="px-6 pt-6">
+            <section class="mb-8">
+                <div id="product-visual" class="product-visual w-full aspect-square fine-border mb-6 flex items-center justify-center text-brand-green">
+                    <i id="product-icon" class="ph-light ph-tooth text-[92px]"></i>
+                </div>
+                <div class="pb-6 fine-border-b">
+                    <p id="product-category" class="font-sans text-[10px] uppercase tracking-[0.2em] font-bold text-brand-green mb-4"></p>
+                    <h1 id="product-name" class="font-serif text-4xl text-brand-dark leading-none mb-4"></h1>
+                    <p id="product-description" class="font-sans text-[12px] leading-relaxed text-brand-muted"></p>
+                </div>
+            </section>
+
+            <section class="py-5 fine-border-b mb-2">
+                <div class="flex items-baseline justify-between gap-4">
+                    <p class="font-sans text-[10px] uppercase tracking-[0.2em] font-bold text-brand-green">Цена</p>
+                    <p id="product-price" class="font-serif text-3xl text-brand-dark leading-none text-right"></p>
+                </div>
+            </section>
+
+            <section class="py-6 mb-6">
+                <p class="font-sans text-[10px] uppercase tracking-[0.2em] font-bold text-brand-green mb-2">Рекомендации</p>
+                <div class="font-sans text-[12px] leading-relaxed text-brand-muted">
+                    <p id="product-note-main" class="py-4 fine-border-b"></p>
+                    <p id="product-note-extra" class="py-4 fine-border-b"></p>
+                </div>
+            </section>
+        </main>
+
+        <div class="fixed bottom-0 left-0 w-full bg-brand-cream/95 backdrop-blur-md fine-border-t flex justify-center z-50">
+            <div class="w-full max-w-[400px] p-4 pb-8">
+                <button id="add-button" onclick="addToCart()" class="w-full bg-brand-green text-brand-surface py-4 font-sans text-[10px] uppercase tracking-[0.15em] font-bold hover:bg-brand-coffee transition-colors">
+                    Добавить в корзину
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const productSections = [
+            {
+                id: 'brushes',
+                title: 'Щетки',
+                items: [
+                    ['Curaprox CS 5460 Ultra Soft', 'Ультрамягкая щетка для ежедневного ухода', '1 150 ₽', 'ph-tooth', 'soft'],
+                    ['Oral-B Pro 3 Electric', 'Электрическая щетка с датчиком давления', '6 900 ₽', 'ph-lightning', ''],
+                    ['Revyline RL 010 Kids', 'Мягкая детская щетка с компактной головкой', '690 ₽', 'ph-smiley', 'coffee']
+                ]
+            },
+            {
+                id: 'toothpaste',
+                title: 'Пасты',
+                items: [
+                    ['Biorepair Total Protective', 'Восстановление эмали и снижение чувствительности', '980 ₽', 'ph-drop', 'soft'],
+                    ['Apadent Total Care', 'Реминерализующая паста с nano-HAP', '1 650 ₽', 'ph-sparkle', ''],
+                    ['Curaprox Enzycal 1450', 'Ежедневная паста с мягким составом', '1 250 ₽', 'ph-leaf', 'coffee']
+                ]
+            },
+            {
+                id: 'irrigators',
+                title: 'Ирригаторы',
+                items: [
+                    ['Revyline RL 450', 'Портативный ирригатор для домашнего ухода', '4 900 ₽', 'ph-waves', ''],
+                    ['Waterpik WP-660', 'Стационарный ирригатор для всей семьи', '12 900 ₽', 'ph-drop-half', 'soft']
+                ]
+            },
+            {
+                id: 'rinse',
+                title: 'Ополаскиватели',
+                items: [
+                    ['Curasept ADS 205', 'Курс после хирургии и профессиональной гигиены', '1 450 ₽', 'ph-bottle', 'coffee'],
+                    ['Biorepair Mouthwash', 'Ежедневный уход и защита эмали', '890 ₽', 'ph-shield-check', 'soft']
+                ]
+            },
+            {
+                id: 'kids',
+                title: 'Для детей',
+                items: [
+                    ['Brush-Baby KidzSonic', 'Звуковая щетка для детей от 3 лет', '2 900 ₽', 'ph-star', ''],
+                    ['R.O.C.S. Kids паста', 'Мягкий вкус и бережная защита эмали', '520 ₽', 'ph-heart', 'coffee']
+                ]
+            }
+        ];
+
+        const params = new URLSearchParams(window.location.search);
+        const sectionId = params.get('section') || 'brushes';
+        const itemIndex = Number(params.get('item') || 0);
+        const section = productSections.find(item => item.id === sectionId) || productSections[0];
+        const product = section.items[itemIndex] || section.items[0];
+        const [name, description, price, icon, tone] = product;
+
+        document.getElementById('product-visual').className = `product-visual ${tone} w-full aspect-square fine-border mb-6 flex items-center justify-center text-brand-green`;
+        document.getElementById('product-icon').className = `ph-light ${icon} text-[92px]`;
+        document.getElementById('product-category').innerText = section.title;
+        document.getElementById('product-name').innerText = name;
+        document.getElementById('product-description').innerText = description;
+        document.getElementById('product-price').innerText = price;
+        document.getElementById('product-note-main').innerText = section.id === 'irrigators'
+            ? 'Подходит для ухода за труднодоступными зонами, ортопедическими конструкциями и имплантами.'
+            : 'Подходит для ежедневного домашнего ухода между визитами в клинику.';
+        document.getElementById('product-note-extra').innerText = 'Перед покупкой можно уточнить у администратора или врача, подходит ли товар именно для вашего плана лечения.';
+
+        function addToCart() {
+            const button = document.getElementById('add-button');
+            button.innerText = 'Добавлено';
+            button.classList.remove('bg-brand-green');
+            button.classList.add('bg-brand-coffee');
+        }
+    </script>
+</body>
+</html>
